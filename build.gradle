@@ -1,0 +1,22 @@
+
+plugins {
+    id'java'
+    id'application'
+    id'com.github.johnrengelman.shadow' version '2.0.4'
+}
+
+mainClassName = 'BOT.APP'
+
+version '1.0'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile group: 'net.dv8tion', name: 'JDA', version: '3.7.1_409'
+}
+
+compileJava.options.encoding = 'UTF-8'
