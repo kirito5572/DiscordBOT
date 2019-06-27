@@ -42,7 +42,7 @@ public class NowPlayingCommand implements ICommand {
     @Override
     public String getHelp() {
         return "재생중인 노래의 상태를 나타냅니다.\n" +
-                "사용법: " Constants.PREFIX ;
+                "사용법: `" + Constants.PREFIX + getInvoke() + "`";
     }
 
     @Override

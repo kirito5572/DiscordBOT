@@ -3,15 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/QueueCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/QueueCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Music/PlayerManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Music/PlayerManager$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Music/PlayerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Music/PlayerManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/objects/CommandManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/objects/CommandManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/META-INF/BOT.main.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/NowPlayingCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/NowPlayingCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/QueueCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/QueueCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Music/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Music/PlayerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/BOT/AppTest.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -110,8 +103,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Music/NowPlayingCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="44" column="24" lean-forward="true" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
+            <state relative-caret-position="266">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1198#1199#0" expanded="true" />
@@ -165,10 +158,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="1358" />
-    <option name="y" value="-266" />
-    <option name="width" value="1296" />
-    <option name="height" value="1040" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="784" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -245,27 +238,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="BOT" type="462c0819:PsiDirectoryNode" />
               <item name="objects" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BOT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Discord_BOT" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="BOT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Discord_BOT" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BOT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Discord_BOT" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="BOT" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -357,18 +329,17 @@
       <workItem from="1561464969171" duration="9204000" />
       <workItem from="1561535683528" duration="13637000" />
       <workItem from="1561596706796" duration="4535000" />
-      <workItem from="1561602133249" duration="5272000" />
+      <workItem from="1561602133249" duration="7182000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35257000" />
+    <option name="totallyTimeSpent" value="37167000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-266" width="1296" height="1040" extended-state="7" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2746365" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2746365" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -377,7 +348,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924472" visible="true" weight="0.47909606" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924472" weight="0.47909606" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -629,13 +600,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/BOT/AppTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Music/QueueCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -659,10 +623,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/BOT/AppTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="13" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Music/NowPlayingCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="44" column="24" lean-forward="true" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
+        <state relative-caret-position="266">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1198#1199#0" expanded="true" />
