@@ -59,7 +59,8 @@ public class PlayerManager {
                     firstTrack = playlist.getTracks().remove(0);
                 }
 
-                channel.sendMessage("재생목록에 추가 " + firstTrack.getInfo().title + " (재생목록의 첫번째 곡 " + playlist.getName() + ")").queue();
+                channel.sendMessage("재생목록에 추가:" + firstTrack.getInfo().title +
+                        " ("+ playlist.getName() + " 의 첫번째 곡)").queue();
 
                 play(musicManager, firstTrack);
 
