@@ -1,11 +1,10 @@
-
 plugins {
     id'java'
     id'application'
     id'com.github.johnrengelman.shadow' version '4.0.2'
 }
 
-mainClassName = 'BOT.APP'
+mainClassName = 'src.main.java.BOT.APP'
 
 version '1.0'
 
@@ -25,5 +24,6 @@ dependencies {
     compile group: 'com.sedmelluq', name: 'lavaplayer', version: '1.3.11'
     implementation group: 'me.duncte123', name: 'botCommons', version: '1.0.25'
 }
-
+final def jar = shadowJar
+jar
 compileJava.options.encoding = 'UTF-8'
