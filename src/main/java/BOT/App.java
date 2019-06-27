@@ -54,6 +54,7 @@ public class App {
             logger.info("Booting");
             JDA jda = new JDABuilder(AccountType.BOT)
                     .setToken(Secrets.TOKEN)
+                    .setAutoReconnect(true)
                     .addEventListener(listener)
                     .setGame(Game.of(Game.GameType.STREAMING,"사용법: $help","https://github.com/kirito5572/Discord_BOT"))//streaming("사용법: $help","https://github.com/kirito5572/Discord_BOT"))
                     .build().awaitReady();

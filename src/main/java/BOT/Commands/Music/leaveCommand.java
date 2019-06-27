@@ -18,12 +18,12 @@ public class leaveCommand implements ICommand {
             channel.sendMessage("나갈 보이스 채널이 없습니다.").queue();
             return;
         }
-        VoiceChannel voiceChannel = audioManager.getConnectedChannel();
+        /*VoiceChannel voiceChannel = audioManager.getConnectedChannel();
 
         if(!voiceChannel.getMembers().contains(event.getMember())) {
             channel.sendMessage("봇과 같은 보이스 채널에 있어야 합니다.").queue();
             return;
-        }
+        }*/
 
         audioManager.closeAudioConnection();
         channel.sendMessage("보이스채널을 떠납니다.").queue();

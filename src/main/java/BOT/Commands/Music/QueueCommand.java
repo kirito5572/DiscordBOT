@@ -17,11 +17,6 @@ import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
 public class QueueCommand implements ICommand {
-    private final CommandManager manager;
-
-    public QueueCommand(CommandManager manager) {
-        this.manager = manager;
-    }
 
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
@@ -45,9 +40,11 @@ public class QueueCommand implements ICommand {
         int maxTrackCount = Math.min(queue.size(), 20 * Integer.parseInt(joined));
         int minTrackCount = Math.min(queue.size(), 20 * (Integer.parseInt(joined) - 1));
         List<AudioTrack> tracks = new ArrayList<>(queue);
+        System.out.println(queue.size());
         if(minTrackCount >= queue.size()) {
-            channel.sendMessage("`queue " + joined + "`는 비어있습니다.\n" +
-                    "`queue " + (int)Math.ceil(queue.size() / 20.0) + "`까지 재생목록이 존재합니다.").queue();
+            channel.sendMessage( "`" + Constants.PREFIX + "queue " + joined + "`는 비어있습니다.\n`" +
+                    Constants.PREFIX + "queue " + (int)Math.ceil(queue.size() / 20.0) +
+                    "`까지 재생목록이 존재합니다.").queue();
 
             return;
         }

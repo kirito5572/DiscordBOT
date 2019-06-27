@@ -60,7 +60,7 @@ public class PlayerManager {
                 }
 
                 channel.sendMessage("재생목록에 추가:" + firstTrack.getInfo().title +
-                        " ("+ playlist.getName() + " 의 첫번째 곡)").queue();
+                        " ("+ playlist.getName() + "의 첫번째 곡)").queue();
 
                 play(musicManager, firstTrack);
 

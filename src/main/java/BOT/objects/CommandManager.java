@@ -26,10 +26,12 @@ public class CommandManager {
         addCommand(new leaveCommand());
         addCommand(new PlayCommand());
         addCommand(new StopCommand());
-        addCommand(new QueueCommand(this));
+        addCommand(new QueueCommand());
         addCommand(new StopCommand());
         addCommand(new SkipCommand());
+        addCommand(new VolumeCommand());
         addCommand(new NowPlayingCommand());
+        addCommand(new QueueDelectCommand());
     }
 
     private void addCommand(ICommand command) {
