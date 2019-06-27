@@ -3,7 +3,6 @@ package BOT.Commands.Music;
 import BOT.Constants;
 import BOT.objects.ICommand;
 import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.entities.VoiceChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.managers.AudioManager;
 

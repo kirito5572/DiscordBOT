@@ -3,7 +3,6 @@ package BOT.Commands.Music;
 import BOT.Constants;
 import BOT.Music.GuildMusicManager;
 import BOT.Music.PlayerManager;
-import BOT.objects.CommandManager;
 import BOT.objects.ICommand;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
