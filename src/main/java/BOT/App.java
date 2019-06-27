@@ -55,7 +55,7 @@ public class App {
                     .setToken(Secrets.TOKEN)
                     .setAutoReconnect(true)
                     .addEventListener(listener)
-                    .setGame(Game.of(Game.GameType.STREAMING,"사용법: $help","https://github.com/kirito5572/Discord_BOT"))//streaming("사용법: $help","https://github.com/kirito5572/Discord_BOT"))
+                    .setGame(Game.of(Game.GameType.STREAMING,"사용법: $명령어","https://github.com/kirito5572/Discord_BOT"))//streaming("사용법: $help","https://github.com/kirito5572/Discord_BOT"))
                     .build().awaitReady();
             logger.info("Running");
         } catch (LoginException | InterruptedException e) {

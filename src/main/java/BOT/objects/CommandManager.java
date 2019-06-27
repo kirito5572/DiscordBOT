@@ -1,10 +1,9 @@
 package BOT.objects;
 
-import BOT.Commands.CatCommand;
-import BOT.Commands.HelpCommand;
+import BOT.Commands.*;
+import BOT.Commands.Moderation.ClearCommand;
+import BOT.Commands.Moderation.KickCommand;
 import BOT.Commands.Music.*;
-import BOT.Commands.PingCommand;
-import BOT.Commands.UserInfoCommand;
 import BOT.Constants;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
@@ -21,6 +20,9 @@ public class CommandManager {
         addCommand(new PingCommand());
         addCommand(new CatCommand());
         addCommand(new UserInfoCommand());
+        addCommand(new ClearCommand());
+
+        addCommand(new KickCommand());
 
         addCommand(new JoinCommand());
         addCommand(new leaveCommand());

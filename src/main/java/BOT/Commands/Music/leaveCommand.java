@@ -30,12 +30,12 @@ public class leaveCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "봇이 보이스채널에서 나가게 합니다." +
+        return "노래 다들었어 이제 그럼 가" +
                 "사용법 : '" + Constants.PREFIX + getInvoke() + "'";
     }
 
     @Override
     public String getInvoke() {
-        return "leave";
+        return "퇴장";
     }
 }

@@ -49,12 +49,12 @@ public class PlayCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "노래를 재생합니다.\n" +
+        return "URL의 노래를 부를게!\n" +
                 "사용법 : '" + Constants.PREFIX + getInvoke() + "'[URL]";
     }
 
     @Override
     public String getInvoke() {
-        return "play";
+        return "재생";
     }
 }

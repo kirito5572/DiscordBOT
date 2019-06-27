@@ -30,6 +30,6 @@ public class CatCommand implements ICommand {
 
     @Override
     public String getInvoke() {
-        return "neko";
+        return "네코";
     }
 }

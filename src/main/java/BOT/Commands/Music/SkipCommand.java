@@ -33,12 +33,12 @@ public class SkipCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "현재 노래를 스킵합니다." +
+        return "이 노래 이제 그만?." +
                 "사용법: `" + Constants.PREFIX + getInvoke() + "`";
     }
 
     @Override
     public String getInvoke() {
-        return "skip";
+        return "다음곡";
     }
 }

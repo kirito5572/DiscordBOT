@@ -68,12 +68,12 @@ public class QueueCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "재생목록을 보여줍니다\n" +
+        return "앞으로 부를 남은 노래는?\n" +
                 "사용법 `" + Constants.PREFIX + getInvoke() + "`";
     }
 
     @Override
     public String getInvoke() {
-        return "queue";
+        return "재생목록";
     }
 }

@@ -16,12 +16,12 @@ public class PingCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "퐁!\n" +
+        return "레이턴시 ㄴㅇㄱ!\n" +
                 "명령어: `" + Constants.PREFIX + getInvoke() + "`";
     }
 
     @Override
     public String getInvoke() {
-        return "ping";
+        return "핑";
     }
 }

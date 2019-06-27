@@ -25,4 +25,5 @@ dependencies {
     implementation group: 'me.duncte123', name: 'botCommons', version: '1.0.25'
 }
 shadowJar
+
 compileJava.options.encoding = 'UTF-8'

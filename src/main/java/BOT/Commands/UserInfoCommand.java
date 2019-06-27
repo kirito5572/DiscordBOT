@@ -54,12 +54,12 @@ public class UserInfoCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "유저 정보를 표시합니다. \n" +
+        return "너를 알고 싶다! \n" +
                 "사용법: `" + Constants.PREFIX + getInvoke() + " [유저 이름/@유저/유저 id] `";
     }
 
     @Override
     public String getInvoke() {
-        return "userinfo";
+        return "유저정보";
     }
 }

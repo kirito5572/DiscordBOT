@@ -49,13 +49,14 @@ public class QueueDelectCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "입력된 숫자만큼 재생목록을 비웁니다.\n" +
-                "숫자를 입력하지 않은경우 전체가 지워집니다.\n" +
+        return "부를 노래가 너무 많아....\n" +
+                "숫자만큼 부를 노래를 없앨게.\n" +
+                "(숫자 미 입력시 전체 삭제)\n" +
                 "사용법: '" + Constants.PREFIX + getInvoke() + "'(숫자)";
     }
 
     @Override
     public String getInvoke() {
-        return "qc";
+        return "재생목록정리";
     }
 }

@@ -32,12 +32,12 @@ public class VolumeCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "볼륨을 조절합니다." +
+        return "노래 소리 조절하라고?" +
                 "사용법: `" + Constants.PREFIX + getInvoke() + "`(숫자)";
     }
 
     @Override
     public String getInvoke() {
-        return "vol";
+        return "볼륨";
     }
 }

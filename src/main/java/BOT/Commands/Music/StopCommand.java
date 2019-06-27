@@ -23,12 +23,12 @@ public class StopCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "노래 재생을 멈춥니다." +
+        return "이제 그만 부를게" +
                 "사용법: `$stop`";
     }
 
     @Override
     public String getInvoke() {
-        return "stop";
+        return "정지";
     }
 }

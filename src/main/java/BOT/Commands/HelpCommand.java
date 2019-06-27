@@ -56,12 +56,12 @@ public class HelpCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "모든 커맨드를 리스트로 보여줍니다.\n" +
+        return "모르는 명령어는 어디서? 여기서.\n" +
                 "명령어: `" + Constants.PREFIX + getInvoke() + " [command]`";
     }
 
     @Override
     public String getInvoke() {
-        return "help";
+        return "명령어";
     }
 }

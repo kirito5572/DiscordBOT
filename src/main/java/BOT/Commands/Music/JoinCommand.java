@@ -44,12 +44,12 @@ public class JoinCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "봇이 보이스채널에 들어오게 합니다." +
+        return "와서 노래 불러!" +
                 "사용법 : '" + Constants.PREFIX + getInvoke() + "'";
     }
 
     @Override
     public String getInvoke() {
-        return "join";
+        return "입장";
     }
 }
