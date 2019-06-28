@@ -34,6 +34,11 @@ public class CommandManager {
         addCommand(new VolumeCommand());
         addCommand(new NowPlayingCommand());
         addCommand(new QueueDelectCommand());
+
+        addCommand(new WeatherCommand()); //TODO
+        addCommand(new AirLocalInforCommand()); //TODO
+        addCommand(new AirInforCommand());
+        addCommand(new AirkoreaListCommand());
     }
 
     private void addCommand(ICommand command) {
