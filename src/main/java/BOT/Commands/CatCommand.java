@@ -32,4 +32,9 @@ public class CatCommand implements ICommand {
     public String getInvoke() {
         return "네코";
     }
+
+    @Override
+    public String getSmallHelp() {
+        return "카와이 네코쟝";
+    }
 }

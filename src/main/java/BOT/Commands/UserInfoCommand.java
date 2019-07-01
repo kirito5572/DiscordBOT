@@ -62,4 +62,9 @@ public class UserInfoCommand implements ICommand {
     public String getInvoke() {
         return "유저정보";
     }
+
+    @Override
+    public String getSmallHelp() {
+        return "너 시x 누구야";
+    }
 }

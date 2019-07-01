@@ -40,4 +40,9 @@ public class VolumeCommand implements ICommand {
     public String getInvoke() {
         return "볼륨";
     }
+
+    @Override
+    public String getSmallHelp() {
+        return "볼륨 줄이기";
+    }
 }

@@ -52,4 +52,9 @@ public class JoinCommand implements ICommand {
     public String getInvoke() {
         return "입장";
     }
+
+    @Override
+    public String getSmallHelp() {
+        return "음악 들으려면 필수";
+    }
 }

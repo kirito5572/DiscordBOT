@@ -31,4 +31,9 @@ public class StopCommand implements ICommand {
     public String getInvoke() {
         return "정지";
     }
+
+    @Override
+    public String getSmallHelp() {
+        return "노래 정지시키기(재생목록 초기화)";
+    }
 }

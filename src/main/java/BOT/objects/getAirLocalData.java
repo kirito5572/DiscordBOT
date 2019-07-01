@@ -1,5 +1,6 @@
 package BOT.objects;
 
+import BOT.Secrets;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -29,15 +30,13 @@ public class getAirLocalData {
             String numOfRows = "1";
             String pageNo = "1";
             String searchCondition = "WEEK";
-            String airkorea_serviceKey = "rd9jDc4rAZCzh815fSejIsMIAOsAt%2Fd3DNWjNCe1XKh7jkHlo9OLJtwHAGfkhlhrjaU%2FFVwBi35i7yY7D3I2vg%3D%3D";
-
 
             DocumentBuilderFactory airkorea_DB_Factoty = DocumentBuilderFactory.newInstance();
             DocumentBuilder airkorea_Builder = airkorea_DB_Factoty.newDocumentBuilder();
             for(int i = 0; i < 6; i++) {
                 Document airkorea_doc = airkorea_Builder.parse(
                         airkorea_url +
-                                "?serviceKey=" + airkorea_serviceKey +
+                                "?serviceKey=" + Secrets.airkorea_serviceKey +
                                 "&numOfRows=" + numOfRows +
                                 "&pageNo=" + pageNo +
                                 "&itemCode=" + itemCode[i] +

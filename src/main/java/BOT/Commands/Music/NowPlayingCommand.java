@@ -50,6 +50,11 @@ public class NowPlayingCommand implements ICommand {
         return "재생중";
     }
 
+    @Override
+    public String getSmallHelp() {
+        return "노래 뭐 나와?";
+    }
+
     private String formatTime(long timeInMillis) {
         final long hours = timeInMillis / TimeUnit.HOURS.toMillis(1) % 24;
         final long minutes = timeInMillis / TimeUnit.MINUTES.toMillis(1) % 60;

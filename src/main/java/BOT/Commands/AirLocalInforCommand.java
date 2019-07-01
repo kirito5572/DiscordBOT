@@ -70,6 +70,11 @@ public class AirLocalInforCommand implements ICommand {
         return "공기질";
     }
 
+    @Override
+    public String getSmallHelp() {
+        return "지역의 공기질은 과연?";
+    }
+
     public void setListFlag(boolean listFlag) {
         this.listFlag = listFlag;
     }

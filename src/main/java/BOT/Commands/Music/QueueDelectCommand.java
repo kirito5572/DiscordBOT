@@ -59,4 +59,9 @@ public class QueueDelectCommand implements ICommand {
     public String getInvoke() {
         return "재생목록정리";
     }
+
+    @Override
+    public String getSmallHelp() {
+        return "더러운거 치우기";
+    }
 }

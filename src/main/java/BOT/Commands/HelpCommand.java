@@ -46,9 +46,15 @@ public class HelpCommand implements ICommand {
 
         StringBuilder descriptionBuilder = builder.getDescriptionBuilder();
 
+
         manager.getCommands().forEach(
-                (command) -> descriptionBuilder.append('`').append(command.getInvoke()).append("`\n")
-        );
+                (command) ->
+                        builder.addField(
+                                "`" + command.getInvoke() + "`\n",
+                                command.getSmallHelp(),
+                                false
+                    )
+                );
 
         //TODO: Make a permission check to see if the bot can send embeds if not, send plain text
         event.getChannel().sendMessage(builder.build()).queue();
@@ -63,5 +69,10 @@ public class HelpCommand implements ICommand {
     @Override
     public String getInvoke() {
         return "명령어";
+    }
+
+    @Override
+    public String getSmallHelp() {
+        return "도움말";
     }
 }

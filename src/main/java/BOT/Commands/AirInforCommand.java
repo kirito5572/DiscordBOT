@@ -100,6 +100,11 @@ public class AirInforCommand implements ICommand {
         return "공기질상세";
     }
 
+    @Override
+    public String getSmallHelp() {
+        return "공기질은?";
+    }
+
     public void setListFlag(boolean listflag) {
         this.listFlag = listflag;
     }

@@ -12,4 +12,6 @@ public interface ICommand {
 
     String getInvoke();
 
+    String getSmallHelp();
+
 }

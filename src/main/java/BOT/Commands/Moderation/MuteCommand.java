@@ -9,7 +9,7 @@ import java.util.List;
 public class MuteCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
-
+        //TODO muteCommand
     }
 
     @Override
@@ -21,5 +21,10 @@ public class MuteCommand implements ICommand {
     @Override
     public String getInvoke() {
         return "그입다물라";
+    }
+
+    @Override
+    public String getSmallHelp() {
+        return "사람 조용히 만들기";
     }
 }
