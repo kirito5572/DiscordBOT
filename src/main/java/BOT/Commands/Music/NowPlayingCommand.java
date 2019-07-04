@@ -6,6 +6,8 @@ import BOT.Music.PlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
 import me.duncte123.botcommons.messaging.EmbedUtils;
+import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import BOT.objects.ICommand;
@@ -20,6 +22,12 @@ public class NowPlayingCommand implements ICommand {
         PlayerManager playerManager = PlayerManager.getInstance();
         GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
         AudioPlayer player = musicManager.player;
+
+        Member selfMember = event.getGuild().getSelfMember();
+        if(!selfMember.hasPermission(Permission.VOICE_CONNECT)) {
+            channel.sendMessage("보이스채널 권한이 없습니다..").queue();
+            return;
+        }
 
         if (player.getPlayingTrack() == null) {
             channel.sendMessage("아무 노래도 재생하고 있지 않습니다..").queue();

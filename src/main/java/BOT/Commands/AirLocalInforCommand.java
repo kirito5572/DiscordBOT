@@ -6,6 +6,8 @@ import BOT.objects.ICommand;
 import BOT.objects.getAirLocalData;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
@@ -16,10 +18,16 @@ public class AirLocalInforCommand implements ICommand {
     private int location;
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
+        TextChannel channel = event.getChannel();
+        Member selfMember = event.getGuild().getSelfMember();
+        if(!selfMember.hasPermission(Permission.MESSAGE_WRITE)) {
+            channel.sendMessage("메세지를 보낼권한이 없습니다.").queue();
+
+            return;
+        }
         setListFlag(false);
         String[] listENG = airKoreaList.getLocalListENG();
         String[] listKOR = airKoreaList.getLocalListKOR();
-        TextChannel channel = event.getChannel();
         String joined = String.join("",args);
         getAirLocalData airData = new getAirLocalData();
         for(int i = 0; i < 17; i++) {

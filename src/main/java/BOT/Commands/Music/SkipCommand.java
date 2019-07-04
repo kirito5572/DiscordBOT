@@ -6,6 +6,8 @@ import BOT.Music.PlayerManager;
 import BOT.Music.TrackScheduler;
 import BOT.objects.ICommand;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
+import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
@@ -19,6 +21,12 @@ public class SkipCommand implements ICommand {
         GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
         TrackScheduler scheduler = musicManager.scheduler;
         AudioPlayer player = musicManager.player;
+
+        Member selfMember = event.getGuild().getSelfMember();
+        if(!selfMember.hasPermission(Permission.VOICE_CONNECT)) {
+            channel.sendMessage("보이스채널 권한이 없습니다..").queue();
+            return;
+        }
 
         if (player.getPlayingTrack() == null) {
             channel.sendMessage("노래를 재생하고 있지 않습니다.").queue();

@@ -5,6 +5,8 @@ import BOT.Music.GuildMusicManager;
 import BOT.Music.PlayerManager;
 import BOT.objects.ICommand;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
+import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
@@ -21,7 +23,11 @@ public class QueueDelectCommand implements ICommand {
             BlockingQueue<AudioTrack> queue = musicManager.scheduler.getQueue();
 
             String joined = String.join("", args);
-
+            Member selfMember = event.getGuild().getSelfMember();
+            if(!selfMember.hasPermission(Permission.VOICE_CONNECT)) {
+                channel.sendMessage("보이스채널 권한이 없습니다..").queue();
+                return;
+            }
 
             if(queue.isEmpty()) {
                 channel.sendMessage("재생목록이 비었습니다.").queue();

@@ -3,6 +3,8 @@ package BOT.Commands.Music;
 import BOT.Constants;
 import BOT.Music.PlayerManager;
 import BOT.objects.ICommand;
+import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
@@ -13,6 +15,12 @@ public class VolumeCommand implements ICommand {
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
         String joined = String.join("", args);
+
+        Member selfMember = event.getGuild().getSelfMember();
+        if(!selfMember.hasPermission(Permission.VOICE_CONNECT)) {
+            channel.sendMessage("보이스채널 권한이 없습니다..").queue();
+            return;
+        }
 
         if(Integer.parseInt(joined) < 10) {
             channel.sendMessage("최소 볼륨은 10입니다. 10보다 큰 수를 입력해주세요.").queue();

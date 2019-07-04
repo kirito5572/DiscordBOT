@@ -21,6 +21,7 @@ public class UserInfoCommand implements ICommand {
                     getInvoke() + "'").queue();
             return;
         }
+
         String joined = String.join("", args);
         List<User> foundUsers = FinderUtil.findUsers(joined, event.getJDA());
 

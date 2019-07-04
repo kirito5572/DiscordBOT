@@ -6,6 +6,8 @@ import BOT.objects.ICommand;
 import BOT.objects.getAirData;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
@@ -21,6 +23,12 @@ public class AirInforCommand implements ICommand {
         String[] list = airKoreaList.getInchoenList();
         TextChannel channel = event.getChannel();
         String joined = String.join("", args);
+        Member selfMember = event.getGuild().getSelfMember();
+        if(!selfMember.hasPermission(Permission.MESSAGE_WRITE)) {
+            channel.sendMessage("메세지를 보낼권한이 없습니다.").queue();
+
+            return;
+        }
         getAirData airData = new getAirData();
         for(int i = 0; i < 16; i++) {
             if(joined.equals(list[i])) {

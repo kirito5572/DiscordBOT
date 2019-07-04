@@ -3,6 +3,8 @@ package BOT.Commands.Music;
 import BOT.Constants;
 import BOT.Music.PlayerManager;
 import BOT.objects.ICommand;
+import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
@@ -15,6 +17,12 @@ public class PlayCommand implements ICommand {
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
 
         TextChannel channel = event.getChannel();
+
+        Member selfMember = event.getGuild().getSelfMember();
+        if(!selfMember.hasPermission(Permission.VOICE_CONNECT)) {
+            channel.sendMessage("보이스채널 권한이 없습니다..").queue();
+            return;
+        }
 
         if(args.isEmpty()) {
             channel.sendMessage("URL을 입력헤주세요").queue();

@@ -44,8 +44,6 @@ public class HelpCommand implements ICommand {
 
         EmbedBuilder builder = EmbedUtils.defaultEmbed().setTitle("명령어 리스트:");
 
-        StringBuilder descriptionBuilder = builder.getDescriptionBuilder();
-
 
         manager.getCommands().forEach(
                 (command) ->

@@ -5,6 +5,8 @@ import BOT.objects.ICommand;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
@@ -12,6 +14,13 @@ import java.util.List;
 public class CatCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
+
+        Member selfMember = event.getGuild().getSelfMember();
+        if(!selfMember.hasPermission(Permission.VOICE_CONNECT)) {
+            event.getChannel().sendMessage("보이스채널 권한이 없습니다..").queue();
+            return;
+        }
+
         WebUtils.ins.scrapeWebPage("https://nekos.life/").async((document) -> {
             String a = document.getElementsByTag("head").first().toString();
             int b = a.indexOf("meta property=\"og:url\" content=\"");

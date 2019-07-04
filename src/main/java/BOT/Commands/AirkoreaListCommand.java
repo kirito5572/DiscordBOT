@@ -4,6 +4,8 @@ import BOT.Constants;
 import BOT.objects.ICommand;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
@@ -12,8 +14,15 @@ import java.util.List;
 public class AirkoreaListCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
+        TextChannel channel = event.getChannel();
         String[] Inchoenlist = BOT.airKoreaList.getInchoenList();
         StringBuilder InchoenlistSt = new StringBuilder();
+        Member selfMember = event.getGuild().getSelfMember();
+        if(!selfMember.hasPermission(Permission.MESSAGE_WRITE)) {
+            channel.sendMessage("메세지를 보낼권한이 없습니다.").queue();
+
+            return;
+        }
         EmbedBuilder builder = EmbedUtils.defaultEmbed()
                 .setTitle("측정소 목록");
         for (String s : Inchoenlist) {
@@ -22,7 +31,6 @@ public class AirkoreaListCommand implements ICommand {
         }
 
         builder.addField("인천", InchoenlistSt.toString(),false);
-        TextChannel channel = event.getChannel();
         channel.sendMessage(builder.build()).queue();
     }
 
