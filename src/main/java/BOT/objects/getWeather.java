@@ -1,236 +1,109 @@
 package BOT.objects;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import BOT.Secrets;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class getWeather {
+    private static final SimpleDateFormat clock_aa = new SimpleDateFormat("a");
+    private static final SimpleDateFormat clock_am = new SimpleDateFormat("K시 mm분 ss초(z)");
+    private static final SimpleDateFormat clock_pm = new SimpleDateFormat("h시 mm분 ss초(z)");
+    private static String[] weather_infor = new String[12];
+    private static String[] weather_list = new String[] {
+            "날씨 상태", "현재 온도", "대기압", "습도", "최저 온도(현재)",
+            "최고 온도(현재)", "풍속", "바람의 방향", "3시간 강수량", "3시간 적설량",
+            "일출 시간", "일몰 시간"
+    };
 
-    private static long time = System.currentTimeMillis();
-    private static SimpleDateFormat yyyymmdd = new SimpleDateFormat("yyyyMMdd");
-    private static SimpleDateFormat hhmm = new SimpleDateFormat("HHmm");
-    private static String yyyymmddStr = yyyymmdd.format(new Date(time));
-    private static String hhmmStr = hhmm.format(new Date(time));
+    public static void get_api(String city_name) {
 
+        try {
+            String url = "https://api.openweathermap.org/data/2.5/weather?q="+ city_name + "&appid=" + Secrets.weather_api_serviceKey + "&lang=kr" + "&units=metric";
+            System.out.println(url);
+            URL get_url = new URL(url);
 
-    private static String[] weather_category = new String[90];
-    private static String[] fcstValue = new String[90];
+            BufferedReader bf;
+            String line = "";
+            String result = "";
 
-    private static String[] weather_POP = new String[8];
-    private static String[] weather_PTY = new String[8];
-    private static String[] weather_R06 = new String[8];
-    private static String[] weather_REH = new String[8];
-    private static String[] weather_S06 = new String[8];
-    private static String[] weather_SKY = new String[8];
-    private static String[] weather_T3H = new String[8];
-    private static String[] weather_TMN = new String[8];
-    private static String[] weather_TMX = new String[8];
-    private static String[] weather_UUU = new String[8];
-    private static String[] weather_VVV = new String[8];
-    private static String[] weather_WAV = new String[8];
-    private static String[] weather_VEC = new String[8];
-    private static String[] weather_WSD = new String[8];
+            bf = new BufferedReader(new InputStreamReader(get_url.openStream()));
 
-    public String[] getWeather_POP() {
-        return weather_POP;
-    }
-
-    public String[] getWeather_PTY() {
-        return weather_PTY;
-    }
-
-    public String[] getWeather_R06() {
-        return weather_R06;
-    }
-
-    public String[] getWeather_REH() {
-        return weather_REH;
-    }
-
-    public String[] getWeather_S06() {
-        return weather_S06;
-    }
-
-    public String[] getWeather_SKY() {
-        return weather_SKY;
-    }
-
-    public String[] getWeather_T3H() {
-        return weather_T3H;
-    }
-
-    public String[] getWeather_TMN() {
-        return weather_TMN;
-    }
-
-    public String[] getWeather_TMX() {
-        return weather_TMX;
-    }
-
-    public String[] getWeather_UUU() {
-        return weather_UUU;
-    }
-
-    public String[] getWeather_VVV() {
-        return weather_VVV;
-    }
-
-    public String[] getWeather_WAV() {
-        return weather_WAV;
-    }
-
-    public String[] getWeather_VEC() {
-        return weather_VEC;
-    }
-
-    public String[] getWeather_WSD() {
-        return weather_WSD;
-    }
-
-    void get_API(String stationName) {
-        int page = 1;	// 페이지 초기값
-        try{
-
-            String weather_url = "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData";
-            String weather_serviceKey = "rd9jDc4rAZCzh815fSejIsMIAOsAt%2Fd3DNWjNCe1XKh7jkHlo9OLJtwHAGfkhlhrjaU%2FFVwBi35i7yY7D3I2vg%3D%3D";
-            String base_date = yyyymmddStr;
-            String base_time = "";
-            String pageNo = "1";
-            System.out.println(yyyymmddStr);
-            System.out.println(hhmmStr);
-            if(Integer.parseInt(hhmmStr) <= 220) {
-                base_time = "2300";
-                base_date = String.valueOf(Integer.parseInt(base_date) - 1);
+            while((line=bf.readLine()) != null) {
+                result = result.concat(line);
             }
-            if(Integer.parseInt(hhmmStr) >= 220) {
-                base_time = "0200";
+            JSONParser parser = new JSONParser();
+            JSONObject obj = (JSONObject) parser.parse(result);
+            JSONArray parse_weather = (JSONArray) obj.get("weather");
+            JSONObject parse_main = (JSONObject) obj.get("main");
+            JSONObject parse_wind = (JSONObject) obj.get("wind");
+            JSONObject parse_rain = (JSONObject) obj.get("rain");
+            JSONObject parse_snow = (JSONObject) obj.get("snow");
+            JSONObject parse_sys = (JSONObject) obj.get("sys");
+
+            weather_infor[0] = parse_weather.get(0).toString();   //날씨 상태
+            weather_infor[0] = weather_infor[0].substring(weather_infor[0].indexOf("\"description\":\"") + 15,weather_infor[0].indexOf("\",\"main\""));
+            weather_infor[1] = parse_main.get("temp").toString() + "Cº";      // 온도
+
+            weather_infor[2] = parse_main.get("pressure").toString() + "hPa";      // 대기압
+
+            weather_infor[3] = parse_main.get("humidity").toString() + "%";      // 습도
+
+            weather_infor[4] = parse_main.get("temp_min").toString() + "Cº";;      // 순간최저온도
+
+            weather_infor[5] = parse_main.get("temp_max").toString()+ "Cº";      // 순간최대온도
+
+            weather_infor[6] = parse_wind.get("speed").toString() + "m/s";      // 풍속
+
+            weather_infor[7] = parse_wind.get("deg").toString() + "";      // 풍향
+
+            if(weather_infor[0].equals("비")) {
+                weather_infor[8] = parse_rain.get("3h").toString() + "mm";      // 3시간 강수량
+            } else {
+                weather_infor[8] = "null";
             }
-            if(Integer.parseInt(hhmmStr) >= 520) {
-                base_time = "0500";
+            if(weather_infor[0].equals("눈")) {
+                weather_infor[9] = parse_snow.get("3h").toString() + "cm";      // 3시간 적설량
+            } else {
+                weather_infor[9] = "null";
             }
-            if(Integer.parseInt(hhmmStr) >= 820) {
-                base_time = "0800";
-            }
-            if(Integer.parseInt(hhmmStr) >= 1120) {
-                base_time = "1100";
-            }
-            if(Integer.parseInt(hhmmStr) >= 1420) {
-                base_time = "1400";
-            }
-            if(Integer.parseInt(hhmmStr) >= 1720) {
-                base_time = "1700";
-            }
-            if(Integer.parseInt(hhmmStr) >= 2020) {
-                base_time = "2000";
-            }
-            if(Integer.parseInt(hhmmStr) >= 2320) {
-                base_time = "2300";
-            }
-            //TODO stationName set
-            String nx = "54";
-            String ny = "125";
-            String type = "xml";
-            String weather_numOfRows = "90";
-            // parsing할 url 지정(API 키 포함해서)
-            String weather_get_url = weather_url + "?&ServiceKey=" + weather_serviceKey + "&base_date=" + base_date + "&base_time=" + base_time + "&nx=" + nx + "&ny=" + ny + "&numOfRows=" + weather_numOfRows + "&pageNo=" + pageNo + "_type=" + type;
 
-            DocumentBuilderFactory weather_DB_Factoty = DocumentBuilderFactory.newInstance();
-            DocumentBuilder weather_Builder = weather_DB_Factoty.newDocumentBuilder();
-            Document weather_doc = weather_Builder.parse(weather_get_url);
+            Date time;
+            weather_infor[10] = parse_sys.get("sunrise").toString();      // 일출시간
+            time = new Date(Long.parseLong(weather_infor[10]) * 1000);
+            weather_infor[10] = formatDate(time);
 
-            weather_doc.getDocumentElement().normalize();
+            weather_infor[11] = parse_sys.get("sunset").toString();      // 일몰시간
+            time = new Date(Long.parseLong(weather_infor[11]) * 1000);
+            weather_infor[11] = formatDate(time);
 
-            NodeList weather_nList = weather_doc.getElementsByTagName("item");
-
-            for(int temp = 0; temp < weather_nList.getLength(); temp++){
-                Node weather_nNode = weather_nList.item(temp);
-                if(weather_nNode.getNodeType() == Node.ELEMENT_NODE){
-
-                    Element eElement = (Element) weather_nNode;
-                    weather_category[temp] = (get_WeatherTagValue("category", eElement));
-                    fcstValue[temp] = (get_WeatherTagValue("fcstValue", eElement));
-                }	// for end
-            }	// if end
-            System.out.println();
-            new Thread(() -> {
-                int a, weather_data = 0;
-                for(a = 0; a < 90; a++) {
-                    if(weather_category[a].equals("POP")) {
-                        weather_data++;
-                        if(a < 5) {
-                            weather_data = 0;
-                        }
-                    }
-                    try {
-                        switch (weather_category[a]) {
-                            case "POP":
-                                weather_POP[weather_data] = fcstValue[a];
-                                break;
-                            case "PTY":
-                                weather_PTY[weather_data] = fcstValue[a];
-                                break;
-                            case "R06":
-                                weather_R06[weather_data] = fcstValue[a];
-                                break;
-                            case "REH":
-                                weather_REH[weather_data] = fcstValue[a];
-                                break;
-                            case "S06":
-                                weather_S06[weather_data] = fcstValue[a];
-                                break;
-                            case "SKY":
-                                weather_SKY[weather_data] = fcstValue[a];
-                                break;
-                            case "T3H":
-                                weather_T3H[weather_data] = fcstValue[a];
-                                break;
-                            case "TMN":
-                                weather_TMN[weather_data] = fcstValue[a];
-                                break;
-                            case "TMX":
-                                weather_TMX[weather_data] = fcstValue[a];
-                                break;
-                            case "UUU":
-                                weather_UUU[weather_data] = fcstValue[a];
-                                break;
-                            case "VEC":
-                                weather_VEC[weather_data] = fcstValue[a];
-                                break;
-                            case "VVV":
-                                weather_VVV[weather_data] = fcstValue[a];
-                                break;
-                            case "WSD":
-                                weather_WSD[weather_data] = fcstValue[a];
-                                break;
-                            case "WAV":
-                                weather_WAV[weather_data] = fcstValue[a];
-                                break;
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }).start();
-
-
-
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }	// try~catch end
+        }
+
     }
-    private static String get_WeatherTagValue(String weather_tag, Element weather_eElement) {
-        NodeList nlList = weather_eElement.getElementsByTagName(weather_tag).item(0).getChildNodes();
-        Node nValue = nlList.item(0);
-        if(nValue == null)
-            return null;
-        return nValue.getNodeValue();
+    public static String formatDate(Date date) {
+        String flag = clock_aa.format(date);
+        if(flag.equals("AM")) {
+            return "오전 " + clock_am.format(date);
+        } else {
+            return "오후 " + clock_pm.format(date);
+        }
+    }
+
+    public static String[] getWeather_infor() {
+        return weather_infor;
+    }
+
+    public static String[] getWeather_list() {
+        return weather_list;
     }
 }

@@ -38,4 +38,9 @@ public class leaveCommand implements ICommand {
     public String getInvoke() {
         return "퇴장";
     }
+
+    @Override
+    public String getSmallHelp() {
+        return "다들었음 내보내";
+    }
 }

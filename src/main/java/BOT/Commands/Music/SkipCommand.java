@@ -41,4 +41,9 @@ public class SkipCommand implements ICommand {
     public String getInvoke() {
         return "다음곡";
     }
+
+    @Override
+    public String getSmallHelp() {
+        return "노래 스킵하기";
+    }
 }

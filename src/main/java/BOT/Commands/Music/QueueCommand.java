@@ -76,4 +76,9 @@ public class QueueCommand implements ICommand {
     public String getInvoke() {
         return "재생목록";
     }
+
+    @Override
+    public String getSmallHelp() {
+        return "재생목록 호에에?";
+    }
 }

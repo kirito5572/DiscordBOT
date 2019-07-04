@@ -57,4 +57,9 @@ public class PlayCommand implements ICommand {
     public String getInvoke() {
         return "재생";
     }
+
+    @Override
+    public String getSmallHelp() {
+        return "노래 틀기";
+    }
 }

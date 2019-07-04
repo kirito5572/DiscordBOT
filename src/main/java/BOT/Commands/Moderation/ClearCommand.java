@@ -44,4 +44,9 @@ public class ClearCommand implements ICommand {
     public String getInvoke() {
         return "청소";
     }
+
+    @Override
+    public String getSmallHelp() {
+        return "더러운거 청소하기";
+    }
 }

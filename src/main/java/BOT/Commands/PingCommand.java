@@ -24,4 +24,9 @@ public class PingCommand implements ICommand {
     public String getInvoke() {
         return "핑";
     }
+
+    @Override
+    public String getSmallHelp() {
+        return "레이턴시 확인기";
+    }
 }

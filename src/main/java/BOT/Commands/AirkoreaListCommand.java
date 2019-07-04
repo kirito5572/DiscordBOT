@@ -35,4 +35,9 @@ public class AirkoreaListCommand implements ICommand {
     public String getInvoke() {
         return "공기질상세지역";
     }
+
+    @Override
+    public String getSmallHelp() {
+        return "지역 목록 부르기";
+    }
 }
