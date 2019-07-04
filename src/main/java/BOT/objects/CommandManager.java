@@ -30,6 +30,7 @@ public class CommandManager {
         addCommand(new StopCommand());
         addCommand(new QueueCommand());
         addCommand(new StopCommand());
+        addCommand(new StopClearCommand());
         addCommand(new SkipCommand());
         addCommand(new VolumeCommand());
         addCommand(new NowPlayingCommand());
