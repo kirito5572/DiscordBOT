@@ -19,6 +19,8 @@ public class StopClearCommand implements ICommand {
         GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
         if(!audioManager.isConnected()) {
             event.getChannel().sendMessage("음성 채널에 연결되어있지 않아 사용이 불가능합니다.").queue();
+
+            return;
         }
 
         musicManager.scheduler.getQueue().clear();

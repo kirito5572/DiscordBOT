@@ -1,6 +1,8 @@
 package BOT.Commands.Music;
 
 import BOT.Constants;
+import BOT.Music.GuildMusicManager;
+import BOT.Music.PlayerManager;
 import BOT.objects.ICommand;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Member;
@@ -15,6 +17,8 @@ public class leaveCommand implements ICommand {
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
         AudioManager audioManager = event.getGuild().getAudioManager();
+        PlayerManager playerManager = PlayerManager.getInstance();
+        GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
         Member selfMember = event.getGuild().getSelfMember();
         if(!selfMember.hasPermission(Permission.VOICE_CONNECT)) {
             channel.sendMessage("보이스채널 권한이 없습니다..").queue();
@@ -32,12 +36,14 @@ public class leaveCommand implements ICommand {
         }*/
 
         audioManager.closeAudioConnection();
+        musicManager.scheduler.getQueue().clear();
+
         channel.sendMessage("보이스채널을 떠납니다.").queue();
     }
 
     @Override
     public String getHelp() {
-        return "노래 다들었어 이제 그럼 가" +
+        return "노래 다들었어 재생목록 비우고 가있어" +
                 "사용법 : '" + Constants.PREFIX + getInvoke() + "'";
     }
 
