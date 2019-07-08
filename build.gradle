@@ -4,7 +4,7 @@ plugins {
     id'com.github.johnrengelman.shadow' version '4.0.2'
 }
 
-mainClassName = 'build.classes.java.main.BOT.APP'
+mainClassName = 'src.main.java.BOT.App'
 
 version '1.0'
 
