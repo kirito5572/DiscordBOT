@@ -1,10 +1,8 @@
 package BOT.objects;
 
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
 
 import java.io.BufferedReader;
 import java.io.File;
