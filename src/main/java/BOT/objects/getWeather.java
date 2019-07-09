@@ -1,13 +1,14 @@
 package BOT.objects;
 
 
-import BOT.Secrets;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -27,7 +28,20 @@ public class getWeather {
     public static void get_api(String city_name) {
 
         try {
-            String url = "https://api.openweathermap.org/data/2.5/weather?q="+ city_name + "&appid=" + Secrets.weather_api_serviceKey + "&lang=kr" + "&units=metric";
+
+            String TOKEN = "";
+            try {
+                File file = new File("D:\\weather_key.txt");
+                FileReader fileReader = new FileReader(file);
+                int singalCh = 0;
+                while((singalCh = fileReader.read()) != -1) {
+                    TOKEN = TOKEN + (char)singalCh;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            String url = "https://api.openweathermap.org/data/2.5/weather?q="+ city_name + "&appid=" + TOKEN + "&lang=kr" + "&units=metric";
             System.out.println(url);
             URL get_url = new URL(url);
 

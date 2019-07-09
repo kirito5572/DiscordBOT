@@ -7,6 +7,8 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
+import java.io.FileReader;
 
 public class getAirData {
     private static long time = System.currentTimeMillis();
@@ -32,12 +34,25 @@ public class getAirData {
 
     public void get_API(String stationName) {
         try{
+
+            String TOKEN = "";
+            try {
+                File file = new File("D:\\air_korea_key.txt");
+                FileReader fileReader = new FileReader(file);
+                int singalCh = 0;
+                while((singalCh = fileReader.read()) != -1) {
+                    TOKEN = TOKEN + (char)singalCh;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             String airkorea_url = "http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty";
             String dataTerm = "DAILY";
             String numOfRows = "10";
             String pageNo = "1";
             String ver = "1.3";
-            String airkorea_serviceKey = "rd9jDc4rAZCzh815fSejIsMIAOsAt%2Fd3DNWjNCe1XKh7jkHlo9OLJtwHAGfkhlhrjaU%2FFVwBi35i7yY7D3I2vg%3D%3D";
+            String airkorea_serviceKey = TOKEN;
 
 
             DocumentBuilderFactory airkorea_DB_Factoty = DocumentBuilderFactory.newInstance();

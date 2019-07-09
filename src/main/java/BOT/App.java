@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
 import java.awt.*;
+import java.io.File;
+import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
@@ -48,11 +50,21 @@ public class App {
                         .setColor(getRandomColor())
                         .setTimestamp(Instant.now())
         );
-
+        String TOKEN = "";
+        try {
+        File file = new File("D:\\Serect.txt");
+        FileReader fileReader = new FileReader(file);
+        int singalCh = 0;
+            while((singalCh = fileReader.read()) != -1) {
+                TOKEN = TOKEN + (char)singalCh;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         try {
             logger.info("Booting");
             JDA jda = new JDABuilder(AccountType.BOT)
-                    .setToken(Secrets.TOKEN)
+                    .setToken("")
                     .setAutoReconnect(true)
                     .addEventListener(listener)
                     .setGame(Game.of(Game.GameType.STREAMING,"사용법: $명령어","https://github.com/kirito5572/Discord_BOT"))//streaming("사용법: $help","https://github.com/kirito5572/Discord_BOT"))
@@ -61,7 +73,6 @@ public class App {
         } catch (LoginException | InterruptedException e) {
             e.printStackTrace();
         }
-
 
     }
 
