@@ -29,7 +29,7 @@ public class getWeather {
 
             String TOKEN = "";
             try {
-                File file = new File("D:\\weather_key.txt");
+                File file = new File("D:\\DiscordServerBotSecrets\\ritobot\\weather_key.txt");
                 FileReader fileReader = new FileReader(file);
                 int singalCh = 0;
                 while((singalCh = fileReader.read()) != -1) {
@@ -52,6 +52,8 @@ public class getWeather {
             while((line=bf.readLine()) != null) {
                 result = result.concat(line);
             }
+
+            bf.close();
             JSONParser parser = new JSONParser();
             JSONObject obj = (JSONObject) parser.parse(result);
             JSONArray parse_weather = (JSONArray) obj.get("weather");

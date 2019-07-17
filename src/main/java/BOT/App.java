@@ -18,7 +18,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Date;
 import java.util.Random;
 
@@ -48,11 +47,11 @@ public class App {
         EmbedUtils.setEmbedBuilder(
                 () -> new EmbedBuilder()
                         .setColor(getRandomColor())
-                        .setTimestamp(Instant.now())
+                        .setFooter("Made By \uD835\uDCC0\uD835\uDCBE\uD835\uDCC7\uD835\uDCBE\uD835\uDCC9\uD835\uDC5C\uD835\uDFE7\uD835\uDFE7\uD835\uDFE9\uD835\uDFE4♥#5572",null)
         );
         StringBuilder TOKEN = new StringBuilder();
         try {
-        File file = new File("D:\\Serect.txt");
+        File file = new File("D:\\DiscordServerBotSecrets\\ritobot\\Serect.txt");
         FileReader fileReader = new FileReader(file);
         int singalCh = 0;
             while((singalCh = fileReader.read()) != -1) {
