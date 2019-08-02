@@ -1,4 +1,4 @@
-package BOT.objects;
+package BOT.Objects;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -37,7 +37,7 @@ public class getAirData {
 
             String TOKEN = "";
             try {
-                File file = new File("D:\\air_korea_key.txt");
+                File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airkoreaAPIKEY.txt");
                 FileReader fileReader = new FileReader(file);
                 int singalCh = 0;
                 while((singalCh = fileReader.read()) != -1) {

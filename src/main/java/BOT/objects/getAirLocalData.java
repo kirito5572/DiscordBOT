@@ -1,4 +1,4 @@
-package BOT.objects;
+package BOT.Objects;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -34,7 +34,7 @@ public class getAirLocalData {
 
             String TOKEN = "";
             try {
-                File file = new File("D:\\air_korea_key.txt");
+                File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airkoreaAPIKEY.txt");
                 FileReader fileReader = new FileReader(file);
                 int singalCh = 0;
                 while((singalCh = fileReader.read()) != -1) {
@@ -62,8 +62,8 @@ public class getAirLocalData {
                 if(nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                     Element eElement = (Element) nNode;
-                    airkorea_data[i] = BOT.objects.getAirData.get_AirKoreaTagValue(stationName,eElement);
-                    airkorea_data[6] = BOT.objects.getAirData.get_AirKoreaTagValue("dataTime",eElement);
+                    airkorea_data[i] = BOT.Objects.getAirData.get_AirKoreaTagValue(stationName,eElement);
+                    airkorea_data[6] = BOT.Objects.getAirData.get_AirKoreaTagValue("dataTime",eElement);
                 }
             }
 

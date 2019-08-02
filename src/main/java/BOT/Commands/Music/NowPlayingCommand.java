@@ -1,8 +1,9 @@
 package BOT.Commands.Music;
 
-import BOT.Constants;
+import BOT.App;
 import BOT.Music.GuildMusicManager;
 import BOT.Music.PlayerManager;
+import BOT.Objects.ICommand;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
 import me.duncte123.botcommons.messaging.EmbedUtils;
@@ -10,7 +11,6 @@ import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
-import BOT.objects.ICommand;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -49,8 +49,8 @@ public class NowPlayingCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "지금 뭐 불러?\n" +
-                "사용법: `" + Constants.PREFIX + getInvoke() + "`";
+        return "지금 재생중은?\n" +
+                "사용법: `" + App.getPREFIX() + getInvoke() + "`";
     }
 
     @Override
@@ -60,7 +60,7 @@ public class NowPlayingCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "노래 뭐 나와?";
+        return "재생중인 노래 정보";
     }
 
     private String formatTime(long timeInMillis) {

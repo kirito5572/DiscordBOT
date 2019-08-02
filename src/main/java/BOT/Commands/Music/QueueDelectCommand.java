@@ -1,9 +1,9 @@
 package BOT.Commands.Music;
 
-import BOT.Constants;
+import BOT.App;
 import BOT.Music.GuildMusicManager;
 import BOT.Music.PlayerManager;
-import BOT.objects.ICommand;
+import BOT.Objects.ICommand;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Member;
@@ -55,10 +55,10 @@ public class QueueDelectCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "부를 노래가 너무 많아....\n" +
-                "숫자만큼 부를 노래를 없앨게.\n" +
+        return "재생할 노래가 너무 많아서....\n" +
+                "숫자만큼 노래를 없앱니다.\n" +
                 "(숫자 미 입력시 전체 삭제)\n" +
-                "사용법: '" + Constants.PREFIX + getInvoke() + "'(숫자)";
+                "사용법: '" + App.getPREFIX() + getInvoke() + "'(숫자)";
     }
 
     @Override
@@ -68,6 +68,6 @@ public class QueueDelectCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "더러운거 치우기";
+        return "재생목록을 [숫자] 만큼 정리";
     }
 }

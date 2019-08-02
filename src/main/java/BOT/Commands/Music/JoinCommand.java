@@ -1,7 +1,7 @@
 package BOT.Commands.Music;
 
-import BOT.Constants;
-import BOT.objects.ICommand;
+import BOT.App;
+import BOT.Objects.ICommand;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.GuildVoiceState;
 import net.dv8tion.jda.core.entities.Member;
@@ -44,8 +44,8 @@ public class JoinCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "와서 노래 불러!" +
-                "사용법 : '" + Constants.PREFIX + getInvoke() + "'";
+        return "노래 틀도록 하기 위해 거치는 과정" +
+                "사용법 : '" + App.getPREFIX() + getInvoke() + "'";
     }
 
     @Override
@@ -55,6 +55,6 @@ public class JoinCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "음악 들으려면 필수";
+        return "봇을 음성채널로!";
     }
 }

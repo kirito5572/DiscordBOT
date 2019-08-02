@@ -1,7 +1,7 @@
 package BOT.Commands;
 
 import BOT.Constants;
-import BOT.objects.ICommand;
+import BOT.Objects.ICommand;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.Permission;
@@ -18,7 +18,7 @@ public class AirkoreaListCommand implements ICommand {
         String[] Inchoenlist = BOT.airKoreaList.getInchoenList();
         StringBuilder InchoenlistSt = new StringBuilder();
         Member selfMember = event.getGuild().getSelfMember();
-        if(!selfMember.hasPermission(Permission.MESSAGE_WRITE)) {
+        if (!selfMember.hasPermission(Permission.MESSAGE_WRITE)) {
             channel.sendMessage("메세지를 보낼권한이 없습니다.").queue();
 
             return;
@@ -30,7 +30,7 @@ public class AirkoreaListCommand implements ICommand {
             InchoenlistSt.append(", ");
         }
 
-        builder.addField("인천", InchoenlistSt.toString(),false);
+        builder.addField("인천", InchoenlistSt.toString(), false);
         channel.sendMessage(builder.build()).queue();
     }
 

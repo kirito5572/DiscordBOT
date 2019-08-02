@@ -2,9 +2,8 @@ package BOT.Commands;
 
 import BOT.Constants;
 import BOT.airKoreaList;
-import BOT.objects.ICommand;
-import BOT.objects.getAirLocalData;
-import BOT.objects.getWeather;
+import BOT.Objects.ICommand;
+import BOT.Objects.getWeather;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.TextChannel;

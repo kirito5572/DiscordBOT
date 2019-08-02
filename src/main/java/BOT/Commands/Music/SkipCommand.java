@@ -1,10 +1,10 @@
 package BOT.Commands.Music;
 
-import BOT.Constants;
+import BOT.App;
 import BOT.Music.GuildMusicManager;
 import BOT.Music.PlayerManager;
 import BOT.Music.TrackScheduler;
-import BOT.objects.ICommand;
+import BOT.Objects.ICommand;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Member;
@@ -41,8 +41,8 @@ public class SkipCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "이 노래 이제 그만?." +
-                "사용법: `" + Constants.PREFIX + getInvoke() + "`";
+        return "이 노래를 그만 재생합니다." +
+                "사용법: `" + App.getPREFIX() + getInvoke() + "`";
     }
 
     @Override

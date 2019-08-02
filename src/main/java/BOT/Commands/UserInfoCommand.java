@@ -1,7 +1,8 @@
 package BOT.Commands;
 
+import BOT.App;
 import BOT.Constants;
-import BOT.objects.ICommand;
+import BOT.Objects.ICommand;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.core.entities.Member;
@@ -22,8 +23,8 @@ public class UserInfoCommand implements ICommand {
             return;
         }
 
-        String joined = String.join("", args);
-        List<User> foundUsers = FinderUtil.findUsers(joined, event.getJDA());
+        String joined = String.join(" ", args);
+        List<User> foundUsers = FinderUtil.findUsers(joined, event.getGuild().getJDA());
 
         if(foundUsers.isEmpty()) {
             List<Member> foundMember = FinderUtil.findMembers(joined, event.getGuild());
@@ -55,8 +56,8 @@ public class UserInfoCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "너를 알고 싶다! \n" +
-                "사용법: `" + Constants.PREFIX + getInvoke() + " [유저 이름/@유저/유저 id] `";
+        return "유저정보 알기! \n" +
+                "사용법: `" + App.getPREFIX() + getInvoke() + " [유저 이름/@유저/유저 id] `";
     }
 
     @Override
@@ -66,6 +67,6 @@ public class UserInfoCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "너 시x 누구야";
+        return "유저정보를 표시합니다.";
     }
 }

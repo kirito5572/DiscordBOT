@@ -1,9 +1,9 @@
 package BOT.Commands.Music;
 
-import BOT.Constants;
+import BOT.App;
 import BOT.Music.GuildMusicManager;
 import BOT.Music.PlayerManager;
-import BOT.objects.ICommand;
+import BOT.Objects.ICommand;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
@@ -39,8 +39,8 @@ public class StopCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "이제 그만 부를게" +
-                "사용법:`" + Constants.PREFIX + getInvoke() + "`";
+        return "노래 재생 정지" +
+                "사용법:`" + App.getPREFIX() + getInvoke() + "`";
     }
 
     @Override

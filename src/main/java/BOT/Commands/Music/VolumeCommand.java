@@ -1,12 +1,14 @@
 package BOT.Commands.Music;
 
-import BOT.Constants;
+import BOT.App;
 import BOT.Music.PlayerManager;
-import BOT.objects.ICommand;
+import BOT.Objects.ICommand;
 import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.GuildVoiceState;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.core.managers.AudioManager;
 
 import java.util.List;
 
@@ -14,6 +16,8 @@ public class VolumeCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
+        PlayerManager manager = PlayerManager.getInstance();
+        AudioManager audioManager = event.getGuild().getAudioManager();
         String joined = String.join("", args);
 
         Member selfMember = event.getGuild().getSelfMember();
@@ -21,7 +25,17 @@ public class VolumeCommand implements ICommand {
             channel.sendMessage("보이스채널 권한이 없습니다..").queue();
             return;
         }
+        if(!audioManager.isConnected()) {
+            channel.sendMessage("봇을 먼저 보이스채널에 들어오게 하세요.").queue();
+            return;
+        }
 
+        GuildVoiceState memberVoiceState = event.getMember().getVoiceState();
+
+        if(!memberVoiceState.inVoiceChannel()) {
+            channel.sendMessage("먼저 보이스 채널에 들어오세요").queue();
+            return;
+        }
         if(Integer.parseInt(joined) < 10) {
             channel.sendMessage("최소 볼륨은 10입니다. 10보다 큰 수를 입력해주세요.").queue();
 
@@ -32,7 +46,6 @@ public class VolumeCommand implements ICommand {
             return;
         }
 
-        PlayerManager manager = PlayerManager.getInstance();
         manager.getGuildMusicManager(event.getGuild()).player.setVolume(Integer.parseInt(joined));
 
         channel.sendMessage("볼륨이 " + joined + "으로 변경되었습니다.").queue();
@@ -40,8 +53,8 @@ public class VolumeCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "노래 소리 조절하라고?" +
-                "사용법: `" + Constants.PREFIX + getInvoke() + "`(숫자)";
+        return "노래 소리 조절" +
+                "사용법: `" + App.getPREFIX() + getInvoke() + "`(숫자)";
     }
 
     @Override
@@ -51,6 +64,6 @@ public class VolumeCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "볼륨 줄이기";
+        return "볼륨 조절하기";
     }
 }

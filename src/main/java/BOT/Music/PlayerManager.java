@@ -16,7 +16,7 @@ import java.util.Map;
 public class PlayerManager {
     private static PlayerManager INSTANCE;
     private final AudioPlayerManager playerManager;
-    private final Map<Long,GuildMusicManager> musicManagers;
+    private final Map<Long, GuildMusicManager> musicManagers;
 
     private PlayerManager() {
         this.musicManagers = new HashMap<>();

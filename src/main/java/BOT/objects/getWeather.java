@@ -1,4 +1,4 @@
-package BOT.objects;
+package BOT.Objects;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -29,7 +29,7 @@ public class getWeather {
 
             String TOKEN = "";
             try {
-                File file = new File("D:\\DiscordServerBotSecrets\\ritobot\\weather_key.txt");
+                File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\weather_key.txt");
                 FileReader fileReader = new FileReader(file);
                 int singalCh = 0;
                 while((singalCh = fileReader.read()) != -1) {

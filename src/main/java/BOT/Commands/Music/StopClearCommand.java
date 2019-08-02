@@ -1,9 +1,9 @@
 package BOT.Commands.Music;
 
-import BOT.Constants;
+import BOT.App;
 import BOT.Music.GuildMusicManager;
 import BOT.Music.PlayerManager;
-import BOT.objects.ICommand;
+import BOT.Objects.ICommand;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
@@ -39,8 +39,8 @@ public class StopClearCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "이제 그만 부르고 재생목록 비우고 나갈게" +
-                "사용법:`" + Constants.PREFIX + getInvoke() + "`";
+        return "노래를 정지하고 봇이 나갑니다" +
+                "사용법:`" + App.getPREFIX() + getInvoke() + "`";
     }
 
     @Override

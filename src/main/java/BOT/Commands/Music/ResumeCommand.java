@@ -1,6 +1,6 @@
 package BOT.Commands.Music;
 
-import BOT.objects.ICommand;
+import BOT.Objects.ICommand;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;

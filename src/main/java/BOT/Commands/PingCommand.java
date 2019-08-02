@@ -1,7 +1,7 @@
 package BOT.Commands;
 
-import BOT.Constants;
-import BOT.objects.ICommand;
+import BOT.App;
+import BOT.Objects.ICommand;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class PingCommand implements ICommand {
     @Override
     public String getHelp() {
         return "레이턴시 ㄴㅇㄱ!\n" +
-                "명령어: `" + Constants.PREFIX + getInvoke() + "`";
+                "명령어: `" + App.getPREFIX() + getInvoke() + "`";
     }
 
     @Override
@@ -27,6 +27,6 @@ public class PingCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "레이턴시 확인기";
+        return "레이턴시 확인";
     }
 }

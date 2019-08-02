@@ -1,4 +1,4 @@
-package BOT.objects;
+package BOT.Objects;
 
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 

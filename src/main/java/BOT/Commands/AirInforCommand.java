@@ -1,9 +1,10 @@
+
 package BOT.Commands;
 
 import BOT.Constants;
 import BOT.airKoreaList;
-import BOT.objects.ICommand;
-import BOT.objects.getAirData;
+import BOT.Objects.ICommand;
+import BOT.Objects.getAirData;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.Permission;
@@ -11,7 +12,7 @@ import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
-import java.util.List;
+        import java.util.List;
 
 public class AirInforCommand implements ICommand {
     private boolean listFlag;

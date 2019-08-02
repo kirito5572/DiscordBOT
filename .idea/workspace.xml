@@ -2,29 +2,141 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/KickCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/MuteCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/SearchCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/upTimeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/filterListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/FilterList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Secrets.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/AirInforCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/AirLocalInforCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/AirkoreaListCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/CatCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/HelpCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/HelpCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Moderation/ClearCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Moderation/KickCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Moderation/MuteCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/JoinCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/JoinCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/NowPlayingCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/NowPlayingCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/PauseCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/PauseCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/PlayCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/PlayCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/QueueCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/QueueCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/QueueDelectCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/QueueDelectCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/ResumeCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/ResumeCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/SkipCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/SkipCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/StopClearCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/StopClearCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/StopCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/StopCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/VolumeCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/VolumeCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/leaveCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Music/leaveCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/PingCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/PingCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/UserInfoCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/UserInfoCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/WeatherCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Constants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/airKoreaList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/objects/CommandManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/objects/CommandManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/objects/ICommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/objects/ICommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/objects/getAirData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/objects/getAirLocalData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/objects/getWeather.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/BOT-1.0-all.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/BOT-1.0-all.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/logback.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/AirInforCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/AirInforCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/AirLocalInforCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/AirLocalInforCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/AirkoreaListCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/AirkoreaListCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/CatCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/CatCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/HelpCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/HelpCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderation/ClearCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderation/KickCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderation/MuteCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/JoinCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/JoinCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/NowPlayingCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/NowPlayingCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/PauseCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/PauseCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/PlayCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/PlayCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/QueueCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/QueueCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/QueueDelectCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/QueueDelectCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/ResumeCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/ResumeCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/SkipCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/SkipCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/StopClearCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/StopClearCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/StopCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/StopCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/VolumeCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/VolumeCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/leaveCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Music/leaveCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/PingCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/PingCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/UserInfoCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/UserInfoCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/WeatherCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/WeatherCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Constants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/objects/CommandManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/objects/CommandManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/objects/ICommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/objects/ICommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/objects/getAirData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/objects/getAirData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/objects/getAirLocalData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/objects/getAirLocalData.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/objects/getWeather.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/objects/getWeather.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/META-INF/BOT.main.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/META-INF/BOT.main.kotlin_module" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/logback.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BOT/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/AirInforCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/AirInforCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/AirLocalInforCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/AirLocalInforCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/AirkoreaListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/AirkoreaListCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/CatCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/CatCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/HelpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderation/ClearCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderation/KickCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderation/MuteCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/JoinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/JoinCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/NowPlayingCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/NowPlayingCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/PauseCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/PauseCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/PlayCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/PlayCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/QueueCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/QueueCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/QueueDelectCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/QueueDelectCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/ResumeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/ResumeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/SkipCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/SkipCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/StopClearCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/StopClearCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/StopCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/StopCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/VolumeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/VolumeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/leaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/leaveCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/PingCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/PingCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/UserInfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/UserInfoCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/WeatherCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/WeatherCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/Listener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Music/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Music/PlayerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/airKoreaList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/airKoreaList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/ICommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/ICommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/getAirData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/getAirData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/getAirLocalData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/getAirLocalData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/getWeather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/getWeather.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/classes/" />
-    <ignored path="$PROJECT_DIR$/.gradle/" />
-    <ignored path="$PROJECT_DIR$/build/" />
-    <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DefaultGradleProjectSettings">
-    <option name="isMigrated" value="true" />
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -41,55 +153,6 @@
       </state>
     </system>
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="562">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/BOT/objects/getWeather.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="856">
-              <caret line="109" column="23" selection-start-line="109" selection-start-column="23" selection-end-line="109" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/BOT/App.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="50" column="10" lean-forward="true" selection-start-line="49" selection-start-column="24" selection-end-line="50" selection-end-column="10" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Listener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="57" column="43" selection-start-line="57" selection-start-column="43" selection-end-line="57" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -100,137 +163,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Listenenr.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Listener.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/AudioPlayerSendHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/GuildMusicManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/TrackScheduler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Music/PlayerManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Music/TrackScheduler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Constants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/App.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Commands/Music/NowPlayingCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/ClearCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/objects/airKoreaList.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/airKoreaList.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/objects/getAirData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/objects/getAirLocalData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Secrets.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/objects/ICommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderation/MuteCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderation/ClearCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderation/KickCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/QueueCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/PingCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/WeatherCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/JoinCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/NowPlayingCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/PlayCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/QueueDelectCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/SkipCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/VolumeCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/AirkoreaListCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/AirLocalInforCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/CatCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/HelpCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/UserInfoCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/objects/CommandManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/leaveCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/StopCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/StopClearCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/ResumeCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/PauseCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/Commands/AirInforCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/objects/getWeather.java" />
-        <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/BOT/App.java" />
-      </list>
-    </option>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="675" />
-    <option name="y" value="-8" />
-    <option name="width" value="699" />
-    <option name="height" value="784" />
-  </component>
+  <component name="ProjectId" id="1OpBOfkcaZUzow8GQ7oPp0fwTKG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="CatdeaLogs" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="BOT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DiscordBOT" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="BOT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DiscordBOT" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BOT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DiscordBOT" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="BOT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DiscordBOT" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BOT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DiscordBOT" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="BOT" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BOT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DiscordBOT" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="BOT" type="462c0819:PsiDirectoryNode" />
-              <item name="objects" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BOT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DiscordBOT" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -243,7 +193,11 @@
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="BOT.Commands" />
       <recent name="BOT.Commands.Music" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ruby0\Documents\GitHub\DiscordBOT\src\main\java\BOT\Commands\Music" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -356,506 +310,34 @@
       <workItem from="1563177571025" duration="1410000" />
       <workItem from="1563179843277" duration="1952000" />
       <workItem from="1563242432343" duration="1432000" />
+      <workItem from="1564664629886" duration="1010000" />
+      <workItem from="1564665826866" duration="2195000" />
+      <workItem from="1564670993467" duration="1031000" />
+      <workItem from="1564680441285" duration="4436000" />
+      <workItem from="1564758428561" duration="10945000" />
     </task>
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102551000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24093656" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info id="Learn" order="7" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924472" weight="0.29570746" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3995749" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.3290938" />
-      <window_info anchor="bottom" id="sbt-shell-toolwindow" order="8" weight="0.3290938" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3290938" />
-      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007553" side_tool="true" weight="0.46263912" />
-      <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="13" />
-      <window_info anchor="bottom" id="Messages" order="14" sideWeight="0.49924472" weight="0.32725322" />
-      <window_info anchor="bottom" id="Duplicates" order="15" weight="0.3290938" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.2673667" />
-      <window_info anchor="right" id="Maven" order="3" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="sbt" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="right" id="Gradle" order="7" />
-      <window_info anchor="right" id="SciView" order="8" />
-      <window_info anchor="right" id="Database" order="9" />
-      <window_info anchor="right" id="Palette&#9;" order="10" />
-      <window_info anchor="right" id="Theme Preview" order="11" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Music/GuildMusicManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
-          <folding>
-            <element signature="e#927#928#0" expanded="true" />
-            <element signature="e#984#985#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/BOT/AppTest.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/util/concurrent/BlockingQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="179" column="17" selection-start-line="179" selection-start-column="17" selection-end-line="179" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Music/TrackScheduler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1121">
-          <caret line="59" column="1" lean-forward="true" selection-start-line="59" selection-start-column="1" selection-end-line="59" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1455#1456#0" expanded="true" />
-            <element signature="e#1483#1484#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Music/AudioPlayerSendHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradlew.bat">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradlew">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2778" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.dv8tion/JDA/3.8.3_463/dad695c2432318a5bfdeaa884361772256a0899/JDA-3.8.3_463-sources.jar!/net/dv8tion/jda/core/entities/MessageHistory.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Moderation.java" />
-    <entry file="file://$PROJECT_DIR$/../../MDP_2019/TEST ONLY/weather API teset/src/airkorea_API.java" />
-    <entry file="file://$PROJECT_DIR$/../../MDP_2019/Server Program/src/weather_infor.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/airKoreaList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="32" column="6" lean-forward="true" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/util/function/Consumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Secrets.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Music/PlayCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1544#1545#0" expanded="true" />
-            <element signature="e#1574#1575#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Music/VolumeCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1316#1317#0" expanded="true" />
-            <element signature="e#1347#1348#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/AirkoreaListCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/AirLocalInforCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/CatCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1197#1198#0" expanded="true" />
-            <element signature="e#1229#1230#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/HelpCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="44" column="78" selection-start-line="44" selection-start-column="78" selection-end-line="44" selection-end-column="78" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/PingCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#750#751#0" expanded="true" />
-            <element signature="e#783#784#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Music/QueueDelectCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-307">
-          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/objects/CommandManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-198">
-          <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Music/NowPlayingCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Music/PlayerManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Music/QueueCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="24" column="75" lean-forward="true" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2758#2759#0" expanded="true" />
-            <element signature="e#2787#2788#0" expanded="true" />
-            <element signature="e#2837#2838#0" expanded="true" />
-            <element signature="e#2871#2872#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Music/StopCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Music/StopClearCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Music/ResumeCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#357#358#0" expanded="true" />
-            <element signature="e#384#385#0" expanded="true" />
-            <element signature="e#431#432#0" expanded="true" />
-            <element signature="e#458#459#0" expanded="true" />
-            <element signature="e#508#509#0" expanded="true" />
-            <element signature="e#535#536#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Music/PauseCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#356#357#0" expanded="true" />
-            <element signature="e#383#384#0" expanded="true" />
-            <element signature="e#430#431#0" expanded="true" />
-            <element signature="e#457#458#0" expanded="true" />
-            <element signature="e#507#508#0" expanded="true" />
-            <element signature="e#534#535#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/WeatherCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="65" column="44" selection-start-line="65" selection-start-column="44" selection-end-line="65" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2131#2132#0" expanded="true" />
-            <element signature="e#2158#2159#0" expanded="true" />
-            <element signature="e#2287#2288#0" expanded="true" />
-            <element signature="e#2327#2328#0" expanded="true" />
-            <element signature="e#2362#2363#0" expanded="true" />
-            <element signature="e#2393#2394#0" expanded="true" />
-            <element signature="e#2425#2426#0" expanded="true" />
-            <element signature="e#2456#2457#0" expanded="true" />
-            <element signature="e#2501#2502#0" expanded="true" />
-            <element signature="e#2541#2542#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/classes/java/main/BOT/Listener.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#1332#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/classes/java/main/BOT/App.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/out/production/classes/BOT/App.class" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Moderation/ClearCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="19" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1719#1720#0" expanded="true" />
-            <element signature="e#1753#1754#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Music/leaveCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="56" column="21" lean-forward="true" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Music/JoinCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="18" column="8" lean-forward="true" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="71" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1801#1802#0" expanded="true" />
-            <element signature="e#1836#1837#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Music/SkipCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Moderation/MuteCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="13" lean-forward="true" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/UserInfoCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="25" column="47" lean-forward="true" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/objects/getAirLocalData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-293">
-          <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="44" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/AirInforCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2025">
-          <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/objects/ICommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Commands/Moderation/KickCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="60" column="32" lean-forward="true" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1841#1842#0" expanded="true" />
-            <element signature="e#1880#1881#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/objects/getAirData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="51" column="33" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/Listener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="57" column="43" selection-start-line="57" selection-start-column="43" selection-end-line="57" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/objects/getWeather.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="856">
-          <caret line="109" column="23" selection-start-line="109" selection-start-column="23" selection-end-line="109" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BOT/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="50" column="10" lean-forward="true" selection-start-line="49" selection-start-column="24" selection-end-line="50" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
   </component>
   <component name="masterDetails">
     <states>

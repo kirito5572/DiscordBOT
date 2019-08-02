@@ -1,9 +1,9 @@
 package BOT.Commands.Music;
 
-import BOT.Constants;
+import BOT.App;
 import BOT.Music.GuildMusicManager;
 import BOT.Music.PlayerManager;
-import BOT.objects.ICommand;
+import BOT.Objects.ICommand;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
@@ -43,8 +43,8 @@ public class leaveCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "노래 다들었어 재생목록 비우고 가있어" +
-                "사용법 : '" + Constants.PREFIX + getInvoke() + "'";
+        return "노래를 정지하고 나갑니다" +
+                "사용법 : '" + App.getPREFIX() + getInvoke() + "'";
     }
 
     @Override
@@ -54,6 +54,6 @@ public class leaveCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "다들었음 내보내";
+        return "다 듣고 내보내기";
     }
 }

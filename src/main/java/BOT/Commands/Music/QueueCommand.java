@@ -1,9 +1,10 @@
 package BOT.Commands.Music;
 
+import BOT.App;
 import BOT.Constants;
 import BOT.Music.GuildMusicManager;
 import BOT.Music.PlayerManager;
-import BOT.objects.ICommand;
+import BOT.Objects.ICommand;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
 import me.duncte123.botcommons.messaging.EmbedUtils;
@@ -69,7 +70,7 @@ public class QueueCommand implements ICommand {
     @Override
     public String getHelp() {
         return "앞으로 부를 남은 노래는?\n" +
-                "사용법 `" + Constants.PREFIX + getInvoke() + "`";
+                "사용법 `" + App.getPREFIX() + getInvoke() + "`";
     }
 
     @Override
