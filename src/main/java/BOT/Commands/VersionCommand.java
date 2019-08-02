@@ -12,11 +12,11 @@ public class VersionCommand implements ICommand {
         if(App.isDEBUG_MODE() || App.isONLINE_DEBUG()) {
             event.getChannel().sendMessage("빌드 버젼 V 1.2.2 BETA (" + App.getTime() + ")").queue();
         }
-        event.getChannel().sendMessage("빌드 버젼 V 1.2.1 (" + App.getTime() + ")").queue();
+        event.getChannel().sendMessage("빌드 버젼 V 1.2.1.1 (" + App.getTime() + ")").queue();
         event.getChannel().sendMessage("봇 사이트: ``http://ritobot.mystrikingly.com``").queue();
         event.getChannel().sendMessage("업데이트 내역: \n" +
                 "```" +
-                " - 봇 통합으로 인한 삭제 명령어 재추가 \n" +
+                " - 업타임 시간 버그 수정 \n" +
                 " - 필터링 데이터베이스 추가" +
                 "```").queue();
     }

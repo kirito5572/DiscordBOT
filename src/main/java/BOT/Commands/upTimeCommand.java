@@ -12,14 +12,13 @@ public class upTimeCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         Date nowDate = new Date();
-        Date upTime = new Date(nowDate.getTime() - App.getDate().getTime());
-        SimpleDateFormat format1 = new SimpleDateFormat( "dd일 hh시간 mm분 ss초 z");
+        long temp = nowDate.getTime() - App.getDate().getTime();
+        Date upTime = new Date(temp);
         SimpleDateFormat format = new SimpleDateFormat( "yyyy/MM/dd aa HH:mm:ss z");
-        String sendTime = format1.format(upTime);
         String nowTime = format.format(nowDate);
         event.getChannel().sendMessage("시작 시간: " + App.getTime() + "\n"
-                + "현재 시간" + nowTime + "\n"
-                + "가동 시간: " + sendTime).queue();
+                + "현재 시간: " + nowTime + "\n"
+                + "가동 시간: " + String.format("%s일 %s시간 %s분 %s초 KST", upTime.getTime()/10080000, upTime.getTime()/1440000, upTime.getTime()/60000, upTime.getTime()/1000)).queue();
     }
 
     @Override
