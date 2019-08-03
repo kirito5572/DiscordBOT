@@ -9,7 +9,13 @@ public class FilterList {
             "육변기", "자지", "보지", "좆", "쪽바리", "창녀", "창놈", "최순실", "틀딱",
             "한남", "호구", "후장", "후빨",
             "섹스", "시발" ,"시1발", "시 발", "씨1발", "씨잘", "씨벌", "쎅스", "교미",
-            "성관계"
+            "성관계",
+
+            "asshole", "ass", "bitch", "butt", "cock", "crap", "cunt", "dick", "dumb",
+            "fuck", "gay", "heck", "honky", "kyke", "mot", "mf", "muff", "piss", "nigger",
+            "pussy", "suck", "shit", "tard", "tojo", "jap", "THOT", "vagina",
+            "whore", "slut", "weeaboo", "your mom", "your mommy", "your mother",
+            "zatch", "zipperhead"
     };
 
     public static String[] getList() {

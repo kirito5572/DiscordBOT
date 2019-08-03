@@ -20,13 +20,13 @@ public class CommandManager {
         addCommand(new HelpCommand(this));
         addCommand(new PingCommand());
         addCommand(new UserInfoCommand());
+        addCommand(new ColorInfoCommand());
         //addCommand(new ColorCommand());
-        //addCommand(new ColorInfoCommand());
+
         addCommand(new ClearCommand());
-        //addCommand(new giveroleCommand());
+        addCommand(new giveroleCommand());
         addCommand(new SayCommand());
         //addCommand(new UnusedColorCommand());
-
         addCommand(new JoinCommand());
         //------------------------------------------------------------------//
         addCommand(new QueueDelectCommand());
@@ -34,6 +34,7 @@ public class CommandManager {
         addCommand(new StopClearCommand());
         addCommand(new PlayCommand());
         addCommand(new leaveCommand());
+
         addCommand(new NowPlayingCommand());
         addCommand(new SkipCommand());
         addCommand(new StopCommand());
@@ -45,6 +46,7 @@ public class CommandManager {
         addCommand(new AirInforCommand());
         addCommand(new AirkoreaListCommand());
         addCommand(new AirLocalInforCommand());
+
         addCommand(new CatCommand());
         addCommand(new KickCommand());
         addCommand(new MuteCommand());

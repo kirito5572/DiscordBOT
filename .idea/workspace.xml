@@ -3,13 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/HelpCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/HelpCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/App.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/VersionCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/VersionCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/upTimeCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/upTimeCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/giveroleCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/giveroleCommand.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Objects/FilterList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Objects/FilterList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/HelpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/objects/CommandManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/objects/CommandManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/upTimeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/upTimeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/giveroleCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/giveroleCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/CommandManager.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -202,6 +204,8 @@
       <workItem from="1564670993467" duration="1031000" />
       <workItem from="1564680441285" duration="4436000" />
       <workItem from="1564758428561" duration="12939000" />
+      <workItem from="1564826656021" duration="9640000" />
+      <workItem from="1564844100122" duration="1060000" />
     </task>
     <servers />
   </component>

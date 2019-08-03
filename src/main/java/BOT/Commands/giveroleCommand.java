@@ -2,45 +2,151 @@ package BOT.Commands;
 
 import BOT.App;
 import BOT.Objects.ICommand;
+import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Role;
+import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class giveroleCommand implements ICommand {
+    private String colorCode = "";
+    private String permission_Int = "";
+    private String pos = "";
+    private boolean hoisted = false;
+
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
-        if(event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
-            List<Member> member_list = event.getGuild().getMembers();
+        colorCode = "";
+        permission_Int = "";
+        pos = "";
+        hoisted = false;
+        if(event.getMember().hasPermission(Permission.MANAGE_ROLES) || event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+            String rolename;
+            String username;
 
-            Role for_role = event.getGuild().getRoleById(600006248200405023L);
-            for (Member member : member_list) {
-                if (member.getRoles().toString().equals("[]")) {
-                    event.getGuild().getController().addSingleRoleToMember(member, for_role).queue();
-                }
+
+            try {
+                rolename = args.get(0);
+            } catch (Exception e) {
+                event.getChannel().sendMessage("역할명을 입력해주세요").queue();
+                return;
             }
-            System.out.println(for_role);
-            event.getChannel().sendMessage("현장 직원이 파견되어 왔습니다.").queue();
+            try {
+                username = args.get(1);
+            } catch (Exception e) {
+                event.getChannel().sendMessage("유저명을 입력해주세요.").queue();
+                return;
+            }
+
+            String temp;
+
+            try {
+                temp = args.get(2);
+                convert(temp);
+            } catch (Exception ignored) {
+
+            } try {
+                temp = args.get(3);
+                convert(temp);
+            } catch (Exception ignored) {
+
+            } try {
+                temp = args.get(4);
+                convert(temp);
+            } catch (Exception ignored) {
+
+            } try {
+                temp = args.get(5);
+                convert(temp);
+            } catch (Exception ignored) {
+
+            }
+
+            List<User> foundUsers = FinderUtil.findUsers(username, event.getGuild().getJDA());
+            if(foundUsers.isEmpty()) {
+                List<Member> foundMember = FinderUtil.findMembers(username, event.getGuild());
+                if(foundMember.isEmpty()) {
+                    event.getChannel().sendMessage("'" + username + "' 이라는 유저는 없습니다.").queue();
+                    return;
+                }
+
+                foundUsers = foundMember.stream().map(Member::getUser).collect(Collectors.toList());
+            }
+            User user = foundUsers.get(0);
+            Member member = event.getGuild().getMember(user);
+            Role rolea;
+            if(!colorCode.equals("") && !permission_Int.equals("")) {
+                rolea = event.getGuild().getController().createRole()
+                        .setName(rolename)
+                        .setColor(Integer.parseInt(colorCode, 16))
+                        .setPermissions(Long.parseLong(permission_Int))
+                        .setHoisted(hoisted)
+                        .complete();
+            } else if(!colorCode.equals("")) {
+                rolea = event.getGuild().getController().createRole()
+                        .setName(rolename)
+                        .setColor(Integer.parseInt(colorCode, 16))
+                        .setHoisted(hoisted)
+                        .complete();
+            } else if(!permission_Int.equals("")) {
+                rolea = event.getGuild().getController().createRole()
+                    .setName(rolename)
+                    .setPermissions(Long.parseLong(permission_Int))
+                    .setHoisted(hoisted)
+                    .complete();
+            } else {
+                rolea = event.getGuild().getController().createRole()
+                    .setName(rolename)
+                    .setHoisted(hoisted)
+                    .complete();
+            }
+
+            if(!pos.equals("")) {
+                event.getGuild().getController().modifyRolePositions().selectPosition(rolea).moveUp(Integer.parseInt(pos)).complete();
+            }
+            event.getGuild().getController().addSingleRoleToMember(member, rolea).complete();
+
+            event.getChannel().sendMessage("[" + rolename + "] 역할이 [" + user.getName() + "]에게 부여되었습니다..").queue();
         } else {
-            event.getChannel().sendMessage("당신은 권한이 없습니다.").queue();
+            event.getChannel().sendMessage("당신은 명령어를 사용할 권한이 없습니다.").queue();
         }
     }
 
     @Override
     public String getHelp() {
-        return "역할이 없는 사람에게 역할을 만들어서 줍니다다.(관리자 전용)\n" +
-                "사용법: `" + App.getPREFIX() + getInvoke() + "`";
+        return "역할이 없는 사람에게 역할을 만들어서 줍니다.(관리자 전용)\n" +
+                "사용법: `" + App.getPREFIX() + getInvoke() + "` [역할명] [유저명] \n" +
+                "옵션: [#RGB코드] \n예시 `" + App.getPREFIX() + getInvoke() + "[역할명] [유저명] #FF0000`\n" +
+                "[^권한 등급(숫자)] \n예시 `" + App.getPREFIX() + getInvoke() + "[역할명] [유저명] ^8`\n" +
+                "권한 등급 계산기: `https://discordapi.com/permissions.html` \n" +
+                "[$역할 위치] \n예시 `" + App.getPREFIX() + getInvoke() + "[역할명] [유저명] $15`\n" +
+                "[역할 분리 표시] \n예시 `" + App.getPREFIX() + getInvoke() + "[역할명] [유저명] true`";
     }
-
     @Override
     public String getInvoke() {
-        return "역할 [유저명] [역할]";
+        return "역할";
     }
 
     @Override
     public String getSmallHelp() {
         return "역할 부여";
+    }
+
+    private void convert(String str) {
+        if(str.contains("#")) {
+            colorCode = str.substring(1);
+        } else if(str.contains("^")) {
+            permission_Int = str.substring(1);
+        } else if(str.contains("$")) {
+            pos = str.substring(1);
+        } else if(str.contains("true")) {
+            hoisted = true;
+        } else if(str.contains("false")) {
+            hoisted = false;
+        }
     }
 }

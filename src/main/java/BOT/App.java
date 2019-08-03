@@ -34,7 +34,7 @@ public class App {
 
     private App() {
         date = new Date();
-        SimpleDateFormat format1 = new SimpleDateFormat( "yyyy/MM/dd aa HH:mm:ss z");
+        SimpleDateFormat format1 = new SimpleDateFormat( "yyyy/MM/dd aa hh:mm:ss z");
         Time = format1.format(date);
         CommandManager commandManager = new CommandManager();
         Listener listener = new Listener(commandManager);
