@@ -26,7 +26,7 @@ public class CommandManager {
         addCommand(new ClearCommand());
         addCommand(new giveroleCommand());
         addCommand(new SayCommand());
-        //addCommand(new UnusedColorCommand());
+        addCommand(new UnusedColorCommand());
         addCommand(new JoinCommand());
         //------------------------------------------------------------------//
         addCommand(new QueueDelectCommand());

@@ -3,6 +3,7 @@ package BOT;/*
  */
 
 import BOT.Listener.filterListener;
+import BOT.Listener.salListener;
 import BOT.Objects.CommandManager;
 import BOT.Listener.Listener;
 import me.duncte123.botcommons.messaging.EmbedUtils;
@@ -39,6 +40,7 @@ public class App {
         CommandManager commandManager = new CommandManager();
         Listener listener = new Listener(commandManager);
         filterListener filterlistener = new filterListener(commandManager);
+        salListener salListener = new salListener(commandManager);
 
         StringBuilder TOKENreader = new StringBuilder();
         try {
@@ -90,6 +92,7 @@ public class App {
                     .setAutoReconnect(true)
                     .addEventListener(listener)
                     .addEventListener(filterlistener)
+                    .addEventListener(salListener)
                     .setGame(Game.streaming("사용법: "
                             + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
                     .build().awaitReady();
