@@ -2,6 +2,7 @@ package BOT.Commands;
 
 import BOT.App;
 import BOT.Objects.ICommand;
+import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
@@ -115,32 +116,21 @@ public class ColorCommand implements ICommand {
                         temp.insert(0, "0");
                     }
                 }
-                Role role;
-                int j;
-                StringBuilder b;
-                //TODO 연산최적화 필요.
                 channel.sendMessage(event.getMember().getAsMention() + ", 기존 색을 검색중입니다....").queue();
 
-                for (int i = 0; i < 16777215; i++) {
-                    b = new StringBuilder(Integer.toHexString(i));
-                    for (; b.length() <= 5; ) {
-                        b.insert(0, "0");
-                    }
-                    try {
-                        role = event.getGuild().getRolesByName("#" + b.toString(), true).get(0);
-                        if (event.getMember().getRoles().contains(role)) {
-                            try {
-                                event.getGuild().getController().removeRolesFromMember(event.getMember(), role).queue();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                                channel.sendMessage(event.getMember().getAsMention() +", 기존 색을 제거하다가 오류가 발생했습니다.").queue();
-                                break;
-                            }
-                            channel.sendMessage(event.getMember().getAsMention() +", 기존 색 " + "#" + b.toString() + " 이 제거되었습니다.\n").queue();
-
+                List<Role> roleList = FinderUtil.findRoles("#", event.getGuild());
+                for (Role role : roleList) {
+                    if (event.getMember().getRoles().contains(role)) {
+                        try {
+                            event.getGuild().getController().removeRolesFromMember(event.getMember(), role).queue();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            channel.sendMessage(event.getMember().getAsMention() + ", 기존 색을 제거하다가 오류가 발생했습니다.").queue();
                             break;
                         }
-                    } catch (Exception ignored) {
+                        channel.sendMessage(event.getMember().getAsMention() + ", 기존 색 " + role.getName() + " 이 제거되었습니다.\n").queue();
+
+                        break;
                     }
                 }
 
@@ -153,7 +143,6 @@ public class ColorCommand implements ICommand {
                     e.printStackTrace();
                 }
 
-                //System.out.println(event.getGuild().getRolesByName("#" + temp.toString(), true).toString());
                 assert temp != null;
                 if (event.getGuild().getRolesByName("#" + temp.toString(), true).toString().equals("[]")) {
                     Role rolea = event.getGuild().getController().createRole()
@@ -194,7 +183,7 @@ public class ColorCommand implements ICommand {
                 }
                 Role final_Role = null;
                 try {
-                    for (j = 0; j < 250; j++) {
+                    for (int j = 0; j < 250; j++) {
                         Role for_role = event.getGuild().getRolesByName("#" + temp.toString(), true).get(j);
                         System.out.println("for_role" + for_role);
                         if (!event.getMember().getRoles().contains(for_role)) {

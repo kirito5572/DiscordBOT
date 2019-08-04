@@ -21,7 +21,7 @@ public class CommandManager {
         addCommand(new PingCommand());
         addCommand(new UserInfoCommand());
         addCommand(new ColorInfoCommand());
-        //addCommand(new ColorCommand());
+        addCommand(new ColorCommand());
 
         addCommand(new ClearCommand());
         addCommand(new giveroleCommand());
