@@ -97,13 +97,16 @@ public class ColorCommand implements ICommand {
                     event.getGuild().getRoleById("515744849966792719"),
                     event.getGuild().getRoleById("517842991667216395"),
                     //위는 CGC서버 아래는 Green 서버
-                    event.getGuild().getRoleById("600011020836143115"),
                     event.getGuild().getRoleById("600011104172900363"),
                     event.getGuild().getRoleById("600012069559074822"),
-                    event.getGuild().getRoleById("600012538817806346"),
+                    event.getGuild().getRoleById("600021907374342156"),
+                    event.getGuild().getRoleById("600661638063980554"),
+                    event.getGuild().getRoleById("600661634561605642"),
+                    event.getGuild().getRoleById("600661631734906900"),
+                    event.getGuild().getRoleById("600661627750055936"),
             };
             List<Role> role_List = event.getGuild().getRoles();
-            for(int i = 0; i < 10; i++) {
+            for(int i = 0; i < 13; i++) {
                 if (role_List.contains(set_Color[i])) {
                     setChange_flag(true);
                 }
@@ -149,34 +152,12 @@ public class ColorCommand implements ICommand {
                             .setColor(joined_int)
                             .setName("#" + temp.toString())
                             .complete();
-                    int ai = 0;
-                    int bi = 0;
-                    int ci = 0;
+                    int i = 0;
                     while(true) {
                         try {
-                            ai++;
-                            if(ai >= 26) {
-                                bi++;
-                                ai--;
-                            }
-                            if(bi >= 26) {
-                                ci++;
-                                bi--;
-                            }
-                            if(ai != 0) {
-                                event.getGuild().getController().modifyRolePositions().selectPosition(rolea).moveUp(ai).queue();
-                            }
-                            if(bi != 0) {
-                                event.getGuild().getController().modifyRolePositions().selectPosition(rolea).moveUp(bi).queue();
-                            }
-                            if(ci != 0) {
-                                event.getGuild().getController().modifyRolePositions().selectPosition(rolea).moveUp(ci).queue();
-                            }
-                        } catch (IllegalStateException e) {
-                            break;
-                        } catch (IllegalArgumentException e1) {
-                            channel.sendMessage("Error: 역할은 최대 75이상으로 올릴수 없습니다.\n" +
-                                    "관리자에게 &색정리 커맨드 요청을 해주세요.").queue();
+                            i++;
+                            event.getGuild().getController().modifyRolePositions().selectPosition(rolea).moveUp(i).queue();
+                        } catch (Exception e) {
                             break;
                         }
                     }
@@ -185,7 +166,6 @@ public class ColorCommand implements ICommand {
                 try {
                     for (int j = 0; j < 250; j++) {
                         Role for_role = event.getGuild().getRolesByName("#" + temp.toString(), true).get(j);
-                        System.out.println("for_role" + for_role);
                         if (!event.getMember().getRoles().contains(for_role)) {
                             final_Role = event.getGuild().getRolesByName("#" + temp.toString(), true).get(j);
                         }

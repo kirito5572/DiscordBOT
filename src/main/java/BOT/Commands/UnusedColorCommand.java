@@ -37,7 +37,9 @@ public class UnusedColorCommand implements ICommand {
             }
             if(delete_flag) {
                 channel.sendMessage(event.getMember().getAsMention() + ", 삭제 할 역할이 없습니다.").queue();
+                return;
             }
+            channel.sendMessage(event.getMember().getAsMention() + " 색 역할 삭제가 완료되었습니다.").queue();
         } else {
             channel.sendMessage("권한이 없습니다.").queue();
         }
