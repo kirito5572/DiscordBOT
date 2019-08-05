@@ -69,8 +69,8 @@ public class Listener extends ListenerAdapter {
             e.printStackTrace();
         }
         if (event.getMessage().getContentRaw().equalsIgnoreCase(App.getPREFIX() + "종료") &&
-                (event.getAuthor().getIdLong() == Long.decode(IDreader.toString())) ||
-                event.getAuthor().getIdLong() == Long.decode(IDreader1.toString())) {
+                (event.getAuthor().getIdLong() == Long.decode(IDreader.toString()) ||
+                event.getAuthor().getIdLong() == Long.decode(IDreader1.toString()))) {
             shutdown(event.getJDA(), event);
             return;
         }
