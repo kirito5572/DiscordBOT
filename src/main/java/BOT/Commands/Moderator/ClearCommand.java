@@ -20,7 +20,7 @@ public class ClearCommand implements ICommand {
             channel.sendMessage("메세지를 삭제할 권한이 없습니다.").queue();
             return;
         }
-        if(!member.hasPermission(Permission.MESSAGE_MANAGE)) {
+        if(member.hasPermission(Permission.MESSAGE_MANAGE)) {
             String joined = String.join("", args);
             if (joined.equals("")) {
                 channel.sendMessage("`" + App.getPREFIX() + getInvoke() +
