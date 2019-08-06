@@ -4,10 +4,7 @@ import BOT.App;
 import BOT.Commands.*;
 import BOT.Commands.GreenServerCustom.certificationCommand;
 import BOT.Commands.GreenServerCustom.certificationFinCommand;
-import BOT.Commands.Moderator.ClearCommand;
-import BOT.Commands.Moderator.KickCommand;
-import BOT.Commands.Moderator.MuteCommand;
-import BOT.Commands.Moderator.giveroleCommand;
+import BOT.Commands.Moderator.*;
 import BOT.Commands.Music.*;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
@@ -57,6 +54,8 @@ public class CommandManager {
         addCommand(new TESTCommand());
         //------------------------------------------------------------------//
         addCommand(new certificationFinCommand());
+        addCommand(new BanCommand());
+        addCommand(new UnbanCommand());
     }
 
     private void addCommand(ICommand command) {

@@ -5,6 +5,7 @@ import BOT.Objects.ICommand;
 import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.core.exceptions.ErrorResponseException;
 
 import java.io.File;
 import java.net.URL;
@@ -17,6 +18,8 @@ public class certificationCommand implements ICommand {
     private File file1 = new File(certification_Img_URL1.getPath());
     private URL certification_Img_URL2 = getClass().getClassLoader().getResource("2.png");
     private File file2 = new File(certification_Img_URL2.getFile());
+    private URL certification_Img_URL3 = getClass().getClassLoader().getResource("3.png");
+    private File file3 = new File(certification_Img_URL3.getFile());
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
@@ -41,19 +44,23 @@ public class certificationCommand implements ICommand {
                         return;
                     }
                     private_key = Key;
-                    channel.sendMessage("인증키 생성 완료. DM확인 부탁드립니다.").complete();
-                    event.getMember().getUser().openPrivateChannel().queue((channel1) -> {
-                        channel1.sendMessage("당신의 인증키는 \n #UI#{" + event.getAuthor().getName() + "/" + event.getAuthor().getId() + "} #TK#" + private_key + "\n입니다.").queue();
-                        channel1.sendMessage("인증 받는법:").queue();
-                        channel1.sendMessage("1. 본인의 스팀프로필에 접속합니다.").queue();
-                        channel1.sendFile(file1).queue();
-                        channel1.sendMessage("2. 본인의 프로필을 편집하여 요약탭에 인증키를 적습니다.").queue();
-                        channel1.sendFile(file2).queue();
-                        channel1.sendMessage("3. 프로필을 저장한후 `" + App.getPREFIX() + "확인 ` [스팀 프로필]을 입력하여. 인증 절차를 진행해주세요.\n" +
-                                "예시: `" + App.getPREFIX() +"확인 https://steamcommunity.com/id/kirito5572`").queue();
-                        channel1.sendMessage("모든 인증과정을 걸치셨으면, 프로필은 다시 원래대로 설정하셔도 됩니다.").queue();
-                    });
-                    //TODO &인증확인 커맨드 제작
+                    channel.sendMessage("인증키 생성 완료. DM확인 부탁드립니다.").queue();
+                    try {
+                        event.getMember().getUser().openPrivateChannel().queue((channel1) -> {
+                            channel1.sendMessage("당신의 인증키는 \n #UI#{" + event.getAuthor().getName() + "/" + event.getAuthor().getId() + "} #TK#" + private_key + "\n입니다.").queue();
+                            channel1.sendMessage("인증 받는법:").queue();
+                            channel1.sendMessage("1. 본인의 스팀프로필에 접속합니다.").queue();
+                            channel1.sendFile(file1).queue();
+                            channel1.sendMessage("2. 본인의 프로필을 편집하여 요약탭에 인증키를 적습니다.").queue();
+                            channel1.sendFile(file2).queue();
+                            channel1.sendMessage("3. 프로필을 저장한후 `" + App.getPREFIX() + "확인 ` [스팀 프로필]을 입력하여. 인증 절차를 진행해주세요.\n" +
+                                    "예시: `" + App.getPREFIX() + "확인 https://steamcommunity.com/id/kirito5572`").queue();
+                            channel1.sendMessage("모든 인증과정을 걸치셨으면, 프로필은 다시 원래대로 설정하셔도 됩니다.").queue();
+                        });
+                    } catch (ErrorResponseException e) {
+                        channel.sendMessage("인증키 전송에 실패했습니다. 제가 당신에게 메세지를 보낼수 없습니다.").queue();
+                        channel.sendMessage(event.getMember().getAsMention() + "디스코드 설정을 확인해주세요.").addFile(file3).queue();
+                    }
                 }
             } else {
                 channel.sendMessage("이미 당신은 인증된 회원이므로 이 명령어를 사용하지 않아도 됩니다.").complete();

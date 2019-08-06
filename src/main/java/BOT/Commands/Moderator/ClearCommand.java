@@ -8,7 +8,11 @@ import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
+import java.time.OffsetDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class ClearCommand implements ICommand {
     @Override
@@ -31,18 +35,36 @@ public class ClearCommand implements ICommand {
             } else if (Integer.parseInt(joined) > 100) {
                 channel.sendMessage("100보다 작은 숫자를 입력해주세요").queue();
             }
-            List<Message> messages = null;
-            int i = 0;
-            try {
-            messages = event.getChannel().getHistory().retrievePast(Integer.parseInt(joined)).complete();
-            } catch (Exception e) {
-                channel.sendMessage("삭제 할 채팅중에 2주가 지난 채팅이 포함되어있어 삭제 할 수 없습니다.").queue();
+            channel.getIterableHistory()
+                    .takeAsync(Integer.parseInt(joined))
+                    .thenApplyAsync((messages) -> {
+                        List<Message> goodMessages = messages.stream()
+                                .filter((m) -> m.getCreationTime().isBefore(
+                                        OffsetDateTime.now().plus(2, ChronoUnit.WEEKS)
+                                ))
+                                .collect(Collectors.toList());
 
-                return;
-            }
-            event.getChannel().deleteMessages(messages).complete();
+                        channel.purgeMessages(goodMessages);
 
-            channel.sendMessage(joined + "개의 채팅 삭제 완료").queue();
+                        return goodMessages.size();
+                    })
+                    .whenCompleteAsync(
+                            (count, thr) -> channel.sendMessageFormat("`%d` 개의 채팅 삭제 완료", count).queue(
+                                    (message) -> message.delete().queueAfter(10, TimeUnit.SECONDS)
+                            )
+                    )
+                    .exceptionally((thr) -> {
+                        String cause = "";
+
+                        if (thr.getCause() != null) {
+                            cause = " 에러 발생 사유: " + thr.getCause().getMessage();
+                        }
+
+                        channel.sendMessageFormat("에러: %s%s", thr.getMessage(), cause).queue();
+
+                        return 0;
+                    });
+
         } else {
             channel.sendMessage("이 명령어를 사용할 권한이 없습니다.").queue();
         }

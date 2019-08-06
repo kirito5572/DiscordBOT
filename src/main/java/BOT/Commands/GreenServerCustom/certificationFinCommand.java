@@ -106,7 +106,7 @@ public class certificationFinCommand implements ICommand {
         FileWriter writer = null;
 
 
-        writer = new FileWriter(file, false);
+        writer = new FileWriter(file, true);
         writer.write(message);
         writer.flush();
 
