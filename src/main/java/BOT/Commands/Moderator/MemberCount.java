@@ -129,7 +129,7 @@ public class MemberCount implements ICommand {
 
         category.createVoiceChannel(botCountName + " : " + numOfBot).complete();
         category.createVoiceChannel(userCountName + " : " + numOfUser).complete();
-        category.createVoiceChannel(channelCountName + " : " + guild.getChannels().size()).complete();
+        category.createVoiceChannel(channelCountName + " : " + (guild.getChannels().size() + 2)).complete();
         category.createVoiceChannel(roleCountName + " : " + guild.getRoles().size()).complete();
     }
 }

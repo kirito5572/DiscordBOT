@@ -22,6 +22,12 @@ public class MemberCountListener extends ListenerAdapter {
         this.manager = manager;
     }
 
+    VoiceChannel channel1;
+    VoiceChannel channel2;
+    VoiceChannel channel3;
+    VoiceChannel channel4;
+    VoiceChannel channel5;
+
     @Override
     public void onGuildJoin(GuildJoinEvent event) {
         Guild guild = event.getGuild();
@@ -55,22 +61,6 @@ public class MemberCountListener extends ListenerAdapter {
     }
 
     @Override
-    public void onVoiceChannelCreate(VoiceChannelCreateEvent event) {
-        Guild guild = event.getGuild();
-        JDA jda = event.getJDA();
-
-        count(guild, jda);
-    }
-
-    @Override
-    public void onVoiceChannelDelete(VoiceChannelDeleteEvent event) {
-        Guild guild = event.getGuild();
-        JDA jda = event.getJDA();
-
-        count(guild, jda);
-    }
-
-    @Override
     public void onRoleCreate(RoleCreateEvent event) {
         Guild guild = event.getGuild();
         JDA jda = event.getJDA();
@@ -95,14 +85,13 @@ public class MemberCountListener extends ListenerAdapter {
             return;
         }
 
-        category = guild.getCategoriesByName(categoryName, true).get(0);
         for(int i = 0; i < category.getChannels().size(); i++) {
             category.getChannels().get(i).delete().complete();
         }
 
         String memberCountName = "멤버 숫자";
         category.createVoiceChannel(memberCountName + " : " + jda.getUsers().size()).complete();
-
+        channel1 = category.getVoiceChannels().get(0);
         int numOfBot = 0;
         int numOfUser = 0;
         for (int i = 0; i < jda.getUsers().size(); i++) {
@@ -115,11 +104,15 @@ public class MemberCountListener extends ListenerAdapter {
 
         String botCountName = "봇 숫자";
         category.createVoiceChannel(botCountName + " : " + numOfBot).complete();
+        channel2 = category.getVoiceChannels().get(1);
         String userCountName = "유저 숫자";
         category.createVoiceChannel(userCountName + " : " + numOfUser).complete();
+        channel3 = category.getVoiceChannels().get(2);
         String channelCountName = "채널 숫자";
-        category.createVoiceChannel(channelCountName + " : " + guild.getChannels().size()).complete();
+        category.createVoiceChannel(channelCountName + " : " + (guild.getChannels().size() + 2)).complete();
+        channel4 = category.getVoiceChannels().get(3);
         String roleCountName = "역할 숫자";
         category.createVoiceChannel(roleCountName + " : " + guild.getRoles().size()).complete();
+        channel5 = category.getVoiceChannels().get(4);
     }
 }
