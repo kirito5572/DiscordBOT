@@ -4,9 +4,9 @@ plugins {
     id'com.github.johnrengelman.shadow' version '4.0.2'
 }
 
-mainClassName = 'src.main.java.BOT.App'
-
-version '1.0'
+mainClassName = 'BOT.App'
+group 'com.kirito5572'
+version '1.2.5.4'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -37,12 +37,15 @@ sourceSets {
 }
 shadowJar {
     manifest {
-        attributes 'Main-Class': 'src.main.java.BOT.App'
+        attributes 'Title': 'rito-bot', 'Version': version, 'Main-Class': 'BOT.App'
     }
+    baseName = 'rito-bot'
 }
 
 task stage(dependsOn: ['build', 'clean']) {
     build.mustRunAfter clean
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 compileJava.options.encoding = 'UTF-8'

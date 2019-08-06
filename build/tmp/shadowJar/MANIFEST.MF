@@ -1,3 +1,5 @@
 Manifest-Version: 1.0
-Main-Class: src.main.java.BOT.App
+Title: rito-bot
+Version: 1.2.5.4
+Main-Class: BOT.App
 

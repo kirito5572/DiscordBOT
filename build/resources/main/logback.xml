@@ -2,12 +2,12 @@
 <configuration packagingData="true">
 
     <appender name="STDOUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${D:/git/greenserver-color-bot/log}/logback.log</file>
+        <file>${C:/discordlog}/logback.log</file>
         <encoder>
             <pattern>[%d{yyyy-MM-dd HH:mm:sss}][%thread] %-5level %logger{35} - %msg%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${D:/git/greenserver-color-bot/log}/logback.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${C:/discordlog}/logback.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <!-- or whenever the file size reaches 100MB -->
                 <maxFileSize>100MB</maxFileSize>
