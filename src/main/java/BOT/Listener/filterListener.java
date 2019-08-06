@@ -22,17 +22,17 @@ public class filterListener extends ListenerAdapter {
         Message message = event.getMessage();
 
         String[] List = FilterList.getList();
-
-        for (String s : List) {
-            if (message.getContentRaw().contains(s)) {
-                try {
-                    message.delete().queue();
-                    event.getChannel().sendMessage(author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되었습니다.").queue();
-                } catch (Exception e) {
-                    event.getChannel().sendMessage("금지어가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
+        if(!event.getGuild().getId().equals("600010501266866186")) {
+            for (String s : List) {
+                if (message.getContentRaw().contains(s)) {
+                    try {
+                        message.delete().queue();
+                        event.getChannel().sendMessage(author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되었습니다.").queue();
+                    } catch (Exception e) {
+                        event.getChannel().sendMessage("금지어가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
+                    }
                 }
             }
         }
-
     }
 }

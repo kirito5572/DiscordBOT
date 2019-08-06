@@ -31,15 +31,16 @@ public class ClearCommand implements ICommand {
             } else if (Integer.parseInt(joined) > 100) {
                 channel.sendMessage("100보다 작은 숫자를 입력해주세요").queue();
             }
-            List<Message> messages;
+            List<Message> messages = null;
+            int i = 0;
             try {
-                messages = event.getChannel().getHistory().retrievePast(Integer.parseInt(joined)).complete();
-                event.getChannel().deleteMessages(messages).queue();
+            messages = event.getChannel().getHistory().retrievePast(Integer.parseInt(joined)).complete();
             } catch (Exception e) {
-                channel.sendMessage("2주 이상된 채팅은 지울수 없습니다.").queue();
+                channel.sendMessage("삭제 할 채팅중에 2주가 지난 채팅이 포함되어있어 삭제 할 수 없습니다.").queue();
 
                 return;
             }
+            event.getChannel().deleteMessages(messages).complete();
 
             channel.sendMessage(joined + "개의 채팅 삭제 완료").queue();
         } else {

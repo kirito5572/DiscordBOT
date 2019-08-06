@@ -19,10 +19,8 @@ public class certificationCommand implements ICommand {
     private File file2 = new File(certification_Img_URL2.getFile());
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
-        System.out.println(certification_Img_URL1);
         TextChannel channel = event.getChannel();
         if(event.getGuild().getId().equals("600010501266866186")) {
-            //TODO 인증완료 역할 판독좀 다시하기
             try {
                 event.getMember().getRoles().contains(event.getGuild().getRolesByName("인증완료", true).get(0));
             } catch (Exception e) {
@@ -45,7 +43,7 @@ public class certificationCommand implements ICommand {
                     private_key = Key;
                     channel.sendMessage("인증키 생성 완료. DM확인 부탁드립니다.").complete();
                     event.getMember().getUser().openPrivateChannel().queue((channel1) -> {
-                        channel1.sendMessage("당신의 인증키는 #UI#{" + event.getAuthor().getName() + "/" + event.getAuthor().getId() + "} #TK#" + private_key + " 입니다.").queue();
+                        channel1.sendMessage("당신의 인증키는 \n #UI#{" + event.getAuthor().getName() + "/" + event.getAuthor().getId() + "} #TK#" + private_key + "\n입니다.").queue();
                         channel1.sendMessage("인증 받는법:").queue();
                         channel1.sendMessage("1. 본인의 스팀프로필에 접속합니다.").queue();
                         channel1.sendFile(file1).queue();

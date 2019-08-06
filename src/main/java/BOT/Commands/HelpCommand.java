@@ -26,7 +26,7 @@ public class HelpCommand implements ICommand {
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         String joined = String.join(" ", args);
 
-        if (args.contains("1") || args.contains("2") || args.isEmpty() || args.contains("3")) {
+        if (args.contains("1") || args.contains("2") || args.isEmpty() || args.contains("3") || args.contains("4")) {
             if(!joined.equals("")) {
                 page = Integer.parseInt(joined);
             }

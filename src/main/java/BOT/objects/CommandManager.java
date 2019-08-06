@@ -3,6 +3,7 @@ package BOT.Objects;
 import BOT.App;
 import BOT.Commands.*;
 import BOT.Commands.GreenServerCustom.certificationCommand;
+import BOT.Commands.GreenServerCustom.certificationFinCommand;
 import BOT.Commands.Moderator.ClearCommand;
 import BOT.Commands.Moderator.KickCommand;
 import BOT.Commands.Moderator.MuteCommand;
@@ -53,7 +54,9 @@ public class CommandManager {
         addCommand(new KickCommand());
         addCommand(new MuteCommand());
         addCommand(new certificationCommand());
+        addCommand(new TESTCommand());
         //------------------------------------------------------------------//
+        addCommand(new certificationFinCommand());
     }
 
     private void addCommand(ICommand command) {
