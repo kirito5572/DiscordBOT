@@ -87,7 +87,7 @@ public class MemberCountListener extends ListenerAdapter {
     }
 
     private void count(Guild guild, JDA jda) {
-        String categoryName = "서버 상태";
+        String categoryName = "\uD83D\uDCCB서버 상태\uD83D\uDCCB";
         Category category;
         try {
             category = guild.getCategoriesByName(categoryName,true).get(0);

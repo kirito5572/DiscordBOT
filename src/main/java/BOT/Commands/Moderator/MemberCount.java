@@ -12,7 +12,7 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import java.util.List;
 
 public class MemberCount implements ICommand {
-    private String categoryName = "서버 상태";
+    private String categoryName = "\uD83D\uDCCB서버 상태\uD83D\uDCCB";
     private String memberCountName = "멤버 숫자";
     private String botCountName = "봇 숫자";
     private String userCountName = "유저 숫자";
