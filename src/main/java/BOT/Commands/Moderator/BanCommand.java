@@ -1,5 +1,6 @@
 package BOT.Commands.Moderator;
 
+import BOT.App;
 import BOT.Constants;
 import BOT.Objects.ICommand;
 import net.dv8tion.jda.core.Permission;
@@ -45,7 +46,7 @@ public class BanCommand implements ICommand {
     @Override
     public String getHelp() {
         return "이서버에서 타노스 시키기.\n" +
-                "사용법: `"  + Constants.PREFIX + getInvoke() + " <유저명> <이유>`";
+                "사용법: `"  + App.getPREFIX() + getInvoke() + " <유저명> <이유>`";
     }
 
     @Override

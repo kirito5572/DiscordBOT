@@ -1,5 +1,6 @@
 package BOT.Commands.Moderator;
 
+import BOT.App;
 import BOT.Constants;
 import BOT.Objects.ICommand;
 import net.dv8tion.jda.core.Permission;
@@ -60,7 +61,7 @@ public class UnbanCommand implements ICommand {
     @Override
     public String getHelp() {
         return "이 서버에서 유저의 밴을 취소합니다.\n" +
-                "사용법: `" + Constants.PREFIX + getInvoke() + " <유저명/유저 ID/@멘션>";
+                "사용법: `" + App.getPREFIX() + getInvoke() + " <유저명/유저 ID/@멘션>";
     }
 
     @Override

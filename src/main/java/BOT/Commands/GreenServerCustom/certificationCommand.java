@@ -77,7 +77,7 @@ public class certificationCommand implements ICommand {
 
     @Override
     public String getInvoke() {
-        return "인증키생성";
+        return "인증";
     }
 
     @Override
