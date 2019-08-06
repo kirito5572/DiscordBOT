@@ -65,7 +65,7 @@ public class MemberCount implements ICommand {
 
             category.createVoiceChannel(botCountName + " : " + numOfBot).complete();
             category.createVoiceChannel(userCountName + " : " + numOfUser).complete();
-            category.createVoiceChannel(channelCountName + " : " + guild.getChannels().size()).complete();
+            category.createVoiceChannel(channelCountName + " : " + (guild.getChannels().size() - guild.getCategories().size())).complete();
             category.createVoiceChannel(roleCountName + " : " + guild.getRoles().size()).complete();
 
             event.getChannel().sendMessage("멤버 카운팅이 시작되었습니다.").queue();
@@ -111,11 +111,8 @@ public class MemberCount implements ICommand {
         }
 
         category = guild.getCategoriesByName(categoryName, true).get(0);
-        for(int i = 0; i < category.getChannels().size(); i++) {
-            category.getChannels().get(i).delete().complete();
-        }
 
-        category.createVoiceChannel(memberCountName + " : " + jda.getUsers().size()).complete();
+        category.getChannels().get(0).getManager().setName(memberCountName + " : " + jda.getUsers().size()).complete();
 
         int numOfBot = 0;
         int numOfUser = 0;
@@ -127,9 +124,9 @@ public class MemberCount implements ICommand {
             }
         }
 
-        category.createVoiceChannel(botCountName + " : " + numOfBot).complete();
-        category.createVoiceChannel(userCountName + " : " + numOfUser).complete();
-        category.createVoiceChannel(channelCountName + " : " + (guild.getChannels().size() + 2)).complete();
-        category.createVoiceChannel(roleCountName + " : " + guild.getRoles().size()).complete();
+        category.getChannels().get(1).getManager().setName(botCountName + " : " + numOfBot).complete();
+        category.getChannels().get(2).getManager().setName(userCountName + " : " + numOfUser).complete();
+        category.getChannels().get(3).getManager().setName(channelCountName + " : " + (guild.getChannels().size() - guild.getCategories().size())).complete();
+        category.getChannels().get(4).getManager().setName(roleCountName + " : " + guild.getRoles().size()).complete();
     }
 }
