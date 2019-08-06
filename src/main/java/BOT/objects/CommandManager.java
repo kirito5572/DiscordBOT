@@ -2,9 +2,11 @@ package BOT.Objects;
 
 import BOT.App;
 import BOT.Commands.*;
+import BOT.Commands.GreenServerCustom.certificationCommand;
 import BOT.Commands.Moderator.ClearCommand;
 import BOT.Commands.Moderator.KickCommand;
 import BOT.Commands.Moderator.MuteCommand;
+import BOT.Commands.Moderator.giveroleCommand;
 import BOT.Commands.Music.*;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
@@ -50,6 +52,7 @@ public class CommandManager {
         addCommand(new CatCommand());
         addCommand(new KickCommand());
         addCommand(new MuteCommand());
+        addCommand(new certificationCommand());
         //------------------------------------------------------------------//
     }
 

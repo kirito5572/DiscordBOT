@@ -1,4 +1,4 @@
-package BOT.Commands;
+package BOT.Commands.Moderator;
 
 import BOT.App;
 import BOT.Objects.ICommand;
@@ -24,7 +24,7 @@ public class giveroleCommand implements ICommand {
         permission_Int = "";
         pos = "";
         hoisted = false;
-        if(event.getMember().hasPermission(Permission.MANAGE_ROLES) || event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+        if(event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
             String rolename;
             String username;
 
