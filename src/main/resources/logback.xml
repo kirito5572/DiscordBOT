@@ -14,9 +14,17 @@
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
     </appender>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern> [%d{yyyy-MM-dd HH:mm:sss}][%thread] %-5level %logger{35} - %msg%n </pattern>
+        </encoder>
+    </appender>
 
     <root level="info">
-        <appender-ref ref="STDOUT" />
+    <appender-ref ref="STDOUT" />
+    </root>
+    <root level="warn">
+        <appender-ref ref="CONSOLE" />
     </root>
 
 </configuration>

@@ -28,9 +28,13 @@ public class MemberCount implements ICommand {
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         if(!event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
             event.getChannel().sendMessage("이 명령어를 사용할 권한이 없습니다.").queue();
+
+            return;
         }
         if(!event.getGuild().getSelfMember().hasPermission(Permission.MANAGE_CHANNEL)) {
             event.getChannel().sendMessage("봇이 이 명령어를 사용 할 권한이 없습니다.").queue();
+
+            return;
         }
         String joined = String.join(" ",args);
         Guild guild = event.getGuild();

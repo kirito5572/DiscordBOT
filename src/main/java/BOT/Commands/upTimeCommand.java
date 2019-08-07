@@ -14,7 +14,7 @@ public class upTimeCommand implements ICommand {
         Date nowDate = new Date();
         long temp = nowDate.getTime() - App.getDate().getTime();
         Date upTime = new Date(temp);
-        SimpleDateFormat format = new SimpleDateFormat( "yyyy/MM/dd aa HH:mm:ss z");
+        SimpleDateFormat format = new SimpleDateFormat( "yyyy/MM/dd aa hh:mm:ss z");
         String nowTime = format.format(nowDate);
         event.getChannel().sendMessage("시작 시간: " + App.getTime() + "\n"
                 + "현재 시간: " + nowTime + "\n"

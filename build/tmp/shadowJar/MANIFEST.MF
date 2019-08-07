@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 Title: rito-bot
-Version: 1.2.5.4
+Version: 1.3.3
 Main-Class: BOT.App
 

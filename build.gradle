@@ -6,7 +6,7 @@ plugins {
 
 mainClassName = 'BOT.App'
 group 'com.kirito5572'
-version '1.2.5.4'
+version '1.3.3'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -40,10 +40,6 @@ shadowJar {
         attributes 'Title': 'rito-bot', 'Version': version, 'Main-Class': 'BOT.App'
     }
     baseName = 'rito-bot'
-}
-
-task stage(dependsOn: ['build', 'clean']) {
-    build.mustRunAfter clean
 }
 
 sourceCompatibility = 1.8
