@@ -41,6 +41,7 @@ public class App {
         filterListener filterlistener = new filterListener(commandManager);
         salListener salListener = new salListener(commandManager);
         publicExecutionListener publicExecutionListener = new publicExecutionListener(commandManager);
+        ONIGIRIListener onigiriListener = new ONIGIRIListener();
 
         StringBuilder TOKENreader = new StringBuilder();
         try {
@@ -95,6 +96,7 @@ public class App {
                     .addEventListener(filterlistener)
                     .addEventListener(salListener)
                     .addEventListener(publicExecutionListener)
+                    .addEventListener(onigiriListener)
                     .setGame(Game.streaming("사용법: "
                             + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
                     .build().awaitReady();

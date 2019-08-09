@@ -25,7 +25,11 @@ public class filterListener extends ListenerAdapter {
 
         String[] List = FilterList.getList();
         Logger logger = LoggerFactory.getLogger(filterListener.class);
-        if(!event.getGuild().getId().equals("600010501266866186")) {
+        if(event.getGuild().getId().equals("453817631603032065")) {
+            return;
+
+        }
+        if(!(event.getGuild().getId().equals("600010501266866186"))) {
             for (String s : List) {
                 if (message.getContentRaw().contains(s)) {
                     try {

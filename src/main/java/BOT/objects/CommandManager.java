@@ -6,6 +6,7 @@ import BOT.Commands.GreenServerCustom.certificationCommand;
 import BOT.Commands.GreenServerCustom.certificationFinCommand;
 import BOT.Commands.Moderator.*;
 import BOT.Commands.Music.*;
+import BOT.Commands.ONIGIRIServerCustom.ONIGIRICommand;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -58,6 +59,8 @@ public class CommandManager {
         addCommand(new UnbanCommand());
         addCommand(new MemberCount());
         addCommand(new publicExecutionCommand());
+
+        addCommand(new ONIGIRICommand());
     }
 
     private void addCommand(ICommand command) {
