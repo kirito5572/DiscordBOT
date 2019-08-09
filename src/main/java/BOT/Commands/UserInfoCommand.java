@@ -18,7 +18,7 @@ public class UserInfoCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         if(args.isEmpty()) {
-            event.getChannel().sendMessage("Missing arguments, check '" + Constants.PREFIX + "help" +
+            event.getChannel().sendMessage("인수 부족 '" + App.getPREFIX() + "help" +
                     getInvoke() + "'").queue();
             return;
         }

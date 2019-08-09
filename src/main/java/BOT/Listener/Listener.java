@@ -18,6 +18,8 @@ import java.io.FileReader;
 public class Listener extends ListenerAdapter {
     private final CommandManager manager;
     private final Logger logger = LoggerFactory.getLogger(Listener.class);
+    private static String ID1;
+    private static String ID2;
     public Listener(CommandManager manager) {
         this.manager = manager;
     }
@@ -68,6 +70,8 @@ public class Listener extends ListenerAdapter {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        ID1 = IDreader.toString();
+        ID2 = IDreader1.toString();
         if (event.getMessage().getContentRaw().equalsIgnoreCase(App.getPREFIX() + "종료") &&
                 (
                         (event.getAuthor().getIdLong() == Long.decode(IDreader.toString())) ||
@@ -93,6 +97,14 @@ public class Listener extends ListenerAdapter {
             jda.shutdown();
             System.exit(0);
         }).start();
+    }
+
+    public static String getID1() {
+        return ID1;
+    }
+
+    public static String getID2() {
+        return ID2;
     }
 }
 

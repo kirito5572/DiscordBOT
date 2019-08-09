@@ -57,6 +57,7 @@ public class CommandManager {
         addCommand(new BanCommand());
         addCommand(new UnbanCommand());
         addCommand(new MemberCount());
+        addCommand(new publicExecutionCommand());
     }
 
     private void addCommand(ICommand command) {
