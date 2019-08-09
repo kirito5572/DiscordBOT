@@ -111,6 +111,5 @@ public class certificationFinCommand implements ICommand {
         writer.flush();
 
         if(writer != null) writer.close();
-
     }
 }

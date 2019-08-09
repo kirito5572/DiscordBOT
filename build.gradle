@@ -37,7 +37,7 @@ sourceSets {
 }
 shadowJar {
     manifest {
-        attributes 'Title': 'rito-bot', 'Main-Class': 'BOT.App'
+        attributes 'Title': 'rito-bot', 'Version': version, 'Main-Class': 'BOT.App'
     }
     baseName = 'rito-bot'
 }
