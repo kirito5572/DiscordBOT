@@ -71,7 +71,7 @@ public class UnbanCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "밴 취소";
+        return null;
     }
 
     private boolean isCorrectUser(Guild.Ban ban, String arg) {
