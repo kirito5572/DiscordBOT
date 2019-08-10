@@ -5,6 +5,7 @@ import BOT.Objects.ICommand;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.TextChannel;
@@ -18,7 +19,12 @@ public class GreenServerMuteCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
-        if(event.getGuild().getId().equals("600010501266866186")) {
+        if(event.getGuild().getId().equals("508913681279483913")) {
+            if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                channel.sendMessage("당신은 이 명령어를 사용할 권한이 없습니다.").queue();
+
+                return;
+            }
             if(args.isEmpty()) {
                 event.getChannel().sendMessage("인수 부족 '" + App.getPREFIX() + "help" +
                         getInvoke() + "'").queue();
@@ -54,6 +60,14 @@ public class GreenServerMuteCommand implements ICommand {
             }
             User user = foundUsers.get(0);
             Member member = event.getGuild().getMember(user);
+
+            if(member.hasPermission(Permission.MANAGE_ROLES) || member.hasPermission(Permission.MESSAGE_MANAGE) ||
+                    member.hasPermission(Permission.MANAGE_PERMISSIONS) || member.hasPermission(Permission.MANAGE_SERVER) ||
+                    member.hasPermission(Permission.ADMINISTRATOR)) {
+                channel.sendMessage("이 사람에게는 채팅금지를 먹일 수 없습니다.").queue();
+
+                return;
+            }
             Role role;
             try {
                 role = event.getGuild().getRolesByName("채팅 금지", true).get(0);
@@ -62,13 +76,23 @@ public class GreenServerMuteCommand implements ICommand {
 
                 return;
             }
-            EmbedBuilder builder = EmbedUtils.defaultEmbed()
-                    .setTitle("채팅 금지 제재")
-                    .addField("유저명", user.getName(), false)
-                    .addField("멘션명", member.getAsMention(), false)
-                    .addField("삭제되는 역할", member.getRoles().toString(), false)
-                    .addField("기한",time,false);
-            event.getGuild().getTextChannelById("609781460785692672").sendMessage(builder.build()).queue();
+            try {
+                StringBuilder roles = new StringBuilder();
+                for(int i = 0; i < member.getRoles().size(); i++) {
+                    roles.append(member.getRoles().get(i).getAsMention()).append("\n");
+                }
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("채팅 금지 제재")
+                        .addField("유저명", user.getName(), false)
+                        .addField("멘션명", member.getAsMention(), false)
+                        .addField("삭제되는 역할", roles.toString() ,false)
+                        .addField("기한", time, false);
+                event.getGuild().getTextChannelById("593991995433680924").sendMessage(builder.build()).complete();
+            } catch (Exception e) {
+                channel.sendMessage("메세지를 보내기 전에 문제가 발생했습니다.").complete();
+
+                return;
+            }
 
 
             event.getGuild().getController().removeRolesFromMember(member, member.getRoles()).complete();
