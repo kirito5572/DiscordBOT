@@ -58,7 +58,6 @@ public class publicExecutionCommand implements ICommand {
             }
             channel.sendMessage("공개 처형 역할이 없어 새로 생성했습니다.").queue();
 
-            return;
         }
         event.getGuild().getController().addSingleRoleToMember(member, role).complete();
 

@@ -97,13 +97,13 @@ public class ColorCommand implements ICommand {
                     event.getGuild().getRoleById("515744849966792719"),
                     event.getGuild().getRoleById("517842991667216395"),
                     //위는 CGC서버 아래는 Green 서버
-                    event.getGuild().getRoleById("600011104172900363"),
-                    event.getGuild().getRoleById("600012069559074822"),
-                    event.getGuild().getRoleById("600021907374342156"),
-                    event.getGuild().getRoleById("600661638063980554"),
-                    event.getGuild().getRoleById("600661634561605642"),
-                    event.getGuild().getRoleById("600661631734906900"),
-                    event.getGuild().getRoleById("600661627750055936"),
+                    event.getGuild().getRoleById("600011020836143115"),     //O5평의회
+                    event.getGuild().getRoleById("600012814467465236"),     //디스코드담당
+                    event.getGuild().getRoleById("600012855407935520"),     //시스템담당
+                    event.getGuild().getRoleById("600012769596670011"),     //민원담당
+                    event.getGuild().getRoleById("600012069559074822"),     //기지이사관
+                    event.getGuild().getRoleById("600012538817806346"),     //후원자
+                    event.getGuild().getRoleById("600021907374342156"),     //니트로 부스팅 지원자
             };
             List<Role> role_List = event.getGuild().getRoles();
             for(int i = 0; i < 13; i++) {
@@ -128,7 +128,7 @@ public class ColorCommand implements ICommand {
                             event.getGuild().getController().removeRolesFromMember(event.getMember(), role).queue();
                         } catch (Exception e) {
                             e.printStackTrace();
-                            channel.sendMessage(event.getMember().getAsMention() + ", 기존 색을 제거하다가 오류가 발생했습니다.").queue();
+                            channel.sendMessage(event.getMember().getAsMention() + ", 기존 색을 제거하다가 오류가 발생했습니다.").complete();
                             break;
                         }
                         channel.sendMessage(event.getMember().getAsMention() + ", 기존 색 " + role.getName() + " 이 제거되었습니다.\n").queue();
@@ -136,14 +136,9 @@ public class ColorCommand implements ICommand {
                         break;
                     }
                 }
-
                 if(delete) {
+
                     return;
-                }
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
 
                 assert temp != null;

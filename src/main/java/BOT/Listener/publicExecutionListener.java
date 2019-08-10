@@ -7,6 +7,7 @@ import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.events.Event;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.slf4j.Logger;
@@ -45,10 +46,10 @@ public class publicExecutionListener extends ListenerAdapter {
         if(event.getMessage().getMember().getRoles().contains(role)) {
             event.getMessage().delete().queueAfter(time, TimeUnit.SECONDS);
             EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
-                    .setTitle("공개 처형")
                     .addField("공개 처형", "당신의 메세지는 " + time + "초후 자동으로 삭제됩니다.",true);
-
             event.getChannel().sendMessage(embedBuilder.build()).complete();
+            event.getChannel().getMessageById(event.getChannel().getLatestMessageId()).complete().delete().queue();
+
         }
     }
 }
