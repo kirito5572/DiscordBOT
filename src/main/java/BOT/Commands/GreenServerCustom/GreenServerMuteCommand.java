@@ -3,6 +3,8 @@ package BOT.Commands.GreenServerCustom;
 import BOT.App;
 import BOT.Objects.ICommand;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
+import me.duncte123.botcommons.messaging.EmbedUtils;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.TextChannel;
@@ -22,14 +24,29 @@ public class GreenServerMuteCommand implements ICommand {
                         getInvoke() + "'").queue();
                 return;
             }
+            String users;
+            String time;
+            try {
+                users = args.get(0);
+            } catch (Exception e) {
+                channel.sendMessage("유저 명이 없습니다.").queue();
 
-            String joined = String.join(" ", args);
-            List<User> foundUsers = FinderUtil.findUsers(joined, event.getGuild().getJDA());
+                return;
+            }
+            try {
+                time = args.get(1);
+            } catch (Exception e) {
+                channel.sendMessage("시간이 없습니다.").queue();
+
+                return;
+            }
+
+            List<User> foundUsers = FinderUtil.findUsers(users, event.getGuild().getJDA());
 
             if(foundUsers.isEmpty()) {
-                List<Member> foundMember = FinderUtil.findMembers(joined, event.getGuild());
+                List<Member> foundMember = FinderUtil.findMembers(users, event.getGuild());
                 if(foundMember.isEmpty()) {
-                    event.getChannel().sendMessage("'" + joined + "' 라는 유저는 없습니다.").queue();
+                    event.getChannel().sendMessage("'" + users + "' 라는 유저는 없습니다.").queue();
                     return;
                 }
 
@@ -45,6 +62,16 @@ public class GreenServerMuteCommand implements ICommand {
 
                 return;
             }
+            EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                    .setTitle("채팅 금지 제재")
+                    .addField("유저명", user.getName(), false)
+                    .addField("멘션명", member.getAsMention(), false)
+                    .addField("삭제되는 역할", member.getRoles().toString(), false)
+                    .addField("기한",time,false);
+            event.getGuild().getTextChannelById("609781460785692672").sendMessage(builder.build()).queue();
+
+
+            event.getGuild().getController().removeRolesFromMember(member, member.getRoles()).complete();
 
             event.getGuild().getController().addSingleRoleToMember(member, role).queue();
         } else {
