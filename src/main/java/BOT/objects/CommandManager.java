@@ -2,6 +2,7 @@ package BOT.Objects;
 
 import BOT.App;
 import BOT.Commands.*;
+import BOT.Commands.GreenServerCustom.GreenServerMuteCommand;
 import BOT.Commands.GreenServerCustom.certificationCommand;
 import BOT.Commands.GreenServerCustom.certificationFinCommand;
 import BOT.Commands.Moderator.*;
@@ -61,6 +62,7 @@ public class CommandManager {
         addCommand(new publicExecutionCommand());
 
         addCommand(new ONIGIRICommand());
+        addCommand(new GreenServerMuteCommand());
     }
 
     private void addCommand(ICommand command) {
