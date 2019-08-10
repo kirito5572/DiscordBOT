@@ -18,7 +18,7 @@ public class upTimeCommand implements ICommand {
         String nowTime = format.format(nowDate);
         event.getChannel().sendMessage("시작 시간: " + App.getTime() + "\n"
                 + "현재 시간: " + nowTime + "\n"
-                + "가동 시간: " + String.format("%s일 %s시간 %s분 %s초 KST", upTime.getTime()/10080000, upTime.getTime()/1440000, upTime.getTime()/60000, upTime.getTime()/1000)).queue();
+                + "가동 시간: " + String.format("%s일 %s시간 %s분 %s초 KST", upTime.getTime()/86400000, upTime.getTime()/3600000, upTime.getTime()/60000, upTime.getTime()/1000)).queue();
     }
 
     @Override

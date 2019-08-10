@@ -12,12 +12,20 @@ import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
+import java.awt.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class GreenServerMuteCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd kk:mm");
+        String time_st;
         TextChannel channel = event.getChannel();
         if(event.getGuild().getId().equals("508913681279483913")) {
             if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
@@ -76,7 +84,67 @@ public class GreenServerMuteCommand implements ICommand {
 
                 return;
             }
+            long temp;
+            Date date;
+            if (time.contains("m")) {
+                time = time.substring(0,time.indexOf("m"));
+                try {
+                    temp = Integer.parseInt(time);
+                } catch (Exception e) {
+                    channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
+
+                    return;
+                }
+                date = new Date();
+                date.setTime(date.getTime() + temp * 60000L);
+                time = String.valueOf(date.getTime());
+
+            } else if(time.contains("h")) {
+                time = time.substring(0,time.indexOf("h"));
+                try {
+                    temp = Integer.parseInt(time);
+                } catch (Exception e) {
+                    channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
+
+                    return;
+                }
+
+                date = new Date();
+                date.setTime(date.getTime() + temp * 3600000L);
+                time = String.valueOf(date.getTime());
+
+            } else if(time.contains("d")) {
+                time = time.substring(0,time.indexOf("d"));
+                try {
+                    temp = Integer.parseInt(time);
+                } catch (Exception e) {
+                    channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
+
+                    return;
+                }
+                date = new Date();
+                date.setTime(date.getTime() + temp * 86400000L);
+                time = String.valueOf(date.getTime());
+
+            } else if(time.contains("M")) {
+                time = time.substring(0,time.indexOf("M"));
+                try {
+                    temp = Integer.parseInt(time);
+                } catch (Exception e) {
+                    channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
+
+                    return;
+                }
+                date = new Date();
+                date.setTime(date.getTime() + temp * 2629800000L);
+                time = String.valueOf(date.getTime());
+            } else {
+                channel.sendMessage("time의 단위가 잘못되었습니다.").queue();
+
+                return;
+            }
             try {
+                time_st = sdf.format(date);
                 StringBuilder roles = new StringBuilder();
                 for(int i = 0; i < member.getRoles().size(); i++) {
                     roles.append(member.getRoles().get(i).getAsMention()).append("\n");
@@ -85,15 +153,29 @@ public class GreenServerMuteCommand implements ICommand {
                         .setTitle("채팅 금지 제재")
                         .addField("유저명", user.getName(), false)
                         .addField("멘션명", member.getAsMention(), false)
-                        .addField("삭제되는 역할", roles.toString() ,false)
-                        .addField("기한", time, false);
+                        .addField("삭제되는 역할", roles.toString(), false)
+                        .addField("제재 해제 시간", time_st, false)
+                        .setColor(Color.RED);
                 event.getGuild().getTextChannelById("593991995433680924").sendMessage(builder.build()).complete();
             } catch (Exception e) {
                 channel.sendMessage("메세지를 보내기 전에 문제가 발생했습니다.").complete();
 
+                e.printStackTrace();
+
                 return;
             }
+            time = time.substring(0, time.length() - 4);
+            time += "0000";
 
+            try {
+                filesave(time, user.getName(), member.getRoles().toString(), user.getId());
+            } catch (IOException e) {
+                channel.sendMessage("파일을 저장하면서 오류가 발생했습니다.").complete();
+
+                e.printStackTrace();
+
+                return;
+            }
 
             event.getGuild().getController().removeRolesFromMember(member, member.getRoles()).complete();
 
@@ -116,5 +198,22 @@ public class GreenServerMuteCommand implements ICommand {
     @Override
     public String getSmallHelp() {
         return "채팅 금지를 먹입니다.";
+    }
+
+    private void filesave(String time, String userName, String roles, String discordID) throws IOException {
+        String message = "Discord ID = " + discordID + "\n" +
+                "Discord name = " +userName + "\n" +
+                "Roles = " + roles;
+
+        File file = new File("C:\\디스코드 유저 제재기록\\" + time + ".txt");
+        FileWriter writer = null;
+
+
+        writer = new FileWriter(file, true);
+        writer.write(message);
+        writer.flush();
+
+        if(writer != null) writer.close();
+
     }
 }
