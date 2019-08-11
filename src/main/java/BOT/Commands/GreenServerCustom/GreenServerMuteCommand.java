@@ -149,6 +149,7 @@ public class GreenServerMuteCommand implements ICommand {
                 for(int i = 0; i < member.getRoles().size(); i++) {
                     roles.append(member.getRoles().get(i).getAsMention()).append("\n");
                 }
+                Thread.sleep(1);
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                         .setTitle("채팅 금지 제재")
                         .addField("유저명", user.getName(), false)
@@ -156,6 +157,7 @@ public class GreenServerMuteCommand implements ICommand {
                         .addField("삭제되는 역할", roles.toString(), false)
                         .addField("제재 해제 시간", time_st, false)
                         .setColor(Color.RED);
+                Thread.sleep(1);
                 event.getGuild().getTextChannelById("593991995433680924").sendMessage(builder.build()).complete();
             } catch (Exception e) {
                 channel.sendMessage("메세지를 보내기 전에 문제가 발생했습니다.").complete();
@@ -167,8 +169,13 @@ public class GreenServerMuteCommand implements ICommand {
             time = time.substring(0, time.length() - 4);
             time += "0000";
 
+            StringBuilder roles = new StringBuilder();
+            for(int i = 0; i < member.getRoles().size(); i++) {
+                roles.append("^").append(member.getRoles().get(i).getName()).append("$").append("\n");
+            }
+
             try {
-                filesave(time, user.getName(), member.getRoles().toString(), user.getId());
+                filesave(time, user.getName(), roles.toString(), user.getId());
             } catch (IOException e) {
                 channel.sendMessage("파일을 저장하면서 오류가 발생했습니다.").complete();
 
