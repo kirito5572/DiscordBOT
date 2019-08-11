@@ -47,8 +47,7 @@ public class publicExecutionListener extends ListenerAdapter {
             event.getMessage().delete().queueAfter(time, TimeUnit.SECONDS);
             EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
                     .addField("공개 처형", "당신의 메세지는 " + time + "초후 자동으로 삭제됩니다.",true);
-            event.getChannel().sendMessage(embedBuilder.build()).complete();
-            event.getChannel().getMessageById(event.getChannel().getLatestMessageId()).complete().delete().queue();
+            event.getChannel().sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
 
         }
     }

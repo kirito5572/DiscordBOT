@@ -3,6 +3,8 @@ package BOT.Commands.Moderator;
 import BOT.Listener.Listener;
 import BOT.Objects.ICommand;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
+import me.duncte123.botcommons.messaging.EmbedUtils;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Role;
@@ -62,6 +64,16 @@ public class publicExecutionCommand implements ICommand {
         event.getGuild().getController().addSingleRoleToMember(member, role).complete();
 
         event.getChannel().sendMessage( user.getName() + "을/를 공개 처형 대상자로 지정 했습니다.").queue();
+        if(event.getGuild().getId().equals("600010501266866186")) {
+            EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                    .setColor(Color.RED)
+                    .setTitle("공개 처형자 지정")
+                    .addField("대상자", member.getAsMention(), true)
+                    .addField("지정 담당자", event.getMember().getAsMention(), true);
+
+
+            event.getGuild().getTextChannelById("609781460785692672").sendMessage(builder.build()).queue();
+        }
     }
 
     @Override
