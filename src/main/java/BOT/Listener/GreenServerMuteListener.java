@@ -22,8 +22,8 @@ public class GreenServerMuteListener extends ListenerAdapter {
         TimerTask job = new TimerTask() {
             @Override
             public void run() {
-                Guild guild = event.getJDA().getGuildById("508913681279483913");
-                TextChannel channel = guild.getTextChannelById("593991995433680924");
+                Guild guild = event.getJDA().getGuildById("600010501266866186");
+                TextChannel channel = guild.getTextChannelById("609781460785692672");
                 File file;
                 Date date = new Date();
                 String time;
@@ -46,7 +46,6 @@ public class GreenServerMuteListener extends ListenerAdapter {
                     return;
                 }
                 String text;
-                StringBuilder text_sb = new StringBuilder();
                 try {
                     char[] char_array = new char[2048];
                     reader.read(char_array);
@@ -69,8 +68,6 @@ public class GreenServerMuteListener extends ListenerAdapter {
                 String discord_ID = text.substring(text.indexOf("Discord ID = ") + 13, text.indexOf("Discord name = ") - 1);
                 String discord_Name = text.substring(text.indexOf("Discord name = ") + 15, text.indexOf("Roles = ") - 1);
                 String Roles = text.substring(text.indexOf("Roles = ") + 8);
-
-                event.getJDA().getGuildById("508913681279483913");
 
                 List<User> foundUsers = FinderUtil.findUsers(discord_ID, event.getJDA());
 
@@ -107,7 +104,8 @@ public class GreenServerMuteListener extends ListenerAdapter {
                                 }
                                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                                         .setTitle("채팅 금지 제재 해제")
-                                        .addField("유저명", user.getName(), false)
+                                        .addField("채팅 정지 당시 유저명", discord_Name, false)
+                                        .addField("현재 유저명", user.getName(), false)
                                         .addField("멘션명", member.getAsMention(), false)
                                         .addField("복구되는 역할", rolesb.toString(), false)
                                         .setColor(Color.GREEN);

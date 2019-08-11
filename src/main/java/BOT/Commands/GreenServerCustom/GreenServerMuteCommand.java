@@ -27,7 +27,7 @@ public class GreenServerMuteCommand implements ICommand {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd kk:mm");
         String time_st;
         TextChannel channel = event.getChannel();
-        if(event.getGuild().getId().equals("508913681279483913")) {
+        if(event.getGuild().getId().equals("600010501266866186")) {
             if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                 channel.sendMessage("당신은 이 명령어를 사용할 권한이 없습니다.").queue();
 
@@ -158,7 +158,7 @@ public class GreenServerMuteCommand implements ICommand {
                         .addField("제재 해제 시간", time_st, false)
                         .setColor(Color.RED);
                 Thread.sleep(1);
-                event.getGuild().getTextChannelById("593991995433680924").sendMessage(builder.build()).complete();
+                event.getGuild().getTextChannelById("609781460785692672").sendMessage(builder.build()).complete();
             } catch (Exception e) {
                 channel.sendMessage("메세지를 보내기 전에 문제가 발생했습니다.").complete();
 
