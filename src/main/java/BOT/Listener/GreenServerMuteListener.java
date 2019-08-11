@@ -90,12 +90,10 @@ public class GreenServerMuteListener extends ListenerAdapter {
                     try {
                         String Role = Roletemp.substring(1, Roletemp.indexOf("$"));
                         Role giveRole = guild.getRolesByName(Role, true).get(0);
-                        System.out.println("role" + Role);
 
                         guild.getController().addSingleRoleToMember(member, giveRole).complete();
                         try {
                             Roletemp = Roletemp.substring(Roletemp.indexOf("$") + 2);
-                            System.out.println(Roletemp);
                         } catch (Exception e) {
                                 StringBuilder rolesb = new StringBuilder();
                                 for (int i = 0; i < member.getRoles().size(); i++) {
