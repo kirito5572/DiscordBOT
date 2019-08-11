@@ -16,10 +16,6 @@ public class CatCommand implements ICommand {
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
 
         Member selfMember = event.getGuild().getSelfMember();
-        if (!selfMember.hasPermission(Permission.VOICE_CONNECT)) {
-            event.getChannel().sendMessage("보이스채널 권한이 없습니다..").queue();
-            return;
-        }
 
         WebUtils.ins.scrapeWebPage("https://nekos.life/").async((document) -> {
             String a = document.getElementsByTag("head").first().toString();

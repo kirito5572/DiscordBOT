@@ -31,7 +31,6 @@ public class GreenServerMuteListener extends ListenerAdapter {
                 time = time.substring(0, time.length() - 4);
                 time += "0000";
                 try {
-                    System.out.println(time + "txt");
                     file = new File("C:\\디스코드 유저 제재기록\\" + time + ".txt");
                 } catch (Exception e) {
 

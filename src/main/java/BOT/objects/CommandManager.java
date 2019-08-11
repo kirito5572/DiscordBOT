@@ -63,6 +63,7 @@ public class CommandManager {
 
         addCommand(new ONIGIRICommand());
         addCommand(new GreenServerMuteCommand());
+        addCommand(new lewdnekoCommand());
     }
 
     private void addCommand(ICommand command) {
