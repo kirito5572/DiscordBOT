@@ -54,7 +54,7 @@ public class certificationCommand implements ICommand {
                             channel1.sendMessage("2. 본인의 프로필을 편집하여 요약탭에 인증키를 적습니다.").queue();
                             channel1.sendFile(file2).queue();
                             channel1.sendMessage("3. 프로필을 저장한후 `" + App.getPREFIX() + "확인 ` [스팀 프로필]을 입력하여. 인증 절차를 진행해주세요.\n" +
-                                    "예시: `" + App.getPREFIX() + "확인 https://steamcommunity.com/id/kirito5572`").queue();
+                                    "예시: `" + App.getPREFIX() + getInvoke() + "확인 https://steamcommunity.com/id/kirito5572`").queue();
                             channel1.sendMessage("모든 인증과정을 걸치셨으면, 프로필은 다시 원래대로 설정하셔도 됩니다.").queue();
                         });
                     } catch (ErrorResponseException e) {
