@@ -6,20 +6,18 @@ import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.exceptions.ErrorResponseException;
+import org.apache.commons.io.IOUtils;
 
-import java.io.File;
+import java.io.*;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class certificationCommand implements ICommand {
-    private URL certification_Img_URL1 = getClass().getClassLoader().getResource("1.png");
-    private File file1 = new File(certification_Img_URL1.getPath());
-    private URL certification_Img_URL2 = getClass().getClassLoader().getResource("2.png");
-    private File file2 = new File(certification_Img_URL2.getFile());
-    private URL certification_Img_URL3 = getClass().getClassLoader().getResource("3.png");
-    private File file3 = new File(certification_Img_URL3.getFile());
+    private InputStream certification_Img_is1 = getClass().getClassLoader().getResourceAsStream("1.png");
+    private InputStream certification_Img_is2 = getClass().getClassLoader().getResourceAsStream("2.png");
+    private InputStream certification_Img_is3 = getClass().getClassLoader().getResourceAsStream("3.png");
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
@@ -50,8 +48,24 @@ public class certificationCommand implements ICommand {
                             channel1.sendMessage("당신의 인증키는 \n #UI#{" + event.getAuthor().getName() + "/" + event.getAuthor().getId() + "} #TK#" + private_key + "\n입니다.").queue();
                             channel1.sendMessage("인증 받는법:").queue();
                             channel1.sendMessage("1. 본인의 스팀프로필에 접속합니다.").queue();
+                            File file1;
+                            try {
+                                file1 = convertInputStreamToFile(certification_Img_is1);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+
+                                return;
+                            }
                             channel1.sendFile(file1).queue();
                             channel1.sendMessage("2. 본인의 프로필을 편집하여 요약탭에 인증키를 적습니다.").queue();
+                            File file2;
+                            try {
+                                file2 = convertInputStreamToFile(certification_Img_is1);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+
+                                return;
+                            }
                             channel1.sendFile(file2).queue();
                             channel1.sendMessage("3. 프로필을 저장한후 `" + App.getPREFIX() + "확인 ` [스팀 프로필]을 입력하여. 인증 절차를 진행해주세요.\n" +
                                     "예시: `" + App.getPREFIX() + getInvoke() + "확인 https://steamcommunity.com/id/kirito5572`").queue();
@@ -59,6 +73,14 @@ public class certificationCommand implements ICommand {
                         });
                     } catch (ErrorResponseException e) {
                         channel.sendMessage("인증키 전송에 실패했습니다. 제가 당신에게 메세지를 보낼수 없습니다.").queue();
+                        File file3;
+                        try {
+                            file3 = convertInputStreamToFile(certification_Img_is1);
+                        } catch (IOException e1) {
+                            e.printStackTrace();
+
+                            return;
+                        }
                         channel.sendMessage(event.getMember().getAsMention() + "디스코드 설정을 확인해주세요.").addFile(file3).queue();
                     }
                 }
@@ -95,5 +117,16 @@ public class certificationCommand implements ICommand {
             builder.append(String.format("%02x", b));
         }
         return builder.toString();
+    }
+    private File convertInputStreamToFile(InputStream is) throws IOException {
+        File file = File.createTempFile("C://temp", ".png");
+
+        OutputStream outputStream = new FileOutputStream(file);
+
+        IOUtils.copy(is, outputStream);
+
+        outputStream.close();
+
+        return file;
     }
 }
