@@ -31,8 +31,9 @@ public class publicExecutionListener extends ListenerAdapter {
         Logger logger = LoggerFactory.getLogger(filterListener.class);
         Role role;
         try {
-            role = event.getJDA().getRolesByName("공개 처형", true).get(0);
+            role = event.getGuild().getRolesByName("공개 처형", true).get(0);
         } catch (Exception ignored) {
+
             return;
         }
         int time;

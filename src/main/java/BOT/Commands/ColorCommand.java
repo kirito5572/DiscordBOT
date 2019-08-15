@@ -105,7 +105,7 @@ public class ColorCommand implements ICommand {
                     event.getGuild().getRoleById("600012538817806346"),     //후원자
                     event.getGuild().getRoleById("600021907374342156"),     //니트로 부스팅 지원자
             };
-            List<Role> role_List = event.getGuild().getRoles();
+            List<Role> role_List = event.getMember().getRoles();
             for(int i = 0; i < 13; i++) {
                 if (role_List.contains(set_Color[i])) {
                     setChange_flag(true);

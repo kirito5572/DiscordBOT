@@ -23,7 +23,13 @@ public class GreenServerMuteListener extends ListenerAdapter {
             @Override
             public void run() {
                 Guild guild = event.getJDA().getGuildById("600010501266866186");
-                TextChannel channel = guild.getTextChannelById("609781460785692672");
+                TextChannel channel;
+                try {
+                    channel = guild.getTextChannelById("609781460785692672");
+                } catch (Exception e) {
+
+                    return;
+                }
                 File file;
                 Date date = new Date();
                 String time;
@@ -117,6 +123,12 @@ public class GreenServerMuteListener extends ListenerAdapter {
                 }
             }
         };
+        try {
+            event.getJDA().getGuildById("600010501266866186");
+        } catch (Exception e) {
+
+            return;
+        }
         Timer jobScheduler = new Timer();
         jobScheduler.scheduleAtFixedRate(job, 1000, 9000);
     }

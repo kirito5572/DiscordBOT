@@ -18,6 +18,7 @@ public class TESTCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         event.getChannel().sendMessage("디버깅용 테스트 명령어 입니다.").queue();
+        System.out.println(event.getGuild().getMemberById("556449367863590923").getOnlineStatus());
     }
 
     @Override
