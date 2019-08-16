@@ -46,11 +46,16 @@ public class certificationFinCommand implements ICommand {
                     if (a.equals(final_Key)) {
                         WebUtils.ins.scrapeWebPage("https://steamid.io/lookup/" + joined).async((document1 -> {
                             String a1 = document1.getElementsByTag("body").first().toString();
-                            int b1 = a1.indexOf("<a href=\"https://steamid.io/lookup/");
-                            a1 = a1.substring(b1 + 35);
-                            int c1 = a1.indexOf("\">");
-                            a1 = a1.substring(0, c1);
-                            System.out.println(a1);
+                            try {
+                                int b1 = a1.indexOf("<a href=\"https://steamid.io/lookup/");
+                                a1 = a1.substring(b1 + 35);
+                                int c1 = a1.indexOf("\">");
+                                a1 = a1.substring(0, c1);
+                                System.out.println(a1);
+                            } catch (Exception e) {
+                                channel.sendMessage("스팀 프로필이 비공개이거나, 스팀 프로필이 제대로 설정되어 있지 않습니다. \n" +
+                                        "봇이 스팀 프로필을 불러오는데 실패하였습니다.").queue();
+                            }
                             try {
                                 filesave(event.getAuthor().getName(), event.getAuthor().getId(), a1);
                             } catch (IOException e) {
@@ -58,7 +63,7 @@ public class certificationFinCommand implements ICommand {
                                 e.printStackTrace();
                                 return;
                             }
-                            channel.sendMessage("인증 성공").queue();
+                            channel.sendMessage(event.getMember().getAsMention() + ", 스팀 인증에 성공하셨습니다. ").queue();
                             event.getGuild().getController().addSingleRoleToMember(event.getMember(), role).complete();
                         }));
                     } else {

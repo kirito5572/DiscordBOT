@@ -45,9 +45,6 @@ public class certificationCommand implements ICommand {
                     channel.sendMessage("인증키 생성 완료. DM확인 부탁드립니다.").queue();
                     try {
                         event.getMember().getUser().openPrivateChannel().queue((channel1) -> {
-                            channel1.sendMessage("당신의 인증키는 \n #UI#{" + event.getAuthor().getName() + "/" + event.getAuthor().getId() + "} #TK#" + private_key + "\n입니다.").queue();
-                            channel1.sendMessage("인증 받는법:").queue();
-                            channel1.sendMessage("1. 본인의 스팀프로필에 접속합니다.").queue();
                             File file1;
                             try {
                                 file1 = convertInputStreamToFile(certification_Img_is1);
@@ -56,26 +53,27 @@ public class certificationCommand implements ICommand {
 
                                 return;
                             }
-                            channel1.sendFile(file1).queue();
-                            channel1.sendMessage("2. 본인의 프로필을 편집하여 요약탭에 인증키를 적습니다.").queue();
+                            channel1.sendMessage("당신의 인증키는 \n #UI#{" + event.getAuthor().getName() + "/" + event.getAuthor().getId() + "} #TK#" + private_key + "\n입니다.\n" +
+                                    "인증 받는법:\n" +
+                                    "1. 본인의 스팀프로필에 접속합니다.").addFile(file1).queue();
                             File file2;
                             try {
-                                file2 = convertInputStreamToFile(certification_Img_is1);
+                                file2 = convertInputStreamToFile(certification_Img_is2);
                             } catch (IOException e) {
                                 e.printStackTrace();
 
                                 return;
                             }
-                            channel1.sendFile(file2).queue();
+                            channel1.sendMessage("2. 본인의 프로필을 편집하여 요약탭에 인증키를 적습니다.").addFile(file2).queue();
                             channel1.sendMessage("3. 프로필을 저장한후 `" + App.getPREFIX() + "확인 ` [스팀 프로필]을 입력하여. 인증 절차를 진행해주세요.\n" +
-                                    "예시: `" + App.getPREFIX() + getInvoke() + "확인 https://steamcommunity.com/id/kirito5572`").queue();
-                            channel1.sendMessage("모든 인증과정을 걸치셨으면, 프로필은 다시 원래대로 설정하셔도 됩니다.").queue();
+                                    "예시: `" + App.getPREFIX() + getInvoke() + "확인 https://steamcommunity.com/id/kirito5572`\n" +
+                                    "모든 인증과정을 거치셨으면, 프로필은 다시 원래대로 설정하셔도 됩니다.").queue();
                         });
                     } catch (ErrorResponseException e) {
                         channel.sendMessage("인증키 전송에 실패했습니다. 제가 당신에게 메세지를 보낼수 없습니다.").queue();
                         File file3;
                         try {
-                            file3 = convertInputStreamToFile(certification_Img_is1);
+                            file3 = convertInputStreamToFile(certification_Img_is3);
                         } catch (IOException e1) {
                             e.printStackTrace();
 
