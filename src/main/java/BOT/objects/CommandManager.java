@@ -5,6 +5,7 @@ import BOT.Commands.*;
 import BOT.Commands.GreenServerCustom.GreenServerMuteCommand;
 import BOT.Commands.GreenServerCustom.certificationCommand;
 import BOT.Commands.GreenServerCustom.certificationFinCommand;
+import BOT.Commands.GreenServerCustom.gameServerBanCommand;
 import BOT.Commands.Moderator.*;
 import BOT.Commands.Music.*;
 import BOT.Commands.ONIGIRIServerCustom.ONIGIRICommand;
@@ -64,6 +65,7 @@ public class CommandManager {
         addCommand(new ONIGIRICommand());
         addCommand(new GreenServerMuteCommand());
         addCommand(new lewdnekoCommand());
+        addCommand(new gameServerBanCommand());
     }
 
     private void addCommand(ICommand command) {
