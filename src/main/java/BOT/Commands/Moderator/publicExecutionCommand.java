@@ -1,5 +1,6 @@
 package BOT.Commands.Moderator;
 
+import BOT.App;
 import BOT.Listener.Listener;
 import BOT.Objects.ICommand;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
@@ -28,6 +29,22 @@ public class publicExecutionCommand implements ICommand {
 
                 return;
             }
+        }
+        String userName;
+        String time;
+        try {
+            userName = args.get(0);
+        } catch (Exception e) {
+            channel.sendMessage("유저명란이 비었습니다.").queue();
+
+            return;
+        }
+        try {
+            time = args.get(1);
+        } catch (Exception e) {
+            channel.sendMessage("시간이 비었습니다. \n" +
+                    "비었을 경우 수동 해제시까지 적용됩니다.").queue();
+
         }
 
         List<User> foundUsers = FinderUtil.findUsers(joined, event.getGuild().getJDA());
@@ -61,24 +78,45 @@ public class publicExecutionCommand implements ICommand {
             channel.sendMessage("공개 처형 역할이 없어 새로 생성했습니다.").queue();
 
         }
-        event.getGuild().getController().addSingleRoleToMember(member, role).complete();
+        if(member.getRoles().contains(role)) {
+            event.getGuild().getController().removeSingleRoleFromMember(member, role).complete();
 
-        event.getChannel().sendMessage( user.getName() + "을/를 공개 처형 대상자로 지정 했습니다.").queue();
-        if(event.getGuild().getId().equals("600010501266866186")) {
+            event.getChannel().sendMessage(user.getName() + "을/를 공개 처형 대상자에서 해제 했습니다.").queue();
+            EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                    .setColor(Color.GREEN)
+                    .setTitle("공개 처형자 해제")
+                    .addField("대상자", member.getAsMention(), true)
+                    .addField("지정 담당자", event.getMember().getAsMention(), true);
+            if(event.getGuild().getId().equals("600010501266866186")) {
+                event.getGuild().getTextChannelById("600015587544006679").sendMessage(builder.build()).queue();
+                event.getGuild().getTextChannelById("609781460785692672").sendMessage(builder.build()).queue();
+            } else {
+                channel.sendMessage(builder.build()).queue();
+            }
+        } else {
+            event.getGuild().getController().addSingleRoleToMember(member, role).complete();
+
+            event.getChannel().sendMessage(user.getName() + "을/를 공개 처형 대상자로 지정 했습니다.").queue();
             EmbedBuilder builder = EmbedUtils.defaultEmbed()
                     .setColor(Color.RED)
                     .setTitle("공개 처형자 지정")
                     .addField("대상자", member.getAsMention(), true)
                     .addField("지정 담당자", event.getMember().getAsMention(), true);
 
-
-            event.getGuild().getTextChannelById("609781460785692672").sendMessage(builder.build()).queue();
+            if(event.getGuild().getId().equals("600010501266866186")) {
+                event.getGuild().getTextChannelById("600015587544006679").sendMessage(builder.build()).queue();
+                event.getGuild().getTextChannelById("609781460785692672").sendMessage(builder.build()).queue();
+            } else {
+                channel.sendMessage(builder.build()).queue();
+            }
         }
     }
 
     @Override
     public String getHelp() {
-        return "유저를 공개처형 합니다.";
+        return "유저를 공개처형 설정/해제 합니다 \n" +
+                "사용법: `" + App.getPREFIX() + getInvoke() + " <유저명/유저ID/@멘션> `\n" +
+                "공개처형 역할이 있는 사람에게 명령어를 재차 사용할 경우 공개처형이 해제됩니다. ";
     }
 
     @Override

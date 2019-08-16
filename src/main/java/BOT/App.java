@@ -43,6 +43,7 @@ public class App {
         publicExecutionListener publicExecutionListener = new publicExecutionListener(commandManager);
         ONIGIRIListener onigiriListener = new ONIGIRIListener();
         GreenServerMuteListener greenServerMuteListener = new GreenServerMuteListener();
+        GreenAutoBanListener greenAutoBanListener = new GreenAutoBanListener();
 
         StringBuilder TOKENreader = new StringBuilder();
         try {
@@ -99,6 +100,7 @@ public class App {
                     .addEventListener(publicExecutionListener)
                     .addEventListener(onigiriListener)
                     .addEventListener(greenServerMuteListener)
+                    //.addEventListener(greenAutoBanListener)
                     .setGame(Game.streaming("사용법: "
                             + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
                     .build().awaitReady();
