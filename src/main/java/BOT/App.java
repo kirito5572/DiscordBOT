@@ -100,7 +100,7 @@ public class App {
                     .addEventListener(publicExecutionListener)
                     .addEventListener(onigiriListener)
                     .addEventListener(greenServerMuteListener)
-                    //.addEventListener(greenAutoBanListener)
+                    .addEventListener(greenAutoBanListener)
                     .setGame(Game.streaming("사용법: "
                             + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
                     .build().awaitReady();
