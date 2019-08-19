@@ -38,14 +38,10 @@ public class filterListener extends ListenerAdapter {
                         }
                         if(message.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                             logger.warn("관리자가 금지어를 말했으나, 관리자는 필터링 되지 않습니다.");
-                            System.out.println("관리자가 금지어를 말했으나, 관리자는 필터링 되지 않습니다." +
-                                    "금지어: " + message.getContentRaw());
 
                             return;
                         }
                         logger.warn(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
-                                "금지어: " + message.getContentRaw());
-                        System.out.println(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
                                 "금지어: " + message.getContentRaw());
                         message.delete().complete();
                         event.getChannel().sendMessage(author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되었습니다.").queue();

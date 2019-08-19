@@ -12,6 +12,7 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     jcenter()
+    mavenCentral()
     
     maven { url 'https://jitpack.io'}
 }
@@ -37,7 +38,7 @@ sourceSets {
 }
 shadowJar {
     manifest {
-        attributes 'Title': 'rito-bot', 'Main-Class': 'BOT.App'
+        attributes 'Title': 'rito-bot', 'Main-Class': mainClassName
     }
     baseName = 'rito-bot'
 }
