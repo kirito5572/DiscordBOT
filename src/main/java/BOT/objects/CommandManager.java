@@ -7,7 +7,6 @@ import BOT.Commands.Moderator.*;
 import BOT.Commands.Music.*;
 import BOT.Commands.ONIGIRIServerCustom.ONIGIRICommand;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.regex.Pattern;
@@ -566,7 +565,22 @@ public class CommandManager {
                     return "";
                 }
             });
-            //------------------------------------------------------------------//
+        }
+        //------------------------------------------------------------------//
+        {
+            addCommand(new DICECommand());
+            addCommand(new DICECommand() {
+                @Override
+                public String getInvoke() {
+                    return "dice";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+            });
+
         }
     }
 
@@ -588,7 +602,7 @@ public class CommandManager {
         return commands.values();
     }
 
-    public ICommand getCommand(@NotNull String name) {
+    public ICommand getCommand(String name) {
         return commands.get(name);
     }
 

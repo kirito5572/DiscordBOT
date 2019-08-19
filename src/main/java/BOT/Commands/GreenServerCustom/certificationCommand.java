@@ -9,7 +9,6 @@ import net.dv8tion.jda.core.exceptions.ErrorResponseException;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
-import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
