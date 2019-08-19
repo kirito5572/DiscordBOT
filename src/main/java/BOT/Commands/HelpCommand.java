@@ -26,7 +26,7 @@ public class HelpCommand implements ICommand {
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         String joined = String.join(" ", args);
 
-        if (args.contains("1") || args.contains("2") || args.isEmpty() || args.contains("3") || args.contains("4")) {
+        if (args.contains("1") || args.contains("2") || args.isEmpty() || args.contains("3") || args.contains("4") || args.contains("5")) {
             if(!joined.equals("")) {
                 page = Integer.parseInt(joined);
             }
@@ -65,14 +65,18 @@ public class HelpCommand implements ICommand {
         Commands.forEach(iCommand -> {
             i++;
             if((x < i) && (i < y)) {
-                builder.addField(
-                        "`" + iCommand.getInvoke() + "`\n",
-                        iCommand.getSmallHelp(),
-                        false
-                );
-                if((i == (y - 1)) && (!iCommand.getInvoke().isEmpty())) {
+                if(iCommand.getSmallHelp().equals("")) {
+                    i--;
+                } else {
+                    builder.addField(
+                            "`" + iCommand.getInvoke() + "`\n",
+                            iCommand.getSmallHelp(),
+                            false
+                    );
+                    if ((i == (y - 1)) && (!iCommand.getInvoke().isEmpty())) {
 
-                    builder.appendDescription("다음 명령어: " + getInvoke() + " " + (y / count + 1));
+                        builder.appendDescription("다음 명령어: " + getInvoke() + " " + (y / count + 1));
+                    }
                 }
             }
         });

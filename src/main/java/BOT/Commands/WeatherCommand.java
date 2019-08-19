@@ -38,9 +38,10 @@ public class WeatherCommand implements ICommand {
         String[] data = getWeather.getWeather_infor();
 
         EmbedBuilder builder = EmbedUtils.defaultEmbed()
-                .setTitle(listKOR[getLocation()] + "지역의 날씨 정보");
+                .setTitle(listKOR[getLocation()] + "지역의 날씨 정보")
+                .setFooter("Infor from openweathermap.org", "https://openweathermap.org/");
         int j = 0;
-        for(int i = 0; i < 12; i++) {
+        for(int i = 0; i < 10; i++) {
 
             if(!data[i].equals("null")) {
                 builder.addField(
@@ -61,7 +62,7 @@ public class WeatherCommand implements ICommand {
     public String getHelp() {
         return "지역의 날씨 정보를 불러옵니다.\n" +
                 "사용법: `" + Constants.PREFIX + getInvoke() +"` (지역명)\n" +
-                "지역명양식: `ISO 3166에 등록된 지역명`" +
+                "지역명양식: `ISO 3166에 등록된 지역명`\n" +
                 "`From openweathermap.org`";
     }
 

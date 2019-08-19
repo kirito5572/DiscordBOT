@@ -26,7 +26,8 @@ public class Listener extends ListenerAdapter {
 
     @Override
     public void onReady(ReadyEvent event) {
-        logger.info(String.format("Logged in as %#s", event.getJDA().getSelfUser()));
+        logger.info(String.format("로그인 성공: %#s", event.getJDA().getSelfUser()));
+        System.out.println(String.format("로그인 성공: %#s", event.getJDA().getSelfUser()));
     }
 
     @Override
