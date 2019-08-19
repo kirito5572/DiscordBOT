@@ -55,12 +55,12 @@ public class MemberCount implements ICommand {
                     .setPosition(0)
                     .complete();
             category = guild.getCategoriesByName(categoryName, true).get(0);
-            category.createVoiceChannel(memberCountName + " : " + jda.getUsers().size()).complete();
+            category.createVoiceChannel(memberCountName + " : " + guild.getMembers().size()).complete();
 
             int numOfBot = 0;
             int numOfUser = 0;
-            for (int i = 0; i < event.getJDA().getUsers().size(); i++) {
-                if (event.getJDA().getUsers().get(i).isBot()) {
+            for (int i = 0; i < guild.getMembers().size(); i++) {
+                if (guild.getMembers().get(i).getUser().isBot()) {
                     numOfBot++;
                 } else {
                     numOfUser++;
@@ -85,7 +85,7 @@ public class MemberCount implements ICommand {
                 event.getChannel().sendMessage("멤버 카운팅을 하고 있지 않습니다.").queue();
             }
         } else if(joined.equals("새로고침")) {
-            count(guild, jda);
+            count(guild);
             event.getChannel().sendMessage("새로고침이 완료되었습니다.").queue();
         } else {
             event.getChannel().sendMessage("그런 인수는 없습니다.\n" +
@@ -107,21 +107,21 @@ public class MemberCount implements ICommand {
     public String getSmallHelp() {
         return "서버 멤버 카운팅";
     }
-    private void count(Guild guild, JDA jda) {
+    private void count(Guild guild) {
         try {
             category = guild.getCategoriesByName(categoryName,true).get(0);
         } catch (Exception e) {
             return;
         }
 
-        category = guild.getCategoriesByName(categoryName, true).get(0);
 
-        category.getChannels().get(0).getManager().setName(memberCountName + " : " + jda.getUsers().size()).complete();
+        String memberCountName = "멤버 숫자";
+        category.getChannels().get(0).getManager().setName(memberCountName + " : " + guild.getMembers().size()).complete();
 
         int numOfBot = 0;
         int numOfUser = 0;
-        for (int i = 0; i < jda.getUsers().size(); i++) {
-            if (jda.getUsers().get(i).isBot()) {
+        for (int i = 0; i < guild.getMembers().size(); i++) {
+            if (guild.getMembers().get(i).getUser().isBot()) {
                 numOfBot++;
             } else {
                 numOfUser++;

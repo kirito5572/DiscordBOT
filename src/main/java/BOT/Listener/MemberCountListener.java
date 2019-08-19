@@ -30,7 +30,7 @@ public class MemberCountListener extends ListenerAdapter {
         Guild guild = event.getGuild();
         JDA jda = event.getJDA();
 
-        count(guild, jda);
+        count(guild);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class MemberCountListener extends ListenerAdapter {
         Guild guild = event.getGuild();
         JDA jda = event.getJDA();
 
-        count(guild, jda);
+        count(guild);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class MemberCountListener extends ListenerAdapter {
         Guild guild = event.getGuild();
         JDA jda = event.getJDA();
 
-        count(guild, jda);
+        count(guild);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class MemberCountListener extends ListenerAdapter {
         Guild guild = event.getGuild();
         JDA jda = event.getJDA();
 
-        count(guild, jda);
+        count(guild);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class MemberCountListener extends ListenerAdapter {
         Guild guild = event.getGuild();
         JDA jda = event.getJDA();
 
-        count(guild, jda);
+        count(guild);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class MemberCountListener extends ListenerAdapter {
         Guild guild = event.getGuild();
         JDA jda = event.getJDA();
 
-        count(guild, jda);
+        count(guild);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class MemberCountListener extends ListenerAdapter {
         Guild guild = event.getGuild();
         JDA jda = event.getJDA();
 
-        count(guild, jda);
+        count(guild);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class MemberCountListener extends ListenerAdapter {
         Guild guild = event.getGuild();
         JDA jda = event.getJDA();
 
-        count(guild, jda);
+        count(guild);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class MemberCountListener extends ListenerAdapter {
         Guild guild = event.getGuild();
         JDA jda = event.getJDA();
 
-        count(guild, jda);
+        count(guild);
     }
 
     @Override
@@ -102,10 +102,10 @@ public class MemberCountListener extends ListenerAdapter {
         Guild guild = event.getGuild();
         JDA jda = event.getJDA();
 
-        count(guild, jda);
+        count(guild);
     }
 
-    private void count(Guild guild, JDA jda) {
+    private void count(Guild guild) {
         String categoryName = "\uD83D\uDCCB서버 상태\uD83D\uDCCB";
         Category category;
         try {
@@ -116,12 +116,12 @@ public class MemberCountListener extends ListenerAdapter {
 
 
         String memberCountName = "멤버 숫자";
-        category.getChannels().get(0).getManager().setName(memberCountName + " : " + jda.getUsers().size()).complete();
+        category.getChannels().get(0).getManager().setName(memberCountName + " : " + guild.getMembers().size()).complete();
 
         int numOfBot = 0;
         int numOfUser = 0;
-        for (int i = 0; i < jda.getUsers().size(); i++) {
-            if (jda.getUsers().get(i).isBot()) {
+        for (int i = 0; i < guild.getMembers().size(); i++) {
+            if (guild.getMembers().get(i).getUser().isBot()) {
                 numOfBot++;
             } else {
                 numOfUser++;
