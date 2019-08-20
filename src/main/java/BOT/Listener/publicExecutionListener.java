@@ -27,8 +27,6 @@ public class publicExecutionListener extends ListenerAdapter {
         User author = event.getAuthor();
         Message message = event.getMessage();
 
-        String[] List = FilterList.getList();
-        Logger logger = LoggerFactory.getLogger(filterListener.class);
         Role role;
         try {
             role = event.getGuild().getRolesByName("공개 처형", true).get(0);
@@ -44,11 +42,14 @@ public class publicExecutionListener extends ListenerAdapter {
         } else {
             time = 7;
         }
-        if(event.getMessage().getMember().getRoles().contains(role)) {
-            event.getMessage().delete().queueAfter(time, TimeUnit.SECONDS);
-            EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
-                    .addField("공개 처형", "당신의 메세지는 " + time + "초후 자동으로 삭제됩니다.",true);
-            event.getChannel().sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
+        try {
+            if (message.getMember().getRoles().contains(role)) {
+                message.delete().queueAfter(time, TimeUnit.SECONDS);
+                EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
+                        .addField("공개 처형", "당신의 메세지는 " + time + "초후 자동으로 삭제됩니다.", true);
+                event.getChannel().sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
+            }
+        } catch (Exception ignored) {
 
         }
     }

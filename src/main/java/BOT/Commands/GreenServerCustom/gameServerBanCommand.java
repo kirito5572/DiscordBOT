@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 public class gameServerBanCommand implements ICommand {
+    private static String command = "서버밴";
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
@@ -180,11 +181,15 @@ public class gameServerBanCommand implements ICommand {
 
     @Override
     public String getInvoke() {
-        return "서버밴";
+        return command;
     }
 
     @Override
     public String getSmallHelp() {
         return "게임 서버 밴";
+    }
+
+    public static String getCommand() {
+        return command;
     }
 }

@@ -13,12 +13,12 @@ public class VersionCommand implements ICommand {
             event.getChannel().sendMessage("빌드 버젼 V 1.3.6 Preview 1(" + App.getTime() + ")").queue();
             return;
         }
-        event.getChannel().sendMessage("빌드 버젼 V 1.3.5 (" + App.getTime() + ")").queue();
+        event.getChannel().sendMessage("빌드 버젼 V 1.3.5.1 (" + App.getTime() + ")").queue();
         if(event.getGuild().getId().equals("508913681279483913")) {
             event.getChannel().sendMessage("봇 사이트: ``http://ritobot.mystrikingly.com``").queue();
             event.getChannel().sendMessage("업데이트 내역: \n" +
                     "```" +
-                    " - 야바위 명령어 추가\n" +
+                    " - 영문 커맨드 및 설명 제공\n" +
                     " - 필터링 데이터베이스 추가" +
                     "```").queue();
         }

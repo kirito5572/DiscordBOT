@@ -28,6 +28,12 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Shows a list of all the commands.\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " [command]`";
+                }
             });
             addCommand(new PingCommand());
             addCommand(new PingCommand() {
@@ -39,6 +45,12 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Pong!\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + "`";
                 }
             });
             addCommand(new UserInfoCommand());
@@ -52,6 +64,12 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Displays information about a user.\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " [user name/@user/user id]`";
+                }
             });
             addCommand(new ColorInfoCommand());
             addCommand(new ColorInfoCommand() {
@@ -64,6 +82,12 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Print color that you can set in discord \n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + "`";
+                }
             });
             addCommand(new ColorCommand());
             addCommand(new ColorCommand() {
@@ -75,6 +99,12 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Set discord nickname color \n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " <colorcode/#color/intcolor> `";
                 }
             });
 
@@ -89,6 +119,12 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Clears the chat with the specified amount of messages.\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " <amount>`";
+                }
             });
             addCommand(new giveroleCommand());
             addCommand(new giveroleCommand() {
@@ -100,6 +136,13 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "create a role and give role to member \n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " <role name> <username>`\n" +
+                            "option: [#color], [^permission int] [$role position] [setHoisted]";
                 }
             });
             addCommand(new SayCommand());
@@ -113,6 +156,12 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "send message by bot(only text)\n " +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " <Message>`";
+                }
             });
             addCommand(new UnusedColorCommand());
             addCommand(new UnusedColorCommand() {
@@ -125,6 +174,12 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Delete unusedcolorrole \n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke();
+                }
             });
             addCommand(new JoinCommand());
             addCommand(new JoinCommand() {
@@ -136,6 +191,11 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Makes the bot join your channel";
                 }
             });
         }
@@ -152,6 +212,11 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Clear Queqe";
+                }
             });
             addCommand(new QueueDelectCommand() {
                 @Override
@@ -162,6 +227,11 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Clear Queue";
                 }
             });
             addCommand(new QueueCommand());
@@ -175,6 +245,11 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Shows the current queue for the music player";
+                }
             });
             addCommand(new StopClearCommand());
             addCommand(new StopClearCommand() {
@@ -187,6 +262,11 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Stop music and clear queue";
+                }
             });
             addCommand(new StopClearCommand() {
                 @Override
@@ -197,6 +277,11 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Stop music and clear queue";
                 }
             });
             addCommand(new PlayCommand());
@@ -210,6 +295,12 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Plays a song\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " <song url>`";
+                }
             });
             addCommand(new PlayCommand() {
                 @Override
@@ -220,6 +311,12 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Plays a song\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " <song url>`";
                 }
             });
             addCommand(new leaveCommand());
@@ -232,6 +329,11 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Makes the bot leave your channel";
                 }
             });
 
@@ -246,6 +348,11 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Shows the currently playing track";
+                }
             });
             addCommand(new NowPlayingCommand() {
                 @Override
@@ -256,6 +363,11 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Shows the currently playing track";
                 }
             });
             addCommand(new SkipCommand());
@@ -269,6 +381,11 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Skips the current song";
+                }
             });
             addCommand(new StopCommand());
             addCommand(new StopCommand() {
@@ -280,6 +397,11 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Stops the music player";
                 }
             });
             addCommand(new VolumeCommand());
@@ -293,6 +415,12 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Set music player's volume\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " <Volume> `";
+                }
             });
             addCommand(new VolumeCommand() {
                 @Override
@@ -303,6 +431,12 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Set music player's volume\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " <Volume> `";
                 }
             });
             addCommand(new VersionCommand());
@@ -315,6 +449,11 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "say bot's build version";
                 }
             });
         }
@@ -331,6 +470,12 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Serach music from youtube\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " <search word> `";
+                }
             });
             addCommand(new upTimeCommand());
             addCommand(new upTimeCommand() {
@@ -342,6 +487,11 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Bot's uptime";
                 }
             });
             addCommand(new AirInforCommand());
@@ -355,6 +505,12 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "air information by airkorea\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " <City Name> `";
+                }
             });
             addCommand(new AirkoreaListCommand());
             addCommand(new AirkoreaListCommand() {
@@ -367,6 +523,11 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "local airinformation list by airkorea \n";
+                }
             });
             addCommand(new AirLocalInforCommand());
             addCommand(new AirLocalInforCommand() {
@@ -378,6 +539,12 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "local air information by airkorea\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " <local name> `";
                 }
             });
 
@@ -392,6 +559,11 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "neko is come here!";
+                }
             });
             addCommand(new KickCommand());
             addCommand(new KickCommand() {
@@ -403,6 +575,12 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Kicks a user off the server.\n" +
+                            "Usage: `"  + App.getPREFIX() + getInvoke() + " <user> <reason>`";
                 }
             });
             addCommand(new MuteCommand());
@@ -416,6 +594,11 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Mute user";
+                }
             });
             addCommand(new certificationCommand());
             addCommand(new certificationCommand() {
@@ -428,6 +611,11 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "certification with discord and steam";
+                }
             });
             addCommand(new TESTCommand());
             addCommand(new TESTCommand() {
@@ -439,6 +627,11 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "TEST Command";
                 }
             });
         }
@@ -455,6 +648,12 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Verify certification between Steam and Discord \n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " <Steam Profile/Steam ID/Steam Nickname> `";
+                }
             });
             addCommand(new BanCommand());
             addCommand(new BanCommand() {
@@ -466,6 +665,12 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Ban user from discord server\n" +
+                            "Usage: " + App.getPREFIX() + getInvoke() + " <nickname/discord ID/@mention>";
                 }
             });
             addCommand(new UnbanCommand());
@@ -479,6 +684,12 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Unban user from discord server\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " <nickname/discord ID/@mention>`";
+                }
             });
             addCommand(new MemberCount());
             addCommand(new MemberCount() {
@@ -491,6 +702,12 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "Start/stop/reload server member counting\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + "[시작/정지/새로고침]`";
+                }
             });
             addCommand(new publicExecutionCommand());
             addCommand(new publicExecutionCommand() {
@@ -502,6 +719,12 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "PublicExecution a user\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + "<nickname/discord ID/@mention>";
                 }
             });
 
@@ -516,6 +739,11 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "meme command list";
+                }
             });
             addCommand(new GreenServerMuteCommand());
             addCommand(new GreenServerMuteCommand() {
@@ -526,7 +754,12 @@ public class CommandManager {
 
                 @Override
                 public String getSmallHelp() {
-                    return "";
+                    return "Mute chating";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Mute chating";
                 }
             });
             addCommand(new lewdnekoCommand());
@@ -540,6 +773,11 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "lewd neko meme";
+                }
             });
             addCommand(new gameServerBanCommand());
             addCommand(new gameServerBanCommand() {
@@ -552,6 +790,12 @@ public class CommandManager {
                 public String getSmallHelp() {
                     return "";
                 }
+
+                @Override
+                public String getHelp() {
+                    return "ServerCustomCommand \n" +
+                            "Please use by `" + App.getPREFIX() + gameServerBanCommand.getCommand() + "`";
+                }
             });
             addCommand(new WeatherCommand());
             addCommand(new WeatherCommand() {
@@ -563,6 +807,12 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Search weather information by City name\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " <City name>`";
                 }
             });
         }
@@ -578,6 +828,12 @@ public class CommandManager {
                 @Override
                 public String getSmallHelp() {
                     return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Rolls a dice.\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " [sides] [dices]`";
                 }
             });
 
