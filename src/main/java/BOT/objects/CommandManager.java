@@ -844,6 +844,7 @@ public class CommandManager {
         if(!commands.containsKey(command.getInvoke())) {
             commands.put(command.getInvoke(), command);
         }
+        sleep(10);
     }
 
     private void sleep(int time) {

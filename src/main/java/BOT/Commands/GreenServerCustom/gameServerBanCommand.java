@@ -9,10 +9,7 @@ import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
-import javax.xml.soap.Text;
 import java.awt.*;
-import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 public class gameServerBanCommand implements ICommand {
@@ -23,9 +20,11 @@ public class gameServerBanCommand implements ICommand {
 
         if(event.getGuild().getId().equals("600010501266866186")) {
             if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
-                channel.sendMessage("당신은 이 명령어를 사용할 권한이 없습니다.").queue();
+                if(!event.getMember().getRoles().contains(event.getGuild().getRoleById("600012069559074822"))) {
+                    channel.sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
 
-                return;
+                    return;
+                }
             }
             if(args.isEmpty()) {
                 event.getChannel().sendMessage("인수 부족 '" + App.getPREFIX() + "명령어" +
@@ -95,20 +94,6 @@ public class gameServerBanCommand implements ICommand {
 
                 NickName = temp[0];
 
-                EmbedBuilder builder = EmbedUtils.defaultEmbed()
-                        .setTitle("인 게임 정지 제재")
-                        .setColor(Color.RED)
-                        .addField("제재 대상자", NickName, false)
-                        .addField("스팀 ID", ID, false)
-                        .addField("정지 기간", time, false)
-                        .addField("위반 규정 조항", reason, false)
-                        .addField("제재 담당자", event.getAuthor().getAsMention(), false);
-
-                adminChannel.sendMessage("" + event.getMember().getAsMention() + ", ` " + NickName + " ( " + ID + " )제재 완료\n" +
-                        "기간: " + time + "`").queue();
-
-                reportChannel.sendMessage(builder.build()).queue();
-
                 int temp1;
                 if (time.contains("m")) {
                     time = time.substring(0,time.indexOf("m"));
@@ -160,6 +145,21 @@ public class gameServerBanCommand implements ICommand {
 
                     return;
                 }
+
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("인 게임 정지 제재")
+                        .setColor(Color.RED)
+                        .addField("제재 대상자", NickName, false)
+                        .addField("스팀 ID", ID, false)
+                        .addField("정지 기간", time, false)
+                        .addField("위반 규정 조항", reason, false)
+                        .addField("제재 담당자", event.getAuthor().getAsMention(), false);
+
+                adminChannel.sendMessage("" + event.getMember().getAsMention() + ", ` " + NickName + " ( " + ID + " )제재 완료\n" +
+                        "기간: " + time + "`").queue();
+
+                reportChannel.sendMessage(builder.build()).queue();
+
 
                 System.out.println("oban " + NickName + " " + ID + " " + time);
                 botChannel.sendMessage("+oban " + NickName + " " + ID + " " + time).queue();

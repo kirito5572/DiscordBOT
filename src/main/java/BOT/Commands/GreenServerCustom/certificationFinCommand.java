@@ -108,7 +108,7 @@ public class certificationFinCommand implements ICommand {
                 "Discord name = " + name;
 
         File file = new File("C:\\디스코드 서버 인증기록\\" + SteamID + ".txt");
-        FileWriter writer = null;
+        FileWriter writer;
 
 
         writer = new FileWriter(file, true);
