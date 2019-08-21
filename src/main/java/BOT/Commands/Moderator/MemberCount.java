@@ -26,7 +26,7 @@ public class MemberCount implements ICommand {
     private VoiceChannel roleCount;
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
-        if(!event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+        if(!event.getMember().hasPermission(Permission.MANAGE_CHANNEL)) {
             event.getChannel().sendMessage("이 명령어를 사용할 권한이 없습니다.").queue();
 
             return;
