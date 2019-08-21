@@ -44,6 +44,7 @@ public class App {
         ONIGIRIListener onigiriListener = new ONIGIRIListener();
         GreenServerMuteListener greenServerMuteListener = new GreenServerMuteListener();
         GreenAutoBanListener greenAutoBanListener = new GreenAutoBanListener();
+        GreenServerServerStatusListener greenServerServerStatusListener = new GreenServerServerStatusListener();
 
         StringBuilder TOKENreader = new StringBuilder();
         try {
@@ -101,6 +102,7 @@ public class App {
                     .addEventListener(onigiriListener)
                     .addEventListener(greenServerMuteListener)
                     .addEventListener(greenAutoBanListener)
+                    .addEventListener(greenServerServerStatusListener)
                     .setGame(Game.streaming("사용법: "
                             + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
                     .build().awaitReady();
