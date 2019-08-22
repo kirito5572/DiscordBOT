@@ -10,16 +10,15 @@ public class VersionCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         if(App.isDEBUG_MODE() || App.isONLINE_DEBUG()) {
-            event.getChannel().sendMessage("빌드 버젼 V 1.4.1 Preview 1(" + App.getTime() + ")").queue();
+            event.getChannel().sendMessage("빌드 버젼 V 1.4.1 Preview 2(" + App.getTime() + ")").queue();
             return;
         }
-        event.getChannel().sendMessage("빌드 버젼 V 1.4.1 PreView 1 (" + App.getTime() + ")").queue();
+        event.getChannel().sendMessage("빌드 버젼 V 1.4.1 Preview 2 (" + App.getTime() + ")").queue();
         if(event.getGuild().getId().equals("508913681279483913")) {
             event.getChannel().sendMessage("봇 사이트: ``http://ritobot.mystrikingly.com``").queue();
             event.getChannel().sendMessage("업데이트 내역: \n" +
                     "```" +
-                    " - 서버 커스텀 시스템 서버 상태 기능 추가\n" +
-                    " - 기타 버그 수정(패치 이미 완료)\n" +
+                    " - 서버밴 커맨드 버그 수정\n" +
                     " - 필터링 데이터베이스 추가" +
                     "```").queue();
         }

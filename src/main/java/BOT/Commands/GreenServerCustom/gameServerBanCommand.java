@@ -33,7 +33,7 @@ public class gameServerBanCommand implements ICommand {
             }
             String SteamID;
             String time_non;
-            String reason;
+            StringBuilder reason;
             try {
                 SteamID = args.get(0);
 
@@ -49,8 +49,11 @@ public class gameServerBanCommand implements ICommand {
 
                 return;
             }
+            reason = new StringBuilder();
             try {
-                reason = args.get(2);
+                for(int i = 2; i <= args.size(); i++) {
+                    reason.append(args.get(i));
+                }
             } catch (Exception e) {
                 channel.sendMessage("사유가 입력되지 않았습니다.").queue();
 
@@ -155,7 +158,7 @@ public class gameServerBanCommand implements ICommand {
                         .addField("제재 대상자", NickName, false)
                         .addField("스팀 ID", ID, false)
                         .addField("정지 기간", time, false)
-                        .addField("위반 규정 조항", reason, false)
+                        .addField("위반 규정 조항", reason.toString(), false)
                         .addField("제재 담당자", event.getAuthor().getAsMention(), false);
 
                 adminChannel.sendMessage("" + event.getMember().getAsMention() + ", ` " + NickName + " ( " + ID + " )제재 완료\n" +
