@@ -23,4 +23,4 @@ echo BOOTING....
 timeout /t 3
 @chcp 949
 @echo on
-java -jar C:\Users\ruby0\Documents\GitHub\DiscordBOT\build\libs\rito-bot-1.3.x-all.jar
+java -jar C:\Users\Administrator\Documents\GitHub\DiscordBOT\build\libs\rito-bot-1.4.x-all.jar
