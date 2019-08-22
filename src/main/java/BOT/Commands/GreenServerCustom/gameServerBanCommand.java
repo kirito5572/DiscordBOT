@@ -143,8 +143,21 @@ public class gameServerBanCommand implements ICommand {
                     }
                     time = String.valueOf((temp1 * 43830));
 
+                } else if(time.contains("y")) {
+                    time = time.substring(0,time.indexOf("y"));
+                    try {
+                        temp1 = Integer.parseInt(time);
+                    } catch (Exception e) {
+                        channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
+
+                        return;
+                    }
+                    time = String.valueOf((temp1 * 525960));
+                } else if(time.contains("영구")) {
+                    time = "99999999";
                 } else {
-                    channel.sendMessage("time의 단위가 잘못되었습니다.").queue();
+                    channel.sendMessage("시간 단위가 틀렸거나, 스팀 닉네임의 띄워쓰기를 삭제하여 주세요.\n" +
+                            "사용법: `" + App.getPREFIX() + "명령어/도움말/help" +getInvoke() + "`").queue();
 
                     return;
                 }
@@ -182,7 +195,9 @@ public class gameServerBanCommand implements ICommand {
     @Override
     public String getHelp() {
         return "게임 서버에서 밴을 합니다. \n" +
-                "사용법:" + App.getPREFIX() + getInvoke() + " <SteamID/스팀 닉네임> <시간> <사유>";
+                "사용법:" + App.getPREFIX() + getInvoke() + " <SteamID/스팀 닉네임> <시간> <사유>" +
+                "시간 가능 인수: 1m(1min)/1h(1Hour)/1d(1day)/1M(1month)/1y(1year)/영구(99999999min)" +
+                "스팀 닉네임은 꼭 붙혀서 써주시기 바랍니다.";
     }
 
     @Override
