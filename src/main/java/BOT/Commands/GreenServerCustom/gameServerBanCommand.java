@@ -55,9 +55,11 @@ public class gameServerBanCommand implements ICommand {
                     reason.append(args.get(i));
                 }
             } catch (Exception e) {
-                channel.sendMessage("사유가 입력되지 않았습니다.").queue();
+                if(reason.toString().equals("")) {
+                    channel.sendMessage("사유가 입력되지 않았습니다.").queue();
 
-                return;
+                    return;
+                }
             }
 
             TextChannel botChannel = event.getGuild().getTextChannelById("609055524851286027");
