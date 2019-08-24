@@ -6,6 +6,7 @@ import BOT.Commands.GreenServerCustom.*;
 import BOT.Commands.Moderator.*;
 import BOT.Commands.Music.*;
 import BOT.Commands.ONIGIRIServerCustom.ONIGIRICommand;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.*;
@@ -864,6 +865,7 @@ public class CommandManager {
     }
 
     public void handleCommand(GuildMessageReceivedEvent event) {
+        final TextChannel channel = event.getChannel();
         final String[] split = event.getMessage().getContentRaw().replaceFirst(
                 "(?i)" + Pattern.quote(App.getPREFIX()), "").split("\\s+");
         final String invoke = split[0].toLowerCase();
@@ -871,7 +873,7 @@ public class CommandManager {
         if(commands.containsKey(invoke)) {
             final List<String> args = Arrays.asList(split).subList(1, split.length);
 
-            event.getChannel().sendTyping().queue();
+            channel.sendTyping().queue();
             commands.get(invoke).handle(args, event);
         }
     }
