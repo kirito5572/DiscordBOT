@@ -96,9 +96,11 @@ public class Listener extends ListenerAdapter {
         if(event.getGuild().getId().equals("600010501266866186")) {
             if(!event.getChannel().getId().equals("600012818879741963")) {
                 if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
-                    event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
+                    if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
+                        event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
 
-                    return;
+                        return;
+                    }
                 }
             }
         }
