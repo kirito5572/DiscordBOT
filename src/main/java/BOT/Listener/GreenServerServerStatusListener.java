@@ -38,7 +38,7 @@ public class GreenServerServerStatusListener extends ListenerAdapter {
                     switch (status[i]){
                         case "ONLINE":
                         case "IDLE": status[i] = "ON"; break;
-                        case "DND":
+                        case "DO NOT DISTUBE":
                         case "OFFLINE": status[i] =  "OFF"; break;
                         default: status[i] = "UNKNOWN"; break;
                     }

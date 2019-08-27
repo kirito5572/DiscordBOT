@@ -17,9 +17,11 @@ public class HelpCommand implements ICommand {
     private int page = 0;
     private int x = 0;
     private int i = 0;
+    private Collection<ICommand> Commands;
 
     public HelpCommand(CommandManager manager) {
         this.manager = manager;
+        Commands = manager.getCommands();
     }
 
     @Override
@@ -60,14 +62,11 @@ public class HelpCommand implements ICommand {
             x = (page - 1) * count;
         }
         final int y = x + count + 1;
-        Collection<ICommand> Commands = manager.getCommands();
 
         Commands.forEach(iCommand -> {
-            i++;
+            ++i;
             if((x < i) && (i < y)) {
-                if(iCommand.getSmallHelp().equals("")) {
-                    i--;
-                } else {
+                if (!iCommand.getSmallHelp().equals("")) {
                     builder.addField(
                             "`" + iCommand.getInvoke() + "`\n",
                             iCommand.getSmallHelp(),

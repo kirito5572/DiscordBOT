@@ -3,7 +3,10 @@ package BOT.Listener;
 import BOT.App;
 import BOT.Constants;
 import BOT.Objects.CommandManager;
+import me.duncte123.botcommons.messaging.EmbedUtils;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -12,6 +15,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileReader;
 
@@ -81,13 +85,57 @@ public class Listener extends ListenerAdapter {
             shutdown(event.getJDA(), event);
             return;
         }
+        if(event.getAuthor().isBot()) {
+            return;
 
-        if (!event.getAuthor().isBot() && !event.getMessage().isWebhookMessage() &&
-                event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
+        }
+        if(event.getMessage().isWebhookMessage()) {
+
+            return;
+        }
+        if(event.getGuild().getId().equals("600010501266866186")) {
+            if(!event.getChannel().getId().equals("600012818879741963")) {
+                if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                    event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
+
+                    return;
+                }
+            }
+        }
+
+        if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
             manager.handleCommand(event);
         }
     }
     private void shutdown(JDA jda, GuildMessageReceivedEvent event) {
+        Guild greenServer;
+        TextChannel channel;
+        String[] status = new String[5];
+        try {
+            greenServer = event.getJDA().getGuildById("600010501266866186");
+            channel = greenServer.getTextChannelById("600015521433518090");
+            status[0] = greenServer.getMemberById("580691748276142100").getOnlineStatus().toString();
+            status[1] = greenServer.getMemberById("586590053539643408").getOnlineStatus().toString();
+            status[2] = greenServer.getMemberById("600658772876197888").getOnlineStatus().toString();
+            status[3] = greenServer.getMemberById("600660530230722560").getOnlineStatus().toString();
+            status[4] = greenServer.getMemberById("600676751118696448").getOnlineStatus().toString();
+
+        } catch (Exception e) {
+
+            return;
+        }
+        EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                .setTitle("서버 오픈 상태")
+                .setColor(Color.RED)
+                .addField("Green Color 상태", "OFF", false)
+                .addField("1서버", status[0], false)
+                .addField("2서버", status[1], false)
+                .addField("3서버", status[2], false)
+                .addField("4서버", status[3], false)
+                .addField("5서버", status[4], false)
+                .setFooter("5분마다 서버 상태가 자동 새로고침됩니다.","https://steamuserimages-a.akamaihd.net/ugc/982233321887038211/EB88C5E32425929921EF653FF5B784715B7D0639/");
+        channel.editMessageById("613705525200420875", builder.build() + "\n" +
+                "서버의 상태를 확인하는 봇이 종료되어 확인이 불가능합니다.").queue();
         new Thread(() -> {
             event.getChannel().sendMessage("봇이 종료됩니다.").queue();
             try {
