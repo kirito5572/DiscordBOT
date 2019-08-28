@@ -135,8 +135,8 @@ public class Listener extends ListenerAdapter {
                 .addField("3서버", status[2], false)
                 .addField("4서버", status[3], false)
                 .addField("5서버", status[4], false)
-                .setFooter("5분마다 서버 상태가 자동 새로고침됩니다.","https://steamuserimages-a.akamaihd.net/ugc/982233321887038211/EB88C5E32425929921EF653FF5B784715B7D0639/");
-        channel.editMessageById("613705525200420875", builder.build() + "\n" +
+                .setFooter("1분마다 서버 상태가 자동 새로고침됩니다.","https://steamuserimages-a.akamaihd.net/ugc/982233321887038211/EB88C5E32425929921EF653FF5B784715B7D0639/");
+        channel.editMessageById("616234404452499476", builder.build() + "\n" +
                 "서버의 상태를 확인하는 봇이 종료되어 확인이 불가능합니다.").queue();
         new Thread(() -> {
             event.getChannel().sendMessage("봇이 종료됩니다.").queue();
