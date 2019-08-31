@@ -12,11 +12,12 @@ import java.util.List;
 
 public class HelpCommand implements ICommand {
 
-    private final CommandManager manager;
+    private CommandManager manager;
 
     private int page = 0;
     private int x = 0;
     private int i = 0;
+    private int j = 0;
     private Collection<ICommand> Commands;
 
     public HelpCommand(CommandManager manager) {
@@ -62,17 +63,19 @@ public class HelpCommand implements ICommand {
             x = (page - 1) * count;
         }
         final int y = x + count + 1;
+        j = 0;
 
         Commands.forEach(iCommand -> {
-            ++i;
-            if((x < i) && (i < y)) {
+            i++;
+            if((x < i) && (j < count)) {
                 if (!iCommand.getSmallHelp().equals("")) {
+                    j++;
                     builder.addField(
                             "`" + iCommand.getInvoke() + "`\n",
                             iCommand.getSmallHelp(),
                             false
                     );
-                    if ((i == (y - 1)) && (!iCommand.getInvoke().isEmpty())) {
+                    if (page < 5) {
 
                         builder.appendDescription("다음 명령어: " + getInvoke() + " " + (y / count + 1));
                     }

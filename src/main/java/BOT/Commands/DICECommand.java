@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DICECommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
-        int sides = 6;
+        int sides = 7;
         int dices = 1;
         TextChannel channel = event.getChannel();
 
@@ -43,7 +43,7 @@ public class DICECommand implements ICommand {
             builder.append("\uD83C\uDFB2 #")
                     .append(d)
                     .append(": **")
-                    .append(random.nextInt(1, sides))
+                    .append(random.nextInt(1, sides + 1))
                     .append("**\n");
         }
 

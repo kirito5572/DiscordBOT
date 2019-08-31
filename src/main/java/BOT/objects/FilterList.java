@@ -9,7 +9,7 @@ public class FilterList {
             "육변기", "좆", "쪽바리", "창녀", "창놈", "최순실", "틀딱", "보장지", "보댕이",
             "한남", "호구", "후장", "후빨",
             "섹스", "시발" ,"시1발", "시 발", "씨1발", "씨잘", "씨벌", "쎅스", "교미",
-            "성관계",
+            "성관계", "발가락",
 
             "asshole", "ass", "bitch", "butt", "cock", "crap", "cunt", "dick", "dumb",
             "fuck", "gay", "heck", "honky", "kyke", "mot", "mf", "muff", "piss", "nigger",

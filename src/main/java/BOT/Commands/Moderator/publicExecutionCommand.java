@@ -55,7 +55,7 @@ public class publicExecutionCommand implements ICommand {
 
         }
 
-        List<User> foundUsers = FinderUtil.findUsers(joined, event.getGuild().getJDA());
+        List<User> foundUsers = FinderUtil.findUsers(userName, event.getGuild().getJDA());
 
         if(foundUsers.isEmpty()) {
             List<Member> foundMember = FinderUtil.findMembers(joined, event.getGuild());
@@ -70,8 +70,9 @@ public class publicExecutionCommand implements ICommand {
         Member member = event.getGuild().getMember(user);
         Role role;
         try {
-            role = event.getJDA().getRolesByName("공개 처형", true).get(0);
-        } catch (Exception ignored) {
+            role = event.getGuild().getRolesByName("공개 처형", true).get(0);
+        } catch (Exception e1) {
+            e1.printStackTrace();
             try {
                 role = event.getGuild().getController().createRole()
                         .setName("공개 처형")
@@ -79,6 +80,7 @@ public class publicExecutionCommand implements ICommand {
                         .setPermissions(0L)
                         .complete();
             } catch (Exception e) {
+                e.printStackTrace();
                 channel.sendMessage("공개 처형 역할 생성중 에러가 발생했습니다.").queue();
 
                 return;
@@ -114,6 +116,8 @@ public class publicExecutionCommand implements ICommand {
             if(event.getGuild().getId().equals("600010501266866186")) {
                 event.getGuild().getTextChannelById("600015587544006679").sendMessage(builder.build()).queue();
                 event.getGuild().getTextChannelById("609781460785692672").sendMessage(builder.build()).queue();
+            } else if(event.getGuild().getId().equals("617222347425972234")) {
+                event.getGuild().getTextChannelById("617244045780975637").sendMessage(builder.build()).queue();
             } else {
                 channel.sendMessage(builder.build()).queue();
             }
