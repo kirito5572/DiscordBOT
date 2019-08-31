@@ -837,6 +837,23 @@ public class CommandManager {
                             "Usage: `" + App.getPREFIX() + getInvoke() + " [sides] [dices]`";
                 }
             });
+            addCommand(new botipAddressCommand());
+            addCommand(new botipAddressCommand() {
+                @Override
+                public String getInvoke() {
+                    return "myip";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "return bot's ip address";
+                }
+            });
 
         }
     }
