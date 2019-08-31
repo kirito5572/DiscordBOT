@@ -29,9 +29,11 @@ public class GreenServerMuteCommand implements ICommand {
         TextChannel channel = event.getChannel();
         if(event.getGuild().getId().equals("600010501266866186")) {
             if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
-                channel.sendMessage("당신은 이 명령어를 사용할 권한이 없습니다.").queue();
+                if(!event.getMember().getRoles().contains(event.getGuild().getRoleById("600012069559074822"))) {
+                    channel.sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
 
-                return;
+                    return;
+                }
             }
             if(args.isEmpty()) {
                 event.getChannel().sendMessage("인수 부족 '" + App.getPREFIX() + "help" +

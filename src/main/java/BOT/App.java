@@ -45,6 +45,7 @@ public class App {
         GreenServerMuteListener greenServerMuteListener = new GreenServerMuteListener();
         GreenAutoBanListener greenAutoBanListener = new GreenAutoBanListener();
         GreenServerServerStatusListener greenServerServerStatusListener = new GreenServerServerStatusListener();
+        GreenServerTipListener greenServerTipListener = new GreenServerTipListener();
 
         StringBuilder TOKENreader = new StringBuilder();
         try {
@@ -103,6 +104,7 @@ public class App {
                     .addEventListener(greenServerMuteListener)
                     .addEventListener(greenAutoBanListener)
                     .addEventListener(greenServerServerStatusListener)
+                    .addEventListener(greenServerTipListener)
                     .setGame(Game.streaming("사용법: "
                             + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
                     .build().awaitReady();

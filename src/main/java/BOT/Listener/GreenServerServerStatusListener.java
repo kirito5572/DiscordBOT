@@ -59,6 +59,6 @@ public class GreenServerServerStatusListener extends ListenerAdapter {
             }
         };
         Timer jobScheduler = new Timer();
-        jobScheduler.scheduleAtFixedRate(job, 1000, 300000);
+        jobScheduler.scheduleAtFixedRate(job, 1000, 60000);
     }
 }

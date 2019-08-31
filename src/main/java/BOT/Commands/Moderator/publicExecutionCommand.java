@@ -25,9 +25,17 @@ public class publicExecutionCommand implements ICommand {
         String joined = String.join(" ", args);
         if(!event.getMember().getUser().getId().equals(Listener.getID1()) || !event.getMember().getUser().getId().equals(Listener.getID2())) {
             if (!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
-                channel.sendMessage("이 명령어를 사용할 권한이 없습니다.").queue();
+                if(event.getGuild().getId().equals("600010501266866186")) {
+                    if (!event.getMember().getRoles().contains(event.getGuild().getRoleById("600012069559074822"))) {
+                        channel.sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
 
-                return;
+                        return;
+                    }
+                } else {
+                    channel.sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
+
+                    return;
+                }
             }
         }
         String userName;
