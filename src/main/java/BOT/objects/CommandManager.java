@@ -854,6 +854,7 @@ public class CommandManager {
                     return "return bot's ip address";
                 }
             });
+            addCommand(new pollCommand());
 
         }
     }

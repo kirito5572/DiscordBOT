@@ -75,8 +75,7 @@ public class HelpCommand implements ICommand {
                             iCommand.getSmallHelp(),
                             false
                     );
-                    if (page < 5) {
-
+                    if ((page < 5) && (j == count)) {
                         builder.appendDescription("다음 명령어: " + getInvoke() + " " + (y / count + 1));
                     }
                 }

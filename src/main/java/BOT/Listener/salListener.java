@@ -19,10 +19,8 @@ public class salListener extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event) {
         User author = event.getAuthor();
         Message message = event.getMessage();
-        if(!author.isBot()) {
-            if (message.getContentRaw().contains("살쨩")) {
-                event.getChannel().sendMessage("살쨩 아냐!").queue();
-            }
-        }
+
+        return;
+
     }
 }

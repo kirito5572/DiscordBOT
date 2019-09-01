@@ -43,8 +43,11 @@ public class filterListener extends ListenerAdapter {
                         }
                         logger.warn(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
                                 "금지어: " + message.getContentRaw());
+                        String rawMessage = message.getContentRaw();
+                        rawMessage = rawMessage.replaceFirst(s,"[데이터 말소]");
+                        event.getChannel().sendMessage(rawMessage).queue();
                         message.delete().complete();
-                        event.getChannel().sendMessage(author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되었습니다.").queue();
+                        event.getChannel().sendMessage(author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").queue();
                         if(event.getGuild().getId().equals("617222347425972234")) {
                             event.getGuild().getTextChannelById("617244182653829140").sendMessage(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
                                     "금지어: " + message.getContentRaw()).queue();
