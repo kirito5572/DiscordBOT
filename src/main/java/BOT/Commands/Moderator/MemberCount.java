@@ -13,11 +13,11 @@ import java.util.List;
 
 public class MemberCount implements ICommand {
     private String categoryName = "\uD83D\uDCCB서버 상태\uD83D\uDCCB";
-    private String memberCountName = "멤버 숫자";
-    private String botCountName = "봇 숫자";
-    private String userCountName = "유저 숫자";
-    private String channelCountName = "채널 숫자";
-    private String roleCountName = "역할 숫자";
+    private String memberCountName = "총 멤버 수";
+    private String botCountName = "봇 수";
+    private String userCountName = "유저 수";
+    private String channelCountName = "채널 수";
+    private String roleCountName = "역할 갯수";
     private Category category;
     private VoiceChannel memberCount;
     private VoiceChannel botCount;

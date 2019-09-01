@@ -51,6 +51,9 @@ public class filterListener extends ListenerAdapter {
                         if(event.getGuild().getId().equals("617222347425972234")) {
                             event.getGuild().getTextChannelById("617244182653829140").sendMessage(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
                                     "금지어: " + message.getContentRaw()).queue();
+                        } else if (event.getGuild().getId().equals("617757206929997895")) {
+                            event.getGuild().getTextChannelById("617760924714926113").sendMessage(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
+                                    "금지어: " + message.getContentRaw()).queue();
                         }
                     } catch (Exception e) {
                         event.getChannel().sendMessage("금지어가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();

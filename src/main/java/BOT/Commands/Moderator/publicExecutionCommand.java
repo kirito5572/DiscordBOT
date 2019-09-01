@@ -97,11 +97,20 @@ public class publicExecutionCommand implements ICommand {
                     .setTitle("공개 처형자 해제")
                     .addField("대상자", member.getAsMention(), true)
                     .addField("지정 담당자", event.getMember().getAsMention(), true);
-            if(event.getGuild().getId().equals("600010501266866186")) {
-                event.getGuild().getTextChannelById("600015587544006679").sendMessage(builder.build()).queue();
-                event.getGuild().getTextChannelById("609781460785692672").sendMessage(builder.build()).queue();
-            } else {
-                channel.sendMessage(builder.build()).queue();
+            switch (event.getGuild().getId()) {
+                case "600010501266866186":
+                    event.getGuild().getTextChannelById("600015587544006679").sendMessage(builder.build()).queue();
+                    event.getGuild().getTextChannelById("609781460785692672").sendMessage(builder.build()).queue();
+                    break;
+                case "617222347425972234":
+                    event.getGuild().getTextChannelById("617244045780975637").sendMessage(builder.build()).queue();
+                    break;
+                case "617757206929997895":
+                    event.getGuild().getTextChannelById("617760924714926113").sendMessage(builder.build()).queue();
+                    break;
+                default:
+                    channel.sendMessage(builder.build()).queue();
+                    break;
             }
         } else {
             event.getGuild().getController().addSingleRoleToMember(member, role).complete();
@@ -113,13 +122,20 @@ public class publicExecutionCommand implements ICommand {
                     .addField("대상자", member.getAsMention(), true)
                     .addField("지정 담당자", event.getMember().getAsMention(), true);
 
-            if(event.getGuild().getId().equals("600010501266866186")) {
-                event.getGuild().getTextChannelById("600015587544006679").sendMessage(builder.build()).queue();
-                event.getGuild().getTextChannelById("609781460785692672").sendMessage(builder.build()).queue();
-            } else if(event.getGuild().getId().equals("617222347425972234")) {
-                event.getGuild().getTextChannelById("617244045780975637").sendMessage(builder.build()).queue();
-            } else {
-                channel.sendMessage(builder.build()).queue();
+            switch (event.getGuild().getId()) {
+                case "600010501266866186":
+                    event.getGuild().getTextChannelById("600015587544006679").sendMessage(builder.build()).queue();
+                    event.getGuild().getTextChannelById("609781460785692672").sendMessage(builder.build()).queue();
+                    break;
+                case "617222347425972234":
+                    event.getGuild().getTextChannelById("617244045780975637").sendMessage(builder.build()).queue();
+                    break;
+                case "617757206929997895":
+                    event.getGuild().getTextChannelById("617760924714926113").sendMessage(builder.build()).queue();
+                    break;
+                default:
+                    channel.sendMessage(builder.build()).queue();
+                    break;
             }
         }
     }

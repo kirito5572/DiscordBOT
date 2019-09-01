@@ -855,6 +855,23 @@ public class CommandManager {
                 }
             });
             addCommand(new pollCommand());
+            addCommand(new pollCommand() {
+                @Override
+                public String getInvoke() {
+                    return "poll";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "poll!.\n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " [poll content]`";
+                }
+            });
 
         }
     }

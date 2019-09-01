@@ -115,7 +115,7 @@ public class MemberCountListener extends ListenerAdapter {
         }
 
 
-        String memberCountName = "멤버 숫자";
+        String memberCountName = "총 멤버 수";
         category.getChannels().get(0).getManager().setName(memberCountName + " : " + guild.getMembers().size()).complete();
 
         int numOfBot = 0;
@@ -127,13 +127,13 @@ public class MemberCountListener extends ListenerAdapter {
                 numOfUser++;
             }
         }
-        String botCountName = "봇 숫자";
+        String botCountName = "봇 수";
         category.getChannels().get(1).getManager().setName(botCountName + " : " + numOfBot).complete();
-        String userCountName = "유저 숫자";
+        String userCountName = "유저 수";
         category.getChannels().get(2).getManager().setName(userCountName + " : " + numOfUser).complete();
-        String channelCountName = "채널 숫자";
+        String channelCountName = "채널 수";
         category.getChannels().get(3).getManager().setName(channelCountName + " : " + (guild.getChannels().size() - guild.getCategories().size())).complete();
-        String roleCountName = "역할 숫자";
+        String roleCountName = "역할 갯수";
         category.getChannels().get(4).getManager().setName(roleCountName + " : " + guild.getRoles().size()).complete();
     }
 }
