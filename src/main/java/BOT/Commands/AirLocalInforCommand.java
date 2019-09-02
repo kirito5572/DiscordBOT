@@ -1,7 +1,7 @@
 package BOT.Commands;
 
 import BOT.Constants;
-import BOT.airKoreaList;
+import BOT.Objects.airKoreaList;
 import BOT.Objects.ICommand;
 import BOT.Objects.getAirLocalData;
 import me.duncte123.botcommons.messaging.EmbedUtils;

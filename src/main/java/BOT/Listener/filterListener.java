@@ -3,13 +3,18 @@ package BOT.Listener;
 import BOT.App;
 import BOT.Objects.CommandManager;
 import BOT.Objects.FilterList;
+import me.duncte123.botcommons.messaging.EmbedUtils;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.TimeUnit;
 
 public class filterListener extends ListenerAdapter {
     private final CommandManager manager;
@@ -41,13 +46,17 @@ public class filterListener extends ListenerAdapter {
 
                             return;
                         }
+                        if(!event.getGuild().getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) {
+                            event.getChannel().sendMessage("금지어가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
+
+                            return;
+                        }
                         logger.warn(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
                                 "금지어: " + message.getContentRaw());
                         String rawMessage = message.getContentRaw();
-                        rawMessage = rawMessage.replaceFirst(s,"[데이터 말소]");
-                        event.getChannel().sendMessage(rawMessage).queue();
+                        rawMessage = rawMessage.replaceFirst(s,"||[데이터 말소]||");
                         message.delete().complete();
-                        event.getChannel().sendMessage(author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").queue();
+                        event.getChannel().sendMessage(rawMessage + "\n " + author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").queue();
                         if(event.getGuild().getId().equals("617222347425972234")) {
                             event.getGuild().getTextChannelById("617244182653829140").sendMessage(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
                                     "금지어: " + message.getContentRaw()).queue();
@@ -55,11 +64,37 @@ public class filterListener extends ListenerAdapter {
                             event.getGuild().getTextChannelById("617760924714926113").sendMessage(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
                                     "금지어: " + message.getContentRaw()).queue();
                         }
-                    } catch (Exception e) {
-                        event.getChannel().sendMessage("금지어가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
+                    } catch (Exception ignored) {
                     }
                 }
             }
+        }
+        Message messages = event.getMessage();
+
+        Role role;
+        try {
+            role = event.getGuild().getRolesByName("공개 처형", true).get(0);
+        } catch (Exception ignored) {
+
+            return;
+        }
+        int time;
+        if(event.getGuild().getId().equals("453817631603032065")) {
+            time = 10;
+        } else if (event.getGuild().getId().equals("600010501266866186")) {
+            time = 5;
+        } else {
+            time = 7;
+        }
+        try {
+            if (messages.getMember().getRoles().contains(role)) {
+                messages.delete().queueAfter(time, TimeUnit.SECONDS);
+                EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
+                        .addField("공개 처형", "당신의 메세지는 " + time + "초후 자동으로 삭제됩니다.", true);
+                event.getChannel().sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
+            }
+        } catch (Exception ignored) {
+
         }
     }
 }

@@ -2,6 +2,7 @@ package BOT.Commands;
 
 import BOT.Constants;
 import BOT.Objects.ICommand;
+import BOT.Objects.airKoreaList;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.Permission;
@@ -15,7 +16,7 @@ public class AirkoreaListCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
-        String[] Inchoenlist = BOT.airKoreaList.getInchoenList();
+        String[] Inchoenlist = airKoreaList.getInchoenList();
         StringBuilder InchoenlistSt = new StringBuilder();
         Member selfMember = event.getGuild().getSelfMember();
         if (!selfMember.hasPermission(Permission.MESSAGE_WRITE)) {
