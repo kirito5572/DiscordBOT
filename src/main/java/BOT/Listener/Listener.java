@@ -95,8 +95,17 @@ public class Listener extends ListenerAdapter {
         }
         if(event.getGuild().getId().equals("600010501266866186")) {
             if(!event.getChannel().getId().equals("600012818879741963")) {
+                if(event.getMessage().getContentRaw().contains("네코") || event.getMessage().getContentRaw().contains("neko")) {
+                    if(event.getMessage().getContentRaw().startsWith(App.getPREFIX())) {
+                        if(!event.getChannel().getId().equals("618233954536783885")) {
+                            event.getChannel().sendMessage(event.getMember().getAsMention() + ", 명령어는 네코 전용 채널에서 사용해주세요").queue();
+
+                            return;
+                        }
+                    }
+                }
                 if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
-                    if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
+                    if (event.getMessage().getContentRaw().startsWith(App.getPREFIX())) {
                         event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
 
                         return;

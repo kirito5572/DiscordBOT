@@ -16,18 +16,18 @@ public class GreenServerTipListener extends ListenerAdapter {
         final int[] time = {0};
         final int[] text = {0};
         final String[] content = {
-                "TIP. ~을 누른뒤 .명령어, .HELP를 입력할시 사용가능한 명령어 리스트가 나옵니다",
-                "TIP. MTF를 체포탈출 시킬시 카오스가 되고. 카오스를 체포탈출 시킬시 MTF부관이 됩니다",
-                "TIP. 카오스와 SCP의 티밍은 금지됩니다.",
-                "TIP. 서버 이용규정을 숙지하지 않아 발생하는 문제는 본인에게 있습니다.",
-                "TIP. 디스코드 방에 참여해주세요. [주소]",
-                "TIP. 존댓말과 존칭어 사용을 생활화 합시다",
-                "TIP. 5분이상 존버 혹은 욕설 사용시 무통보 킥 조치 될수 있습니다.",
-                "TIP. 방송실에서 현재 남은인원과 상황을 확인할수 있습니다",
-                "TIP. SCP진영에서 탈주가 일어날시 강력 처벌 받습니다, 좀비도요!",
-                "TIP. 관리자가 가끔 [튜토리얼] 상태로 있을시.... 그냥 지켜만 봐주세요",
-                "TIP. 서버장은 탈주중이라 일을못합니다",
-                "TIP. 서버가 가득찬 상태로 지속적으로 접속을 시도할시 IP밴 되실수있습니다.",
+                "~을 누른뒤 .명령어, .HELP를 입력할시 사용가능한 명령어 리스트가 나옵니다",
+                "MTF를 체포탈출 시킬시 카오스가 되고. 카오스를 체포탈출 시킬시 MTF부관이 됩니다",
+                "카오스와 SCP의 티밍은 금지됩니다.",
+                "서버 이용규정을 숙지하지 않아 발생하는 문제는 본인에게 있습니다.",
+                "디스코드 방에 참여해주세요. [주소]",
+                "존댓말과 존칭어 사용을 생활화 합시다",
+                "5분이상 존버 혹은 욕설 사용시 무통보 킥 조치 될수 있습니다.",
+                "방송실에서 현재 남은인원과 상황을 확인할수 있습니다",
+                "SCP진영에서 탈주가 일어날시 강력 처벌 받습니다, 좀비도요!",
+                "관리자가 가끔 [튜토리얼] 상태로 있을시.... 그냥 지켜만 봐주세요",
+                "서버장은 탈주중이라 일을못합니다",
+                "서버가 가득찬 상태로 지속적으로 접속을 시도할시 IP밴 되실수있습니다.",
         };
         final boolean[] flag = {false};
         TimerTask job = new TimerTask() {
@@ -52,6 +52,10 @@ public class GreenServerTipListener extends ListenerAdapter {
                         flag[0] = true;
                     }
                     if(message.getContentRaw().contains("라운드가 끝났습니다.")) {
+                        time[0] = 0;
+                        flag[0] = false;
+                    }
+                    if(message.getContentRaw().contains("- SCP:SL server connection lost.")) {
                         time[0] = 0;
                         flag[0] = false;
                     }
