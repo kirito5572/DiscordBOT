@@ -6,7 +6,9 @@ import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.Channel;
 import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
@@ -14,8 +16,20 @@ import java.util.List;
 public class CatCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
+        final PrivateChannel channel;
+        if(event.getGuild().getId().equals("600010501266866186")) {
+            channel = event.getAuthor().openPrivateChannel().complete();
+        } else {
+            channel = null;
+        }
 
         Member selfMember = event.getGuild().getSelfMember();
+
+        if(selfMember.hasPermission(Permission.MESSAGE_EMBED_LINKS)) {
+            event.getChannel().sendMessage("봇이 링크 메세지를 보낼 권한이 없습니다.").queue();
+
+            return;
+        }
 
         WebUtils.ins.scrapeWebPage("https://nekos.life/").async((document) -> {
             String a = document.getElementsByTag("head").first().toString();
@@ -23,7 +37,11 @@ public class CatCommand implements ICommand {
             int c = a.indexOf("<meta property=\"og:image\" content=\"");
             a = a.substring(b + 32, c - 5);
             EmbedBuilder embed = EmbedUtils.embedImage(a);
-            event.getChannel().sendMessage(embed.build()).queue();
+            if(event.getGuild().getId().equals("600010501266866186")) {
+                channel.sendMessage(embed.build()).queue();
+            } else {
+                event.getChannel().sendMessage(embed.build()).queue();
+            }
         });
     }
 

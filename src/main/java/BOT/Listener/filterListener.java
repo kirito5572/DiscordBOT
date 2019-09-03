@@ -22,6 +22,7 @@ public class filterListener extends ListenerAdapter {
     public filterListener(CommandManager manager) {
         this.manager = manager;
     }
+    private boolean publicflag = false;
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
@@ -29,6 +30,7 @@ public class filterListener extends ListenerAdapter {
         Message message = event.getMessage();
 
         String[] List = FilterList.getList();
+        String id = "";
         Logger logger = LoggerFactory.getLogger(filterListener.class);
         if(event.getGuild().getId().equals("453817631603032065")) {
             return;
@@ -55,8 +57,22 @@ public class filterListener extends ListenerAdapter {
                                 "금지어: " + message.getContentRaw());
                         String rawMessage = message.getContentRaw();
                         rawMessage = rawMessage.replaceFirst(s,"||[데이터 말소]||");
+
+                        boolean flag = true;
+                        publicflag = true;
+                        while(flag) {
+                            boolean tempflag = false;
+                            for(String s1 : List) {
+                                if(message.getContentRaw().contains(s1)) {
+                                    rawMessage = rawMessage.replaceFirst(s,"||[데이터 말소]||");
+                                    tempflag = true;
+                                }
+                            } if(!tempflag) {
+                                flag = false;
+                            }
+                        }
                         message.delete().complete();
-                        event.getChannel().sendMessage(rawMessage + "\n " + author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").queue();
+                        id = event.getChannel().sendMessage(rawMessage + "\n " + author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").complete().getId();
                         if(event.getGuild().getId().equals("617222347425972234")) {
                             event.getGuild().getTextChannelById("617244182653829140").sendMessage(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
                                     "금지어: " + message.getContentRaw()).queue();
@@ -83,11 +99,19 @@ public class filterListener extends ListenerAdapter {
             time = 10;
         } else if (event.getGuild().getId().equals("600010501266866186")) {
             time = 5;
-        } else {
+        } else if (event.getGuild().getId().equals("617222347425972234")) {
+            time = 2;
+        }  else {
             time = 7;
         }
         try {
             if (messages.getMember().getRoles().contains(role)) {
+                if(publicflag) {
+                    event.getChannel().deleteMessageById(id).queueAfter(time, TimeUnit.SECONDS);
+                    EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
+                            .addField("공개 처형", "당신의 필터링된 메세지도 " + time + "초후 자동으로 삭제됩니다.", true);
+                    event.getChannel().sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
+                }
                 messages.delete().queueAfter(time, TimeUnit.SECONDS);
                 EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
                         .addField("공개 처형", "당신의 메세지는 " + time + "초후 자동으로 삭제됩니다.", true);

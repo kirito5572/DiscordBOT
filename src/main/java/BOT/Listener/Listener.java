@@ -97,11 +97,9 @@ public class Listener extends ListenerAdapter {
             if(!event.getChannel().getId().equals("600012818879741963")) {
                 if(event.getMessage().getContentRaw().contains("네코") || event.getMessage().getContentRaw().contains("neko")) {
                     if(event.getMessage().getContentRaw().startsWith(App.getPREFIX())) {
-                        if(!event.getChannel().getId().equals("618233954536783885")) {
-                            event.getChannel().sendMessage(event.getMember().getAsMention() + ", 명령어는 네코 전용 채널에서 사용해주세요").queue();
+                        event.getChannel().sendMessage(event.getMember().getAsMention() + ", 명령어는 그린님의 명령으로 사용이 불가능합니다.\n 다음 업데이트를 기대해주세요.").queue();
 
-                            return;
-                        }
+                        return;
                     }
                 }
                 if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
