@@ -4,10 +4,7 @@
     <option name="SYNC_PROJECT_BEFORE_BUILD" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/GreenServerTipListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/GreenServerTipListener.java" afterDir="false" />
-    </list>
+    <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +233,7 @@
       <workItem from="1567223023064" duration="5852000" />
       <workItem from="1567232594566" duration="12394000" />
       <workItem from="1567320662541" duration="12985000" />
-      <workItem from="1567389599884" duration="12323000" />
+      <workItem from="1567389599884" duration="13123000" />
     </task>
     <servers />
   </component>
