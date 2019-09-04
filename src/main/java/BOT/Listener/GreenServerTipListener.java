@@ -59,6 +59,14 @@ public class GreenServerTipListener extends ListenerAdapter {
                         time[0] = 0;
                         flag[0] = false;
                     }
+                    if(message.getContentRaw().contains("라운드 재시작")) {
+                        time[0] = 0;
+                        flag[0] = false;
+                    }
+                    if(message.getContentRaw().contains("서버가 유저를 기달리고 있습니다")) {
+                        time[0] = 0;
+                        flag[0] = false;
+                    }
                 }
                 if(flag[0] && (time[0] == 75)) {
                     channel.sendMessage("+bc 8 " + content[text[0]]).queue();
