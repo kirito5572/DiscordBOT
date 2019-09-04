@@ -16,16 +16,10 @@ import java.util.List;
 public class CatCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
-        final PrivateChannel channel;
-        if(event.getGuild().getId().equals("600010501266866186")) {
-            channel = event.getAuthor().openPrivateChannel().complete();
-        } else {
-            channel = null;
-        }
 
         Member selfMember = event.getGuild().getSelfMember();
 
-        if(selfMember.hasPermission(Permission.MESSAGE_EMBED_LINKS)) {
+        if(!selfMember.hasPermission(Permission.MESSAGE_EMBED_LINKS)) {
             event.getChannel().sendMessage("봇이 링크 메세지를 보낼 권한이 없습니다.").queue();
 
             return;
@@ -38,6 +32,8 @@ public class CatCommand implements ICommand {
             a = a.substring(b + 32, c - 5);
             EmbedBuilder embed = EmbedUtils.embedImage(a);
             if(event.getGuild().getId().equals("600010501266866186")) {
+                PrivateChannel channel;
+                channel = event.getAuthor().openPrivateChannel().complete();
                 channel.sendMessage(embed.build()).queue();
             } else {
                 event.getChannel().sendMessage(embed.build()).queue();
