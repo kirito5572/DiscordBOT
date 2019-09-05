@@ -3,8 +3,6 @@ package BOT.Listener;
 import BOT.App;
 import BOT.Constants;
 import BOT.Objects.CommandManager;
-import me.duncte123.botcommons.messaging.EmbedUtils;
-import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
@@ -15,7 +13,6 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.awt.*;
 import java.io.File;
 import java.io.FileReader;
 
