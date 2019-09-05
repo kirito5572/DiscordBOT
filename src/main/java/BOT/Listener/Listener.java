@@ -79,10 +79,17 @@ public class Listener extends ListenerAdapter {
         ID2 = IDreader1.toString();
         if (event.getMessage().getContentRaw().equalsIgnoreCase(App.getPREFIX() + "종료") &&
                 (
-                        (event.getAuthor().getIdLong() == Long.decode(IDreader.toString())) ||
-                        (event.getAuthor().getIdLong() == Long.decode(IDreader1.toString()))
+                        (event.getAuthor().getIdLong() == Long.decode(ID1)) ||
+                        (event.getAuthor().getIdLong() == Long.decode(ID2))
                 )) {
             shutdown(event.getJDA(), event);
+            return;
+        } else if(event.getMessage().getContentRaw().equalsIgnoreCase(App.getPREFIX() + "재시작") &&
+                (
+                        (event.getAuthor().getIdLong() == Long.decode(ID1)) ||
+                                (event.getAuthor().getIdLong() == Long.decode(ID2))
+                )) {
+            restart(event.getJDA(), event);
             return;
         }
         if(event.getAuthor().isBot()) {
@@ -95,13 +102,6 @@ public class Listener extends ListenerAdapter {
         }
         if(event.getGuild().getId().equals("600010501266866186")) {
             if(!event.getChannel().getId().equals("600012818879741963")) {
-                if(event.getMessage().getContentRaw().contains("네코") || event.getMessage().getContentRaw().contains("neko")) {
-                    if(event.getMessage().getContentRaw().startsWith(App.getPREFIX())) {
-                        event.getChannel().sendMessage(event.getMember().getAsMention() + ", 명령어는 그린님의 명령으로 사용이 불가능합니다.\n 다음 업데이트를 기대해주세요.").queue();
-
-                        return;
-                    }
-                }
                 if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                     if (event.getMessage().getContentRaw().startsWith(App.getPREFIX())) {
                         event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
@@ -128,36 +128,30 @@ public class Listener extends ListenerAdapter {
         }
     }
     private void shutdown(JDA jda, GuildMessageReceivedEvent event) {
-        Guild greenServer;
-        TextChannel channel;
-        String[] status = new String[5];
-        try {
-            greenServer = event.getJDA().getGuildById("600010501266866186");
-            channel = greenServer.getTextChannelById("600015521433518090");
-            status[0] = greenServer.getMemberById("580691748276142100").getOnlineStatus().toString();
-            status[1] = greenServer.getMemberById("586590053539643408").getOnlineStatus().toString();
-            status[2] = greenServer.getMemberById("600658772876197888").getOnlineStatus().toString();
-            status[3] = greenServer.getMemberById("600660530230722560").getOnlineStatus().toString();
-            status[4] = greenServer.getMemberById("600676751118696448").getOnlineStatus().toString();
-
-        } catch (Exception e) {
-
-            return;
-        }
-        EmbedBuilder builder = EmbedUtils.defaultEmbed()
-                .setTitle("서버 오픈 상태")
-                .setColor(Color.RED)
-                .addField("Green Color 상태", "OFF", false)
-                .addField("1서버", status[0], false)
-                .addField("2서버", status[1], false)
-                .addField("3서버", status[2], false)
-                .addField("4서버", status[3], false)
-                .addField("5서버", status[4], false)
-                .setFooter("1분마다 서버 상태가 자동 새로고침됩니다.","https://steamuserimages-a.akamaihd.net/ugc/982233321887038211/EB88C5E32425929921EF653FF5B784715B7D0639/");
-        channel.editMessageById("616234404452499476", builder.build() + "\n" +
-                "서버의 상태를 확인하는 봇이 종료되어 확인이 불가능합니다.").queue();
         new Thread(() -> {
             event.getChannel().sendMessage("봇이 종료됩니다.").queue();
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            jda.shutdown();
+            System.exit(0);
+        }).start();
+    }
+    private void restart(JDA jda, GuildMessageReceivedEvent event) {
+        new Thread(() -> {
+            event.getMessage().delete().queue();
+            event.getChannel().sendMessage("종료 하는중....").queue();
+            if(event.getAuthor().getId().equals("284508374924787713")) {
+                event.getJDA().getGuildById("617222347425972234").getTextChannelById("617222347983683586").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                event.getJDA().getGuildById("617757206929997895").getTextChannelById("617757206929997901").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                event.getJDA().getGuildById("479625309788962816").getTextChannelById("479625309788962818").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                event.getJDA().getGuildById("508913681279483913").getTextChannelById("539466073343524864").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                event.getJDA().getGuildById("453817631603032065").getTextChannelById("574856464347430914").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+            } else {
+                event.getJDA().getGuildById("600010501266866186").getTextChannelById("600010501266866188").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+            }
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
