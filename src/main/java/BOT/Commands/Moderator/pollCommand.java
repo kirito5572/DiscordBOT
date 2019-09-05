@@ -31,8 +31,12 @@ public class pollCommand implements ICommand {
                 .addField("1\u20E3", "찬성", true)
                 .addField("2\u20E3", "반대", true)
                 .addField("3\u20E3", "기권", true);
-
-        String id = event.getChannel().sendMessage(builder.build()).complete().getId();
+        String id;
+        if(event.getGuild().getId().equals("617222347425972234")) {
+            id = event.getChannel().sendMessage(builder.build() + "@everyone").complete().getId();
+        } else {
+            id = event.getChannel().sendMessage(builder.build()).complete().getId();
+        }
 
         Message message = event.getChannel().getMessageById(id).complete();
         message1.delete().queue();
