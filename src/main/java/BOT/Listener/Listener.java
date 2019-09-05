@@ -82,8 +82,10 @@ public class Listener extends ListenerAdapter {
                         (event.getAuthor().getIdLong() == Long.decode(ID1)) ||
                         (event.getAuthor().getIdLong() == Long.decode(ID2))
                 )) {
+            System.out.println(ID1 + ID2);
             shutdown(event.getJDA(), event);
             return;
+
         } else if(event.getMessage().getContentRaw().equalsIgnoreCase(App.getPREFIX() + "재시작") &&
                 (
                         (event.getAuthor().getIdLong() == Long.decode(ID1)) ||
@@ -143,22 +145,28 @@ public class Listener extends ListenerAdapter {
         new Thread(() -> {
             event.getMessage().delete().queue();
             event.getChannel().sendMessage("종료 하는중....").queue();
-            if(event.getAuthor().getId().equals("284508374924787713")) {
-                event.getJDA().getGuildById("617222347425972234").getTextChannelById("617222347983683586").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
-                event.getJDA().getGuildById("617757206929997895").getTextChannelById("617757206929997901").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
-                event.getJDA().getGuildById("479625309788962816").getTextChannelById("479625309788962818").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
-                event.getJDA().getGuildById("508913681279483913").getTextChannelById("539466073343524864").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
-                event.getJDA().getGuildById("453817631603032065").getTextChannelById("574856464347430914").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+            if(App.isDEBUG_MODE() || App.isONLINE_DEBUG()) {
+                event.getChannel().sendMessage("디버그 모드 재시작입니다...").queue();
             } else {
-                event.getJDA().getGuildById("600010501266866186").getTextChannelById("600010501266866188").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                if (event.getAuthor().getId().equals("284508374924787713")) {
+                    event.getJDA().getGuildById("617222347425972234").getTextChannelById("617222347983683586").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                    event.getJDA().getGuildById("617757206929997895").getTextChannelById("617757206929997901").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                    event.getJDA().getGuildById("479625309788962816").getTextChannelById("479625309788962818").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                    event.getJDA().getGuildById("508913681279483913").getTextChannelById("539466073343524864").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                    event.getJDA().getGuildById("453817631603032065").getTextChannelById("574856464347430914").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                } else {
+                    event.getJDA().getGuildById("600010501266866186").getTextChannelById("600010501266866188").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                }
             }
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            jda.shutdown();
-            System.exit(0);
+            new Thread(() -> {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                jda.shutdown();
+                System.exit(0);
+            }).start();
         }).start();
     }
 
