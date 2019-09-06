@@ -1,6 +1,5 @@
 package BOT.Listener;
 
-import BOT.App;
 import BOT.Objects.CommandManager;
 import BOT.Objects.FilterList;
 import me.duncte123.botcommons.messaging.EmbedUtils;
@@ -23,6 +22,7 @@ public class filterListener extends ListenerAdapter {
         this.manager = manager;
     }
     private boolean publicflag = false;
+    private String latestMessage = "";
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
@@ -30,7 +30,18 @@ public class filterListener extends ListenerAdapter {
         Message message = event.getMessage();
 
         String[] List = FilterList.getList();
+        String[] list = FilterList.getCharList();
         String id = "";
+        String rawMessage = message.getContentRaw();
+        for (String value : list) {
+            rawMessage = rawMessage.replace(value, "");
+        }
+        if(!rawMessage.equals(latestMessage)) {
+            latestMessage = rawMessage;
+        } else {
+
+            return;
+        }
         Logger logger = LoggerFactory.getLogger(filterListener.class);
         if(event.getGuild().getId().equals("453817631603032065")) {
             return;
@@ -38,16 +49,17 @@ public class filterListener extends ListenerAdapter {
         }
         if(!(event.getGuild().getId().equals("600010501266866186"))) {
             for (String s : List) {
-                if (message.getContentRaw().contains(s)) {
+                if (rawMessage.contains(s)) {
                     try {
                         if(event.getGuild().getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
-                            return;
-                        }
-                        if(message.getMember().hasPermission(Permission.ADMINISTRATOR)) {
-                            logger.warn("관리자가 금지어를 말했으나, 관리자는 필터링 되지 않습니다.");
 
                             return;
                         }
+                        /*if(message.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+                            logger.warn("관리자가 금지어를 말했으나, 관리자는 필터링 되지 않습니다.");
+
+                            return;
+                        }*/
                         if(!event.getGuild().getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) {
                             event.getChannel().sendMessage("금지어가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
 
@@ -55,7 +67,6 @@ public class filterListener extends ListenerAdapter {
                         }
                         logger.warn(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
                                 "금지어: " + message.getContentRaw());
-                        String rawMessage = message.getContentRaw();
                         rawMessage = rawMessage.replaceFirst(s,"||[데이터 말소]||");
 
                         boolean flag = true;
@@ -63,8 +74,8 @@ public class filterListener extends ListenerAdapter {
                         while(flag) {
                             boolean tempflag = false;
                             for(String s1 : List) {
-                                if(message.getContentRaw().contains(s1)) {
-                                    rawMessage = rawMessage.replaceFirst(s,"||[데이터 말소]||");
+                                if(rawMessage.contains(s1)) {
+                                    rawMessage = rawMessage.replaceFirst(s1,"||[데이터 말소]||");
                                     tempflag = true;
                                 }
                             } if(!tempflag) {

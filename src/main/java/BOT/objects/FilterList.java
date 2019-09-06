@@ -68,6 +68,13 @@ public class FilterList {
             "whore", "slut", "weeaboo", "your mom", "your mommy", "your mother",
             "zatch", "zipperhead"
     };
+    private static String[] charList = {
+            "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")",
+            "~", "`", "|", "<", ">", "\"", "\'", ",", ".", "?", "/", "\\", "-", "_", "+", "="
+    };
+    public static String[] getCharList() {
+        return charList;
+    }
 
     public static String[] getList() {
         return List;
