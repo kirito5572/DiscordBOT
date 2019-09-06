@@ -55,11 +55,11 @@ public class filterListener extends ListenerAdapter {
 
                             return;
                         }
-                        /*if(message.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+                        if(message.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                             logger.warn("관리자가 금지어를 말했으나, 관리자는 필터링 되지 않습니다.");
 
                             return;
-                        }*/
+                        }
                         if(!event.getGuild().getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) {
                             event.getChannel().sendMessage("금지어가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
 
