@@ -5,6 +5,7 @@ import BOT.Objects.ICommand;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
@@ -183,8 +184,19 @@ public class gameServerBanCommand implements ICommand {
 
 
                 System.out.println("oban " + NickName + " " + ID + " " + time);
-                botChannel.sendMessage("+oban " + NickName + " " + ID + " " + time).queue();
-                botChannel1.sendMessage("+oban " + NickName + " " + ID + " " + time).queue();
+                if(event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
+                        event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.IDLE)) {
+                    botChannel.sendMessage("+oban " + NickName + " " + ID + " " + time).queue();
+                } else {
+                    event.getChannel().sendMessage("1서버가 종료상태이므로, 1,2,3,4 서버에 밴이 적용되지 않습니다.").queue();
+                }
+                if(event.getGuild().getMemberById("600676751118696448").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
+                        event.getGuild().getMemberById("600676751118696448").getOnlineStatus().equals(OnlineStatus.IDLE)) {
+                    botChannel1.sendMessage("+oban " + NickName + " " + ID + " " + time).queue();
+                } else {
+                    event.getChannel().sendMessage("5서버가 종료상태이므로, 5서버에 밴이 적용되지 않습니다.").queue();
+                }
+                event.getChannel().sendMessage("밴 적용 완료").queue();
 
             }));
 
