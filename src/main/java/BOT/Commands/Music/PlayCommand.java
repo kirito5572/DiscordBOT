@@ -6,9 +6,12 @@ import BOT.Music.PlayerManager;
 import BOT.Objects.ICommand;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.GuildVoiceState;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.core.entities.VoiceChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.core.managers.AudioManager;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -20,11 +23,21 @@ public class PlayCommand implements ICommand {
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
 
         TextChannel channel = event.getChannel();
+        AudioManager audioManager = event.getGuild().getAudioManager();
+        GuildVoiceState memberVoiceState = event.getMember().getVoiceState();
+        VoiceChannel voiceChannel = memberVoiceState.getChannel();
+        if(!audioManager.isConnected()) {
 
-        Member selfMember = event.getGuild().getSelfMember();
-        if(!selfMember.hasPermission(Permission.VOICE_CONNECT)) {
-            channel.sendMessage("보이스채널 권한이 없습니다..").queue();
+            Member selfMember = event.getGuild().getSelfMember();
 
+            if(!selfMember.hasPermission(voiceChannel, Permission.VOICE_CONNECT)) {
+                channel.sendMessageFormat("%s 보이스 채널에 들어올 권한이 없습니다.",voiceChannel).queue();
+                return;
+            }
+
+        }
+        if(!memberVoiceState.inVoiceChannel()) {
+            channel.sendMessage("먼저 보이스 채널에 들어오세요").queue();
             return;
         }
 
@@ -43,14 +56,16 @@ public class PlayCommand implements ICommand {
         }
 
         PlayerManager manager = PlayerManager.getInstance();
-
+        if(!audioManager.isConnected()) {
+            audioManager.openAudioConnection(voiceChannel);
+        }
         manager.loadAndPlay(event.getChannel(), input);
 
         GuildMusicManager musicManager = manager.getGuildMusicManager(event.getGuild());
         BlockingQueue<AudioTrack> queue = musicManager.scheduler.getQueue();
 
         if(queue.isEmpty()) {
-            manager.getGuildMusicManager(event.getGuild()).player.setVolume(30);
+            manager.getGuildMusicManager(event.getGuild()).player.setVolume(50);
         }
     }
 

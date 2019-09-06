@@ -26,28 +26,21 @@ public class SearchCommand implements ICommand {
         new Thread(() -> {
             AudioManager audioManager = event.getGuild().getAudioManager();
             TextChannel channel = event.getChannel();
-            if(!audioManager.isConnected()) {
-                channel.sendMessage("봇을 먼저 보이스채널에 들어오게 하세요.").queue();
-                return;
-            }
-
             GuildVoiceState memberVoiceState = event.getMember().getVoiceState();
+            VoiceChannel voiceChannel = memberVoiceState.getChannel();
+            if(!audioManager.isConnected()) {
+                Member selfMember = event.getGuild().getSelfMember();
 
+                if(!selfMember.hasPermission(voiceChannel, Permission.VOICE_CONNECT)) {
+                    channel.sendMessageFormat("%s 보이스 채널에 들어올 권한이 없습니다.",voiceChannel).queue();
+                    return;
+                }
+            }
             if(!memberVoiceState.inVoiceChannel()) {
                 channel.sendMessage("먼저 보이스 채널에 들어오세요").queue();
                 return;
             }
 
-            if(!event.getMember().hasPermission(Permission.VOICE_CONNECT)) {
-                channel.sendMessage("보이스 채널에 들어올 권한이 없습니다.").queue();
-            }
-            VoiceChannel voiceChannel = memberVoiceState.getChannel();
-            Member selfMember = event.getGuild().getSelfMember();
-
-            if(!selfMember.hasPermission(voiceChannel, Permission.VOICE_CONNECT)) {
-                channel.sendMessageFormat("%s 보이스 채널에 들어올 권한이 없습니다.",voiceChannel).queue();
-                return;
-            }
             StringBuilder youtube_Key = new StringBuilder();
             try {
                 File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\YOUTUBE_DATA_API_KEY.txt");
@@ -110,6 +103,9 @@ public class SearchCommand implements ICommand {
                     Thread.sleep(1000);
                     System.out.println(channel.getMessageById(ID).complete().getReactions().get(0).getReactionEmote().getEmote());
                     if(channel.getMessageById(ID).complete().getReactions().get(0).getCount() == 2) {
+                            if(!audioManager.isConnected()) {
+                                audioManager.openAudioConnection(voiceChannel);
+                            }
                             PlayerManager manager = PlayerManager.getInstance();
                             channel.sendMessage("노래가 추가되었습니다.").queue();
                             manager.loadAndPlay(channel, "https://youtu.be/" + first_url);
