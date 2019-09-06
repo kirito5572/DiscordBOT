@@ -102,10 +102,13 @@ public class Listener extends ListenerAdapter {
         if(event.getGuild().getId().equals("600010501266866186")) {
             if(!event.getChannel().getId().equals("600012818879741963")) {
                 if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
-                    if (event.getMessage().getContentRaw().startsWith(App.getPREFIX())) {
-                        event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
+                    Role role = event.getGuild().getRoleById("600012069559074822");
+                    if(!event.getMember().getRoles().contains(role)) {
+                        if (event.getMessage().getContentRaw().startsWith(App.getPREFIX())) {
+                            event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
 
-                        return;
+                            return;
+                        }
                     }
                 }
             }

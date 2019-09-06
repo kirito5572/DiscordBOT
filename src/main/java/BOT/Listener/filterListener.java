@@ -47,52 +47,50 @@ public class filterListener extends ListenerAdapter {
             return;
 
         }
-        if(!(event.getGuild().getId().equals("600010501266866186"))) {
-            for (String s : List) {
-                if (rawMessage.contains(s)) {
-                    try {
-                        if(event.getGuild().getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
+        for (String s : List) {
+            if (rawMessage.contains(s)) {
+                try {
+                    if(event.getGuild().getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
 
-                            return;
-                        }
-                        if(message.getMember().hasPermission(Permission.ADMINISTRATOR)) {
-                            logger.warn("관리자가 금지어를 말했으나, 관리자는 필터링 되지 않습니다.");
-
-                            return;
-                        }
-                        if(!event.getGuild().getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) {
-                            event.getChannel().sendMessage("금지어가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
-
-                            return;
-                        }
-                        logger.warn(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
-                                "금지어: " + message.getContentRaw());
-                        rawMessage = rawMessage.replaceFirst(s,"||[데이터 말소]||");
-
-                        boolean flag = true;
-                        publicflag = true;
-                        while(flag) {
-                            boolean tempflag = false;
-                            for(String s1 : List) {
-                                if(rawMessage.contains(s1)) {
-                                    rawMessage = rawMessage.replaceFirst(s1,"||[데이터 말소]||");
-                                    tempflag = true;
-                                }
-                            } if(!tempflag) {
-                                flag = false;
-                            }
-                        }
-                        message.delete().complete();
-                        id = event.getChannel().sendMessage(rawMessage + "\n " + author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").complete().getId();
-                        if(event.getGuild().getId().equals("617222347425972234")) {
-                            event.getGuild().getTextChannelById("617244182653829140").sendMessage(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
-                                    "금지어: " + message.getContentRaw()).queue();
-                        } else if (event.getGuild().getId().equals("617757206929997895")) {
-                            event.getGuild().getTextChannelById("617760924714926113").sendMessage(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
-                                    "금지어: " + message.getContentRaw()).queue();
-                        }
-                    } catch (Exception ignored) {
+                        return;
                     }
+                    if(message.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+                        logger.warn("관리자가 금지어를 말했으나, 관리자는 필터링 되지 않습니다.");
+
+                        return;
+                    }
+                    if(!event.getGuild().getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) {
+                        event.getChannel().sendMessage("금지어가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
+
+                        return;
+                    }
+                    logger.warn(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
+                            "금지어: " + message.getContentRaw());
+                    rawMessage = rawMessage.replaceFirst(s,"||[데이터 말소]||");
+
+                    boolean flag = true;
+                    publicflag = true;
+                    while(flag) {
+                        boolean tempflag = false;
+                        for(String s1 : List) {
+                            if(rawMessage.contains(s1)) {
+                                rawMessage = rawMessage.replaceFirst(s1,"||[데이터 말소]||");
+                                tempflag = true;
+                            }
+                        } if(!tempflag) {
+                            flag = false;
+                        }
+                    }
+                    message.delete().complete();
+                    id = event.getChannel().sendMessage(rawMessage + "\n " + author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").complete().getId();
+                    if(event.getGuild().getId().equals("617222347425972234")) {
+                        event.getGuild().getTextChannelById("617244182653829140").sendMessage(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
+                                "금지어: " + message.getContentRaw()).queue();
+                    } else if (event.getGuild().getId().equals("617757206929997895")) {
+                        event.getGuild().getTextChannelById("617760924714926113").sendMessage(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
+                                "금지어: " + message.getContentRaw()).queue();
+                    }
+                } catch (Exception ignored) {
                 }
             }
         }
