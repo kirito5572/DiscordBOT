@@ -68,13 +68,20 @@ public class filterListener extends ListenerAdapter {
 
                         return;
                     }
+                    if(message.getMember().getUser().getId().equals("342951769627688960")) {
+                        return;
+                    }
+                    if(message.getMember().getUser().getId().equals("342951769627688960")) {
+                        return;
+                    }
                     if(!event.getGuild().getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) {
                         event.getChannel().sendMessage("링크가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
 
                         return;
                     }
                     message.delete().queue();
-                    event.getChannel().sendMessage("링크를 보내지 마세요.").queue();
+                    event.getChannel().sendMessage(event.getMember().getAsMention() + ", 링크를 보내지 마세요.").queue();
+                    return;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -90,7 +97,7 @@ public class filterListener extends ListenerAdapter {
 
                         return;
                     }
-                    if(message.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+                    if(message.getMember().hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                         logger.warn("관리자가 금지어를 말했으나, 관리자는 필터링 되지 않습니다.");
 
                         return;
