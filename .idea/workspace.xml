@@ -6,14 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/VersionCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/VersionCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/Listener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/Listener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/filterListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/filterListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Objects/FilterList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Objects/FilterList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/filterListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/filterListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/FilterList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/FilterList.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -247,7 +239,7 @@
       <workItem from="1567596260025" duration="5264000" />
       <workItem from="1567658559495" duration="9878000" />
       <workItem from="1567780851853" duration="2594000" />
-      <workItem from="1567858784856" duration="5657000" />
+      <workItem from="1567858784856" duration="6480000" />
     </task>
     <servers />
   </component>
