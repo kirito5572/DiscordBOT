@@ -63,7 +63,7 @@ public class filterListener extends ListenerAdapter {
                     if(rawMessage.contains("tenor.com")) {
                         return;
                     }
-                    if(message.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+                    if(message.getMember().hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                         logger.warn("관리자가 링크를 첨부했으나, 관리자는 필터링 되지 않습니다.");
 
                         return;
