@@ -31,11 +31,9 @@ public class filterListener extends ListenerAdapter {
 
         String[] List = FilterList.getList();
         String[] list = FilterList.getCharList();
+        String[] Lists = FilterList.getWebList();
         String id = "";
         String rawMessage = message.getContentRaw();
-        for (String value : list) {
-            rawMessage = rawMessage.replace(value, "");
-        }
         if(!rawMessage.equals(latestMessage)) {
             latestMessage = rawMessage;
         } else {
@@ -46,6 +44,44 @@ public class filterListener extends ListenerAdapter {
         if(event.getGuild().getId().equals("453817631603032065")) {
             return;
 
+        }
+        for (String s : Lists) {
+            if(rawMessage.contains(s)) {
+                try {
+                    if(event.getGuild().getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
+                        return;
+                    }
+                    if(message.getMember().getUser().isBot()) {
+                        return;
+                    }
+                    if(rawMessage.contains("cdn.discord")) {
+                        return;
+                    }
+                    if(rawMessage.contains("discordapp")) {
+                        return;
+                    }
+                    if(rawMessage.contains("tenor.com")) {
+                        return;
+                    }
+                    if(message.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+                        logger.warn("관리자가 링크를 첨부했으나, 관리자는 필터링 되지 않습니다.");
+
+                        return;
+                    }
+                    if(!event.getGuild().getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) {
+                        event.getChannel().sendMessage("링크가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
+
+                        return;
+                    }
+                    message.delete().queue();
+                    event.getChannel().sendMessage("링크를 보내지 마세요.").queue();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        for (String value : list) {
+            rawMessage = rawMessage.replace(value, "");
         }
         for (String s : List) {
             if (rawMessage.contains(s)) {
