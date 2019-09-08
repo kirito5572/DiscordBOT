@@ -154,6 +154,7 @@ public class Listener extends ListenerAdapter {
                     event.getJDA().getGuildById("479625309788962816").getTextChannelById("479625309788962818").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
                     event.getJDA().getGuildById("508913681279483913").getTextChannelById("539466073343524864").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
                     event.getJDA().getGuildById("453817631603032065").getTextChannelById("574856464347430914").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                    event.getJDA().getGuildById("600010501266866186").getTextChannelById("620079355707785226").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
                 } else {
                     event.getJDA().getGuildById("600010501266866186").getTextChannelById("600010501266866188").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
                 }

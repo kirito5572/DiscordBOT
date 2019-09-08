@@ -104,7 +104,12 @@ public class ColorCommand implements ICommand {
                     event.getGuild().getRoleById("600012069559074822"),     //기지이사관
                     event.getGuild().getRoleById("600012538817806346"),     //후원자
                     event.getGuild().getRoleById("600021907374342156"),     //니트로 부스팅 지원자
-                    event.getGuild().getRoleById("618750638699839498")      //정기후원자
+                    event.getGuild().getRoleById("618750638699839498"),     //정기후원자
+
+                    //소프냥이 서버
+                    event.getGuild().getRoleById("607499155551682570"),     //소프냥이
+                    event.getGuild().getRoleById("620090887854227496"),     //subAdmin
+                    event.getGuild().getRoleById("607541403614183424")
             };
             List<Role> role_List = event.getMember().getRoles();
             for (Role value : set_Color) {
@@ -116,9 +121,6 @@ public class ColorCommand implements ICommand {
                 setChange_flag(true);
             }
             if(event.getGuild().getId().equals("617757206929997895")) {
-                setChange_flag(true);
-            }
-            if(event.getGuild().getId().equals("607390893804093442")) {
                 setChange_flag(true);
             }
             if (isChange_flag() || delete) {
