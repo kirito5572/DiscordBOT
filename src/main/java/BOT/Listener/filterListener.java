@@ -63,6 +63,9 @@ public class filterListener extends ListenerAdapter {
                     if(rawMessage.contains("tenor.com")) {
                         return;
                     }
+                    if(rawMessage.contains("steam")) {
+                        return;
+                    }
                     if(event.getGuild().getId().equals("617222347425972234")) {
                         if(event.getChannel().getId().equals("620104084799750154")) {
                             return;
