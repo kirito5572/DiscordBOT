@@ -1,5 +1,6 @@
 package BOT.Commands.Moderator;
 
+import BOT.Listener.Listener;
 import BOT.Objects.ICommand;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
@@ -14,10 +15,16 @@ public class botipAddressCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         String ip;
-        if(!event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
-            event.getChannel().sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
+        if(event.getGuild().getId().equals("600010501266866186")) {
+            if (!event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+                event.getChannel().sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
 
-            return;
+                return;
+            }
+        } else {
+            if(!event.getMember().getUser().getId().equals(Listener.getID1())) {
+                return;
+            }
         }
         try {
             Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();

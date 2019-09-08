@@ -132,6 +132,9 @@ public class filterListener extends ListenerAdapter {
                     } else if (event.getGuild().getId().equals("617757206929997895")) {
                         event.getGuild().getTextChannelById("617760924714926113").sendMessage(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
                                 "금지어: " + message.getContentRaw()).queue();
+                    } else if(event.getGuild().getId().equals("607390893804093442")) {
+                        event.getGuild().getTextChannelById("620091943522664466").sendMessage(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
+                                "금지어: " + message.getContentRaw()).queue();
                     }
                 } catch (Exception ignored) {
                 }
@@ -153,7 +156,9 @@ public class filterListener extends ListenerAdapter {
             time = 5;
         } else if (event.getGuild().getId().equals("617222347425972234")) {
             time = 2;
-        }  else {
+        } else if (event.getGuild().getId().equals("607390893804093442")){
+            time = 7;
+        } else {
             time = 7;
         }
         try {
@@ -163,11 +168,12 @@ public class filterListener extends ListenerAdapter {
                     EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
                             .addField("공개 처형", "당신의 필터링된 메세지도 " + time + "초후 자동으로 삭제됩니다.", true);
                     event.getChannel().sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
+                } else {
+                    messages.delete().queueAfter(time, TimeUnit.SECONDS);
+                    EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
+                            .addField("공개 처형", "당신의 메세지는 " + time + "초후 자동으로 삭제됩니다.", true);
+                    event.getChannel().sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
                 }
-                messages.delete().queueAfter(time, TimeUnit.SECONDS);
-                EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
-                        .addField("공개 처형", "당신의 메세지는 " + time + "초후 자동으로 삭제됩니다.", true);
-                event.getChannel().sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
             }
         } catch (Exception ignored) {
 
