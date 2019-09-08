@@ -13,19 +13,19 @@ public class lewdnekoCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
-        if(event.getChannel().isNSFW()) {
-            WebUtils.ins.scrapeWebPage("https://nekos.life/lewd").async((document) -> {
-                String a = document.toString();
-                int b = a.indexOf("img src=\"");
-                a = a.substring(b);
-                int c = a.indexOf("\" alt=\"neko");
-                a = a.substring(9, c);
-                EmbedBuilder embed = EmbedUtils.embedImage(a);
+        WebUtils.ins.scrapeWebPage("https://nekos.life/lewd").async((document) -> {
+            String a = document.toString();
+            int b = a.indexOf("img src=\"");
+            a = a.substring(b);
+            int c = a.indexOf("\" alt=\"neko");
+            a = a.substring(9, c);
+            EmbedBuilder embed = EmbedUtils.embedImage(a);
+            if(event.getChannel().isNSFW()) {
                 event.getChannel().sendMessage(embed.build()).queue();
-            });
-        } else {
-            channel.sendMessage("이 명령어는 후방주의 채널에서만 사용이 가능합니다.").queue();
-        }
+            } else {
+                event.getAuthor().openPrivateChannel().complete().sendMessage(embed.build()).queue();
+            }
+        });
     }
 
     @Override
