@@ -113,9 +113,6 @@ public class App {
                     .addEventListener(salListener)
                     .addEventListener(publicExecutionListener)
                     .addEventListener(onigiriListener)
-                    .addEventListener(greenServerMuteListener)
-                    .addEventListener(greenAutoBanListener)
-                    .addEventListener(greenServerServerStatusListener)
                     .setGame(Game.streaming("사용법: "
                             + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
                     .build().awaitReady();
@@ -131,9 +128,7 @@ public class App {
                     .addEventListener(memberCountListener)
                     .addEventListener(listener)
                     .addEventListener(filterlistener)
-                    .addEventListener(salListener)
                     .addEventListener(publicExecutionListener)
-                    .addEventListener(onigiriListener)
                     .addEventListener(greenServerMuteListener)
                     .addEventListener(greenAutoBanListener)
                     .addEventListener(greenServerServerStatusListener)
