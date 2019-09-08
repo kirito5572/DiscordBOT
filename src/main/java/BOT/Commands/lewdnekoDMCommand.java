@@ -4,6 +4,7 @@ import BOT.Objects.ICommand;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
@@ -21,7 +22,8 @@ public class lewdnekoDMCommand implements ICommand {
                 int c = a.indexOf("\" alt=\"neko");
                 a = a.substring(9, c);
                 EmbedBuilder embed = EmbedUtils.embedImage(a);
-                event.getAuthor().openPrivateChannel().complete().sendMessage(embed.build()).queue();
+                PrivateChannel DM = event.getAuthor().openPrivateChannel().complete();
+                DM.sendMessage(embed.build()).complete();
             });
         } catch (Exception e){
             channel.sendMessage("DM을 받을수 있게 설정을 변경하여 주세요.").queue();
