@@ -63,6 +63,39 @@ public class filterListener extends ListenerAdapter {
                     if(rawMessage.contains("tenor.com")) {
                         return;
                     }
+                    if(event.getGuild().getId().equals("617222347425972234")) {
+                        if(event.getChannel().getId().equals("620104084799750154")) {
+                            return;
+                        }
+                    }
+                    if(event.getGuild().getId().equals("607390893804093442")) {
+                        if(event.getChannel().getId().equals("607543954476630016")) {
+                            if(rawMessage.contains("youtube")) {
+                                return;
+                            }
+                            if(rawMessage.contains("twitch")) {
+                                return;
+                            }
+                            if(rawMessage.contains("youtu")) {
+                                return;
+                            }
+                        }
+                    }
+                    if(rawMessage.contains("&검색")) {
+                        return;
+                    }
+                    if(rawMessage.contains("&search")) {
+                        return;
+                    }
+                    if(rawMessage.contains("&재생")) {
+                        return;
+                    }
+                    if(rawMessage.contains("&play")) {
+                        return;
+                    }
+                    if(rawMessage.contains("&p")) {
+                        return;
+                    }
                     if(message.getMember().hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                         logger.warn("관리자가 링크를 첨부했으나, 관리자는 필터링 되지 않습니다.");
 

@@ -872,7 +872,23 @@ public class CommandManager {
                             "Usage: `" + App.getPREFIX() + getInvoke() + " [poll content]`";
                 }
             });
+            addCommand(new lewdnekoDMCommand());
+            addCommand(new lewdnekoDMCommand() {
+                @Override
+                public String getInvoke() {
+                    return "lewdDM";
+                }
 
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "lewd neko meme";
+                }
+            });
         }
     }
 
