@@ -55,6 +55,7 @@ public class Listener extends ListenerAdapter {
 
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
+        Message message = event.getMessage();
         StringBuilder IDreader = new StringBuilder();
         StringBuilder IDreader1 = new StringBuilder();
         try {
@@ -107,6 +108,8 @@ public class Listener extends ListenerAdapter {
                         if (event.getMessage().getContentRaw().startsWith(App.getPREFIX())) {
                             event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
 
+                            message.delete().queue();
+
                             return;
                         }
                     }
@@ -118,6 +121,21 @@ public class Listener extends ListenerAdapter {
                 if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                     if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
                         event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
+
+                        message.delete().queue();
+
+                        return;
+                    }
+                }
+            }
+        }
+        if(event.getGuild().getId().equals("607390893804093442")) {
+            if(!event.getChannel().getId().equals("620095220729511977")) {
+                if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                    if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
+                        event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
+
+                        message.delete().queue();
 
                         return;
                     }
