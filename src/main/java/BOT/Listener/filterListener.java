@@ -48,6 +48,15 @@ public class filterListener extends ListenerAdapter {
         for (String s : Lists) {
             if(rawMessage.contains(s)) {
                 try {
+                    try {
+                        if (event.getMember().getRoles().contains(event.getGuild().getRolesByName("공개 처형", true).get(0))) {
+                            message.delete().complete();
+                            event.getChannel().sendMessage(author.getAsMention() + ", 공개처형자의 링크는 예외 없이 즉시 차단됩니다.").queue();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+
+                    }
                     if(event.getGuild().getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
                         return;
                     }
@@ -185,7 +194,8 @@ public class filterListener extends ListenerAdapter {
                         event.getGuild().getTextChannelById("620091943522664466").sendMessage(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
                                 "금지어: " + message.getContentRaw()).queue();
                     }
-                } catch (Exception ignored) {
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }
@@ -194,8 +204,8 @@ public class filterListener extends ListenerAdapter {
         Role role;
         try {
             role = event.getGuild().getRolesByName("공개 처형", true).get(0);
-        } catch (Exception ignored) {
-
+        } catch (Exception e) {
+            e.printStackTrace();
             return;
         }
         int time;
