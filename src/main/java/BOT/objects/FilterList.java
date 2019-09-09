@@ -58,13 +58,13 @@ public class FilterList {
             "좇같", "좇이", "좌식", "주글", "주글래", "주데이", "주뎅", "주뎅이", "주둥아리", 
             "주둥이", "주접", "주접떨", "죽고잡", "죽을래", "죽통", "쥐랄", "쥐롤", "쥬디", 
             "지랄", "지럴", "지롤", "지미랄", "짜식", "짜아식", "쪼다", "쫍빱", "찌랄", "창녀", 
-            "캐년", "캐놈", "캐스끼", "캐스키", "캐시키", "탱구", "팔럼", "퍽큐", "호로", "호로놈", 
+            "캐년", "캐놈", "캐스끼", "캐스키", "캐시키", "탱구", "팔럼", "퍽큐", "호로놈",
             "호로새끼", "호로색", "호로쉑", "호로스까이", "호로스키", "후라들", "후래자식", 
             "후레", "후뢰", "씨ㅋ발", "ㅆ1발", "씌발", "띠발", "띄발", "뛰발", "띠ㅋ발", "뉘뮈", 
 
             "asshole", "bitch", "butt", "cock", "crap", "cunt", "dick", "dumb", 
             "fuck", "gay", "heck", "honky", "kyke", "mot", "mf", "muff", "piss", "nigger", 
-            "pussy", "suck", "shit", "tard", "tojo", "jap", "THOT", "vagina", 
+            "pussy", "suck", "shit", "tard", "tojo", "THOT", "vagina",
             "whore", "slut", "weeaboo", "your mom", "your mommy", "your mother", 
             "zatch", "zipperhead"
     };

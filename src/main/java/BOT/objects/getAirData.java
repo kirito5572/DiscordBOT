@@ -9,11 +9,12 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.io.FileReader;
+import java.net.URLEncoder;
 
 public class getAirData {
     private static long time = System.currentTimeMillis();
-    private static String[] airkorea_data = new String[13];
-    private static String[] airkorea_List = new String[6];
+    private static String[] airkorea_data = new String[16];
+    private static String[] airkorea_List = new String[8];
     {
         airkorea_List[0] = "측정시간";
         airkorea_List[1] = "SO2";
@@ -22,6 +23,7 @@ public class getAirData {
         airkorea_List[4] = "NO2(이산화질소)";
         airkorea_List[5] = "PM10(미세먼지)";
         airkorea_List[6] = "PM2.5(초미세먼지)";
+        airkorea_List[7] = "KHAI(통합대기지수)";
     }
 
     public String[] getAirkorea_data() {
@@ -30,18 +32,128 @@ public class getAirData {
     public String[] getAirkorea_List() {
         return airkorea_List;
     }
+    public String get_StationName(String sido, String dong) {
+        String tmX = "error";
+        String tmY = "error";
+        try {
+            StringBuilder TOKEN = new StringBuilder();
+            try {
+                File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airkoreaLocationAPIKEY.txt");
+                FileReader fileReader = new FileReader(file);
+                int singalCh = 0;
+                while ((singalCh = fileReader.read()) != -1) {
+                    TOKEN.append((char) singalCh);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            String airkorea_url = "http://openapi.airkorea.or.kr/openapi/services/rest/MsrstnInfoInqireSvc/getTMStdrCrdnt?";
+            String numOfRows = "10";
+            String pageNo = "1";
+            String airkorea_serviceKey = TOKEN.toString();
+            dong = URLEncoder.encode(dong, "UTF-8");
+
+            DocumentBuilderFactory airkorea_DB_Factoty = DocumentBuilderFactory.newInstance();
+            DocumentBuilder airkorea_Builder = airkorea_DB_Factoty.newDocumentBuilder();
+            Document airkorea_doc = airkorea_Builder.parse(airkorea_url + "serviceKey=" + airkorea_serviceKey + "&numOfRows=" + numOfRows + "&pageNo=" + pageNo + "&umdName=" + dong);
+
+            // root tag
+            airkorea_doc.getDocumentElement().normalize();
+            // 파싱할 tag
+            NodeList airkorea_nList = airkorea_doc.getElementsByTagName("item");
+
+            Node node = airkorea_nList.item(0);
+
+
+            if(node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                String sidoTemp = get_AirKoreaTagValue("sidoName", element);
+                if(sidoTemp.equals(sido)) {
+                    tmX = get_AirKoreaTagValue("tmX", element);
+                    tmY = get_AirKoreaTagValue("tmY", element);
+                } else {
+                    node = airkorea_nList.item(1);
+                    if(node.getNodeType() == Node.ELEMENT_NODE) {
+                        element = (Element) node;
+                        sidoTemp = get_AirKoreaTagValue("sidoName", element);
+                        if(sidoTemp.equals(sido)) {
+                            tmX = get_AirKoreaTagValue("tmX", element);
+                            tmY = get_AirKoreaTagValue("tmY", element);
+                        } else {
+                            node = airkorea_nList.item(2);
+                            if(node.getNodeType() == Node.ELEMENT_NODE) {
+                                element = (Element) node;
+                                sidoTemp = get_AirKoreaTagValue("sidoName", element);
+                                if(sidoTemp.equals(sido)) {
+                                    tmX = get_AirKoreaTagValue("tmX", element);
+                                    tmY = get_AirKoreaTagValue("tmY", element);
+                                } else {
+                                    return "error1234";
+                                    //error1234 발생시 여기 더 추가해야함!
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(tmX.equals("error")) {
+            return "error1";
+        }
+        String stationName = "";
+        try {
+            StringBuilder TOKEN = new StringBuilder();
+            try {
+                File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airkoreaLocationAPIKEY.txt");
+                FileReader fileReader = new FileReader(file);
+                int singalCh = 0;
+                while ((singalCh = fileReader.read()) != -1) {
+                    TOKEN.append((char) singalCh);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            String airkorea_url = "http://openapi.airkorea.or.kr/openapi/services/rest/MsrstnInfoInqireSvc/getNearbyMsrstnList?";
+            String airkorea_serviceKey = TOKEN.toString();
+
+            DocumentBuilderFactory airkorea_DB_Factoty = DocumentBuilderFactory.newInstance();
+            DocumentBuilder airkorea_Builder = airkorea_DB_Factoty.newDocumentBuilder();
+            Document airkorea_doc = airkorea_Builder.parse(airkorea_url + "tmX=" + tmX + "&tmY=" + tmY + "&serviceKey=" + airkorea_serviceKey);
+
+            // root tag
+            airkorea_doc.getDocumentElement().normalize();
+            // 파싱할 tag
+            NodeList airkorea_nList = airkorea_doc.getElementsByTagName("item");
+
+            Node node = airkorea_nList.item(0);
+
+            if(node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                stationName = get_AirKoreaTagValue("stationName", element);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        airkorea_data[15] = sido + stationName + "측정소";
+
+        return stationName;
+    }
 
 
     public void get_API(String stationName) {
         try{
 
-            String TOKEN = "";
+            StringBuilder TOKEN = new StringBuilder();
             try {
                 File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airkoreaAPIKEY.txt");
                 FileReader fileReader = new FileReader(file);
                 int singalCh = 0;
                 while((singalCh = fileReader.read()) != -1) {
-                    TOKEN = TOKEN + (char)singalCh;
+                    TOKEN.append((char) singalCh);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -52,7 +164,7 @@ public class getAirData {
             String numOfRows = "10";
             String pageNo = "1";
             String ver = "1.3";
-            String airkorea_serviceKey = TOKEN;
+            String airkorea_serviceKey = TOKEN.toString();
 
 
             DocumentBuilderFactory airkorea_DB_Factoty = DocumentBuilderFactory.newInstance();
@@ -120,7 +232,7 @@ public class getAirData {
             e.printStackTrace();
         }	// try~catch end
     }
-    public static String get_AirKoreaTagValue(String airkorea_tag, Element airkorea_eElement) {
+    static String get_AirKoreaTagValue(String airkorea_tag, Element airkorea_eElement) {
         NodeList nlList = airkorea_eElement.getElementsByTagName(airkorea_tag).item(0).getChildNodes();
         Node nValue = nlList.item(0);
         if(nValue == null)

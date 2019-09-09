@@ -31,36 +31,34 @@ public class AirInforCommand implements ICommand {
             return;
         }
         getAirData airData = new getAirData();
-        for(int i = 0; i < 16; i++) {
-            if(joined.equals(list[i])) {
-                setListFlag(true);
-            }
-        }
-        if(!isListFlag()) {
-            if(!joined.equals("지역")) {
-                channel.sendMessage("그런 측정소는 없습니다.\n" +
-                        "측정소 리스트: `" + Constants.PREFIX + getInvoke() + "지역`").queue();
-            }
+        String temp = airData.get_StationName(args.get(0), args.get(1));
+        if(temp.equals("error1")) {
+            channel.sendMessage("해당 시도에 그런 읍면동이 존재하지 않습니다.").queue();
+
+            return;
+        } else if(temp.equals("error1234")) {
+            channel.sendMessage("봇 제작에게 getAireDate의 if 판독문을 추가해주라고 말해주세요.").queue();
+
             return;
         }
-        airData.get_API(joined);
+        airData.get_API(temp);
         String[] data = airData.getAirkorea_data();
         String[] air_list = airData.getAirkorea_List();
         for(int i = 0; i < 7; i++) {
             switch (data[i + 8]) {
-                case "0": {
+                case "1": {
                     data[i + 8] = "좋음";
                     break;
                 }
-                case "1": {
+                case "2": {
                     data[i + 8] = "보통";
                     break;
                 }
-                case "2": {
+                case "3": {
                     data[i + 8] = "나쁨";
                     break;
                 }
-                case "3": {
+                case "4": {
                     data[i + 8] = "매우 나쁨";
                     break;
                 }
@@ -71,10 +69,9 @@ public class AirInforCommand implements ICommand {
                 e.printStackTrace();
             }
             rank[i] = data[i + 8];
-            System.out.println(data[i+1] + "/" + data[i+8] + "/" +rank[i]);
         }
         EmbedBuilder builder = EmbedUtils.defaultEmbed()
-                .setTitle("공기질 측정표(airkorea 제공)");
+                .setTitle("공기질 측정표(" + data[15] + ")");
         builder.addField(
                 "1. " + air_list[0] + "\n",
                 data[0],
@@ -98,10 +95,11 @@ public class AirInforCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "입력된 측정소의 대기질 측정값을 읽어옵니다.(인천만 지원)\n" +
-                "사용법: `" + Constants.PREFIX + getInvoke() + "` (측정소명)\n" +
-                "측정소명: `" + Constants.PREFIX + getInvoke() + "지역` \n" +
-                "`From airkorea.or.kr` `API from data.go.kr`";
+        return "입력된 광역시도의 읍면동의 미세먼지 값을 불러옵니다.\n" +
+                "사용법: `" + Constants.PREFIX + getInvoke() + "` (광역시도) (읍면동)\n" +
+                "에시: `" + Constants.PREFIX + getInvoke() + "인천광역시 송림동` \n" +
+                "`From airkorea.or.kr` `API from data.go.kr`\n" +
+                "이 값은 오차가 있을수도 있습니다. 항상 정확한것은 아닙니다.";
     }
 
     @Override
