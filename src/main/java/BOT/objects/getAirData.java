@@ -169,7 +169,8 @@ public class getAirData {
 
             DocumentBuilderFactory airkorea_DB_Factoty = DocumentBuilderFactory.newInstance();
             DocumentBuilder airkorea_Builder = airkorea_DB_Factoty.newDocumentBuilder();
-            Document airkorea_doc = airkorea_Builder.parse(airkorea_url + "?&stationName=" + stationName + "&dataTerm=" + dataTerm + "&numOfRows" + numOfRows + "&pageNo=" + pageNo + "&ver=" + ver + "&serviceKey=" + airkorea_serviceKey);
+            String url = airkorea_url + "?&stationName=" + stationName + "&dataTerm=" + dataTerm + "&numOfRows" + numOfRows + "&pageNo=" + pageNo + "&ver=" + ver + "&serviceKey=" + airkorea_serviceKey;
+            Document airkorea_doc = airkorea_Builder.parse(url);
 
             // root tag
             airkorea_doc.getDocumentElement().normalize();
