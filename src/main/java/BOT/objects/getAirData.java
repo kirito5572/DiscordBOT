@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.io.FileReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class getAirData {
@@ -138,8 +139,12 @@ public class getAirData {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        airkorea_data[15] = sido + stationName + "측정소";
-
+        airkorea_data[15] = sido + " " + stationName + " 측정소";
+        try {
+            stationName = URLEncoder.encode(stationName, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         return stationName;
     }
 
@@ -171,7 +176,6 @@ public class getAirData {
             DocumentBuilder airkorea_Builder = airkorea_DB_Factoty.newDocumentBuilder();
             String url = airkorea_url + "?&stationName=" + stationName + "&dataTerm=" + dataTerm + "&numOfRows" + numOfRows + "&pageNo=" + pageNo + "&ver=" + ver + "&serviceKey=" + airkorea_serviceKey;
             Document airkorea_doc = airkorea_Builder.parse(url);
-            System.out.println(url);
 
             // root tag
             airkorea_doc.getDocumentElement().normalize();
@@ -187,13 +191,13 @@ public class getAirData {
             String airkorea_pm10V = "";
             String airkorea_pm25V = "";
             String airkorea_khaiV = "";
-            String airkorea_khaiG = "";
-            String airkorea_so2G = "";
-            String airkorea_coG = "";
-            String airkorea_o3G = "";
-            String airkorea_no2G = "";
-            String airkorea_pm10G = "";
-            String airkorea_pm25G = "";
+            String airkorea_khaiG = "-";
+            String airkorea_so2G = "-";
+            String airkorea_coG = "-";
+            String airkorea_o3G = "-";
+            String airkorea_no2G = "-";
+            String airkorea_pm10G = "-";
+            String airkorea_pm25G = "-";
             if(nNode.getNodeType() == Node.ELEMENT_NODE){
 
                 Element eElement = (Element) nNode;

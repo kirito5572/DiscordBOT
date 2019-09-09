@@ -44,6 +44,16 @@ public class AirInforCommand implements ICommand {
         airData.get_API(temp);
         String[] data = airData.getAirkorea_data();
         String[] air_list = airData.getAirkorea_List();
+        for(int i = 0; i < 16; i++) {
+            if(data[i] == null) {
+                data[i] = "정보 없음";
+            }
+            if(i < 8) {
+               if(data[i].equals("-")) {
+                   data[i] = "정보 없음";
+               }
+            }
+        }
         for(int i = 0; i < 7; i++) {
             switch (data[i + 8]) {
                 case "1": {

@@ -74,7 +74,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/BOT/Commands/Music" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -258,6 +258,7 @@
       <workItem from="1567911363306" duration="10137000" />
       <workItem from="1567933460422" duration="6946000" />
       <workItem from="1567995395857" duration="7682000" />
+      <workItem from="1568006170982" duration="1982000" />
     </task>
     <servers />
   </component>
