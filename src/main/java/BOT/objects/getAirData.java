@@ -171,6 +171,7 @@ public class getAirData {
             DocumentBuilder airkorea_Builder = airkorea_DB_Factoty.newDocumentBuilder();
             String url = airkorea_url + "?&stationName=" + stationName + "&dataTerm=" + dataTerm + "&numOfRows" + numOfRows + "&pageNo=" + pageNo + "&ver=" + ver + "&serviceKey=" + airkorea_serviceKey;
             Document airkorea_doc = airkorea_Builder.parse(url);
+            System.out.println(url);
 
             // root tag
             airkorea_doc.getDocumentElement().normalize();
