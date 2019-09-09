@@ -97,6 +97,7 @@ public class gameServerBanCommand implements ICommand {
                 String NickName;
                 String ID;
                 ID = a2;
+                String timeText = time;
 
                 NickName = temp[0];
 
@@ -173,7 +174,7 @@ public class gameServerBanCommand implements ICommand {
                         .setColor(Color.RED)
                         .addField("제재 대상자", NickName, false)
                         .addField("스팀 ID", ID, false)
-                        .addField("정지 기간", time, false)
+                        .addField("정지 기간", timeText, false)
                         .addField("위반 규정 조항", reason.toString(), false)
                         .addField("제재 담당자", event.getAuthor().getAsMention(), false);
 
