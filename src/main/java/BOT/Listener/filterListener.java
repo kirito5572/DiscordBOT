@@ -205,7 +205,6 @@ public class filterListener extends ListenerAdapter {
         try {
             role = event.getGuild().getRolesByName("공개 처형", true).get(0);
         } catch (Exception e) {
-            e.printStackTrace();
             return;
         }
         int time;

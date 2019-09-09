@@ -123,7 +123,7 @@ public class ColorCommand implements ICommand {
             if(event.getGuild().getId().equals("617757206929997895")) {
                 setChange_flag(true);
             }
-            if(event.getGuild().getId().equals("607390781933617182")) {
+            if(event.getGuild().getId().equals("607390203086372866")) {
                 setChange_flag(true);
             }
             if (isChange_flag() || delete) {

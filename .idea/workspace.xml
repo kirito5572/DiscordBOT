@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/ColorCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/ColorCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/publicExecutionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/publicExecutionCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/Listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/Listener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/filterListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/filterListener.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -249,7 +250,7 @@
       <workItem from="1567933460422" duration="6946000" />
       <workItem from="1567995395857" duration="7682000" />
       <workItem from="1568006170982" duration="5157000" />
-      <workItem from="1568023574599" duration="246000" />
+      <workItem from="1568023574599" duration="1020000" />
     </task>
     <servers />
   </component>
