@@ -53,9 +53,7 @@ public class filterListener extends ListenerAdapter {
                             message.delete().complete();
                             event.getChannel().sendMessage(author.getAsMention() + ", 공개처형자의 링크는 예외 없이 즉시 차단됩니다.").queue();
                         }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-
+                    } catch (Exception ignored) {
                     }
                     if(event.getGuild().getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
                         return;
