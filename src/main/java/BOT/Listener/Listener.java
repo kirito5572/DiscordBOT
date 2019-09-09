@@ -142,6 +142,20 @@ public class Listener extends ListenerAdapter {
                 }
             }
         }
+        if(event.getGuild().getId().equals("607390781933617182")) {
+            if(!event.getChannel().getId().equals("619271283586367498")) {
+                if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                    if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
+                        event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
+
+                        message.delete().queue();
+
+                        return;
+                    }
+                }
+            }
+        }
+
 
         if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
             manager.handleCommand(event);
@@ -173,6 +187,7 @@ public class Listener extends ListenerAdapter {
                     event.getJDA().getGuildById("508913681279483913").getTextChannelById("539466073343524864").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
                     event.getJDA().getGuildById("453817631603032065").getTextChannelById("574856464347430914").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
                     event.getJDA().getGuildById("607390893804093442").getTextChannelById("620223554172092460").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                    event.getJDA().getGuildById("607390203086372866").getTextChannelById("607390781933617182").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
                 } else {
                     event.getJDA().getGuildById("600010501266866186").getTextChannelById("600010501266866188").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
                 }

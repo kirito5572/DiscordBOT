@@ -5,21 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/getAirData.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/getAirData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/rito-bot-1.4.x-all.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/rito-bot-1.4.x-all.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/AirInforCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/AirInforCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/VersionCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/VersionCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/Listener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/Listener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/publicExecutionListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/objects/getAirData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/objects/getAirData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/ColorCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/ColorCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/publicExecutionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/publicExecutionCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/Listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/Listener.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -260,6 +249,7 @@
       <workItem from="1567933460422" duration="6946000" />
       <workItem from="1567995395857" duration="7682000" />
       <workItem from="1568006170982" duration="5157000" />
+      <workItem from="1568023574599" duration="246000" />
     </task>
     <servers />
   </component>

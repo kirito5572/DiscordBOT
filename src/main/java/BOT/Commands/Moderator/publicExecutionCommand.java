@@ -111,6 +111,9 @@ public class publicExecutionCommand implements ICommand {
                 case "607390893804093442":
                     event.getGuild().getTextChannelById("620091943522664466").sendMessage(builder.build()).queue();
                     break;
+                case "607390781933617182":
+                    event.getGuild().getTextChannelById("620560178424578061").sendMessage(builder.build()).queue();
+                    break;
                 default:
                     channel.sendMessage(builder.build()).queue();
                     break;
@@ -138,6 +141,9 @@ public class publicExecutionCommand implements ICommand {
                     break;
                 case "607390893804093442":
                     event.getGuild().getTextChannelById("620091943522664466").sendMessage(builder.build()).queue();
+                    break;
+                case "607390781933617182":
+                    event.getGuild().getTextChannelById("620560178424578061").sendMessage(builder.build()).queue();
                     break;
                 default:
                     channel.sendMessage(builder.build()).queue();
