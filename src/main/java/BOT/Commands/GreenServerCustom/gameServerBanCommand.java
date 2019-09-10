@@ -138,8 +138,12 @@ public class gameServerBanCommand implements ICommand {
                 return;
             }
 
-            NickName = NickName.replace(" ", "");
+            NickName = NickName.replaceAll(" ", "");
             NickName= NickName.replaceAll("\\p{Z}","");
+            NickName = NickName.replace("\n", "");
+            ID = ID.replaceAll(" ", "");
+            ID = ID.replaceAll("\\p{Z}","");
+            ID = ID.replace("\n", "");
 
             EmbedBuilder builder = EmbedUtils.defaultEmbed()
                     .setTitle("인 게임 정지 제재")
