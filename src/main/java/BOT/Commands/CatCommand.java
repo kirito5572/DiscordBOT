@@ -32,7 +32,7 @@ public class CatCommand implements ICommand {
         } catch (Exception ignored) {
 
         }
-        if(num < 10) {
+        if(num > 10) {
             event.getChannel().sendMessage("최대 전송 가능량은 10개입니다.").queue();
 
             return;
@@ -45,24 +45,24 @@ public class CatCommand implements ICommand {
         }
         TextChannel channel = event.getChannel();
         Message message;
-        message = channel.sendMessage("*주의 이 커맨드는 네다씹 커맨드입니다*." + "\n" +
-                "실행을 원하시면 :one: 아니면 :two:").complete();
-
-        try {
-            Thread.sleep(400);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        String ID = channel.getLatestMessageId();
-
-        channel.addReactionById(ID, "1\u20E3").queue();
-        channel.addReactionById(ID, "2\u20E3").queue();
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         if(event.getGuild().getId().equals("600010501266866186")) {
+            message = channel.sendMessage("*주의 이 커맨드는 네다씹 커맨드입니다*." + "\n" +
+                    "실행을 원하시면 :one: 아니면 :two:").complete();
+
+            try {
+                Thread.sleep(400);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            String ID = message.getId();
+
+            channel.addReactionById(ID, "1\u20E3").queue();
+            channel.addReactionById(ID, "2\u20E3").queue();
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             boolean flag = true;
 
             for (int j = 0; j < 11; j++) {
