@@ -31,7 +31,7 @@ public class lewdnekoCommand implements ICommand {
                 if(!event.getGuild().getId().equals("600010501266866186")) {
                     event.getAuthor().openPrivateChannel().complete().sendMessage(embed.build()).queue();
                 } else {
-                    InputStream inputStream = this.getClass().getResourceAsStream("/" + "haha1");
+                    InputStream inputStream = this.getClass().getResourceAsStream("/" + "haha1.jpg");
                     File file;
                     try {
                         file = convertInputStreamToFile(inputStream, ".jpg");
