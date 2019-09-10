@@ -10,8 +10,14 @@ import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
+import static BOT.Listener.ONIGIRIListener.convertInputStreamToFile;
 
 public class CatCommand implements ICommand {
     @Override
@@ -33,6 +39,7 @@ public class CatCommand implements ICommand {
             EmbedBuilder embed = EmbedUtils.embedImage(a);
             TextChannel channel = event.getChannel();
             Message message;
+
             if(event.getGuild().getId().equals("600010501266866186")) {
                 try {
                     message = channel.sendMessage("*주의 이 커맨드는 네다씹 커맨드입니다*." + "\n" +
@@ -49,10 +56,29 @@ public class CatCommand implements ICommand {
                         Thread.sleep(1000);
                         System.out.println(channel.getMessageById(ID).complete().getReactions().get(0).getReactionEmote().getEmote());
                         if (channel.getMessageById(ID).complete().getReactions().get(0).getCount() == 2) {
+                            Random random = new Random();
                             PrivateChannel channel1;
                             channel1 = event.getAuthor().openPrivateChannel().complete();
-                            channel1.sendMessage(embed.build()).queue();
-                            message.delete().queue();
+                            if(random.nextInt(100) > 5) { //95%
+                                channel1.sendMessage(embed.build()).queue();
+                                message.delete().queue();
+                            } else { //5%
+                                Random fileRandom = new Random();
+                                int intTemp = fileRandom.nextInt(6);
+                                InputStream inputStream = this.getClass().getResourceAsStream("/" + "lol" + intTemp +".jpg");
+                                File file;
+                                try {
+                                    file = convertInputStreamToFile(inputStream, ".jpg");
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+
+                                    event.getChannel().sendMessage("에러가 발생했습니다.").queue();
+
+                                    return;
+                                }
+                                channel1.sendFile(file).queue();
+                                message.delete().queue();
+                            }
 
                             return;
                         } else if (channel.getMessageById(ID).complete().getReactions().get(1).getCount() == 2) {

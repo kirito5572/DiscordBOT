@@ -160,16 +160,18 @@ public class gameServerBanCommand implements ICommand {
             reportChannel.sendMessage(builder.build()).queue();
 
 
-            System.out.println("oban " + NickName + " " + ID + " " + time);
+            String text = "+oban " + NickName + " " + ID + " " + time + " " + reason.toString();
+            System.out.println(text);
             if(event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
                     event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.IDLE)) {
-                botChannel.sendMessage("+oban " + NickName + " " + ID + " " + time).queue();
+                botChannel.sendMessage(text).queue();
             } else {
                 event.getChannel().sendMessage("1서버가 종료상태이므로, 1,2,3,4 서버에 밴이 적용되지 않습니다.").queue();
             }
             if(event.getGuild().getMemberById("600676751118696448").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
                     event.getGuild().getMemberById("600676751118696448").getOnlineStatus().equals(OnlineStatus.IDLE)) {
-                botChannel1.sendMessage("+oban " + NickName + " " + ID + " " + time).queue();
+
+                botChannel1.sendMessage(text).queue();
             } else {
                 event.getChannel().sendMessage("5서버가 종료상태이므로, 5서버에 밴이 적용되지 않습니다.").queue();
             }
@@ -183,9 +185,8 @@ public class gameServerBanCommand implements ICommand {
     @Override
     public String getHelp() {
         return "게임 서버에서 밴을 합니다. \n" +
-                "사용법:" + App.getPREFIX() + getInvoke() + " <SteamID/스팀 닉네임> <시간> <사유>" +
-                "시간 가능 인수: 1m(1min)/1h(1Hour)/1d(1day)/1M(1month)/1y(1year)/영구(99999999min)" +
-                "스팀 닉네임은 꼭 붙혀서 써주시기 바랍니다.";
+                "사용법:" + App.getPREFIX() + getInvoke() + " <SteamID> <시간> <사유>\n" +
+                "시간 가능 인수: 1m(1min)/1h(1Hour)/1d(1day)/1M(1month)/1y(1year)/영구(99999999min)";
     }
 
     @Override
