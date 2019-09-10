@@ -42,11 +42,6 @@ public class lewdnekoCommand implements ICommand {
 
                         return;
                     }
-                    try {
-                        event.getChannel().sendFile(file).complete();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
                     event.getChannel().sendMessage("당신의 흑심! 너굴맨이 처리했으니까 안심하라구!").addFile(file).queue();
                 }
             }
