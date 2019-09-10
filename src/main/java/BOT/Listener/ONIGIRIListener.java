@@ -44,7 +44,7 @@ public class ONIGIRIListener extends ListenerAdapter {
             }
         }
     }
-    private File convertInputStreamToFile(InputStream is, String suffix) throws IOException {
+    public static File convertInputStreamToFile(InputStream is, String suffix) throws IOException {
         File file = File.createTempFile("C://temp", suffix);
 
         OutputStream outputStream = new FileOutputStream(file);

@@ -7,7 +7,12 @@ import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+
+import static BOT.Listener.ONIGIRIListener.convertInputStreamToFile;
 
 public class lewdnekoCommand implements ICommand {
     @Override
@@ -26,7 +31,23 @@ public class lewdnekoCommand implements ICommand {
                 if(!event.getGuild().getId().equals("600010501266866186")) {
                     event.getAuthor().openPrivateChannel().complete().sendMessage(embed.build()).queue();
                 } else {
-                    event.getChannel().sendMessage("당신의 흑심! 너굴맨이 처리했으니까 안심하라구!").queue();
+                    InputStream inputStream = this.getClass().getResourceAsStream("/" + "haha1");
+                    File file;
+                    try {
+                        file = convertInputStreamToFile(inputStream, ".jpg");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+
+                        event.getChannel().sendMessage("에러가 발생했습니다.").queue();
+
+                        return;
+                    }
+                    try {
+                        event.getChannel().sendFile(file).complete();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    event.getChannel().sendMessage("당신의 흑심! 너굴맨이 처리했으니까 안심하라구!").addFile(file).queue();
                 }
             }
         });
