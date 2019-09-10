@@ -7,13 +7,11 @@ import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Channel;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.PrivateChannel;
-import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class CatCommand implements ICommand {
     @Override
@@ -34,14 +32,13 @@ public class CatCommand implements ICommand {
             a = a.substring(b + 32, c - 5);
             EmbedBuilder embed = EmbedUtils.embedImage(a);
             TextChannel channel = event.getChannel();
+            Message message;
             if(event.getGuild().getId().equals("600010501266866186")) {
                 try {
-                    channel.sendMessage("*주의* 이 커맨드는 네다씹 커맨드입니다." + "\n" +
-                            "실행을 원하시면 :one: 아니면 :two:").queue();
+                    message = channel.sendMessage("*주의 이 커맨드는 네다씹 커맨드입니다*." + "\n" +
+                            "실행을 원하시면 :one: 아니면 :two:").complete();
 
-                    System.out.println("TP1");
                     Thread.sleep(400);
-                    System.out.println("TP2");
                     String ID = channel.getLatestMessageId();
 
                     channel.addReactionById(ID, "1\u20E3").queue();
@@ -55,8 +52,13 @@ public class CatCommand implements ICommand {
                             PrivateChannel channel1;
                             channel1 = event.getAuthor().openPrivateChannel().complete();
                             channel1.sendMessage(embed.build()).queue();
+                            message.delete().queue();
+
+                            return;
                         } else if (channel.getMessageById(ID).complete().getReactions().get(1).getCount() == 2) {
-                            event.getChannel().sendMessage("전송이 취소되었습니다.").queue();
+                            message.delete().complete();
+                            message = event.getChannel().sendMessage("전송이 취소되었습니다.").complete();
+                            message.delete().queueAfter(5, TimeUnit.SECONDS);
                             return;
                         }
                     }
@@ -64,7 +66,9 @@ public class CatCommand implements ICommand {
                     e.printStackTrace();
                 }
 
-                channel.sendMessage("대기 시간이 초과되어 전송이 취소되었습니다.").queue();
+                message = channel.sendMessage("대기 시간이 초과되어 전송이 취소되었습니다.").complete();
+                message.delete().queueAfter(5, TimeUnit.SECONDS);
+
             } else {
                 event.getChannel().sendMessage(embed.build()).queue();
             }
