@@ -33,7 +33,12 @@ public class filterListener extends ListenerAdapter {
         String[] list = FilterList.getCharList();
         String[] Lists = FilterList.getWebList();
         String id = "";
-        String rawMessage = message.getContentRaw();
+        String rawMessage;
+        try {
+            rawMessage = message.getContentRaw();
+        } catch (Exception e) {
+            return;
+        }
         if(!rawMessage.equals(latestMessage)) {
             latestMessage = rawMessage;
         } else {
