@@ -2,8 +2,8 @@ package BOT.Commands.GreenServerCustom;
 
 import BOT.App;
 import BOT.Objects.ICommand;
+import BOT.Objects.getSteamID;
 import me.duncte123.botcommons.messaging.EmbedUtils;
-import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.Permission;
@@ -67,139 +67,109 @@ public class gameServerBanCommand implements ICommand {
             TextChannel botChannel1 = event.getGuild().getTextChannelById("609057247116525650");
             TextChannel adminChannel = event.getGuild().getTextChannelById("609781460785692672");
             TextChannel reportChannel = event.getGuild().getTextChannelById("600015587544006679");
-            final String[] temp = new String[1];
-            WebUtils.ins.scrapeWebPage("https://steamid.io/lookup/" + SteamID).async((document1 -> {
-                String time = time_non;
-                String a1 = document1.getElementsByTag("body").first().toString();
-                String a2 = a1;
+
+            String time = time_non;
+            String[] returns = getSteamID.SteamID(SteamID);
+            String NickName = returns[0];
+            String ID = returns[1];
+
+            int temp1;
+            if (time.contains("m")) {
+                time = time.substring(0,time.indexOf("m"));
                 try {
-                    int b2 = a2.indexOf("data-clipboard-text=\"");
-                    int b1 = a1.indexOf(" <dt class=\"key\">\n" +
-                            "       name");
-                    a1 = a1.substring(b1 + 75);
-                    a2 = a2.substring(b2 + 21);
-                    b2 = a2.indexOf("data-clipboard-text=\"");
-                    a2 = a2.substring(b2 + 21);
-                    b2 = a2.indexOf("data-clipboard-text=\"");
-                    a2 = a2.substring(b2 + 21);
-                    int c1 = a1.indexOf("</dd>");
-                    int c2 = a2.indexOf(" src=");
-                    a1 = a1.substring(0, c1 - 7);
-                    a2 = a2.substring(0, c2 - 1);
-                    System.out.println(a1);
-                    System.out.println(a2);
-                    temp[0] = a1;
+                    temp1 = Integer.parseInt(time);
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    channel.sendMessage("봇이 스팀 프로필을 불러오는데 실패하였습니다.").queue();
-
-                }
-                String NickName;
-                String ID;
-                ID = a2;
-
-                NickName = temp[0];
-
-                int temp1;
-                if (time.contains("m")) {
-                    time = time.substring(0,time.indexOf("m"));
-                    try {
-                        temp1 = Integer.parseInt(time);
-                    } catch (Exception e) {
-                        channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
-
-                        return;
-                    }
-                    time = String.valueOf(temp1);
-
-                } else if(time.contains("h")) {
-                    time = time.substring(0,time.indexOf("h"));
-                    try {
-                        temp1 = Integer.parseInt(time);
-                    } catch (Exception e) {
-                        channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
-
-                        return;
-                    }
-                    time = String.valueOf((temp1 * 60));
-
-
-                } else if(time.contains("d")) {
-                    time = time.substring(0,time.indexOf("d"));
-                    try {
-                        temp1 = Integer.parseInt(time);
-                    } catch (Exception e) {
-                        channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
-
-                        return;
-                    }
-                    time = String.valueOf((temp1 * 1440));
-
-                } else if(time.contains("M")) {
-                    time = time.substring(0,time.indexOf("M"));
-                    try {
-                        temp1 = Integer.parseInt(time);
-                    } catch (Exception e) {
-                        channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
-
-                        return;
-                    }
-                    time = String.valueOf((temp1 * 43830));
-
-                } else if(time.contains("y")) {
-                    time = time.substring(0,time.indexOf("y"));
-                    try {
-                        temp1 = Integer.parseInt(time);
-                    } catch (Exception e) {
-                        channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
-
-                        return;
-                    }
-                    time = String.valueOf((temp1 * 525960));
-                } else if(time.contains("영구")) {
-                    time = "99999999";
-                } else {
-                    channel.sendMessage("시간 단위가 틀렸거나, 스팀 닉네임의 띄워쓰기를 삭제하여 주세요.\n" +
-                            "사용법: `" + App.getPREFIX() + "명령어/도움말/help" +getInvoke() + "`").queue();
+                    channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
 
                     return;
                 }
+                time = String.valueOf(temp1);
 
-                NickName = NickName.replace(" ", "");
-                NickName= NickName.replaceAll("\\p{Z}","");
+            } else if(time.contains("h")) {
+                time = time.substring(0,time.indexOf("h"));
+                try {
+                    temp1 = Integer.parseInt(time);
+                } catch (Exception e) {
+                    channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
 
-                EmbedBuilder builder = EmbedUtils.defaultEmbed()
-                        .setTitle("인 게임 정지 제재")
-                        .setColor(Color.RED)
-                        .addField("제재 대상자", NickName, false)
-                        .addField("스팀 ID", ID, false)
-                        .addField("정지 기간", time_non, false)
-                        .addField("위반 규정 조항", reason.toString(), false)
-                        .addField("제재 담당자", event.getAuthor().getAsMention(), false);
-
-                adminChannel.sendMessage("" + event.getMember().getAsMention() + ", ` " + NickName + " ( " + ID + " )제재 완료\n" +
-                        "기간: " + time + "`").queue();
-
-                reportChannel.sendMessage(builder.build()).queue();
-
-
-                System.out.println("oban " + NickName + " " + ID + " " + time);
-                if(event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
-                        event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.IDLE)) {
-                    botChannel.sendMessage("+oban " + NickName + " " + ID + " " + time).queue();
-                } else {
-                    event.getChannel().sendMessage("1서버가 종료상태이므로, 1,2,3,4 서버에 밴이 적용되지 않습니다.").queue();
+                    return;
                 }
-                if(event.getGuild().getMemberById("600676751118696448").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
-                        event.getGuild().getMemberById("600676751118696448").getOnlineStatus().equals(OnlineStatus.IDLE)) {
-                    botChannel1.sendMessage("+oban " + NickName + " " + ID + " " + time).queue();
-                } else {
-                    event.getChannel().sendMessage("5서버가 종료상태이므로, 5서버에 밴이 적용되지 않습니다.").queue();
+                time = String.valueOf((temp1 * 60));
+
+
+            } else if(time.contains("d")) {
+                time = time.substring(0,time.indexOf("d"));
+                try {
+                    temp1 = Integer.parseInt(time);
+                } catch (Exception e) {
+                    channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
+
+                    return;
                 }
-                event.getChannel().sendMessage("밴 적용 완료").queue();
+                time = String.valueOf((temp1 * 1440));
 
-            }));
+            } else if(time.contains("M")) {
+                time = time.substring(0,time.indexOf("M"));
+                try {
+                    temp1 = Integer.parseInt(time);
+                } catch (Exception e) {
+                    channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
 
+                    return;
+                }
+                time = String.valueOf((temp1 * 43830));
+
+            } else if(time.contains("y")) {
+                time = time.substring(0,time.indexOf("y"));
+                try {
+                    temp1 = Integer.parseInt(time);
+                } catch (Exception e) {
+                    channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
+
+                    return;
+                }
+                time = String.valueOf((temp1 * 525960));
+            } else if(time.contains("영구")) {
+                time = "99999999";
+            } else {
+                channel.sendMessage("시간 단위가 틀렸거나, 스팀 닉네임의 띄워쓰기를 삭제하여 주세요.\n" +
+                        "사용법: `" + App.getPREFIX() + "명령어/도움말/help" +getInvoke() + "`").queue();
+
+                return;
+            }
+
+            NickName = NickName.replace(" ", "");
+            NickName= NickName.replaceAll("\\p{Z}","");
+
+            EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                    .setTitle("인 게임 정지 제재")
+                    .setColor(Color.RED)
+                    .addField("제재 대상자", NickName, false)
+                    .addField("스팀 ID", ID, false)
+                    .addField("정지 기간", time_non, false)
+                    .addField("위반 규정 조항", reason.toString(), false)
+                    .addField("제재 담당자", event.getAuthor().getAsMention(), false);
+
+            adminChannel.sendMessage("" + event.getMember().getAsMention() + ", ` " + NickName + " ( " + ID + " )제재 완료\n" +
+                    "기간: " + time + "`").queue();
+
+            reportChannel.sendMessage(builder.build()).queue();
+
+
+            System.out.println("oban " + NickName + " " + ID + " " + time);
+            if(event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
+                    event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.IDLE)) {
+                botChannel.sendMessage("+oban " + NickName + " " + ID + " " + time).queue();
+            } else {
+                event.getChannel().sendMessage("1서버가 종료상태이므로, 1,2,3,4 서버에 밴이 적용되지 않습니다.").queue();
+            }
+            if(event.getGuild().getMemberById("600676751118696448").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
+                    event.getGuild().getMemberById("600676751118696448").getOnlineStatus().equals(OnlineStatus.IDLE)) {
+                botChannel1.sendMessage("+oban " + NickName + " " + ID + " " + time).queue();
+            } else {
+                event.getChannel().sendMessage("5서버가 종료상태이므로, 5서버에 밴이 적용되지 않습니다.").queue();
+            }
+            event.getChannel().sendMessage("밴 적용 완료").queue();
 
         } else {
             channel.sendMessage("이 명령어는 이 서버에서 지원하지 않습니다.").queue();

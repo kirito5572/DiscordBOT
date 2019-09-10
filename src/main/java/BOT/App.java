@@ -45,6 +45,7 @@ public class App {
         GreenServerMuteListener greenServerMuteListener = new GreenServerMuteListener();
         GreenAutoBanListener greenAutoBanListener = new GreenAutoBanListener();
         GreenServerServerStatusListener greenServerServerStatusListener = new GreenServerServerStatusListener();
+        GreenServerNoticeListener greenServerNoticeListener = new GreenServerNoticeListener();
 
         StringBuilder TOKENreader = new StringBuilder();
         try {

@@ -23,7 +23,11 @@ public class lewdnekoCommand implements ICommand {
             if(event.getChannel().isNSFW()) {
                 event.getChannel().sendMessage(embed.build()).queue();
             } else {
-                event.getAuthor().openPrivateChannel().complete().sendMessage(embed.build()).queue();
+                if(!event.getGuild().getId().equals("600010501266866186")) {
+                    event.getAuthor().openPrivateChannel().complete().sendMessage(embed.build()).queue();
+                } else {
+                    event.getChannel().sendMessage("당신의 흑심! 너굴맨이 처리했으니까 안심하라구!").queue();
+                }
             }
         });
     }
