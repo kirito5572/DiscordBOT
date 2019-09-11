@@ -46,8 +46,12 @@ public class filterListener extends ListenerAdapter {
             return;
         }
         Logger logger = LoggerFactory.getLogger(filterListener.class);
-        if(event.getGuild().getId().equals("453817631603032065")) {
-            return;
+        try {
+            if (event.getGuild().getId().equals("453817631603032065")) {
+                return;
+
+            }
+        } catch (Exception ignored) {
 
         }
         for (String s : Lists) {
@@ -144,7 +148,9 @@ public class filterListener extends ListenerAdapter {
                     event.getChannel().sendMessage(event.getMember().getAsMention() + ", 링크를 보내지 마세요.").queue();
                     return;
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    if(event.getJDA().getSelfUser().getId().equals("592987181186940931")) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
