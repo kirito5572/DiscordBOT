@@ -69,6 +69,7 @@ public class gameServerBanCommand implements ICommand {
             TextChannel reportChannel = event.getGuild().getTextChannelById("600015587544006679");
 
             String time = time_non;
+            String timeString;
             String[] returns = getSteamID.SteamID(SteamID);
             String NickName = returns[0];
             String ID = returns[1];
@@ -78,6 +79,7 @@ public class gameServerBanCommand implements ICommand {
                 time = time.substring(0,time.indexOf("m"));
                 try {
                     temp1 = Integer.parseInt(time);
+                    timeString = temp1 + "분";
                 } catch (Exception e) {
                     channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
 
@@ -89,6 +91,7 @@ public class gameServerBanCommand implements ICommand {
                 time = time.substring(0,time.indexOf("h"));
                 try {
                     temp1 = Integer.parseInt(time);
+                    timeString = temp1 + "시간";
                 } catch (Exception e) {
                     channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
 
@@ -101,6 +104,7 @@ public class gameServerBanCommand implements ICommand {
                 time = time.substring(0,time.indexOf("d"));
                 try {
                     temp1 = Integer.parseInt(time);
+                    timeString = temp1 + "일";
                 } catch (Exception e) {
                     channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
 
@@ -112,6 +116,7 @@ public class gameServerBanCommand implements ICommand {
                 time = time.substring(0,time.indexOf("M"));
                 try {
                     temp1 = Integer.parseInt(time);
+                    timeString = temp1 + "달";
                 } catch (Exception e) {
                     channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
 
@@ -123,6 +128,7 @@ public class gameServerBanCommand implements ICommand {
                 time = time.substring(0,time.indexOf("y"));
                 try {
                     temp1 = Integer.parseInt(time);
+                    timeString = temp1 + "년";
                 } catch (Exception e) {
                     channel.sendMessage("time의 숫자가 잘못 입력되었습니다.").queue();
 
@@ -131,6 +137,7 @@ public class gameServerBanCommand implements ICommand {
                 time = String.valueOf((temp1 * 525960));
             } else if(time.contains("영구")) {
                 time = "99999999";
+                timeString = "영구적용";
             } else {
                 channel.sendMessage("시간 단위가 틀렸거나, 스팀 닉네임의 띄워쓰기를 삭제하여 주세요.\n" +
                         "사용법: `" + App.getPREFIX() + "명령어/도움말/help" +getInvoke() + "`").queue();
@@ -150,7 +157,7 @@ public class gameServerBanCommand implements ICommand {
                     .setColor(Color.RED)
                     .addField("제재 대상자", NickName, false)
                     .addField("스팀 ID", ID, false)
-                    .addField("정지 기간", time_non, false)
+                    .addField("정지 기간", timeString, false)
                     .addField("위반 규정 조항", reason.toString(), false)
                     .addField("제재 담당자", event.getAuthor().getAsMention(), false);
 
@@ -162,6 +169,7 @@ public class gameServerBanCommand implements ICommand {
 
             String text = "+oban " + NickName + " " + ID + " " + time + " " + reason.toString();
             System.out.println(text);
+            event.getGuild().getTextChannelById("600012818879741963").sendMessage("$$정보 " + ID + " " + time_non + " " + reason.toString()).queue();
             if(event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
                     event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.IDLE)) {
                 botChannel.sendMessage(text).queue();
