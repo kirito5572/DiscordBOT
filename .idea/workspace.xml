@@ -13,11 +13,8 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/GreenServerCustom/gameServerBanCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/GreenServerCustom/gameServerBanCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/VersionCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/VersionCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/FilterList.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/FilterList.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/rito-bot-1.4.x-all.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/rito-bot-1.4.x-all.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/GreenServerCustom/gameServerBanCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/GreenServerCustom/gameServerBanCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -267,7 +264,7 @@
       <workItem from="1568094611266" duration="10828000" />
       <workItem from="1568203492591" duration="615000" />
       <workItem from="1568206482270" duration="599000" />
-      <workItem from="1568268702080" duration="2504000" />
+      <workItem from="1568268702080" duration="4322000" />
     </task>
     <servers />
   </component>

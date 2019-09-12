@@ -71,7 +71,6 @@ public class CatCommand implements ICommand {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println(channel.getMessageById(ID).complete().getReactions().get(0).getReactionEmote().getEmote());
                 if (channel.getMessageById(ID).complete().getReactions().get(0).getCount() == 2) {
                     flag = false;
                 } else if (channel.getMessageById(ID).complete().getReactions().get(1).getCount() == 2) {
