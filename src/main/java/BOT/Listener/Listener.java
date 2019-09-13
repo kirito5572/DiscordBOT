@@ -118,13 +118,15 @@ public class Listener extends ListenerAdapter {
         }
         if(event.getGuild().getId().equals("617222347425972234")) {
             if(!event.getChannel().getId().equals("617230917315854356")) {
-                if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
-                    if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
-                        event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
+                if(!event.getChannel().getId().equals("617229595628011520")) {
+                    if (!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                        if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
+                            event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
 
-                        message.delete().queue();
+                            message.delete().queue();
 
-                        return;
+                            return;
+                        }
                     }
                 }
             }
