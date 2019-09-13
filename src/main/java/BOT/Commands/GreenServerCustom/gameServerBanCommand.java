@@ -169,7 +169,7 @@ public class gameServerBanCommand implements ICommand {
 
             String text = "+oban " + NickName + " " + ID + " " + time + " " + reason.toString();
             System.out.println(text);
-            event.getGuild().getTextChannelById("600012818879741963").sendMessage("$$정보 " + ID + " " + time_non + " " + reason.toString()).queue();
+            //event.getGuild().getTextChannelById("600012818879741963").sendMessage("$$정보 " + ID + " " + time_non + " " + reason.toString()).queue();
             if(event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
                     event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.IDLE)) {
                 botChannel.sendMessage(text).queue();
