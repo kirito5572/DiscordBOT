@@ -60,7 +60,7 @@ public class NowPlayingCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "재생중인 노래 정보";
+        return "music";
     }
 
     private String formatTime(long timeInMillis) {

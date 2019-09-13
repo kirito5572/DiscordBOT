@@ -51,6 +51,6 @@ public class botipAddressCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "봇 서버 아이피 주소 알기";
+        return "moderator";
     }
 }

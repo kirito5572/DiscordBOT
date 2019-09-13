@@ -33,6 +33,6 @@ public class ColorInfoCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "지정된 색 리스트를 출력합니다..";
+        return "other";
     }
 }

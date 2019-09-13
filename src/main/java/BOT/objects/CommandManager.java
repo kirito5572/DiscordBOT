@@ -584,23 +584,6 @@ public class CommandManager {
                             "Usage: `"  + App.getPREFIX() + getInvoke() + " <user> <reason>`";
                 }
             });
-            addCommand(new MuteCommand());
-            addCommand(new MuteCommand() {
-                @Override
-                public String getInvoke() {
-                    return "mute";
-                }
-
-                @Override
-                public String getSmallHelp() {
-                    return "";
-                }
-
-                @Override
-                public String getHelp() {
-                    return "Mute user";
-                }
-            });
             addCommand(new TESTCommand());
             addCommand(new TESTCommand() {
                 @Override

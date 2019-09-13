@@ -51,6 +51,6 @@ public class goWorkCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return null;
+        return "serverCustom";
     }
 }

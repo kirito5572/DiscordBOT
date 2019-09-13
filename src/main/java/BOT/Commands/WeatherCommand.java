@@ -73,7 +73,7 @@ public class WeatherCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "날씨는? ";
+        return "other";
     }
 
     public void setListFlag(boolean listFlag) {

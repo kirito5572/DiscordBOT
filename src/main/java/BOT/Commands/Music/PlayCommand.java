@@ -92,6 +92,6 @@ public class PlayCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "노래 틀기";
+        return "music";
     }
 }

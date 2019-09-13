@@ -47,6 +47,6 @@ public class AirkoreaListCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "지역 목록 부르기";
+        return "other";
     }
 }

@@ -60,6 +60,6 @@ public class lewdnekoCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "lewd 커맨드 #후방주의";
+        return "other";
     }
 }

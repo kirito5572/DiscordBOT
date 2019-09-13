@@ -71,7 +71,7 @@ public class UnbanCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return null;
+        return "moderator";
     }
 
     private boolean isCorrectUser(Guild.Ban ban, String arg) {

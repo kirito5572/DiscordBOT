@@ -55,6 +55,6 @@ public class JoinCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "봇을 음성채널로!";
+        return "music";
     }
 }

@@ -204,7 +204,7 @@ public class gameServerBanCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "게임 서버 밴";
+        return "serverCustom";
     }
 
     public static String getCommand() {

@@ -27,6 +27,6 @@ public class PingCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "레이턴시 확인";
+        return "other";
     }
 }

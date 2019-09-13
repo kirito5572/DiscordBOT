@@ -23,6 +23,6 @@ public class ResumeCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return null;
+        return "music";
     }
 }

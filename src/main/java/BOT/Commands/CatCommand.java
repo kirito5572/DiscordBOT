@@ -139,6 +139,6 @@ public class CatCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "카와이 네코쟝";
+        return "other";
     }
 }

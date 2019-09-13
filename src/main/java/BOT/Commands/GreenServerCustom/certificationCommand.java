@@ -101,8 +101,7 @@ public class certificationCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "본인 인증키 생성";
-    }
+        return "serverCustom";    }
 
     private String SHA256(String msg) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");

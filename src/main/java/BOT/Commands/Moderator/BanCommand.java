@@ -51,7 +51,7 @@ public class BanCommand implements ICommand {
 
     @Override
     public String getInvoke() {
-        return "밴";
+        return "moderator";
     }
 
     @Override

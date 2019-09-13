@@ -58,6 +58,6 @@ public class UnusedColorCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "색 역할 정리";
+        return "other";
     }
 }

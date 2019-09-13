@@ -64,6 +64,6 @@ public class VolumeCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "볼륨 조절하기";
+        return "music";
     }
 }

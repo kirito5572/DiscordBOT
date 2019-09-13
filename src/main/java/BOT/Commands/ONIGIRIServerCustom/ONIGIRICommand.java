@@ -35,6 +35,6 @@ public class ONIGIRICommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "짤방 시동어 정리";
+        return "serverCustom";
     }
 }

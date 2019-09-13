@@ -52,6 +52,6 @@ public class SayCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "대신 말을 합니다.";
+        return "other";
     }
 }

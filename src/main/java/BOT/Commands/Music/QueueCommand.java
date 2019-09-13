@@ -80,6 +80,6 @@ public class QueueCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "재생목록 호에에?";
+        return "music";
     }
 }

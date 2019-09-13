@@ -219,7 +219,7 @@ public class ColorCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "닉네임 색을 적용합니다.";
+        return "other";
     }
 
     private boolean isChange_flag() {

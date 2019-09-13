@@ -33,6 +33,6 @@ public class TESTCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "디버깅용 테스트 커맨드입니다.";
+        return "other";
     }
 }

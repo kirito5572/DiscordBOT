@@ -134,7 +134,7 @@ public class giveroleCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "역할 부여";
+        return "moderator";
     }
 
     private void convert(String str) {

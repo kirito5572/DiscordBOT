@@ -81,7 +81,7 @@ public class AirLocalInforCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "지역의 공기질은 과연?";
+        return "other";
     }
 
     public void setListFlag(boolean listFlag) {

@@ -83,6 +83,6 @@ public class ClearCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "채팅 청소";
+        return "moderator";
     }
 }

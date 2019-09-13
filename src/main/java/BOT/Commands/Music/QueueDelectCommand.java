@@ -68,6 +68,6 @@ public class QueueDelectCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "재생목록을 [숫자] 만큼 정리";
+        return "music";
     }
 }

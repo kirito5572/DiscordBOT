@@ -166,6 +166,6 @@ public class publicExecutionCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "유저 공개처형 시키기";
+        return "moderator";
     }
 }

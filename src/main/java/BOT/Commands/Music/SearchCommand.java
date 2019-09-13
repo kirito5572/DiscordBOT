@@ -153,6 +153,6 @@ public class SearchCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "노래 틀기(검색)(디버깅중)";
+        return "music";
     }
 }

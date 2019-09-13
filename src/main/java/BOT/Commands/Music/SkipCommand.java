@@ -52,6 +52,6 @@ public class SkipCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "노래 스킵하기";
+        return "music";
     }
 }

@@ -58,6 +58,6 @@ public class KickCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "서버에서 밖으로 던져버리기";
+        return "moderator";
     }
 }

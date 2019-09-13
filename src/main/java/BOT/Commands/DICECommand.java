@@ -63,6 +63,6 @@ public class DICECommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "주사위 굴리기";
+        return "other";
     }
 }

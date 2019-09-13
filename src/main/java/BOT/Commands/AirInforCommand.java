@@ -119,7 +119,7 @@ public class AirInforCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "공기질은?";
+        return "other";
     }
 
     public void setListFlag(boolean listflag) {

@@ -34,6 +34,6 @@ public class upTimeCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "가동 시간은?";
+        return "other";
     }
 }

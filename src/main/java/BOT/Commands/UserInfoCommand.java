@@ -67,6 +67,6 @@ public class UserInfoCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "유저정보를 표시합니다.";
+        return "other";
     }
 }

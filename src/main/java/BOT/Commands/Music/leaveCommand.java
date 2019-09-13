@@ -54,6 +54,6 @@ public class leaveCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "다 듣고 내보내기";
+        return "music";
     }
 }

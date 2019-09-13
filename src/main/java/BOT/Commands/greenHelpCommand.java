@@ -52,36 +52,46 @@ public class greenHelpCommand implements ICommand {
     }
 
     private void generateAndSendEmbed(GuildMessageReceivedEvent event) {
-        i = 0;
         EmbedBuilder builder = EmbedUtils.defaultEmbed().setTitle("명령어 리스트:");
-        final int count = 10;
-        if(page == 0) {
-            x = 0;
-        } else if(page == 1){
-            x = 0;
-        } else {
-            x = (page - 1) * count;
-        }
-        final int y = x + count + 1;
-        j = 0;
 
+        StringBuilder music = new StringBuilder();
+        StringBuilder serverCustom = new StringBuilder();
+        StringBuilder moderator = new StringBuilder();
+        StringBuilder other = new StringBuilder();
         Commands.forEach(iCommand -> {
-            i++;
-            if((x < i) && (j < count)) {
-                if (!iCommand.getSmallHelp().equals("")) {
-                    j++;
-                    builder.addField(
-                            "`" + iCommand.getInvoke() + "`\n",
-                            iCommand.getSmallHelp(),
-                            false
-                    );
-                    if ((page < 5) && (j == count)) {
-                        builder.appendDescription("다음 명령어: " + getInvoke() + " " + (y / count + 1));
-                    }
-                }
+            if (iCommand.getSmallHelp().equals("music")) {
+                music.append(iCommand.getInvoke()).append("\n");
+            }
+            if (iCommand.getSmallHelp().equals("serverCustom")) {
+                serverCustom.append(iCommand.getInvoke()).append("\n");
+            }
+            if (iCommand.getSmallHelp().equals("moderator")) {
+                moderator.append(iCommand.getInvoke()).append("\n");
+            }
+            if (iCommand.getSmallHelp().equals("other")) {
+                other.append(iCommand.getInvoke()).append("\n");
             }
         });
-        //TODO: Make a permission check to see if the bot can send embeds if not, send plain text
+        builder.addField(
+                "관리",
+                moderator.toString(),
+                false
+        );
+        builder.addField(
+                "서버커스텀",
+                serverCustom.toString(),
+                false
+        );
+        builder.addField(
+                "음악",
+                music.toString(),
+                false
+        );
+        builder.addField(
+                "기타",
+                other.toString(),
+                false
+        );
         event.getChannel().sendMessage(builder.build()).queue();
     }
 
@@ -98,6 +108,6 @@ public class greenHelpCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "도움말";
+        return "other";
     }
 }

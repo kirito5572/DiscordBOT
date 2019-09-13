@@ -34,6 +34,7 @@ public class App {
     private final Random random = new Random();
 
     private App() {
+        boolean debug;
         date = new Date();
         SimpleDateFormat format1 = new SimpleDateFormat( "yyyy/MM/dd aa hh:mm:ss z");
         Time = format1.format(date);
@@ -87,13 +88,16 @@ public class App {
         if(DEBUG_MODE) {
             TOKEN = TOKENreader_DEBUG.toString();
             PREFIX = Constants.PREFIX_DEBUG;
+            debug = false;
         } else if(!DEBUG_MODE && ONLINE_DEBUG) {
             TOKEN = TOKENreader.toString();
             PREFIX = Constants.PREFIX_DEBUG;
+            debug = false;
         } else {
             TOKEN = TOKENreader.toString();
             PREFIX = Constants.PREFIX;
             GreenTOKEN = TOKENreaderGreen.toString();
+            debug = true;
         }
         Logger logger = LoggerFactory.getLogger(App.class);
 
@@ -122,24 +126,26 @@ public class App {
         } catch (LoginException | InterruptedException e) {
             e.printStackTrace();
         }
-        try {
-            logger.info("부팅");
-            JDA jda1 = new JDABuilder(AccountType.BOT)
-                    .setToken(GreenTOKEN)
-                    .setAutoReconnect(true)
-                    .addEventListener(memberCountListener)
-                    .addEventListener(greenListener)
-                    .addEventListener(filterlistener)
-                    .addEventListener(greenServerMuteListener)
-                    .addEventListener(greenAutoBanListener)
-                    .addEventListener(greenServerServerStatusListener)
-                    .addEventListener(greenServerNoticeListener)
-                    .setGame(Game.streaming("사용법: "
-                            + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
-                    .build().awaitReady();
-            logger.info("부팅완료");
-        } catch (LoginException | InterruptedException e) {
-            e.printStackTrace();
+        if(debug) {
+            try {
+                logger.info("부팅");
+                JDA jda1 = new JDABuilder(AccountType.BOT)
+                        .setToken(GreenTOKEN)
+                        .setAutoReconnect(true)
+                        .addEventListener(memberCountListener)
+                        .addEventListener(greenListener)
+                        .addEventListener(filterlistener)
+                        .addEventListener(greenServerMuteListener)
+                        .addEventListener(greenAutoBanListener)
+                        .addEventListener(greenServerServerStatusListener)
+                        .addEventListener(greenServerNoticeListener)
+                        .setGame(Game.streaming("사용법: "
+                                + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
+                        .build().awaitReady();
+                logger.info("부팅완료");
+            } catch (LoginException | InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
 

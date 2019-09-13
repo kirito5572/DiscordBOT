@@ -206,7 +206,7 @@ public class GreenServerMuteCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "채팅 금지를 먹입니다.";
+        return "serverCustom";
     }
 
     private void filesave(String time, String userName, String roles, String discordID) throws IOException {

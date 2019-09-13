@@ -34,6 +34,6 @@ public class MuteCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "채팅 금지 시키기";
+        return "moderator";
     }
 }

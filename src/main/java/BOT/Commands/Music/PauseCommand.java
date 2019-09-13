@@ -23,6 +23,6 @@ public class PauseCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return null;
+        return "music";
     }
 }

@@ -105,7 +105,7 @@ public class MemberCount implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "서버 멤버 카운팅";
+        return "moderator";
     }
     private void count(Guild guild) {
         try {

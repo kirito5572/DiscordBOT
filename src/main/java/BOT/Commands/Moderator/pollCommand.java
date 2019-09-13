@@ -59,6 +59,6 @@ public class pollCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "투표 하기!";
+        return "moderator";
     }
 }

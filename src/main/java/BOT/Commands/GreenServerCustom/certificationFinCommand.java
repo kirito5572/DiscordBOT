@@ -90,7 +90,7 @@ public class certificationFinCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "본인 인증을 완료합니다.";
+        return "serverCustom";
     }
     private String SHA256(String msg) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
