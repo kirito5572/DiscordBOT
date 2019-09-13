@@ -601,23 +601,6 @@ public class CommandManager {
                     return "Mute user";
                 }
             });
-            addCommand(new certificationCommand());
-            addCommand(new certificationCommand() {
-                @Override
-                public String getInvoke() {
-                    return "cert";
-                }
-
-                @Override
-                public String getSmallHelp() {
-                    return "";
-                }
-
-                @Override
-                public String getHelp() {
-                    return "certification with discord and steam";
-                }
-            });
             addCommand(new TESTCommand());
             addCommand(new TESTCommand() {
                 @Override
@@ -638,24 +621,6 @@ public class CommandManager {
         }
         //------------------------------------------------------------------//
         {
-            addCommand(new certificationFinCommand());
-            addCommand(new certificationFinCommand() {
-                @Override
-                public String getInvoke() {
-                    return "certfin";
-                }
-
-                @Override
-                public String getSmallHelp() {
-                    return "";
-                }
-
-                @Override
-                public String getHelp() {
-                    return "Verify certification between Steam and Discord \n" +
-                            "Usage: `" + App.getPREFIX() + getInvoke() + " <Steam Profile/Steam ID/Steam Nickname> `";
-                }
-            });
             addCommand(new BanCommand());
             addCommand(new BanCommand() {
                 @Override
@@ -746,23 +711,6 @@ public class CommandManager {
                     return "meme command list";
                 }
             });
-            addCommand(new GreenServerMuteCommand());
-            addCommand(new GreenServerMuteCommand() {
-                @Override
-                public String getInvoke() {
-                    return "mutechat";
-                }
-
-                @Override
-                public String getSmallHelp() {
-                    return "Mute chating";
-                }
-
-                @Override
-                public String getHelp() {
-                    return "Mute chating";
-                }
-            });
             addCommand(new lewdnekoCommand());
             addCommand(new lewdnekoCommand() {
                 @Override
@@ -778,24 +726,6 @@ public class CommandManager {
                 @Override
                 public String getHelp() {
                     return "lewd neko meme";
-                }
-            });
-            addCommand(new gameServerBanCommand());
-            addCommand(new gameServerBanCommand() {
-                @Override
-                public String getInvoke() {
-                    return "serverban";
-                }
-
-                @Override
-                public String getSmallHelp() {
-                    return "";
-                }
-
-                @Override
-                public String getHelp() {
-                    return "ServerCustomCommand \n" +
-                            "Please use by `" + App.getPREFIX() + gameServerBanCommand.getCommand() + "`";
                 }
             });
             addCommand(new WeatherCommand());
