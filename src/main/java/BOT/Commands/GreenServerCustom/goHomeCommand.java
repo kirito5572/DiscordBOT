@@ -39,6 +39,7 @@ public class goHomeCommand implements ICommand {
                 event.getChannel().sendMessage(event.getMember().getAsMention() + "님, 퇴근이 확인되었습니다.").queue();
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                         .setTitle("퇴근부")
+                        .addField("출근 한 사람", event.getAuthor().getAsMention(), false)
                         .addField("퇴근 시간", time, false);
                 event.getGuild().getTextChannelById("622076975258927125").sendMessage(builder.build()).queue();
             }

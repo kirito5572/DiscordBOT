@@ -38,6 +38,7 @@ public class goWorkCommand implements ICommand {
                 event.getChannel().sendMessage(event.getMember().getAsMention() + "님, 출근이 확인되었습니다.").queue();
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                         .setTitle("출근부")
+                        .addField("출근 한 사람", event.getAuthor().getAsMention(), false)
                         .addField("출근 시간", time, false);
                 event.getGuild().getTextChannelById("622076950021799977").sendMessage(builder.build()).queue();
 
