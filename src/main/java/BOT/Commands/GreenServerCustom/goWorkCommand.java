@@ -35,18 +35,18 @@ public class goWorkCommand implements ICommand {
             EmbedBuilder builder = EmbedUtils.defaultEmbed()
                     .setTitle("출근부")
                     .addField("출근 시간", time, false);
-            event.getChannel().sendMessage(builder.build()).queue();
+            event.getGuild().getTextChannelById("622076950021799977").sendMessage(builder.build()).queue();
         }
     }
 
     @Override
     public String getHelp() {
-        return null;
+        return "관리자들이 출근할때 쓰는 명령어랍니다.";
     }
 
     @Override
     public String getInvoke() {
-        return null;
+        return "출근";
     }
 
     @Override

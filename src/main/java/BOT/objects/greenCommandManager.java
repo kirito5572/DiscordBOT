@@ -2,10 +2,7 @@ package BOT.Objects;
 
 import BOT.App;
 import BOT.Commands.*;
-import BOT.Commands.GreenServerCustom.GreenServerMuteCommand;
-import BOT.Commands.GreenServerCustom.certificationCommand;
-import BOT.Commands.GreenServerCustom.certificationFinCommand;
-import BOT.Commands.GreenServerCustom.gameServerBanCommand;
+import BOT.Commands.GreenServerCustom.*;
 import BOT.Commands.Moderator.*;
 import BOT.Commands.Music.*;
 import BOT.Commands.ONIGIRIServerCustom.ONIGIRICommand;
@@ -855,6 +852,40 @@ public class greenCommandManager {
                 public String getHelp() {
                     return "poll!.\n" +
                             "Usage: `" + App.getPREFIX() + getInvoke() + " [poll content]`";
+                }
+            });
+            addCommand(new goWorkCommand());
+            addCommand(new goWorkCommand() {
+                @Override
+                public String getInvoke() {
+                    return "work";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Go to Work!\n";
+                }
+            });
+            addCommand(new goHomeCommand());
+            addCommand(new goHomeCommand() {
+                @Override
+                public String getInvoke() {
+                    return "home";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Go to Home!\n";
                 }
             });
         }
