@@ -16,7 +16,10 @@ public class goWorkCommand implements ICommand {
         try {
             boolean flag = false;
             if (event.getGuild().getId().equals("600010501266866186")) {
-                if (event.getMember().hasPermission(Permission.MANAGE_ROLES, Permission.MANAGE_CHANNEL, Permission.ADMINISTRATOR, Permission.MESSAGE_MANAGE)) {
+                if (event.getMember().hasPermission(Permission.MANAGE_ROLES) ||
+                        event.getMember().hasPermission(Permission.MANAGE_CHANNEL) ||
+                        event.getMember().hasPermission(Permission.ADMINISTRATOR) ||
+                        event.getMember().hasPermission(Permission.MESSAGE_MANAGE)) {
                     flag = true;
                 } else {
                     if (event.getMember().getRoles().contains(event.getGuild().getRoleById("600012069559074822"))) {
