@@ -261,6 +261,10 @@ public class FilterList {
             ".you", ".youtube", ".yt", ".yun", ".za", ".zappos", ".zara", ".zero", ".zip", ".zippo",
             ".zm", ".zone", ".zuerich", ".zw"
     };
+    private static String[] greenList = {
+        "호류", "니하", "Doge", "스노", "SNO", "독도서버", "독도섭", "시마", "Sima", "가리아", "한국 서버", "인텔 서버"
+    };
+
     public static String[] getCharList() {
         return charList;
     }
@@ -271,5 +275,9 @@ public class FilterList {
 
     public static String[] getWebList() {
         return webList;
+    }
+
+    public static String[] getGreenList() {
+        return greenList;
     }
 }

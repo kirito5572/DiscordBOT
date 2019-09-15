@@ -32,6 +32,7 @@ public class filterListener extends ListenerAdapter {
         String[] List = FilterList.getList();
         String[] list = FilterList.getCharList();
         String[] Lists = FilterList.getWebList();
+        String[] greenList = FilterList.getGreenList();
         String id = "";
         String rawMessage;
         try {
@@ -205,6 +206,14 @@ public class filterListener extends ListenerAdapter {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
+                }
+            }
+        }
+        if(event.getGuild().getId().equals("600010501266866186")) {
+            for (String s : greenList) {
+                if(rawMessage.contains(s)) {
+                    message.delete().complete();
+                    event.getChannel().sendMessage("타 서버 발언은 모두 차단됩니다.").queue();
                 }
             }
         }

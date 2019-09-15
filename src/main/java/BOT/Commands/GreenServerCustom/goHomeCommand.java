@@ -4,6 +4,7 @@ import BOT.Objects.ICommand;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 import java.text.SimpleDateFormat;
@@ -36,12 +37,23 @@ public class goHomeCommand implements ICommand {
                 Date date = new Date();
                 SimpleDateFormat format1 = new SimpleDateFormat("MM/dd aa hh:mm");
                 String time = format1.format(date);
+                Role roles = event.getGuild().getRoleById("622325436528984084");
+                if(!event.getMember().getRoles().contains(roles)) {
+                    event.getChannel().sendMessage("먼저 출근을 하십시오").queue();
+                }
+                Role role = event.getGuild().getRoleById("622325520868311041");
+                if(event.getMember().getRoles().contains(role)) {
+                    event.getChannel().sendMessage("당신은 이미 퇴근했습니다!").queue();
+
+                    return;
+                }
+                event.getGuild().getController().addSingleRoleToMember(event.getMember(), role).complete();
                 event.getChannel().sendMessage(event.getMember().getAsMention() + "님, 퇴근이 확인되었습니다.").queue();
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                         .setTitle("퇴근부")
-                        .addField("출근 한 사람", event.getAuthor().getAsMention(), false)
+                        .addField("퇴근 한 사람", event.getAuthor().getAsMention(), false)
                         .addField("퇴근 시간", time, false);
-                event.getGuild().getTextChannelById("622076975258927125").sendMessage(builder.build()).queue();
+                event.getGuild().getTextChannelById("622076950021799977").sendMessage(builder.build()).queue();
             }
         } catch (Exception e) {
             e.printStackTrace();

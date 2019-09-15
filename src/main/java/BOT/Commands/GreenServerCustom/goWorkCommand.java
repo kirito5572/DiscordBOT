@@ -4,6 +4,7 @@ import BOT.Objects.ICommand;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 import java.text.SimpleDateFormat;
@@ -35,6 +36,13 @@ public class goWorkCommand implements ICommand {
                 Date date = new Date();
                 SimpleDateFormat format1 = new SimpleDateFormat("MM/dd aa hh:mm");
                 String time = format1.format(date);
+                Role role = event.getGuild().getRoleById("622325436528984084");
+                if(event.getMember().getRoles().contains(role)) {
+                    event.getChannel().sendMessage("당신은 이미 출근했습니다!").queue();
+
+                    return;
+                }
+                event.getGuild().getController().addSingleRoleToMember(event.getMember(), role).complete();
                 event.getChannel().sendMessage(event.getMember().getAsMention() + "님, 출근이 확인되었습니다.").queue();
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                         .setTitle("출근부")

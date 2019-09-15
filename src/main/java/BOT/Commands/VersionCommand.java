@@ -10,10 +10,10 @@ public class VersionCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         if(App.isDEBUG_MODE() || App.isONLINE_DEBUG()) {
-            event.getChannel().sendMessage("빌드 버젼 V 1.4.6 Preview 3 (" + App.getTime() + ")").queue();
+            event.getChannel().sendMessage("빌드 버젼 V 1.4.6 Preview 4 (" + App.getTime() + ")").queue();
             return;
         }
-        event.getChannel().sendMessage("빌드 버젼 V 1.4.6 Preview 2 (" + App.getTime() + ")").queue();
+        event.getChannel().sendMessage("빌드 버젼 V 1.4.6 Preview 3 (" + App.getTime() + ")").queue();
     }
 
     @Override
