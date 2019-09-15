@@ -137,9 +137,6 @@ public class filterListener extends ListenerAdapter {
                     if(message.getMember().getUser().getId().equals("342951769627688960")) {
                         return;
                     }
-                    if(message.getMember().getUser().getId().equals("342951769627688960")) {
-                        return;
-                    }
                     if(!event.getGuild().getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) {
                         event.getChannel().sendMessage("링크가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
 
@@ -156,7 +153,7 @@ public class filterListener extends ListenerAdapter {
             }
         }
         for (String value : list) {
-            rawMessage = rawMessage.replace(value, "");
+            rawMessage = rawMessage.replaceAll(value, "");
         }
         for (String s : List) {
             if (rawMessage.contains(s)) {
@@ -212,6 +209,15 @@ public class filterListener extends ListenerAdapter {
         if(event.getGuild().getId().equals("600010501266866186")) {
             for (String s : greenList) {
                 if(rawMessage.contains(s)) {
+                    if(event.getGuild().getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
+
+                        return;
+                    }
+                    if(message.getMember().hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                        logger.warn("관리자가 금지어를 말했으나, 관리자는 필터링 되지 않습니다.");
+
+                        return;
+                    }
                     message.delete().complete();
                     event.getChannel().sendMessage("타 서버 발언은 모두 차단됩니다.").queue();
                 }
