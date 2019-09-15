@@ -82,6 +82,7 @@ public class workHomeListener extends ListenerAdapter {
                         .addField("[관리팀] 도리닭 DoryDarg", status[7], false)
                         .addField("[관리팀] (백은) Silver", status[8], false)
                         .addField("[보안팀장] solminb27", status[9], false);
+                guild.getTextChannelById("622076975258927125").getMessageById("622647164606349322").complete().editMessage(builder.build()).queue();
             }
         };
         Timer jobScheduler = new Timer();
