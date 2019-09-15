@@ -153,7 +153,10 @@ public class filterListener extends ListenerAdapter {
             }
         }
         for (String value : list) {
-            rawMessage = rawMessage.replaceAll(value, "");
+            try {
+                rawMessage = rawMessage.replaceAll(value, "");
+            } catch (Exception ignored) {
+            }
         }
         for (String s : List) {
             if (rawMessage.contains(s)) {

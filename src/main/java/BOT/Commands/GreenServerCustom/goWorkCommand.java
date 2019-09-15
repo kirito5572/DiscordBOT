@@ -37,12 +37,14 @@ public class goWorkCommand implements ICommand {
                 SimpleDateFormat format1 = new SimpleDateFormat("MM/dd aa hh:mm");
                 String time = format1.format(date);
                 Role role = event.getGuild().getRoleById("622325436528984084");
+                Role roles = event.getGuild().getRoleById("622325520868311041");
                 if(event.getMember().getRoles().contains(role)) {
                     event.getChannel().sendMessage("당신은 이미 출근했습니다!").queue();
 
                     return;
                 }
                 event.getGuild().getController().addSingleRoleToMember(event.getMember(), role).complete();
+                event.getGuild().getController().removeSingleRoleFromMember(event.getMember(), roles).complete();
                 event.getChannel().sendMessage(event.getMember().getAsMention() + "님, 출근이 확인되었습니다.").queue();
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                         .setTitle("출근부")

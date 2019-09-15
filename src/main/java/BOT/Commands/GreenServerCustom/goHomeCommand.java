@@ -47,6 +47,7 @@ public class goHomeCommand implements ICommand {
 
                     return;
                 }
+                event.getGuild().getController().removeSingleRoleFromMember(event.getMember(), roles).complete();
                 event.getGuild().getController().addSingleRoleToMember(event.getMember(), role).complete();
                 event.getChannel().sendMessage(event.getMember().getAsMention() + "님, 퇴근이 확인되었습니다.").queue();
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
