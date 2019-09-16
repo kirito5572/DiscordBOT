@@ -40,6 +40,8 @@ public class goHomeCommand implements ICommand {
                 Role roles = event.getGuild().getRoleById("622325436528984084");
                 if(!event.getMember().getRoles().contains(roles)) {
                     event.getChannel().sendMessage("먼저 출근을 하십시오").queue();
+
+                    return;
                 }
                 Role role = event.getGuild().getRoleById("622325520868311041");
                 if(event.getMember().getRoles().contains(role)) {

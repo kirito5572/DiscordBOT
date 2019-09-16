@@ -89,7 +89,8 @@ public class filterListener extends ListenerAdapter {
                         }
                     }
                     if(event.getGuild().getId().equals("600010501266866186")) {
-                        if(event.getChannel().getId().equals("600021475629727745")) {
+                        if(event.getChannel().getId().equals("616229743741632533") || event.getChannel().getId().equals("621976688175349762") ||
+                                event.getChannel().getId().equals("616234126663483392")) {
                             if(rawMessage.contains("youtube")) {
                                 return;
                             }
