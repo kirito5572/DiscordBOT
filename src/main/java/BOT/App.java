@@ -24,7 +24,7 @@ import java.util.Date;
 import java.util.Random;
 
 public class App {
-    private static boolean DEBUG_MODE = false;
+    private static boolean DEBUG_MODE = true;
     private static boolean ONLINE_DEBUG = false;
     private String TOKEN;
     private String GreenTOKEN;
@@ -47,7 +47,6 @@ public class App {
         ONIGIRIListener onigiriListener = new ONIGIRIListener();
         GreenServerMuteListener greenServerMuteListener = new GreenServerMuteListener();
         GreenAutoBanListener greenAutoBanListener = new GreenAutoBanListener();
-        GreenServerServerStatusListener greenServerServerStatusListener = new GreenServerServerStatusListener();
         GreenServerNoticeListener greenServerNoticeListener = new GreenServerNoticeListener();
         greenListener greenListener = new greenListener(greenCommandManager);
         workHomeListener workHomeListener = new workHomeListener();
@@ -138,7 +137,6 @@ public class App {
                         .addEventListener(filterlistener)
                         .addEventListener(greenServerMuteListener)
                         .addEventListener(greenAutoBanListener)
-                        .addEventListener(greenServerServerStatusListener)
                         .addEventListener(greenServerNoticeListener)
                         .addEventListener(workHomeListener)
                         .setGame(Game.streaming("사용법: "
