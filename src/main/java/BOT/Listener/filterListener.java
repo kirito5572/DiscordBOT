@@ -212,7 +212,6 @@ public class filterListener extends ListenerAdapter {
                 }
             }
         }
-        if(event.getGuild().getId().equals("600010501266866186")) {
         if(guild.getId().equals("600010501266866186")) {
             for (String s : greenList) {
                 if(rawMessage.contains(s)) {
