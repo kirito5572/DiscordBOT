@@ -105,14 +105,12 @@ public class filterListener extends ListenerAdapter {
                         }
                     }
                     if(guild.getId().equals("607390893804093442")) {
+                        Role role = event.getGuild().getRoleById("616229894401294356");
                         if(event.getChannel().getId().equals("607543954476630016")) {
-                            if(rawMessage.contains("youtube")) {
+                            if(event.getMember().getRoles().contains(role)) {
                                 return;
-                            }
-                            if(rawMessage.contains("twitch")) {
-                                return;
-                            }
-                            if(rawMessage.contains("youtu")) {
+                            } else {
+                                event.getChannel().sendMessage("이 채널에 링크 메세지를 보내기 위해서는 외무부역할을 부여받아야 합니다.").queue();
                                 return;
                             }
                         }

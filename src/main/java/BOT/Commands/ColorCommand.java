@@ -140,7 +140,12 @@ public class ColorCommand implements ICommand {
                 for (Role role : roleList) {
                     if (event.getMember().getRoles().contains(role)) {
                         try {
-                            event.getGuild().getController().removeRolesFromMember(event.getMember(), role).queue();
+                            event.getGuild().getController().removeRolesFromMember(event.getMember(), role).complete();
+                            if(event.getMember().getRoles().contains(role)) {
+                                channel.sendMessage("기존 색 역할 제거에 실패하였습니다.").queue();
+
+                                return;
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                             channel.sendMessage(event.getMember().getAsMention() + ", 기존 색을 제거하다가 오류가 발생했습니다.").complete();
