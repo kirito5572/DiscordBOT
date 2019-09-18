@@ -1,6 +1,5 @@
 package BOT.Listener;
 
-import BOT.Objects.CommandManager;
 import BOT.Objects.FilterList;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
@@ -17,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.TimeUnit;
 
 public class filterListener extends ListenerAdapter {
-    private final Logger logger = LoggerFactory.getLogger(Listener.class);
+    private final Logger logger = LoggerFactory.getLogger(filterListener.class);
     private boolean publicflag = false;
     private String latestMessage = "";
 
@@ -238,16 +237,20 @@ public class filterListener extends ListenerAdapter {
             return;
         }
         int time;
-        if(guild.getId().equals("453817631603032065")) {
-            time = 10;
-        } else if (guild.getId().equals("600010501266866186")) {
-            time = 5;
-        } else if (guild.getId().equals("617222347425972234")) {
-            time = 2;
-        } else if (guild.getId().equals("607390893804093442")){
-            time = 7;
-        } else {
-            time = 7;
+        switch (guild.getId()) {
+            case "453817631603032065":
+                time = 10;
+                break;
+            case "600010501266866186":
+            case "607390893804093442":
+                time = 5;
+                break;
+            case "617222347425972234":
+                time = 2;
+                break;
+            default:
+                time = 7;
+                break;
         }
         try {
             if (messages.getMember().getRoles().contains(role)) {
