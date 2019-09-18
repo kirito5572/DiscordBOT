@@ -1,8 +1,7 @@
 package BOT.Listener;
 
-import BOT.Objects.CommandManager;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.*;
+import net.dv8tion.jda.core.entities.Category;
+import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.channel.text.TextChannelCreateEvent;
 import net.dv8tion.jda.core.events.channel.text.TextChannelDeleteEvent;
 import net.dv8tion.jda.core.events.channel.voice.VoiceChannelCreateEvent;
@@ -14,21 +13,13 @@ import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
 import net.dv8tion.jda.core.events.role.RoleCreateEvent;
 import net.dv8tion.jda.core.events.role.RoleDeleteEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class MemberCountListener extends ListenerAdapter {
-    private final CommandManager manager;
-    private final Logger logger = LoggerFactory.getLogger(Listener.class);
-    public MemberCountListener(CommandManager manager) {
-        this.manager = manager;
-    }
 
 
     @Override
     public void onGuildJoin(GuildJoinEvent event) {
         Guild guild = event.getGuild();
-        JDA jda = event.getJDA();
 
         count(guild);
     }
@@ -36,7 +27,6 @@ public class MemberCountListener extends ListenerAdapter {
     @Override
     public void onGuildLeave(GuildLeaveEvent event) {
         Guild guild = event.getGuild();
-        JDA jda = event.getJDA();
 
         count(guild);
     }
@@ -44,7 +34,6 @@ public class MemberCountListener extends ListenerAdapter {
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
         Guild guild = event.getGuild();
-        JDA jda = event.getJDA();
 
         count(guild);
     }
@@ -52,7 +41,6 @@ public class MemberCountListener extends ListenerAdapter {
     @Override
     public void onGuildMemberLeave(GuildMemberLeaveEvent event) {
         Guild guild = event.getGuild();
-        JDA jda = event.getJDA();
 
         count(guild);
     }
@@ -60,7 +48,6 @@ public class MemberCountListener extends ListenerAdapter {
     @Override
     public void onTextChannelCreate(TextChannelCreateEvent event) {
         Guild guild = event.getGuild();
-        JDA jda = event.getJDA();
 
         count(guild);
     }
@@ -68,7 +55,6 @@ public class MemberCountListener extends ListenerAdapter {
     @Override
     public void onTextChannelDelete(TextChannelDeleteEvent event) {
         Guild guild = event.getGuild();
-        JDA jda = event.getJDA();
 
         count(guild);
     }
@@ -76,7 +62,6 @@ public class MemberCountListener extends ListenerAdapter {
     @Override
     public void onVoiceChannelCreate(VoiceChannelCreateEvent event) {
         Guild guild = event.getGuild();
-        JDA jda = event.getJDA();
 
         count(guild);
     }
@@ -84,7 +69,6 @@ public class MemberCountListener extends ListenerAdapter {
     @Override
     public void onVoiceChannelDelete(VoiceChannelDeleteEvent event) {
         Guild guild = event.getGuild();
-        JDA jda = event.getJDA();
 
         count(guild);
     }
@@ -92,7 +76,6 @@ public class MemberCountListener extends ListenerAdapter {
     @Override
     public void onRoleCreate(RoleCreateEvent event) {
         Guild guild = event.getGuild();
-        JDA jda = event.getJDA();
 
         count(guild);
     }
@@ -100,7 +83,6 @@ public class MemberCountListener extends ListenerAdapter {
     @Override
     public void onRoleDelete(RoleDeleteEvent event) {
         Guild guild = event.getGuild();
-        JDA jda = event.getJDA();
 
         count(guild);
     }

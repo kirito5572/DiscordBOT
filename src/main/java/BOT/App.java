@@ -40,9 +40,9 @@ public class App {
         Time = format1.format(date);
         CommandManager commandManager = new CommandManager();
         greenCommandManager greenCommandManager = new greenCommandManager();
-        MemberCountListener memberCountListener = new MemberCountListener(commandManager);
+        MemberCountListener memberCountListener = new MemberCountListener();
         Listener listener = new Listener(commandManager);
-        filterListener filterlistener = new filterListener(commandManager);
+        filterListener filterlistener = new filterListener();
         salListener salListener = new salListener(commandManager);
         ONIGIRIListener onigiriListener = new ONIGIRIListener();
         GreenServerMuteListener greenServerMuteListener = new GreenServerMuteListener();
