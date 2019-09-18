@@ -888,6 +888,7 @@ public class greenCommandManager {
                     return "Go to Home!\n";
                 }
             });
+            addCommand(new BotOwnerNoticeCommand());
         }
     }
 

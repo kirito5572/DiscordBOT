@@ -785,6 +785,7 @@ public class CommandManager {
                             "Usage: `" + App.getPREFIX() + getInvoke() + " [poll content]`";
                 }
             });
+            addCommand(new BotOwnerNoticeCommand());
         }
     }
 
