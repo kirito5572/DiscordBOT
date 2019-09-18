@@ -106,6 +106,17 @@ public class filterListener extends ListenerAdapter {
                     }
                     if(guild.getId().equals("607390893804093442")) {
                         Role role = event.getGuild().getRoleById("616229894401294356");
+                        if(event.getChannel().getId().equals("600021475629727745")) {
+                            if(rawMessage.contains("youtube")) {
+                                return;
+                            }
+                            if(rawMessage.contains("twitch")) {
+                                return;
+                            }
+                            if(rawMessage.contains("youtu")) {
+                                return;
+                            }
+                        }
                         if(event.getChannel().getId().equals("607543954476630016")) {
                             if(event.getMember().getRoles().contains(role)) {
                                 return;
