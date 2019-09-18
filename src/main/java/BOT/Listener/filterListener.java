@@ -13,6 +13,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 public class filterListener extends ListenerAdapter {
@@ -40,81 +41,85 @@ public class filterListener extends ListenerAdapter {
         if(!rawMessage.equals(latestMessage)) {
             latestMessage = rawMessage;
         } else {
-
             return;
         }
-        boolean linkpass = false;
+        boolean linkPass = false;
         try {
-            if (guild.getId().equals("453817631603032065")) {
-                linkpass = true;
+            if (message.getMember().getUser().getId().equals("342951769627688960") || message.getMember().getUser().getId().equals("492832169715040276")) {
+                //그린서버 보안부
+                return;
             }
+            if (guild.getId().equals("453817631603032065")) {
+                return;
+            }
+
             if(guild.getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
-                linkpass = true;
+                linkPass = true;
             }
             if(message.getMember().getUser().isBot()) {
-                linkpass = true;
+                linkPass = true;
             }
             if(rawMessage.contains("cdn.discord")) {
-                linkpass = true;
+                linkPass = true;
             }
             if(rawMessage.contains("discordapp")) {
-                linkpass = true;
+                linkPass = true;
             }
             if(rawMessage.contains("tenor.com")) {
-                linkpass = true;
+                linkPass = true;
             }
             if(rawMessage.contains("steam")) {
-                linkpass = true;
+                linkPass = true;
             }
             if(rawMessage.contains("&검색")) {
-                linkpass = true;
+                linkPass = true;
             }
             if(rawMessage.contains("&search")) {
-                linkpass = true;
+                linkPass = true;
             }
             if(rawMessage.contains("&재생")) {
-                linkpass = true;
+                linkPass = true;
             }
             if(rawMessage.contains("&play")) {
-                linkpass = true;
+                linkPass = true;
             }
             if(rawMessage.contains("&p")) {
-                linkpass = true;
+                linkPass = true;
             }
 
             if(guild.getId().equals("600010501266866186")) {  //끄린이
                 if(event.getMember().getRoles().contains(event.getGuild().getRoleById("616229894401294356"))) {
-                    linkpass = true;
+                    linkPass = true;
                 }
             }
             if(guild.getId().equals("617222347425972234")) {  //캣카페
                 if(event.getChannel().getId().equals("620104084799750154")) {
-                    linkpass = true;
+                    linkPass = true;
                 }
             }
             if(guild.getId().equals("607390203086372866")) {  //제이 서버
                 if(event.getChannel().getId().equals("607390781933617182")) {
-                    linkpass = true;
+                    linkPass = true;
                 }
             }
             if(guild.getId().equals("508913681279483913") || guild.getId().equals("453817631603032065")) {  // 선우형 & 주먹밥
-                linkpass = true;
+                linkPass = true;
             }
             if(guild.getId().equals("607390893804093442") || event.getChannel().getId().equals("600021475629727745")) { // 소프냥이 & 그린 영상 채널
                 if(rawMessage.contains("youtube")) {
-                    linkpass = true;
+                    linkPass = true;
                 }
                 if(rawMessage.contains("twitch")) {
-                    linkpass = true;
+                    linkPass = true;
                 }
                 if(rawMessage.contains("youtu")) {
-                    linkpass = true;
+                    linkPass = true;
                 }
             }
-        } catch (Exception ignored) {
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if(!linkpass) {
+        if(!linkPass) {
             for (String s : Lists) {
                 if (rawMessage.contains(s)) {
                     try {
@@ -127,11 +132,10 @@ public class filterListener extends ListenerAdapter {
                         }
 
                         if (message.getMember().hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
-                            logger.warn("관리자가 링크를 첨부했으나, 관리자는 필터링 되지 않습니다.");
-
-                            return;
-                        }
-                        if (message.getMember().getUser().getId().equals("342951769627688960")) {
+                            logger.warn("관리자가 링크를 첨부했으나, 관리자는 필터링 되지 않습니다. \n" +
+                                    "서버: " + event.getGuild().getName() + "\n" +
+                                    "이유: " + s + "\n" +
+                                    "차단된 링크: " + message.getContentRaw());
                             return;
                         }
                         if (!guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) {
@@ -141,6 +145,16 @@ public class filterListener extends ListenerAdapter {
                         }
                         message.delete().queue();
                         event.getChannel().sendMessage(event.getMember().getAsMention() + ", 링크를 보내지 마세요.").queue();
+                        logger.warn("링크 필터링이 되었습니다. \n" +
+                                "서버: " + event.getGuild().getName() + "\n" +
+                                "이유: " + s + "\n" +
+                                "차단된 링크: " + message.getContentRaw());
+                        if(event.getGuild().getId().equals("600010501266866186")) {
+                            event.getGuild().getTextChannelById("623841727823740928").sendMessage("링크 필터링이 되었습니다. \n" +
+                                    "서버: " + event.getGuild().getName() + "\n" +
+                                    "이유: " + s + "\n" +
+                                    "차단된 링크: " + message.getContentRaw()).queue();
+                        }
                         return;
                     } catch (Exception e) {
                         if (event.getJDA().getSelfUser().getId().equals("592987181186940931")) {
@@ -150,10 +164,16 @@ public class filterListener extends ListenerAdapter {
                 }
             }
         }
-        for (String value : list) {
-            try {
-                rawMessage = rawMessage.replaceAll(value, "");
-            } catch (Exception ignored) {
+        boolean clean = true;
+        while (clean) {
+            for (String values : list) {
+                try {
+                    rawMessage = rawMessage.replace(values, "");
+                } catch (Exception ignored) {
+                }
+            }
+            for (String values : list) {
+                clean = rawMessage.contains(values);
             }
         }
         for (String s : List) {
@@ -164,7 +184,10 @@ public class filterListener extends ListenerAdapter {
                         return;
                     }
                     if(message.getMember().hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
-                        logger.warn("관리자가 금지어를 말했으나, 관리자는 필터링 되지 않습니다.");
+                        logger.warn("관리자가 금지어를 말했으나, 관리자는 필터링 되지 않습니다. \n" +
+                                "서버: " + event.getGuild().getName() + "\n" +
+                                "금지어: " + s + "\n" +
+                                "문장: " + message.getContentRaw());
 
                         return;
                     }
@@ -174,7 +197,9 @@ public class filterListener extends ListenerAdapter {
                         return;
                     }
                     logger.warn(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
-                            "금지어: " + message.getContentRaw());
+                            "서버: " + event.getGuild().getName() + "\n" +
+                            "금지어: " + s + "\n" +
+                            "문장: " + message.getContentRaw());
                     rawMessage = rawMessage.replaceFirst(s,"||[데이터 말소]||");
 
                     boolean flag = true;
@@ -192,18 +217,24 @@ public class filterListener extends ListenerAdapter {
                     }
                     message.delete().complete();
                     id = event.getChannel().sendMessage(rawMessage + "\n " + author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").complete().getId();
+                    EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                            .setTitle("금지어 사용")
+                            .setColor(Color.RED)
+                            .addField("금지어 사용자", author.getAsMention(), false)
+                            .addField("금지어", s, false)
+                            .addField("문장", message.getContentRaw(), false);
                     switch (guild.getId()) {
                         case "617222347425972234":
-                            guild.getTextChannelById("617244182653829140").sendMessage(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
-                                    "금지어: " + message.getContentRaw()).queue();
+                            guild.getTextChannelById("617244182653829140").sendMessage(builder.build()).queue();
                             break;
                         case "617757206929997895":
-                            guild.getTextChannelById("617760924714926113").sendMessage(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
-                                    "금지어: " + message.getContentRaw()).queue();
+                            guild.getTextChannelById("617760924714926113").sendMessage(builder.build()).queue();
                             break;
                         case "607390893804093442":
-                            guild.getTextChannelById("620091943522664466").sendMessage(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
-                                    "금지어: " + message.getContentRaw()).queue();
+                            guild.getTextChannelById("620091943522664466").sendMessage(builder.build()).queue();
+                            break;
+                        case "600010501266866186": //끄린이
+                            guild.getTextChannelById("623841727823740928").sendMessage(builder.build()).queue();
                             break;
                     }
                 } catch (Exception e) {
