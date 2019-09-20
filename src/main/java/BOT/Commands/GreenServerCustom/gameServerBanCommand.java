@@ -151,6 +151,10 @@ public class gameServerBanCommand implements ICommand {
             ID = ID.replaceAll(" ", "");
             ID = ID.replaceAll("\\p{Z}","");
             ID = ID.replace("\n", "");
+            if(NickName.equals("")) {
+                event.getChannel().sendMessage("스팀 ID를 확인하여 주세요").queue();
+                return;
+            }
 
             EmbedBuilder builder = EmbedUtils.defaultEmbed()
                     .setTitle("인 게임 정지 제재")

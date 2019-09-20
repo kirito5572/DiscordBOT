@@ -5,13 +5,19 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
 
+import static BOT.Listener.Listener.getID1;
+
 public class BotOwnerNoticeCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
+        if(!event.getMember().getUser().getId().equals(getID1())) {
+            return;
+        }
         StringBuilder temp = new StringBuilder();
         for (String arg : args) {
             temp.append(arg).append(" ");
         }
+        event.getMessage().delete();
         String message = temp.toString();
         if(message.contains("!here")) {
             message = message.replaceFirst("!here", "@here");
@@ -37,6 +43,7 @@ public class BotOwnerNoticeCommand implements ICommand {
         } else {
             event.getJDA().getGuildById("600010501266866186").getTextChannelById("600015178821664769").sendMessage(message).queue();
         }
+        event.getChannel().sendMessage("전송이 완료되었습니다.").queue();
     }
 
     @Override
