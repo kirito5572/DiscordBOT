@@ -4,6 +4,7 @@ import BOT.App;
 import BOT.Objects.ICommand;
 import BOT.Objects.getSteamID;
 import me.duncte123.botcommons.messaging.EmbedUtils;
+import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.Permission;
@@ -12,6 +13,7 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 import java.awt.*;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class gameServerBanCommand implements ICommand {
     private static String command = "서버밴";
@@ -71,7 +73,7 @@ public class gameServerBanCommand implements ICommand {
             String time = time_non;
             String timeString;
             String[] returns = getSteamID.SteamID(SteamID);
-            String NickName = returns[0];
+            final String[] NickName = {returns[0]};
             String ID = returns[1];
 
             int temp1;
@@ -144,34 +146,91 @@ public class gameServerBanCommand implements ICommand {
 
                 return;
             }
-            for(;NickName.contains(" ");) {
-                NickName = NickName.replaceFirst(" ", "");
+            for(; NickName[0].contains(" ");) {
+                NickName[0] = NickName[0].replaceFirst(" ", "");
             }
             for(;ID.contains(" ");) {
                 ID = ID.replaceFirst("\n", "");
             }
-            System.out.println(NickName + ID);
-            if(NickName.equals("")) {
-                event.getChannel().sendMessage("스팀 ID를 확인하여 주세요" + NickName).queue();
+            System.out.println(NickName[0] + ID);
+            AtomicBoolean steam = new AtomicBoolean(true);
+            if(NickName[0].equals("")) {
+                WebUtils.ins.scrapeWebPage("https://steamid.io/lookup/" + SteamID).async((document1 -> {
+                    String a1 = document1.getElementsByTag("body").first().toString();
+                    String a2 = a1;
+                    try {
+                        int b2 = a2.indexOf("data-clipboard-text=\"");
+                        int b1 = a1.indexOf(" <dt class=\"key\">\n" +
+                                "       name");
+                        a1 = a1.substring(b1 + 75);
+                        a2 = a2.substring(b2 + 21);
+                        b2 = a2.indexOf("data-clipboard-text=\"");
+                        a2 = a2.substring(b2 + 21);
+                        b2 = a2.indexOf("data-clipboard-text=\"");
+                        a2 = a2.substring(b2 + 21);
+                        int c1 = a1.indexOf("</dd>");
+                        int c2 = a2.indexOf(" src=");
+                        a1 = a1.substring(0, c1 - 7);
+                        a2 = a2.substring(0, c2 - 1);
+                        System.out.println(a1);
+                        System.out.println(a2);
+                        NickName[0] = a1;
+                        steam.set(false);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        channel.sendMessage("봇이 스팀 프로필을 불러오는데 실패하였습니다.").queue();
+                    }
+                }));
                 return;
-            } else if(NickName.equals(" ")) {
-                event.getChannel().sendMessage("스팀 ID를 확인하여 주세요" + NickName).queue();
+            } else if(NickName[0].equals(" ")) {
+                WebUtils.ins.scrapeWebPage("https://steamid.io/lookup/" + SteamID).async((document1 -> {
+                    String a1 = document1.getElementsByTag("body").first().toString();
+                    String a2 = a1;
+                    try {
+                        int b2 = a2.indexOf("data-clipboard-text=\"");
+                        int b1 = a1.indexOf(" <dt class=\"key\">\n" +
+                                "       name");
+                        a1 = a1.substring(b1 + 75);
+                        a2 = a2.substring(b2 + 21);
+                        b2 = a2.indexOf("data-clipboard-text=\"");
+                        a2 = a2.substring(b2 + 21);
+                        b2 = a2.indexOf("data-clipboard-text=\"");
+                        a2 = a2.substring(b2 + 21);
+                        int c1 = a1.indexOf("</dd>");
+                        int c2 = a2.indexOf(" src=");
+                        a1 = a1.substring(0, c1 - 7);
+                        a2 = a2.substring(0, c2 - 1);
+                        System.out.println(a1);
+                        System.out.println(a2);
+                        NickName[0] = a1;
+                        steam.set(false);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        channel.sendMessage("봇이 스팀 프로필을 불러오는데 실패하였습니다.").queue();
+                    }
+                }));
                 return;
             }
-            String text = "+oban " + NickName + " " + ID + " " + time + " " + reason.toString();
+            String text = "+oban " + NickName[0] + " " + ID + " " + time + " " + reason.toString();
             System.out.println(text);
 
             EmbedBuilder builder = EmbedUtils.defaultEmbed()
                     .setTitle("인 게임 정지 제재")
                     .setColor(Color.RED)
-                    .addField("제재 대상자", NickName, false)
+                    .addField("제재 대상자", NickName[0], false)
                     .addField("스팀 ID", ID, false)
                     .addField("정지 기간", timeString, false)
                     .addField("위반 규정 조항", reason.toString(), false)
                     .addField("제재 담당자", event.getAuthor().getAsMention(), false);
+            if(steam.get()) {
+                adminChannel.sendMessage("" + event.getMember().getAsMention() + ", ` " + NickName[0] + " ( " + ID + " )제재 완료\n" +
+                        "기간: " + time + "`").queue();
+            } else {
+                adminChannel.sendMessage("" + event.getMember().getAsMention() + ", ` " + NickName[0] + " ( " + ID + " )제재 완료\n" +
+                        "기간: " + time + "`\n" +
+                        "**중요 이 유저는 스팀 프로필이 설정되지 않았습니다**").queue();
+            }
 
-            adminChannel.sendMessage("" + event.getMember().getAsMention() + ", ` " + NickName + " ( " + ID + " )제재 완료\n" +
-                    "기간: " + time + "`").queue();
 
             reportChannel.sendMessage(builder.build()).queue();
 
