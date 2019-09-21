@@ -156,6 +156,8 @@ public class gameServerBanCommand implements ICommand {
             AtomicBoolean returnflag = new AtomicBoolean(false);
             AtomicBoolean steam = new AtomicBoolean(true);
             if(NickName[0].equals("")) {
+                steam.set(false);
+                String finalTime = time;
                 WebUtils.ins.scrapeWebPage("https://steamid.io/lookup/" + SteamID).async((document1 -> {
                     String a1 = document1.getElementsByTag("body").first().toString();
                     String a2 = a1;
@@ -175,8 +177,13 @@ public class gameServerBanCommand implements ICommand {
                         a2 = a2.substring(0, c2 - 1);
                         System.out.println(a1);
                         System.out.println(a2);
+                        for(; a1.contains(" ");) {
+                            a1 = a1.replaceFirst(" ", "");
+                        }
                         NickName[0] = a1;
-                        steam.set(false);
+                        banMain(NickName, a2, finalTime, reason, timeString, steam,
+                                adminChannel, reportChannel, botChannel, botChannel1,
+                                event);
                     } catch (Exception e) {
                         e.printStackTrace();
                         channel.sendMessage("봇이 스팀 프로필을 불러오는데 실패하였습니다.").queue();
@@ -184,6 +191,8 @@ public class gameServerBanCommand implements ICommand {
                     }
                 }));
             } else if(NickName[0].equals(" ")) {
+                steam.set(false);
+                String finalTime1 = time;
                 WebUtils.ins.scrapeWebPage("https://steamid.io/lookup/" + SteamID).async((document1 -> {
                     String a1 = document1.getElementsByTag("body").first().toString();
                     String a2 = a1;
@@ -203,8 +212,13 @@ public class gameServerBanCommand implements ICommand {
                         a2 = a2.substring(0, c2 - 1);
                         System.out.println(a1);
                         System.out.println(a2);
+                        for(; a1.contains(" ");) {
+                            a1 = a1.replaceFirst(" ", "");
+                        }
                         NickName[0] = a1;
-                        steam.set(false);
+                        banMain(NickName, a2, finalTime1, reason, timeString, steam,
+                                adminChannel, reportChannel, botChannel, botChannel1,
+                                event);
                     } catch (Exception e) {
                         e.printStackTrace();
                         channel.sendMessage("봇이 스팀 프로필을 불러오는데 실패하였습니다.").queue();
@@ -215,50 +229,11 @@ public class gameServerBanCommand implements ICommand {
             if(returnflag.get()) {
                 return;
             }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            String text = "+oban " + NickName[0] + " " + ID + " " + time + " " + reason.toString();
-            System.out.println(text);
-
-            EmbedBuilder builder = EmbedUtils.defaultEmbed()
-                    .setTitle("인 게임 정지 제재")
-                    .setColor(Color.RED)
-                    .addField("제재 대상자", NickName[0], false)
-                    .addField("스팀 ID", ID, false)
-                    .addField("정지 기간", timeString, false)
-                    .addField("위반 규정 조항", reason.toString(), false)
-                    .addField("제재 담당자", event.getAuthor().getAsMention(), false);
             if(steam.get()) {
-                adminChannel.sendMessage("" + event.getMember().getAsMention() + ", ` " + NickName[0] + " ( " + ID + " )제재 완료\n" +
-                        "기간: " + time + "`").queue();
-            } else {
-                adminChannel.sendMessage("" + event.getMember().getAsMention() + ", ` " + NickName[0] + " ( " + ID + " )제재 완료\n" +
-                        "기간: " + time + "`\n" +
-                        "**중요 이 유저는 스팀 프로필이 설정되지 않았습니다**").queue();
+                banMain(NickName, ID, time, reason, timeString, steam,
+                        adminChannel, reportChannel, botChannel, botChannel1,
+                        event);
             }
-
-
-            reportChannel.sendMessage(builder.build()).queue();
-
-            //event.getGuild().getTextChannelById("600012818879741963").sendMessage("$$정보 " + ID + " " + time_non + " " + reason.toString()).queue();
-            if(event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
-                    event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.IDLE)) {
-                botChannel.sendMessage(text).queue();
-            } else {
-                event.getChannel().sendMessage("1서버가 종료상태이므로, 1,2,3,4 서버에 밴이 적용되지 않습니다.").queue();
-            }
-            if(event.getGuild().getMemberById("600676751118696448").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
-                    event.getGuild().getMemberById("600676751118696448").getOnlineStatus().equals(OnlineStatus.IDLE)) {
-
-                botChannel1.sendMessage(text).queue();
-            } else {
-                event.getChannel().sendMessage("5서버가 종료상태이므로, 5서버에 밴이 적용되지 않습니다.").queue();
-            }
-            event.getChannel().sendMessage("밴 적용 완료").queue();
-
         } else {
             channel.sendMessage("이 명령어는 이 서버에서 지원하지 않습니다.").queue();
         }
@@ -283,5 +258,47 @@ public class gameServerBanCommand implements ICommand {
 
     public static String getCommand() {
         return command;
+    }
+    private void banMain(String[] NickName, String ID, String time, StringBuilder reason, String timeString, AtomicBoolean steam,
+                         TextChannel adminChannel, TextChannel reportChannel, TextChannel botChannel, TextChannel botChannel1,
+                         GuildMessageReceivedEvent event) {
+        String text = "+oban " + NickName[0] + " " + ID + " " + time + " " + reason.toString();
+        System.out.println(text);
+
+        EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                .setTitle("인 게임 정지 제재")
+                .setColor(Color.RED)
+                .addField("제재 대상자", NickName[0], false)
+                .addField("스팀 ID", ID, false)
+                .addField("정지 기간", timeString, false)
+                .addField("위반 규정 조항", reason.toString(), false)
+                .addField("제재 담당자", event.getAuthor().getAsMention(), false);
+        if (steam.get()) {
+            adminChannel.sendMessage("" + event.getMember().getAsMention() + ", ` " + NickName[0] + " ( " + ID + " )제재 완료\n" +
+                    "기간: " + time + "`").queue();
+        } else {
+            adminChannel.sendMessage("" + event.getMember().getAsMention() + ", ` " + NickName[0] + " ( " + ID + " )제재 완료\n" +
+                    "기간: " + time + "`\n" +
+                    "**중요 이 유저는 스팀 프로필이 설정되지 않았습니다**").queue();
+        }
+
+
+        reportChannel.sendMessage(builder.build()).queue();
+
+        //event.getGuild().getTextChannelById("600012818879741963").sendMessage("$$정보 " + ID + " " + time_non + " " + reason.toString()).queue();
+        if (event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
+                event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.IDLE)) {
+            botChannel.sendMessage(text).queue();
+        } else {
+            event.getChannel().sendMessage("1서버가 종료상태이므로, 1,2,3,4 서버에 밴이 적용되지 않습니다.").queue();
+        }
+        if (event.getGuild().getMemberById("600676751118696448").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
+                event.getGuild().getMemberById("600676751118696448").getOnlineStatus().equals(OnlineStatus.IDLE)) {
+
+            botChannel1.sendMessage(text).queue();
+        } else {
+            event.getChannel().sendMessage("5서버가 종료상태이므로, 5서버에 밴이 적용되지 않습니다.").queue();
+        }
+        event.getChannel().sendMessage("밴 적용 완료").queue();
     }
 }
