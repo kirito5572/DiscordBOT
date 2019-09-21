@@ -150,13 +150,14 @@ public class gameServerBanCommand implements ICommand {
             ID = ID.replaceAll(" ", "");
             ID = ID.replace("\n", "");
             if(NickName.equals("")) {
-                event.getChannel().sendMessage("스팀 ID를 확인하여 주세요").queue();
+                event.getChannel().sendMessage("스팀 ID를 확인하여 주세요" + NickName).queue();
                 return;
             } else if(NickName.equals(" ")) {
-                event.getChannel().sendMessage("스팀 ID를 확인하여 주세요").queue();
+                event.getChannel().sendMessage("스팀 ID를 확인하여 주세요" + NickName).queue();
                 return;
             }
-
+            String text = "+oban " + NickName + " " + ID + " " + time + " " + reason.toString();
+            System.out.println(text);
 
             EmbedBuilder builder = EmbedUtils.defaultEmbed()
                     .setTitle("인 게임 정지 제재")
@@ -172,9 +173,6 @@ public class gameServerBanCommand implements ICommand {
 
             reportChannel.sendMessage(builder.build()).queue();
 
-
-            String text = "+oban " + NickName + " " + ID + " " + time + " " + reason.toString();
-            System.out.println(text);
             //event.getGuild().getTextChannelById("600012818879741963").sendMessage("$$정보 " + ID + " " + time_non + " " + reason.toString()).queue();
             if(event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
                     event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.IDLE)) {
