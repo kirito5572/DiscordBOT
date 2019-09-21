@@ -45,7 +45,7 @@ public class filterListener extends ListenerAdapter {
         }
         boolean linkPass = false;
         try {
-            if (message.getMember().getUser().getId().equals("342951769627688960") || message.getMember().getUser().getId().equals("492832169715040276")) {
+            if (author.getId().equals("342951769627688960") || author.getId().equals("492832169715040276")) {
                 //그린서버 보안부
                 return;
             }
@@ -56,7 +56,7 @@ public class filterListener extends ListenerAdapter {
             if(guild.getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
                 linkPass = true;
             }
-            if(message.getMember().getUser().isBot()) {
+            if(author.isBot()) {
                 linkPass = true;
             }
             if(rawMessage.contains("cdn.discord")) {
