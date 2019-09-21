@@ -215,6 +215,11 @@ public class gameServerBanCommand implements ICommand {
             if(returnflag.get()) {
                 return;
             }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             String text = "+oban " + NickName[0] + " " + ID + " " + time + " " + reason.toString();
             System.out.println(text);
 
