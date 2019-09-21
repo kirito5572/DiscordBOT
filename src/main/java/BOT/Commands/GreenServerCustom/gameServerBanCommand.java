@@ -146,10 +146,8 @@ public class gameServerBanCommand implements ICommand {
             }
 
             NickName = NickName.replaceAll(" ", "");
-            NickName= NickName.replaceAll("\\p{Z}","");
             NickName = NickName.replace("\n", "");
             ID = ID.replaceAll(" ", "");
-            ID = ID.replaceAll("\\p{Z}","");
             ID = ID.replace("\n", "");
             if(NickName.equals("")) {
                 event.getChannel().sendMessage("스팀 ID를 확인하여 주세요").queue();
