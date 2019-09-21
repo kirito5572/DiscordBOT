@@ -153,6 +153,7 @@ public class gameServerBanCommand implements ICommand {
                 ID = ID.replaceFirst("\n", "");
             }
             System.out.println(NickName[0] + ID);
+            AtomicBoolean returnflag = new AtomicBoolean(false);
             AtomicBoolean steam = new AtomicBoolean(true);
             if(NickName[0].equals("")) {
                 WebUtils.ins.scrapeWebPage("https://steamid.io/lookup/" + SteamID).async((document1 -> {
@@ -179,9 +180,9 @@ public class gameServerBanCommand implements ICommand {
                     } catch (Exception e) {
                         e.printStackTrace();
                         channel.sendMessage("봇이 스팀 프로필을 불러오는데 실패하였습니다.").queue();
+                        returnflag.set(true);
                     }
                 }));
-                return;
             } else if(NickName[0].equals(" ")) {
                 WebUtils.ins.scrapeWebPage("https://steamid.io/lookup/" + SteamID).async((document1 -> {
                     String a1 = document1.getElementsByTag("body").first().toString();
@@ -207,8 +208,11 @@ public class gameServerBanCommand implements ICommand {
                     } catch (Exception e) {
                         e.printStackTrace();
                         channel.sendMessage("봇이 스팀 프로필을 불러오는데 실패하였습니다.").queue();
+                        returnflag.set(true);
                     }
                 }));
+            }
+            if(returnflag.get()) {
                 return;
             }
             String text = "+oban " + NickName[0] + " " + ID + " " + time + " " + reason.toString();

@@ -183,6 +183,10 @@ public class filterListener extends ListenerAdapter {
 
                         return;
                     }
+                    if(author.isBot()) {
+
+                        return;
+                    }
                     if(message.getMember().hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                         logger.warn("관리자가 금지어를 말했으나, 관리자는 필터링 되지 않습니다. \n" +
                                 "서버: " + event.getGuild().getName() + "\n" +
