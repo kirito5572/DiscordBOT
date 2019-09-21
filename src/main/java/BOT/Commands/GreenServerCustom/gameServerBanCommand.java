@@ -145,10 +145,10 @@ public class gameServerBanCommand implements ICommand {
                 return;
             }
             for(;NickName.contains(" ");) {
-                NickName = NickName.replace(" ", "");
+                NickName = NickName.replaceFirst(" ", "");
             }
             for(;ID.contains(" ");) {
-                ID = ID.replace("\n", "");
+                ID = ID.replaceFirst("\n", "");
             }
             System.out.println(NickName + ID);
             if(NickName.equals("")) {
