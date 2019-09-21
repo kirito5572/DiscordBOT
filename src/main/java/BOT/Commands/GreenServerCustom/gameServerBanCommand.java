@@ -280,6 +280,7 @@ public class gameServerBanCommand implements ICommand {
             adminChannel.sendMessage("" + event.getMember().getAsMention() + ", ` " + NickName[0] + " ( " + ID + " )제재 완료\n" +
                     "기간: " + time + "`\n" +
                     "**중요 이 유저는 스팀 프로필이 설정되지 않았습니다**").queue();
+            event.getChannel().sendMessage("**중요 이 유저는 스팀 프로필이 설정되지 않았습니다**").queue();
         }
 
 
