@@ -17,7 +17,7 @@ public class BotOwnerNoticeCommand implements ICommand {
         for (String arg : args) {
             temp.append(arg).append(" ");
         }
-        event.getMessage().delete();
+        event.getMessage().delete().complete();
         String message = temp.toString();
         if(message.contains("!here")) {
             message = message.replaceFirst("!here", "@here");
@@ -39,6 +39,8 @@ public class BotOwnerNoticeCommand implements ICommand {
             event.getJDA().getGuildById("607390893804093442").getTextChannelById("620082301413621771") //소프냥이
                     .sendMessage(message).queue();
             event.getJDA().getGuildById("607390203086372866").getTextChannelById("607543076734369792") //제이
+                    .sendMessage(message).queue();
+            event.getJDA().getGuildById("439780696999985172").getTextChannelById("441164108671221761") //네코샘플
                     .sendMessage(message).queue();
         } else {
             event.getJDA().getGuildById("600010501266866186").getTextChannelById("600015178821664769").sendMessage(message).queue();

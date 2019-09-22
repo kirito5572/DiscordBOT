@@ -52,6 +52,9 @@ public class filterListener extends ListenerAdapter {
             if (guild.getId().equals("453817631603032065")) {
                 return;
             }
+            if (guild.getId().equals("439780696999985172")) {
+                return;
+            }
 
             if(guild.getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
                 linkPass = true;

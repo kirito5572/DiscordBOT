@@ -41,7 +41,8 @@ public class lewdnekoCommand implements ICommand {
                 if (event.getChannel().isNSFW()) {
                     event.getChannel().sendMessage(embed.build()).queue();
                 } else {
-                    if (!(event.getGuild().getId().equals("600010501266866186") || event.getGuild().getId().equals("607390203086372866"))) {
+                    if (!(event.getGuild().getId().equals("600010501266866186") || event.getGuild().getId().equals("607390203086372866") ||
+                            event.getGuild().getId().equals("439780696999985172"))) {
                         event.getAuthor().openPrivateChannel().complete().sendMessage(embed.build()).queue();
                     } else {
                         InputStream inputStream = this.getClass().getResourceAsStream("/" + "haha1.jpg");

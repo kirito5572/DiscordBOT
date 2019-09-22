@@ -72,12 +72,16 @@ public class CatCommand implements ICommand {
                     e.printStackTrace();
                 }
                 if (channel.getMessageById(ID).complete().getReactions().get(0).getCount() == 2) {
+                    message.delete().complete();
                     flag = false;
                 } else if (channel.getMessageById(ID).complete().getReactions().get(1).getCount() == 2) {
                     message.delete().complete();
                     message = event.getChannel().sendMessage("전송이 취소되었습니다.").complete();
                     message.delete().queueAfter(5, TimeUnit.SECONDS);
                     return;
+                }
+                if(!flag) {
+                    j = 11;
                 }
             }
             if (flag) {

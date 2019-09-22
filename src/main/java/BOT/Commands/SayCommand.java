@@ -34,6 +34,12 @@ public class SayCommand implements ICommand {
                 return;
             }
         }
+        if(event.getGuild().getId().equals("439780696999985172")) {
+            if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                event.getChannel().sendMessage("당신은 이 명령어를 사용 할 수 없습니다.").queue();
+                return;
+            }
+        }
         String chat = String.join(" ",args);
         List<Message> messages = event.getChannel().getHistory().retrievePast(1).complete();
         messages.get(0).delete().queue();
