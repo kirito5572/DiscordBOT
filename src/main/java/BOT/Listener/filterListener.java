@@ -89,6 +89,43 @@ public class filterListener extends ListenerAdapter {
             if(rawMessage.contains("&p")) {
                 linkPass = true;
             }
+            if(rawMessage.contains(";;p")) {
+                linkPass = true;
+            }
+            if(rawMessage.contains("그린아 재생")) {
+                linkPass = true;
+            }
+            if(rawMessage.contains("그린아 검색")) {
+                linkPass = true;
+            }
+            if(rawMessage.contains("=music")) {
+                linkPass = true;
+            }
+            if(rawMessage.contains("=m p")) {
+                linkPass = true;
+            }
+            if(rawMessage.contains("p! play")) {
+                linkPass = true;
+            }
+            if(rawMessage.contains("!music")) {
+                linkPass = true;
+            }
+            if(rawMessage.contains("!p")) {
+                linkPass = true;
+            }
+            if(rawMessage.contains("!play")) {
+                linkPass = true;
+            }
+            if(rawMessage.contains("!music")) {
+                linkPass = true;
+            }
+            if(rawMessage.contains("!p")) {
+                linkPass = true;
+            }
+            if(rawMessage.contains("!play")) {
+                linkPass = true;
+            }
+
 
             if(guild.getId().equals("600010501266866186")) {  //끄린이
                 if(event.getMember().getRoles().contains(event.getGuild().getRoleById("616229894401294356"))) {
