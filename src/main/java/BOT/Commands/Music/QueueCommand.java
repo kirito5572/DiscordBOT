@@ -5,6 +5,7 @@ import BOT.Constants;
 import BOT.Music.GuildMusicManager;
 import BOT.Music.PlayerManager;
 import BOT.Objects.ICommand;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
 import me.duncte123.botcommons.messaging.EmbedUtils;
@@ -24,6 +25,7 @@ public class QueueCommand implements ICommand {
         PlayerManager playerManager = PlayerManager.getInstance();
         GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
         BlockingQueue<AudioTrack> queue = musicManager.scheduler.getQueue();
+        AudioPlayer player = musicManager.player;
 
         String joined = String.join("", args);
 
@@ -32,24 +34,36 @@ public class QueueCommand implements ICommand {
         }
 
         if(queue.isEmpty()) {
+            if(player.getPlayingTrack() == null)
             channel.sendMessage("재생목록이 비었습니다.").queue();
 
             return;
         }
-
-        int maxTrackCount = Math.min(queue.size(), 20 * Integer.parseInt(joined));
-        int minTrackCount = Math.min(queue.size(), 20 * (Integer.parseInt(joined) - 1));
+        int maxTrackCount = Math.min(queue.size(), 20 * Integer.parseInt(joined) - 1);
+        int minTrackCount = Math.min(queue.size(), 20 * (Integer.parseInt(joined) - 1) - 1);
+        if(joined.equals("1")) {
+            maxTrackCount = Math.min(queue.size(), 20 * Integer.parseInt(joined) - 1);
+            minTrackCount = Math.min(queue.size(), 20 * (Integer.parseInt(joined) - 1));
+        }
         List<AudioTrack> tracks = new ArrayList<>(queue);
         System.out.println(queue.size());
         if(minTrackCount >= queue.size()) {
             channel.sendMessage( "`" + Constants.PREFIX + "queue " + joined + "`는 비어있습니다.\n`" +
-                    Constants.PREFIX + "queue " + (int)Math.ceil(queue.size() / 20.0) +
+                    Constants.PREFIX + "queue " + (int)Math.ceil((queue.size() + 1) / 20.0) +
                     "`까지 재생목록이 존재합니다.").queue();
 
             return;
         }
         EmbedBuilder builder = EmbedUtils.defaultEmbed()
-                .setTitle("현재 재생목록 (총합: " + queue.size() + ") 페이지: " + joined);
+                .setTitle("현재 재생목록 (총합: " + (queue.size() + 1) + ") 페이지: " + joined);
+        if(joined.equals("1")) {
+            AudioTrackInfo info = player.getPlayingTrack().getInfo();
+            builder.appendDescription(String.format(
+                    (1) + ". %s - %s\n",
+                    info.title,
+                    info.author
+            ));
+        }
         for(int i = minTrackCount; i < maxTrackCount; i++) {
             AudioTrack track = tracks.get(i);
             AudioTrackInfo info = track.getInfo();

@@ -4,10 +4,7 @@ import BOT.App;
 import BOT.Music.PlayerManager;
 import BOT.Objects.ICommand;
 import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.GuildVoiceState;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.entities.VoiceChannel;
+import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.managers.AudioManager;
 import org.json.simple.JSONArray;
@@ -19,6 +16,7 @@ import java.io.*;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class SearchCommand implements ICommand {
     @Override
@@ -87,8 +85,8 @@ public class SearchCommand implements ICommand {
                 String first_Title = temp_first_Title.toString().substring(temp_first_Title.toString().indexOf("\",\"title\":\"") + 11,temp_first_Title.toString().indexOf("\",\"thumbnails\":{"));
                 String first_url = first_ID.toString().substring(first_ID.toString().indexOf("\"videoId\":\"") + 11, first_ID.toString().indexOf("\"}"));
 
-                channel.sendMessage( first_Title + "\n" + "https://youtu.be/" + first_url + "\n" +
-                        "재생을 원하시면 :one: 아니면 :two:").queue();
+                Message message = channel.sendMessage( first_Title + "\n" + "https://youtu.be/" + first_url + "\n" +
+                        "재생을 원하시면 :one: 아니면 :two:").complete();
 
                 System.out.println("TP1");
                 Thread.sleep(400);
@@ -103,38 +101,49 @@ public class SearchCommand implements ICommand {
                     Thread.sleep(1000);
                     System.out.println(channel.getMessageById(ID).complete().getReactions().get(0).getReactionEmote().getEmote());
                     if(channel.getMessageById(ID).complete().getReactions().get(0).getCount() == 2) {
-                            if(!audioManager.isConnected()) {
-                                audioManager.openAudioConnection(voiceChannel);
-                            }
-                            PlayerManager manager = PlayerManager.getInstance();
-                            channel.sendMessage("노래가 추가되었습니다.").queue();
-                            manager.loadAndPlay(channel, "https://youtu.be/" + first_url);
-                            return;
+                        if(!audioManager.isConnected()) {
+                            audioManager.openAudioConnection(voiceChannel);
+                        }
+                        PlayerManager manager = PlayerManager.getInstance();
+                        message.delete().complete();
+                        message = channel.sendMessage("노래가 추가되었습니다.").complete();
+                        message.delete().queueAfter(5, TimeUnit.SECONDS);
+                        manager.loadAndPlay(channel, "https://youtu.be/" + first_url);
+                        return;
                     } else if(channel.getMessageById(ID).complete().getReactions().get(1).getCount() == 2){
-                        event.getChannel().sendMessage("검색이 취소되었습니다.").queue();
+                        message.delete().complete();
+                        message = event.getChannel().sendMessage("검색이 취소되었습니다.").complete();
+                        message.delete().queueAfter(5, TimeUnit.SECONDS);
                         return;
                     }
                 }
-
-                channel.sendMessage("대기 시간이 초과되어 삭제되었습니다.").queue();
+                message.delete().complete();
+                message = channel.sendMessage("대기 시간이 초과되어 삭제되었습니다.").complete();
+                message.delete().queueAfter(5,TimeUnit.SECONDS);
 
             } catch (UnsupportedEncodingException e) {
-                channel.sendMessage("ErrorCode : 0x1402 UNSUPPORT ENCODING ERROR").queue();
+                Message message = channel.sendMessage("ErrorCode : 0x1402 UNSUPPORT ENCODING ERROR").complete();
+                message.delete().queueAfter(7,TimeUnit.SECONDS);
                 e.printStackTrace();
             } catch (ProtocolException e) {
-                channel.sendMessage("ErrorCode : 0x9757 Protocol ERROR").queue();
+                Message message = channel.sendMessage("ErrorCode : 0x9757 Protocol ERROR").complete();
+                message.delete().queueAfter(7,TimeUnit.SECONDS);
                 e.printStackTrace();
             } catch (MalformedURLException e) {
-                channel.sendMessage("ErrorCode : 0x1576 URL ERROR").queue();
+                Message message = channel.sendMessage("ErrorCode : 0x1576 URL ERROR").complete();
+                message.delete().queueAfter(7,TimeUnit.SECONDS);
                 e.printStackTrace();
             } catch (IOException e) {
-                channel.sendMessage("ErrorCode : 0x3451 I/O ERROR").queue();
+                Message message = channel.sendMessage("ErrorCode : 0x3451 I/O ERROR").complete();
+                message.delete().queueAfter(7,TimeUnit.SECONDS);
                 e.printStackTrace();
             } catch (ParseException e) {
-                channel.sendMessage("ErrorCode : 0x6712 PARSE ERROR").queue();
+                Message message = channel.sendMessage("ErrorCode : 0x6712 PARSE ERROR").complete();
+                message.delete().queueAfter(7,TimeUnit.SECONDS);
                 e.printStackTrace();
             } catch (InterruptedException e) {
-                channel.sendMessage("ErrorCode : 0x5734 THREAD ERROR").queue();
+                Message message = channel.sendMessage("ErrorCode : 0x5734 THREAD ERROR").complete();
+                message.delete().queueAfter(7,TimeUnit.SECONDS);
                 e.printStackTrace();
             }
         }).start();

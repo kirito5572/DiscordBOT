@@ -4,6 +4,7 @@ import BOT.App;
 import BOT.Music.GuildMusicManager;
 import BOT.Music.PlayerManager;
 import BOT.Objects.ICommand;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.GuildVoiceState;
@@ -26,6 +27,9 @@ public class PlayCommand implements ICommand {
         AudioManager audioManager = event.getGuild().getAudioManager();
         GuildVoiceState memberVoiceState = event.getMember().getVoiceState();
         VoiceChannel voiceChannel = memberVoiceState.getChannel();
+        PlayerManager playerManager = PlayerManager.getInstance();
+        GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
+        AudioPlayer player = musicManager.player;
         if(!audioManager.isConnected()) {
 
             Member selfMember = event.getGuild().getSelfMember();
@@ -39,6 +43,14 @@ public class PlayCommand implements ICommand {
         if(!memberVoiceState.inVoiceChannel()) {
             channel.sendMessage("먼저 보이스 채널에 들어오세요").queue();
             return;
+        }
+        if(player.isPaused()) {
+            if(player.getPlayingTrack() != null) {
+                player.setPaused(false);
+                channel.sendMessage("일시정지 된 노래가 다시 재생됩니다.").queue();
+            } else {
+                player.setPaused(false);
+            }
         }
 
         if(args.isEmpty()) {
@@ -61,7 +73,7 @@ public class PlayCommand implements ICommand {
         }
         manager.loadAndPlay(event.getChannel(), input);
 
-        GuildMusicManager musicManager = manager.getGuildMusicManager(event.getGuild());
+        musicManager = manager.getGuildMusicManager(event.getGuild());
         BlockingQueue<AudioTrack> queue = musicManager.scheduler.getQueue();
 
         if(queue.isEmpty()) {

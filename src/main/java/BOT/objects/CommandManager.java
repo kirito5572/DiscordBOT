@@ -786,6 +786,23 @@ public class CommandManager {
                 }
             });
             addCommand(new BotOwnerNoticeCommand());
+            addCommand(new PauseCommand());
+            addCommand(new PauseCommand() {
+                @Override
+                public String getInvoke() {
+                    return "pause";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Pause music which is playing music by bot";
+                }
+            });
         }
     }
 

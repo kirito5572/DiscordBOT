@@ -890,6 +890,23 @@ public class greenCommandManager {
             });
             addCommand(new BotOwnerNoticeCommand());
             addCommand(new GreenNoticeCommand());
+            addCommand(new PauseCommand());
+            addCommand(new PauseCommand() {
+                @Override
+                public String getInvoke() {
+                    return "pause";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Pause music which is playing music by bot";
+                }
+            });
         }
     }
 
