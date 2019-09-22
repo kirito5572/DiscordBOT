@@ -58,6 +58,7 @@ public class HelpCommand implements ICommand {
         StringBuilder serverCustom = new StringBuilder();
         StringBuilder moderator = new StringBuilder();
         StringBuilder other = new StringBuilder();
+        builder.appendDescription(App.getPREFIX() + getInvoke() + " <명령어>를 입력하면 명령어별 상세 정보를 볼 수 있습니다.");
         Commands.forEach(iCommand -> {
             if (iCommand.getSmallHelp().equals("music")) {
                 music.append(iCommand.getInvoke()).append("\n");
