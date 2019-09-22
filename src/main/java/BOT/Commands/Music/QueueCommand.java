@@ -63,7 +63,7 @@ public class QueueCommand implements ICommand {
         if(joined.equals("1")) {
             AudioTrackInfo info = player.getPlayingTrack().getInfo();
             builder.appendDescription(String.format(
-                    (1) + ". %s - %s\n",
+                    (1. +" 현재 재생중") + ": %s - %s\n",
                     info.title,
                     info.author
             ));
