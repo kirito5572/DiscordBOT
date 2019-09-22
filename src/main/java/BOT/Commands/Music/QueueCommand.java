@@ -34,10 +34,11 @@ public class QueueCommand implements ICommand {
         }
 
         if(queue.isEmpty()) {
-            if(player.getPlayingTrack() == null)
-            channel.sendMessage("재생목록이 비었습니다.").queue();
+            if(player.getPlayingTrack() == null) {
+                channel.sendMessage("재생목록이 비었습니다.").queue();
 
-            return;
+                return;
+            }
         }
         int maxTrackCount;
         int minTrackCount;
