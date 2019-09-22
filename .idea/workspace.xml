@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/QueueCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/QueueCommand.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -276,7 +275,7 @@
       <workItem from="1569131374280" duration="3127000" />
       <workItem from="1569144904536" duration="4277000" />
       <workItem from="1569156735090" duration="742000" />
-      <workItem from="1569161730926" duration="6190000" />
+      <workItem from="1569161730926" duration="6542000" />
     </task>
     <servers />
   </component>

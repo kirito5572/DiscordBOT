@@ -51,7 +51,7 @@ public class QueueCommand implements ICommand {
         }
         List<AudioTrack> tracks = new ArrayList<>(queue);
         System.out.println(queue.size() + 1);
-        if(minTrackCount >= queue.size()) {
+        if(minTrackCount >= queue.size() + 1) {
             channel.sendMessage( "`" + Constants.PREFIX + "queue " + joined + "`는 비어있습니다.\n`" +
                     Constants.PREFIX + "queue " + (int)Math.ceil((queue.size() + 1) / 20.0) +
                     "`까지 재생목록이 존재합니다.").queue();
