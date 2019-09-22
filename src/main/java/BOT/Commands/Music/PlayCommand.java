@@ -48,15 +48,16 @@ public class PlayCommand implements ICommand {
             if(player.getPlayingTrack() != null) {
                 player.setPaused(false);
                 channel.sendMessage("일시정지 된 노래가 다시 재생됩니다.").queue();
+
+                return;
             } else {
                 player.setPaused(false);
+                if(args.isEmpty()) {
+                    channel.sendMessage("URL을 입력헤주세요").queue();
+
+                    return;
+                }
             }
-        }
-
-        if(args.isEmpty()) {
-            channel.sendMessage("URL을 입력헤주세요").queue();
-
-            return;
         }
 
         String input = String.join(" ", args);
