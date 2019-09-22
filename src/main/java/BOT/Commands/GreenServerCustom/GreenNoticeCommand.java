@@ -36,7 +36,7 @@ public class GreenNoticeCommand implements ICommand {
         for(int i = 1; i < args.size(); i++) {
             builder.append(args.get(i)).append(" ");
         }
-        String message = "+bc " + args.get(0) + builder.toString();
+        String message = "+bc " + args.get(0) + " " + builder.toString();
 
         for(int i = 0; i < 5; i++) {
             if(serverBots[i].getOnlineStatus().equals(OnlineStatus.ONLINE)) {
