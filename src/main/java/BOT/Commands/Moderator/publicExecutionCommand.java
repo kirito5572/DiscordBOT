@@ -72,7 +72,6 @@ public class publicExecutionCommand implements ICommand {
         try {
             role = event.getGuild().getRolesByName("공개 처형", true).get(0);
         } catch (Exception e1) {
-            e1.printStackTrace();
             try {
                 role = event.getGuild().getController().createRole()
                         .setName("공개 처형")

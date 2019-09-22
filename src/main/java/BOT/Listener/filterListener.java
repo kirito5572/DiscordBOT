@@ -44,16 +44,21 @@ public class filterListener extends ListenerAdapter {
             return;
         }
         boolean linkPass = false;
+        boolean filterPass = false;
+        boolean killPass = false;
         try {
             if (author.getId().equals("342951769627688960") || author.getId().equals("492832169715040276")) {
                 //그린서버 보안부
                 return;
             }
             if (guild.getId().equals("453817631603032065")) {
-                return;
+                linkPass = true;
+                filterPass = true;
+                killPass = true;
             }
-            if (guild.getId().equals("439780696999985172")) {
-                return;
+            if (guild.getId().equals("439780696999985172")) {  //네코서버
+                linkPass = true;
+                filterPass = true;
             }
 
             if(guild.getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
@@ -204,145 +209,151 @@ public class filterListener extends ListenerAdapter {
                 }
             }
         }
-        boolean clean = true;
-        while (clean) {
-            for (String values : list) {
-                try {
-                    rawMessage = rawMessage.replace(values, "");
-                } catch (Exception ignored) {
+
+        if(!filterPass) {
+            boolean clean = true;
+            while (clean) {
+                for (String values : list) {
+                    try {
+                        rawMessage = rawMessage.replace(values, "");
+                    } catch (Exception ignored) {
+                    }
+                }
+                for (String values : list) {
+                    clean = rawMessage.contains(values);
                 }
             }
-            for (String values : list) {
-                clean = rawMessage.contains(values);
-            }
-        }
-        for (String s : List) {
-            if (rawMessage.contains(s)) {
-                try {
-                    if(guild.getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
+            for (String s : List) {
+                if (rawMessage.contains(s)) {
+                    try {
+                        if (guild.getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
 
-                        return;
-                    }
-                    if(author.isBot()) {
+                            return;
+                        }
+                        if (author.isBot()) {
 
-                        return;
-                    }
-                    if(message.getMember().hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
-                        logger.warn("관리자가 금지어를 말했으나, 관리자는 필터링 되지 않습니다. \n" +
+                            return;
+                        }
+                        if (message.getMember().hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                            logger.warn("관리자가 금지어를 말했으나, 관리자는 필터링 되지 않습니다. \n" +
+                                    "서버: " + event.getGuild().getName() + "\n" +
+                                    "금지어: " + s + "\n" +
+                                    "문장: " + message.getContentRaw());
+
+                            return;
+                        }
+                        if (!guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) {
+                            event.getChannel().sendMessage("금지어가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
+
+                            return;
+                        }
+                        logger.warn(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
                                 "서버: " + event.getGuild().getName() + "\n" +
                                 "금지어: " + s + "\n" +
                                 "문장: " + message.getContentRaw());
+                        rawMessage = rawMessage.replaceFirst(s, "||[데이터 말소]||");
 
-                        return;
-                    }
-                    if(!guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) {
-                        event.getChannel().sendMessage("금지어가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
-
-                        return;
-                    }
-                    logger.warn(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
-                            "서버: " + event.getGuild().getName() + "\n" +
-                            "금지어: " + s + "\n" +
-                            "문장: " + message.getContentRaw());
-                    rawMessage = rawMessage.replaceFirst(s,"||[데이터 말소]||");
-
-                    boolean flag = true;
-                    publicflag = true;
-                    while(flag) {
-                        boolean tempflag = false;
-                        for(String s1 : List) {
-                            if(rawMessage.contains(s1)) {
-                                rawMessage = rawMessage.replaceFirst(s1,"||[데이터 말소]||");
-                                tempflag = true;
+                        boolean flag = true;
+                        publicflag = true;
+                        while (flag) {
+                            boolean tempflag = false;
+                            for (String s1 : List) {
+                                if (rawMessage.contains(s1)) {
+                                    rawMessage = rawMessage.replaceFirst(s1, "||[데이터 말소]||");
+                                    tempflag = true;
+                                }
                             }
-                        } if(!tempflag) {
-                            flag = false;
+                            if (!tempflag) {
+                                flag = false;
+                            }
                         }
+                        message.delete().complete();
+                        id = event.getChannel().sendMessage(rawMessage + "\n " + author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").complete().getId();
+                        EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                                .setTitle("금지어 사용")
+                                .setColor(Color.RED)
+                                .addField("금지어 사용자", author.getAsMention(), false)
+                                .addField("금지어", s, false)
+                                .addField("문장", message.getContentRaw(), false);
+                        switch (guild.getId()) {
+                            case "617222347425972234":
+                                guild.getTextChannelById("617244182653829140").sendMessage(builder.build()).queue();
+                                break;
+                            case "617757206929997895":
+                                guild.getTextChannelById("617760924714926113").sendMessage(builder.build()).queue();
+                                break;
+                            case "607390893804093442":
+                                guild.getTextChannelById("620091943522664466").sendMessage(builder.build()).queue();
+                                break;
+                            case "600010501266866186": //끄린이
+                                guild.getTextChannelById("623841727823740928").sendMessage(builder.build()).queue();
+                                break;
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                    message.delete().complete();
-                    id = event.getChannel().sendMessage(rawMessage + "\n " + author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").complete().getId();
-                    EmbedBuilder builder = EmbedUtils.defaultEmbed()
-                            .setTitle("금지어 사용")
-                            .setColor(Color.RED)
-                            .addField("금지어 사용자", author.getAsMention(), false)
-                            .addField("금지어", s, false)
-                            .addField("문장", message.getContentRaw(), false);
-                    switch (guild.getId()) {
-                        case "617222347425972234":
-                            guild.getTextChannelById("617244182653829140").sendMessage(builder.build()).queue();
-                            break;
-                        case "617757206929997895":
-                            guild.getTextChannelById("617760924714926113").sendMessage(builder.build()).queue();
-                            break;
-                        case "607390893804093442":
-                            guild.getTextChannelById("620091943522664466").sendMessage(builder.build()).queue();
-                            break;
-                        case "600010501266866186": //끄린이
-                            guild.getTextChannelById("623841727823740928").sendMessage(builder.build()).queue();
-                            break;
+                }
+            }
+            if (guild.getId().equals("600010501266866186")) {
+                for (String s : greenList) {
+                    if (rawMessage.contains(s)) {
+                        if (guild.getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
+
+                            return;
+                        }
+                        if (message.getMember().hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                            logger.warn("관리자가 타서버 언급을 했으나, 관리자는 필터링 되지 않습니다.");
+
+                            return;
+                        }
+                        message.delete().complete();
+                        event.getChannel().sendMessage("타 서버 발언은 모두 차단됩니다.").queue();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
             }
         }
-        if(guild.getId().equals("600010501266866186")) {
-            for (String s : greenList) {
-                if(rawMessage.contains(s)) {
-                    if(guild.getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
+        if(!killPass) {
+            Message messages = event.getMessage();
 
-                        return;
-                    }
-                    if(message.getMember().hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
-                        logger.warn("관리자가 타서버 언급을 했으나, 관리자는 필터링 되지 않습니다.");
-
-                        return;
-                    }
-                    message.delete().complete();
-                    event.getChannel().sendMessage("타 서버 발언은 모두 차단됩니다.").queue();
-                }
+            Role role;
+            try {
+                role = guild.getRolesByName("공개 처형", true).get(0);
+            } catch (Exception e) {
+                return;
             }
-        }
-        Message messages = event.getMessage();
-
-        Role role;
-        try {
-            role = guild.getRolesByName("공개 처형", true).get(0);
-        } catch (Exception e) {
-            return;
-        }
-        int time;
-        switch (guild.getId()) {
-            case "453817631603032065":
-                time = 10;
-                break;
-            case "600010501266866186":
-            case "607390893804093442":
-                time = 5;
-                break;
-            case "617222347425972234":
-                time = 2;
-                break;
-            default:
-                time = 7;
-                break;
-        }
-        try {
-            if (messages.getMember().getRoles().contains(role)) {
-                if(publicflag) {
-                    event.getChannel().deleteMessageById(id).queueAfter(time, TimeUnit.SECONDS);
-                    EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
-                            .addField("공개 처형", "당신의 필터링된 메세지도 " + time + "초후 자동으로 삭제됩니다.", true);
-                    event.getChannel().sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
-                } else {
-                    messages.delete().queueAfter(time, TimeUnit.SECONDS);
-                    EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
-                            .addField("공개 처형", "당신의 메세지는 " + time + "초후 자동으로 삭제됩니다.", true);
-                    event.getChannel().sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
-                }
+            int time;
+            switch (guild.getId()) {
+                case "453817631603032065":
+                    time = 10;
+                    break;
+                case "600010501266866186":
+                case "607390893804093442":
+                    time = 5;
+                    break;
+                case "617222347425972234":
+                    time = 2;
+                    break;
+                default:
+                    time = 7;
+                    break;
             }
-        } catch (Exception ignored) {
+            try {
+                if (messages.getMember().getRoles().contains(role)) {
+                    if (publicflag) {
+                        event.getChannel().deleteMessageById(id).queueAfter(time, TimeUnit.SECONDS);
+                        EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
+                                .addField("공개 처형", "당신의 필터링된 메세지도 " + time + "초후 자동으로 삭제됩니다.", true);
+                        event.getChannel().sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
+                    } else {
+                        messages.delete().queueAfter(time, TimeUnit.SECONDS);
+                        EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
+                                .addField("공개 처형", "당신의 메세지는 " + time + "초후 자동으로 삭제됩니다.", true);
+                        event.getChannel().sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
+                    }
+                }
+            } catch (Exception ignored) {
 
+            }
         }
     }
 }
