@@ -157,7 +157,19 @@ public class Listener extends ListenerAdapter {
                 }
             }
         }
+        if(event.getGuild().getId().equals("439780696999985172")) {
+            if(!event.getChannel().getId().equals("447727416660721665")) {
+                if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                    if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
+                        event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
 
+                        message.delete().queue();
+
+                        return;
+                    }
+                }
+            }
+        }
 
         if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
             manager.handleCommand(event);

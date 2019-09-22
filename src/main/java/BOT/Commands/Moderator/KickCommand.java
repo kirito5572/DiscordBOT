@@ -18,6 +18,7 @@ public class KickCommand implements ICommand {
         Member selfMember = event.getGuild().getSelfMember();
         List<Member> mentionedMembers = event.getMessage().getMentionedMembers();
 
+
         if (args.isEmpty() || mentionedMembers.isEmpty()) {
             channel.sendMessage("추방할 유저를 입력해주세요").queue();
             return;
@@ -26,16 +27,6 @@ public class KickCommand implements ICommand {
         Member target = mentionedMembers.get(0);
         String reason = String.join(" ", args.subList(1, args.size()));
 
-        if (!member.hasPermission(Permission.KICK_MEMBERS) || !member.canInteract(target)) {
-            channel.sendMessage("이 명령어를 사용할 권한이 없습니다.").queue();
-            return;
-        }
-
-
-        if (!selfMember.hasPermission(Permission.KICK_MEMBERS) || !selfMember.canInteract(target)) {
-            channel.sendMessage("봇이 이 명령어를 사용할 권한이 없습니다.").queue();
-            return;
-        }
 
 
         event.getGuild().getController().kick(target, String.format("킥한사람: %#s, 사유: %s",
