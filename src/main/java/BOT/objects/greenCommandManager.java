@@ -889,6 +889,7 @@ public class greenCommandManager {
                 }
             });
             addCommand(new BotOwnerNoticeCommand());
+            addCommand(new GreenNoticeCommand());
         }
     }
 

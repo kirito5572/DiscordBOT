@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/GreenServerCustom/GreenNoticeCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/GreenServerCustom/gameServerBanCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/GreenServerCustom/gameServerBanCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -272,7 +273,9 @@
       <workItem from="1568695186602" duration="5077000" />
       <workItem from="1568800034646" duration="7296000" />
       <workItem from="1568849098153" duration="5849000" />
-      <workItem from="1569033486255" duration="9275000" />
+      <workItem from="1569033486255" duration="10158000" />
+      <workItem from="1569131374280" duration="3127000" />
+      <workItem from="1569144904536" duration="809000" />
     </task>
     <servers />
   </component>
