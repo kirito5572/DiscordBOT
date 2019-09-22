@@ -39,14 +39,17 @@ public class QueueCommand implements ICommand {
 
             return;
         }
-        int maxTrackCount = Math.min(queue.size(), 20 * Integer.parseInt(joined) - 1);
-        int minTrackCount = Math.min(queue.size(), 20 * (Integer.parseInt(joined) - 1) - 1);
+        int maxTrackCount;
+        int minTrackCount;
         if(joined.equals("1")) {
-            maxTrackCount = Math.min(queue.size(), 20 * Integer.parseInt(joined) - 1);
-            minTrackCount = Math.min(queue.size(), 20 * (Integer.parseInt(joined) - 1));
+            maxTrackCount = Math.min(queue.size() + 1, (20 * Integer.parseInt(joined)) - 1);
+            minTrackCount = Math.min(queue.size() + 1, (20 * (Integer.parseInt(joined) - 1)));
+        } else {
+            maxTrackCount = Math.min(queue.size() + 1, (20 * Integer.parseInt(joined)) - 1);
+            minTrackCount = Math.min(queue.size() + 1, (20 * (Integer.parseInt(joined) - 1) - 1));
         }
         List<AudioTrack> tracks = new ArrayList<>(queue);
-        System.out.println(queue.size());
+        System.out.println(queue.size() + 1);
         if(minTrackCount >= queue.size()) {
             channel.sendMessage( "`" + Constants.PREFIX + "queue " + joined + "`는 비어있습니다.\n`" +
                     Constants.PREFIX + "queue " + (int)Math.ceil((queue.size() + 1) / 20.0) +
@@ -74,7 +77,7 @@ public class QueueCommand implements ICommand {
                     info.author
             ));
         }
-        if(queue.size() > maxTrackCount) {
+        if(queue.size() + 1 > maxTrackCount) {
             builder.appendDescription("다음 재생목록 확인: `"+ Constants.PREFIX + getInvoke() + " " + (Integer.parseInt(joined) + 1) + "`");
         }
 
