@@ -68,15 +68,17 @@ public class QueueCommand implements ICommand {
                     info.author
             ));
         }
-        for(int i = minTrackCount; i < maxTrackCount; i++) {
-            AudioTrack track = tracks.get(i);
-            AudioTrackInfo info = track.getInfo();
+        if(!queue.isEmpty()) {
+            for (int i = minTrackCount; i < maxTrackCount; i++) {
+                AudioTrack track = tracks.get(i);
+                AudioTrackInfo info = track.getInfo();
 
-            builder.appendDescription(String.format(
-                    (i + 1) + ". %s - %s\n",
-                    info.title,
-                    info.author
-            ));
+                builder.appendDescription(String.format(
+                        (i + 1) + ". %s - %s\n",
+                        info.title,
+                        info.author
+                ));
+            }
         }
         if(queue.size() + 1 > maxTrackCount) {
             builder.appendDescription("다음 재생목록 확인: `"+ Constants.PREFIX + getInvoke() + " " + (Integer.parseInt(joined) + 1) + "`");
