@@ -52,7 +52,6 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                     List<User> users = guild.getTextChannelById("616452604506931230").getMessageById(Chating1).complete().getReactions().get(0).getUsers().complete();
                     for (User user : users) {
                         Member member = guild.getMemberById(user.getId());
-                        System.out.println(member);
                         if (!member.getRoles().contains(role)) {
                             guild.getController().addSingleRoleToMember(member, role).complete();
                         }
