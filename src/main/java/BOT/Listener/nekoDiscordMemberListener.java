@@ -51,9 +51,9 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                 try {
                     List<User> users = guild.getTextChannelById("616452604506931230").getMessageById(Chating1).complete().getReactions().get(0).getUsers().complete();
                     for (User user : users) {
-                        System.out.println(user);
                         Member member = guild.getMemberById(user.getId());
-                        if (member.getRoles().contains(role)) {
+                        System.out.println(member);
+                        if (!member.getRoles().contains(role)) {
                             guild.getController().addSingleRoleToMember(member, role).complete();
                         }
                     }
@@ -64,7 +64,7 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                     List<User> users2 = guild.getTextChannelById("616452604506931230").getMessageById(Chating2).complete().getReactions().get(0).getUsers().complete();
                     for (User user : users2) {
                         Member member = guild.getMemberById(user.getId());
-                        if (member.getRoles().contains(role)) {
+                        if (!member.getRoles().contains(role)) {
                             guild.getController().addSingleRoleToMember(member, role1).complete();
                         }
                     }
