@@ -48,19 +48,27 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                 Guild guild = event.getJDA().getGuildById("439780696999985172");
                 Role role = guild.getRoleById("625549604674600970");  //Chating1
                 Role role1 = guild.getRoleById("620787764430110721");  //Chating2
-                List<User> users = guild.getTextChannelById("").getMessageById(Chating1).complete().getReactions().get(0).getUsers().complete();
-                for (User user : users) {
-                    Member member = guild.getMemberById(user.getId());
-                    if (member.getRoles().contains(role)) {
-                        guild.getController().addSingleRoleToMember(member, role).complete();
+                try {
+                    List<User> users = guild.getTextChannelById("").getMessageById(Chating1).complete().getReactions().get(0).getUsers().complete();
+                    for (User user : users) {
+                        Member member = guild.getMemberById(user.getId());
+                        if (member.getRoles().contains(role)) {
+                            guild.getController().addSingleRoleToMember(member, role).complete();
+                        }
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                List<User> users2 = guild.getTextChannelById("").getMessageById(Chating2).complete().getReactions().get(0).getUsers().complete();
-                for (User user : users2) {
-                    Member member = guild.getMemberById(user.getId());
-                    if (member.getRoles().contains(role)) {
-                        guild.getController().addSingleRoleToMember(member, role1).complete();
+                try {
+                    List<User> users2 = guild.getTextChannelById("").getMessageById(Chating2).complete().getReactions().get(0).getUsers().complete();
+                    for (User user : users2) {
+                        Member member = guild.getMemberById(user.getId());
+                        if (member.getRoles().contains(role)) {
+                            guild.getController().addSingleRoleToMember(member, role1).complete();
+                        }
                     }
+                } catch (Exception ignored) {
+                    
                 }
             }
         };
