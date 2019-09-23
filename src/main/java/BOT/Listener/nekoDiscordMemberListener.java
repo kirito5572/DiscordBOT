@@ -49,7 +49,7 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                 Role role = guild.getRoleById("625549604674600970");  //Chating1
                 Role role1 = guild.getRoleById("620787764430110721");  //Chating2
                 try {
-                    List<User> users = guild.getTextChannelById("").getMessageById(Chating1).complete().getReactions().get(0).getUsers().complete();
+                    List<User> users = guild.getTextChannelById("616452604506931230").getMessageById(Chating1).complete().getReactions().get(0).getUsers().complete();
                     for (User user : users) {
                         Member member = guild.getMemberById(user.getId());
                         if (member.getRoles().contains(role)) {
@@ -60,7 +60,7 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                     e.printStackTrace();
                 }
                 try {
-                    List<User> users2 = guild.getTextChannelById("").getMessageById(Chating2).complete().getReactions().get(0).getUsers().complete();
+                    List<User> users2 = guild.getTextChannelById("616452604506931230").getMessageById(Chating2).complete().getReactions().get(0).getUsers().complete();
                     for (User user : users2) {
                         Member member = guild.getMemberById(user.getId());
                         if (member.getRoles().contains(role)) {
@@ -68,7 +68,7 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                         }
                     }
                 } catch (Exception ignored) {
-                    
+
                 }
             }
         };
