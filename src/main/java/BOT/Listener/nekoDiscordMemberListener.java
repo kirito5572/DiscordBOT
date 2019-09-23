@@ -59,6 +59,13 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                List<Member> members = guild.getMembers();
+                for (Member member : members) {
+                    if(!member.getRoles().contains(role)) {
+                        guild.getController().removeRolesFromMember(member, role).complete();
+                    }
+                }
+                /*
                 try {
                     List<User> users2 = guild.getTextChannelById("616452604506931230").getMessageById(Chating2).complete().getReactions().get(0).getUsers().complete();
                     for (User user : users2) {
@@ -70,10 +77,12 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                 } catch (Exception ignored) {
 
                 }
+
+                 */
             }
         };
         Timer jobScheduler = new Timer();
-        jobScheduler.scheduleAtFixedRate(job, 20, 500);
+        jobScheduler.scheduleAtFixedRate(job, 20, 2000);
 
     }
 }
