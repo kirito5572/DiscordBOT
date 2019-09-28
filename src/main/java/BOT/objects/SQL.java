@@ -12,7 +12,7 @@ public class SQL {
     private static int caseID;
     private static Statement statement;
     private static ResultSet resultSet;
-        public SQL() {
+    public SQL() {
         //init
         StringBuilder caseIDBuilder = new StringBuilder();
         try {
@@ -49,7 +49,7 @@ public class SQL {
             e.printStackTrace();
         }
         String driverName = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://" + endPoint.toString() + "/mainDB?serverTimezone=UTC";
+        String url = "jdbc:mysql://" + endPoint.toString() + "/ritobotDB?serverTimezone=UTC";
         String user = "admin";
         String password = SQLPassword.toString();
 
