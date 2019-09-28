@@ -12,7 +12,7 @@ public class SQL {
     private static int caseID;
     private static Statement statement;
     private static ResultSet resultSet;
-    public SQL() {
+        public SQL() {
         //init
         StringBuilder caseIDBuilder = new StringBuilder();
         try {
