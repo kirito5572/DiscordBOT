@@ -49,7 +49,8 @@ public class filterListener extends ListenerAdapter {
         try {
             if (author.getId().equals("342951769627688960") || author.getId().equals("492832169715040276")) {
                 //그린서버 보안부
-                return;
+                linkPass = true;
+                filterPass = true;
             }
             if (guild.getId().equals("453817631603032065")) {
                 linkPass = true;
