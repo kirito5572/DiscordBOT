@@ -48,11 +48,11 @@ public class App {
         salListener salListener = new salListener(commandManager);
         ONIGIRIListener onigiriListener = new ONIGIRIListener();
         GreenServerMuteListener greenServerMuteListener = new GreenServerMuteListener();
-        GreenAutoBanListener greenAutoBanListener = new GreenAutoBanListener();
         GreenServerNoticeListener greenServerNoticeListener = new GreenServerNoticeListener();
         greenListener greenListener = new greenListener(greenCommandManager);
         workHomeListener workHomeListener = new workHomeListener();
         nekoDiscordMemberListener nekoDiscordMemberListener = new nekoDiscordMemberListener();
+        GreenAutoDBWriteListener greenAutoDBWriteListener = new GreenAutoDBWriteListener();
 
         StringBuilder TOKENreader = new StringBuilder();
         try {
@@ -140,9 +140,9 @@ public class App {
                         .addEventListener(greenListener)
                         .addEventListener(filterlistener)
                         .addEventListener(greenServerMuteListener)
-                        .addEventListener(greenAutoBanListener)
                         .addEventListener(greenServerNoticeListener)
                         .addEventListener(workHomeListener)
+                        .addEventListener(greenAutoDBWriteListener)
                         .setGame(Game.streaming("사용법: "
                                 + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
                         .build().awaitReady();

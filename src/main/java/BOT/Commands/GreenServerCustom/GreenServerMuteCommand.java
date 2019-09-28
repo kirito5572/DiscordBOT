@@ -196,7 +196,9 @@ public class GreenServerMuteCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "채팅 금지를 먹입니다.";
+        return "채팅 금지를 먹입니다.\n" +
+                "사용법: `" + App.getPREFIX() + getInvoke() + "<유저명/@멘션/ID> <시간>`";
+
     }
 
     @Override
