@@ -2,6 +2,7 @@ package BOT.Commands.GreenServerCustom;
 
 import BOT.App;
 import BOT.Objects.ICommand;
+import BOT.Objects.SQL;
 import BOT.Objects.getSteamID;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
@@ -264,6 +265,7 @@ public class gameServerBanCommand implements ICommand {
                          GuildMessageReceivedEvent event) {
         String text = "+oban " + NickName[0] + " " + ID + " " + time + " " + reason.toString();
         System.out.println(text);
+        SQL.SQLupload(ID, timeString, reason.toString(), event.getAuthor().getName());
 
         EmbedBuilder builder = EmbedUtils.defaultEmbed()
                 .setTitle("인 게임 정지 제재")
