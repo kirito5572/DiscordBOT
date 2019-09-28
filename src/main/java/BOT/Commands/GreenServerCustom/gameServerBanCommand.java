@@ -74,6 +74,10 @@ public class gameServerBanCommand implements ICommand {
             String time = time_non;
             String timeString;
             String[] returns = getSteamID.SteamID(SteamID);
+            if(returns[0].equals("profile not found")) {
+                event.getChannel().sendMessage("그런 스팀 프로필을 가진 유저는 없습니다.").queue();
+                return;
+            }
             final String[] NickName = {returns[0]};
             String ID = returns[1];
 

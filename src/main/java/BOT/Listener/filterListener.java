@@ -61,7 +61,7 @@ public class filterListener extends ListenerAdapter {
                 filterPass = true;
             }
 
-            if(guild.getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
+            if(guild.getSelfMember().getUser().getId().equals(author.getId())) {
                 linkPass = true;
             }
             if(author.isBot()) {
