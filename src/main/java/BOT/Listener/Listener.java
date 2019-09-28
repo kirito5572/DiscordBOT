@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileReader;
+import java.util.concurrent.TimeUnit;
 
 public class Listener extends ListenerAdapter {
     private final CommandManager manager;
@@ -106,7 +107,7 @@ public class Listener extends ListenerAdapter {
                     Role role = event.getGuild().getRoleById("600012069559074822");
                     if(!event.getMember().getRoles().contains(role)) {
                         if (event.getMessage().getContentRaw().startsWith(App.getPREFIX())) {
-                            event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
+                            event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").complete().delete().queueAfter(7, TimeUnit.SECONDS);
 
                             message.delete().queue();
 
@@ -121,7 +122,7 @@ public class Listener extends ListenerAdapter {
                 if(!event.getChannel().getId().equals("617229595628011520")) {
                     if (!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                         if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
-                            event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
+                            event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").complete().delete().queueAfter(7, TimeUnit.SECONDS);
 
                             message.delete().queue();
 
@@ -135,7 +136,7 @@ public class Listener extends ListenerAdapter {
             if(!event.getChannel().getId().equals("620095220729511977")) {
                 if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                     if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
-                        event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
+                        event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").complete().delete().queueAfter(7, TimeUnit.SECONDS);
 
                         message.delete().queue();
 
@@ -148,7 +149,7 @@ public class Listener extends ListenerAdapter {
             if(!event.getChannel().getId().equals("619271283586367498")) {
                 if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                     if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
-                        event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
+                        event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").complete().delete().queueAfter(7, TimeUnit.SECONDS);
 
                         message.delete().queue();
 
@@ -161,7 +162,20 @@ public class Listener extends ListenerAdapter {
             if(!event.getChannel().getId().equals("447727416660721665")) {
                 if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                     if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
-                        event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").queue();
+                        event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").complete().delete().queueAfter(7, TimeUnit.SECONDS);
+
+                        message.delete().queue();
+
+                        return;
+                    }
+                }
+            }
+        }
+        if(event.getGuild().getId().equals("609985979167670272")) {
+            if(!event.getChannel().getId().equals("612293836458426378")) {
+                if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                    if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
+                        event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").complete().delete().queueAfter(7, TimeUnit.SECONDS);
 
                         message.delete().queue();
 
