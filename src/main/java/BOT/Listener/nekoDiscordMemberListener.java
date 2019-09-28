@@ -48,8 +48,9 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                 Guild guild = event.getJDA().getGuildById("439780696999985172");
                 Role role = guild.getRoleById("625549604674600970");  //Chating1
                 Role role1 = guild.getRoleById("620787764430110721");  //Chating2
+                List<Member> members = guild.getMembers();
+                List<User> users = guild.getTextChannelById("616452604506931230").getMessageById(Chating1).complete().getReactions().get(0).getUsers().complete();
                 try {
-                    List<User> users = guild.getTextChannelById("616452604506931230").getMessageById(Chating1).complete().getReactions().get(0).getUsers().complete();
                     for (User user : users) {
                         Member member = guild.getMemberById(user.getId());
                         if (!member.getRoles().contains(role)) {
@@ -58,12 +59,6 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
-                List<Member> members = guild.getMembers();
-                for (Member member : members) {
-                    if(!member.getRoles().contains(role)) {
-                        guild.getController().removeRolesFromMember(member, role).complete();
-                    }
                 }
                 /*
                 try {

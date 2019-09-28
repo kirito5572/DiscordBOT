@@ -60,7 +60,10 @@ public class filterListener extends ListenerAdapter {
                 linkPass = true;
                 filterPass = true;
             }
-
+            if (guild.getId().equals("609985979167670272")) {   //도지서버
+                linkPass = true;
+                filterPass = true;
+            }
             if(guild.getSelfMember().getUser().getId().equals(author.getId())) {
                 linkPass = true;
             }
