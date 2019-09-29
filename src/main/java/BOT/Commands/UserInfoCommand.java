@@ -1,21 +1,15 @@
 package BOT.Commands;
 
 import BOT.App;
-import BOT.Constants;
 import BOT.Objects.ICommand;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import me.duncte123.botcommons.messaging.EmbedUtils;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.MessageEmbed;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class UserInfoCommand implements ICommand {
     @Override
@@ -27,19 +21,35 @@ public class UserInfoCommand implements ICommand {
             member = event.getMember();
         } else {
             String joined = String.join(" ", args);
-            List<User> foundUsers = FinderUtil.findUsers(joined, event.getGuild().getJDA());
-
-            if (foundUsers.isEmpty()) {
-                List<Member> foundMember = FinderUtil.findMembers(joined, event.getGuild());
-                if (foundMember.isEmpty()) {
+            try {
+                boolean bypass = false;
+                List<Member> foundMember = null;
+                List<Guild> guilds = event.getJDA().getGuilds();
+                for (Guild guild : guilds) {
+                    if(!bypass) {
+                        foundMember = FinderUtil.findMembers(joined, guild);
+                        if (!foundMember.isEmpty()) {
+                            bypass = true;
+                        }
+                    }
+                }
+                if(foundMember == null) {
+                    event.getChannel().sendMessage("'" + joined + "' 라는 유저는 없습니다.").queue();
+                    return;
+                }
+                if(foundMember.isEmpty()) {
                     event.getChannel().sendMessage("'" + joined + "' 라는 유저는 없습니다.").queue();
                     return;
                 }
 
-                foundUsers = foundMember.stream().map(Member::getUser).collect(Collectors.toList());
+                user = foundMember.get(0).getUser();
+                member = foundMember.get(0);
+
+            } catch (Exception e) {
+                event.getChannel().sendMessage("해당 유저를 찾을수 없거나, 인수가 잘못 입력되었습니다.").queue();
+
+                return;
             }
-            user = foundUsers.get(0);
-            member = event.getGuild().getMember(user);
         }
         StringBuilder serverRole = new StringBuilder();
         List<Role> role = member.getRoles();
