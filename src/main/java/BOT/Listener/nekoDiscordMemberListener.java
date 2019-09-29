@@ -5,6 +5,8 @@ import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.ReadyEvent;
+import net.dv8tion.jda.core.events.message.react.MessageReactionAddEvent;
+import net.dv8tion.jda.core.events.message.react.MessageReactionRemoveEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import java.io.File;
@@ -16,6 +18,25 @@ import java.util.TimerTask;
 public class nekoDiscordMemberListener extends ListenerAdapter {
     private static String Chating1;
     private static String Chating2;
+    @Override
+    public void onMessageReactionAdd(MessageReactionAddEvent event) {
+        Guild guild = event.getJDA().getGuildById("439780696999985172");
+        Role role = guild.getRoleById("625549604674600970");  //Chating1
+        Role role1 = guild.getRoleById("620787764430110721");  //Chating2
+        Member member = event.getMember();
+        if(event.getMessageId().equals(Chating1)) {
+            guild.getController().addSingleRoleToMember(member, role).complete();
+        }
+    }
+    public void onMessageReactionRemove(MessageReactionRemoveEvent event) {
+        Guild guild = event.getJDA().getGuildById("439780696999985172");
+        Role role = guild.getRoleById("625549604674600970");  //Chating1
+        Role role1 = guild.getRoleById("620787764430110721");  //Chating2
+        Member member = event.getMember();
+        if(event.getMessageId().equals(Chating1)) {
+            guild.getController().removeSingleRoleFromMember(member, role).complete();
+        }
+    }
 
     @Override
     public void onReady(ReadyEvent event) {
@@ -42,42 +63,5 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
             e.printStackTrace();
         }
         Chating2 = Chating_temp.toString();
-        TimerTask job = new TimerTask() {
-            @Override
-            public void run() {
-                Guild guild = event.getJDA().getGuildById("439780696999985172");
-                Role role = guild.getRoleById("625549604674600970");  //Chating1
-                Role role1 = guild.getRoleById("620787764430110721");  //Chating2
-                List<Member> members = guild.getMembers();
-                List<User> users = guild.getTextChannelById("616452604506931230").getMessageById(Chating1).complete().getReactions().get(0).getUsers().complete();
-                try {
-                    for (User user : users) {
-                        Member member = guild.getMemberById(user.getId());
-                        if (!member.getRoles().contains(role)) {
-                            guild.getController().addSingleRoleToMember(member, role).complete();
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                /*
-                try {
-                    List<User> users2 = guild.getTextChannelById("616452604506931230").getMessageById(Chating2).complete().getReactions().get(0).getUsers().complete();
-                    for (User user : users2) {
-                        Member member = guild.getMemberById(user.getId());
-                        if (!member.getRoles().contains(role)) {
-                            guild.getController().addSingleRoleToMember(member, role1).complete();
-                        }
-                    }
-                } catch (Exception ignored) {
-
-                }
-
-                 */
-            }
-        };
-        Timer jobScheduler = new Timer();
-        jobScheduler.scheduleAtFixedRate(job, 20, 2000);
-
     }
 }
