@@ -4,7 +4,9 @@
     <option name="SYNC_PROJECT_BEFORE_BUILD" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="" />
+    <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -332,6 +334,8 @@
       <workItem from="1569542803058" duration="13128000" />
       <workItem from="1569670080026" duration="3802000" />
       <workItem from="1569680284043" duration="12612000" />
+      <workItem from="1569743642947" duration="303000" />
+      <workItem from="1569743959373" duration="302000" />
     </task>
     <servers />
   </component>

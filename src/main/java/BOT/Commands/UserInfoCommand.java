@@ -16,6 +16,7 @@ public class UserInfoCommand implements ICommand {
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         User user;
         Member member;
+        Guild guilda = null;
         if(args.isEmpty()) {
             user = event.getMember().getUser();
             member = event.getMember();
@@ -26,6 +27,7 @@ public class UserInfoCommand implements ICommand {
                 List<Member> foundMember = null;
                 List<Guild> guilds = event.getJDA().getGuilds();
                 for (Guild guild : guilds) {
+                    guilda = guild;
                     if(!bypass) {
                         foundMember = FinderUtil.findMembers(joined, guild);
                         if (!foundMember.isEmpty()) {
@@ -57,6 +59,7 @@ public class UserInfoCommand implements ICommand {
             serverRole.append(value.getAsMention()).append("\n");
         }
 
+        assert guilda != null;
         MessageEmbed embed = EmbedUtils.defaultEmbed()
                 .setColor(member.getColor())
                 .setThumbnail(user.getEffectiveAvatarUrl())
@@ -68,6 +71,7 @@ public class UserInfoCommand implements ICommand {
                 .addField("서버 부여 역할", serverRole.toString(), false)
                 .addField("온라인 상태", member.getOnlineStatus().name().toLowerCase().replaceAll("_", " "), false)
                 .addField("봇 여부", user.isBot() ? "예" : "아니요", false)
+                .addField("검색 된 서버", guilda.getName(), false)
                 .build();
 
         event.getChannel().sendMessage(embed).queue();
