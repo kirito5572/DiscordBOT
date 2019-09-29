@@ -6,12 +6,13 @@ import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class DICECommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
-        int sides = 7;
+        int sides = 6;
         int dices = 1;
         TextChannel channel = event.getChannel();
 
@@ -35,7 +36,7 @@ public class DICECommand implements ICommand {
             return;
         }
 
-        ThreadLocalRandom random = ThreadLocalRandom.current();
+        Random random = new Random();
         StringBuilder builder = new StringBuilder()
                 .append("결과:\n");
 
@@ -43,7 +44,7 @@ public class DICECommand implements ICommand {
             builder.append("\uD83C\uDFB2 #")
                     .append(d)
                     .append(": **")
-                    .append(random.nextInt(1, sides + 1))
+                    .append(random.nextInt(sides - 1) + 1)
                     .append("**\n");
         }
 
@@ -63,6 +64,6 @@ public class DICECommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return "other";
+        return "gamr";
     }
 }
