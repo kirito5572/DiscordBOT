@@ -27,11 +27,11 @@ public class UserInfoCommand implements ICommand {
                 List<Member> foundMember = null;
                 List<Guild> guilds = event.getJDA().getGuilds();
                 for (Guild guild : guilds) {
-                    guilda = guild;
                     if(!bypass) {
                         foundMember = FinderUtil.findMembers(joined, guild);
                         if (!foundMember.isEmpty()) {
                             bypass = true;
+                            guilda = guild;
                         }
                     }
                 }
