@@ -5,8 +5,74 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/MemberCountListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/MemberCountListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/DICECommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/workHomeListener$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/workHomeListener$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$41.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$41.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$16.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$17.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$17.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$18.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$18.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$19.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$19.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$20.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$20.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$21.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$21.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$22.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$22.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$23.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$23.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$24.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$24.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$25.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$25.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$26.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$26.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$27.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$27.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$28.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$28.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$29.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$29.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$30.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$30.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$31.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$31.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$32.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$32.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$33.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$33.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$34.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$34.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$35.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$35.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$36.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$36.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$37.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$37.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$38.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$38.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$39.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$39.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$40.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$40.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$41.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$41.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$42.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$42.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$43.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$43.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$44.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$44.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$45.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$45.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$46.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$46.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$47.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$47.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$48.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$48.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$49.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$49.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$50.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$50.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/greenCommandManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/objects/CommandManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/objects/CommandManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/rito-bot-1.4.x-all.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/rito-bot-1.4.x-all.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/DICECommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/GameCommand/DICECommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/workHomeListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/workHomeListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/greenCommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/greenCommandManager.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -336,7 +402,9 @@
       <workItem from="1569670080026" duration="3802000" />
       <workItem from="1569680284043" duration="12612000" />
       <workItem from="1569743642947" duration="303000" />
-      <workItem from="1569743959373" duration="5359000" />
+      <workItem from="1569743959373" duration="8964000" />
+      <workItem from="1569772761824" duration="1006000" />
+      <workItem from="1569774258789" duration="53000" />
     </task>
     <servers />
   </component>

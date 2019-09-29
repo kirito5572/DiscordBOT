@@ -78,8 +78,8 @@ public class workHomeListener extends ListenerAdapter {
                         .addField("[민원팀] Internal Security Department", status[3], false)
                         .addField("[개발팀장] kirito5572", status[4], false)
                         .addField("[개발팀] 블루베어", status[5], false)
+                        .addField("[개발팀] 도리닭 DoryDarg", status[7], false)
                         .addField("[관리팀장] Lava", status[6], false)
-                        .addField("[관리팀] 도리닭 DoryDarg", status[7], false)
                         .addField("[관리팀] (백은) Silver", status[8], false)
                         .addField("[보안팀장] solminb27", status[9], false)
                         .setFooter("30초 마다 새로 고침 됩니다.", "https://media.istockphoto.com/vectors/refresh-icon-element-of-web-icon-for-mobile-concept-and-web-apps-thin-vector-id1049047088");

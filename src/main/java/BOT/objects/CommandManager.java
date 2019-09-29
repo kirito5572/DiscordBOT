@@ -2,8 +2,8 @@ package BOT.Objects;
 
 import BOT.App;
 import BOT.Commands.*;
+import BOT.Commands.GameCommand.DICECommand;
 import BOT.Commands.GameCommand.RockPaperScissorsCommand;
-import BOT.Commands.GreenServerCustom.*;
 import BOT.Commands.Moderator.*;
 import BOT.Commands.Music.*;
 import BOT.Commands.ONIGIRIServerCustom.ONIGIRICommand;
