@@ -46,11 +46,6 @@ public class UserInfoCommand implements ICommand {
         for (Role value : role) {
             serverRole.append(value.getAsMention()).append("\n");
         }
-        StringBuilder serverPermission = new StringBuilder();
-        List<Permission> permission = member.getPermissions();
-        for (Permission value : permission) {
-            serverRole.append(value.getName()).append("\n");
-        }
 
         MessageEmbed embed = EmbedUtils.defaultEmbed()
                 .setColor(member.getColor())
@@ -63,7 +58,6 @@ public class UserInfoCommand implements ICommand {
                 .addField("서버 부여 역할", serverRole.toString(), false)
                 .addField("온라인 상태", member.getOnlineStatus().name().toLowerCase().replaceAll("_", " "), false)
                 .addField("봇 여부", user.isBot() ? "예" : "아니요", false)
-                .addField("서버 권한", serverPermission.toString(), false)
                 .build();
 
         event.getChannel().sendMessage(embed).queue();
