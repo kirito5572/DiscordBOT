@@ -5,8 +5,10 @@ import BOT.Constants;
 import BOT.Objects.ICommand;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import me.duncte123.botcommons.messaging.EmbedUtils;
+import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.MessageEmbed;
+import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
@@ -39,17 +41,29 @@ public class UserInfoCommand implements ICommand {
             user = foundUsers.get(0);
             member = event.getGuild().getMember(user);
         }
+        StringBuilder serverRole = new StringBuilder();
+        List<Role> role = member.getRoles();
+        for (Role value : role) {
+            serverRole.append(value.getAsMention()).append("\n");
+        }
+        StringBuilder serverPermission = new StringBuilder();
+        List<Permission> permission = member.getPermissions();
+        for (Permission value : permission) {
+            serverRole.append(value.getName()).append("\n");
+        }
 
         MessageEmbed embed = EmbedUtils.defaultEmbed()
                 .setColor(member.getColor())
-                .setThumbnail(user.getEffectiveAvatarUrl().replaceFirst("gif", "png"))
+                .setThumbnail(user.getEffectiveAvatarUrl())
                 .addField("유저이름#번호", String.format("%#s", user), false)
-                .addField("표시 이름", member.getEffectiveName(), false)
+                .addField("서버 표시 이름", member.getEffectiveName(), false)
                 .addField("유저 ID + 언급 멘션", String.format("%s (%s)", user.getId(), member.getAsMention()), false)
-                .addField("가입 일자", user.getCreationTime().format(DateTimeFormatter.RFC_1123_DATE_TIME.withZone(ZoneId.systemDefault())), false)
-                .addField("서버 초대 일자", member.getJoinDate().format(DateTimeFormatter.RFC_1123_DATE_TIME.withZone(ZoneId.systemDefault())), false)
+                .addField("디스코드 가입 일자", user.getCreationTime().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME.withZone(ZoneId.systemDefault())), false)
+                .addField("서버 초대 일자", member.getJoinDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME.withZone(ZoneId.systemDefault())), false)
+                .addField("서버 부여 역할", serverRole.toString(), false)
                 .addField("온라인 상태", member.getOnlineStatus().name().toLowerCase().replaceAll("_", " "), false)
-                .addField("봇 여부", user.isBot() ? "Yes" : "No", false)
+                .addField("봇 여부", user.isBot() ? "예" : "아니요", false)
+                .addField("서버 권한", serverPermission.toString(), false)
                 .build();
 
         event.getChannel().sendMessage(embed).queue();
