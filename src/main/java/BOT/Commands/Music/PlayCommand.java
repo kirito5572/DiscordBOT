@@ -17,6 +17,7 @@ import net.dv8tion.jda.api.managers.AudioManager;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 
 public class PlayCommand implements ICommand {
@@ -25,7 +26,8 @@ public class PlayCommand implements ICommand {
 
         TextChannel channel = event.getChannel();
         AudioManager audioManager = event.getGuild().getAudioManager();
-        GuildVoiceState memberVoiceState = event.getMember().getVoiceState();
+        GuildVoiceState memberVoiceState = Objects.requireNonNull(event.getMember()).getVoiceState();
+        assert memberVoiceState != null;
         VoiceChannel voiceChannel = memberVoiceState.getChannel();
         PlayerManager playerManager = PlayerManager.getInstance();
         GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
@@ -34,6 +36,7 @@ public class PlayCommand implements ICommand {
 
             Member selfMember = event.getGuild().getSelfMember();
 
+            assert voiceChannel != null;
             if(!selfMember.hasPermission(voiceChannel, Permission.VOICE_CONNECT)) {
                 channel.sendMessageFormat("%s 보이스 채널에 들어올 권한이 없습니다.",voiceChannel).queue();
                 return;

@@ -4,7 +4,6 @@ import BOT.Objects.ICommand;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.io.File;
@@ -29,7 +28,6 @@ public class lewdnekoCommand implements ICommand {
             return;
         }
 
-        TextChannel channel = event.getChannel();
         for(int i = 0; i < num; i++ ) {
             WebUtils.ins.scrapeWebPage("https://nekos.life/lewd").async((document) -> {
                 String a = document.toString();

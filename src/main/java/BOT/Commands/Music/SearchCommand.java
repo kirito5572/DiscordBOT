@@ -16,6 +16,7 @@ import java.io.*;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class SearchCommand implements ICommand {
@@ -24,11 +25,13 @@ public class SearchCommand implements ICommand {
         new Thread(() -> {
             AudioManager audioManager = event.getGuild().getAudioManager();
             TextChannel channel = event.getChannel();
-            GuildVoiceState memberVoiceState = event.getMember().getVoiceState();
+            GuildVoiceState memberVoiceState = Objects.requireNonNull(event.getMember()).getVoiceState();
+            assert memberVoiceState != null;
             VoiceChannel voiceChannel = memberVoiceState.getChannel();
             if(!audioManager.isConnected()) {
                 Member selfMember = event.getGuild().getSelfMember();
 
+                assert voiceChannel != null;
                 if(!selfMember.hasPermission(voiceChannel, Permission.VOICE_CONNECT)) {
                     channel.sendMessageFormat("%s 보이스 채널에 들어올 권한이 없습니다.",voiceChannel).queue();
                     return;

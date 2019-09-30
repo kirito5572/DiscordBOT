@@ -1,21 +1,13 @@
 package BOT.Listener;
 
-import BOT.Objects.CommandManager;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.TimeUnit;
 
 public class salListener extends ListenerAdapter {
-    private final CommandManager manager;
-    private final Logger logger = LoggerFactory.getLogger(Listener.class);
-    public salListener(CommandManager manager) {
-        this.manager = manager;
-    }
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {

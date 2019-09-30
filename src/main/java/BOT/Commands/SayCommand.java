@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
+import java.util.Objects;
 
 public class SayCommand implements ICommand {
     @Override
@@ -17,25 +18,25 @@ public class SayCommand implements ICommand {
             return;
         }
         if(event.getGuild().getId().equals("607390893804093442")) {
-            if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+            if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
                 event.getChannel().sendMessage("당신은 이 명령어를 사용 할 수 없습니다.").queue();
                 return;
             }
         }
         if(event.getGuild().getId().equals("617222347425972234")) {
-            if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+            if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
                 event.getChannel().sendMessage("당신은 이 명령어를 사용 할 수 없습니다.").queue();
                 return;
             }
         }
         if(event.getGuild().getId().equals("607390893804093442")) {
-            if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+            if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
                 event.getChannel().sendMessage("당신은 이 명령어를 사용 할 수 없습니다.").queue();
                 return;
             }
         }
         if(event.getGuild().getId().equals("439780696999985172")) {
-            if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+            if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
                 event.getChannel().sendMessage("당신은 이 명령어를 사용 할 수 없습니다.").queue();
                 return;
             }

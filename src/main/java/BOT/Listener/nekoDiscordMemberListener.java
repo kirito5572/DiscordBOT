@@ -3,17 +3,14 @@ package BOT.Listener;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
-import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.api.events.message.react.MessageReactionRemoveEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileReader;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class nekoDiscordMemberListener extends ListenerAdapter {
     private static String Chating1;
@@ -21,25 +18,31 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
     @Override
     public void onMessageReactionAdd(MessageReactionAddEvent event) {
         Guild guild = event.getJDA().getGuildById("439780696999985172");
+        assert guild != null;
         Role role = guild.getRoleById("625549604674600970");  //Chating1
         Role role1 = guild.getRoleById("620787764430110721");  //Chating2
         Member member = event.getMember();
         if(event.getMessageId().equals(Chating1)) {
+            assert member != null;
+            assert role != null;
             guild.addRoleToMember(member, role).complete();
         }
     }
     public void onMessageReactionRemove(MessageReactionRemoveEvent event) {
         Guild guild = event.getJDA().getGuildById("439780696999985172");
+        assert guild != null;
         Role role = guild.getRoleById("625549604674600970");  //Chating1
         Role role1 = guild.getRoleById("620787764430110721");  //Chating2
         Member member = event.getMember();
         if(event.getMessageId().equals(Chating1)) {
+            assert member != null;
+            assert role != null;
             guild.removeRoleFromMember(member, role).complete();
         }
     }
 
     @Override
-    public void onReady(ReadyEvent event) {
+    public void onReady(@NotNull ReadyEvent event) {
         StringBuilder Chating_temp = new StringBuilder();
         try {
             File file = new File("C:\\디스코드봇 파일들\\네코디코 리스너\\Chating1.txt");

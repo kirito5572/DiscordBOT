@@ -1,9 +1,6 @@
 package BOT.Objects;
 
 public class airKoreaList {
-    public static String[] getInchoenList() {
-        return Inchoenlist;
-    }
     public static String[] getLocalListENG() {
         return localListENG;
     }
@@ -11,12 +8,6 @@ public class airKoreaList {
         return localListKOR;
     }
 
-    private static final String[] Inchoenlist = {
-            "검단", "계산", "고잔", "구월동",
-            "논현", "동춘", "부평", "석남",
-            "송도", "송림", "송해", "숭의",
-            "신흥", "연희", "운서", "원당"
-    };
     private static final String[] localListENG = {
             "seoul", "busan", "daegu", "incheon",
             "gwangju", "daejeon", "ulsan", "gyeonggi",

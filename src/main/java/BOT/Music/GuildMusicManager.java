@@ -29,7 +29,7 @@ public class GuildMusicManager {
     /**
      * @return Wrapper around AudioPlayer to use it as an AudioSendHandler.
      */
-    public AudioPlayerSendHandler getSendHandler() {
+    AudioPlayerSendHandler getSendHandler() {
         return new AudioPlayerSendHandler(player);
     }
 }

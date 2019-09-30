@@ -3,16 +3,15 @@ package BOT.Listener;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class GreenServerNoticeListener extends ListenerAdapter {
-    private static String message = "";
     private static String lastmessage = "";
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         if(event.getChannel().getId().equals("600015178821664769")) {
+            String message = "";
             if(lastmessage.equals(message)) {
                 return;
             } else {
@@ -31,9 +30,11 @@ public class GreenServerNoticeListener extends ListenerAdapter {
             member[3] = event.getGuild().getMemberById("600660530230722560");
             member[4] = event.getGuild().getMemberById("600676751118696448");
             for(int i = 0; i < 5; i++) {
+                assert member[i] != null;
                 if(member[i].getOnlineStatus().equals(OnlineStatus.ONLINE)) {
-                    //channel[i].sendMessage("+bc 15 <color=#4B89DC>서버 공지사항</color>이 있습니다.\n" +
-                            //"<color=#3CB371>디스코드 방</color>을 <color=#f00>확인</color>하여 주시기 바랍니다.").queue();
+                    assert channel[i] != null;
+                    channel[i].sendMessage("+bc 15 <color=#4B89DC>서버 공지사항</color>이 있습니다.\n" +
+                            "<color=#3CB371>디스코드 방</color>을 <color=#f00>확인</color>하여 주시기 바랍니다.").queue();
                 }
             }
         }

@@ -21,9 +21,7 @@ public class AirInforCommand implements ICommand {
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         setListFlag(false);
         String[] rank = new String[8];
-        String[] list = airKoreaList.getInchoenList();
         TextChannel channel = event.getChannel();
-        String joined = String.join("", args);
         Member selfMember = event.getGuild().getSelfMember();
         if(!selfMember.hasPermission(Permission.MESSAGE_WRITE)) {
             channel.sendMessage("메세지를 보낼권한이 없습니다.").queue();

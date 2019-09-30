@@ -27,7 +27,6 @@ import java.util.Random;
 public class App {
     private static boolean DEBUG_MODE = false;
     private static boolean ONLINE_DEBUG = false;
-    private String TOKEN;
     private String GreenTOKEN;
     private static Date date;
     private static String Time;
@@ -45,7 +44,7 @@ public class App {
         MemberCountListener memberCountListener = new MemberCountListener();
         Listener listener = new Listener(commandManager);
         filterListener filterlistener = new filterListener();
-        salListener salListener = new salListener(commandManager);
+        salListener salListener = new salListener();
         ONIGIRIListener onigiriListener = new ONIGIRIListener();
         GreenServerMuteListener greenServerMuteListener = new GreenServerMuteListener();
         GreenServerNoticeListener greenServerNoticeListener = new GreenServerNoticeListener();
@@ -88,6 +87,7 @@ public class App {
             e.printStackTrace();
         }
 
+        String TOKEN;
         if (DEBUG_MODE) {
             TOKEN = TOKENreader_DEBUG.toString();
             PREFIX = Constants.PREFIX_DEBUG;

@@ -5,6 +5,8 @@ import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
+import java.util.Objects;
+
 public class GreenAutoDBWriteListener extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
@@ -15,18 +17,22 @@ public class GreenAutoDBWriteListener extends ListenerAdapter {
                 String SteamID = "";
                 String reason = "";
                 String time = "";
-                if(embedMessage.getFields().get(0).getName().equals("이름")) {
+                if(Objects.equals(embedMessage.getFields().get(0).getName(), "이름")) {
                     name = embedMessage.getFields().get(0).getValue();
                 }
-                if(embedMessage.getFields().get(1).getName().equals("스팀 ID")) {
+                if(Objects.equals(embedMessage.getFields().get(1).getName(), "스팀 ID")) {
                     SteamID = embedMessage.getFields().get(1).getValue();
                 }
-                if(embedMessage.getFields().get(2).getName().equals("위반 규정 조항")) {
+                if(Objects.equals(embedMessage.getFields().get(2).getName(), "위반 규정 조항")) {
                     reason = embedMessage.getFields().get(2).getValue();
                 }
-                if(embedMessage.getFields().get(3).getName().equals("정지 기간")) {
+                if(Objects.equals(embedMessage.getFields().get(3).getName(), "정지 기간")) {
                     time = embedMessage.getFields().get(3).getValue();
                 }
+                assert name != null;
+                assert SteamID != null;
+                assert reason != null;
+                assert time != null;
                 if(!(name.equals("") || SteamID.equals("") || reason.equals("") || time.equals(""))) {
                     SQL.SQLupload(SteamID, time, reason, event.getAuthor().getName());
                 }

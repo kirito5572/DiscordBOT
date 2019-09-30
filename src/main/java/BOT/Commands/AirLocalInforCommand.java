@@ -84,19 +84,19 @@ public class AirLocalInforCommand implements ICommand {
         return "other";
     }
 
-    public void setListFlag(boolean listFlag) {
+    private void setListFlag(boolean listFlag) {
         this.listFlag = listFlag;
     }
 
-    public boolean isListFlag() {
+    private boolean isListFlag() {
         return listFlag;
     }
 
-    public int getLocation() {
+    private int getLocation() {
         return location;
     }
 
-    public void setLocation(int location) {
+    private void setLocation(int location) {
         this.location = location;
     }
 }

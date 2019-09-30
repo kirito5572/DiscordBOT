@@ -1,15 +1,18 @@
 package BOT.Listener;
 
-import BOT.App;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
@@ -18,13 +21,14 @@ import java.util.stream.Collectors;
 
 public class GreenServerMuteListener extends ListenerAdapter {
     @Override
-    public void onReady(ReadyEvent event) {
+    public void onReady(@NotNull ReadyEvent event) {
         TimerTask job = new TimerTask() {
             @Override
             public void run() {
                 Guild guild = event.getJDA().getGuildById("600010501266866186");
                 TextChannel channel;
                 try {
+                    assert guild != null;
                     channel = guild.getTextChannelById("609781460785692672");
                 } catch (Exception e) {
 
@@ -89,6 +93,7 @@ public class GreenServerMuteListener extends ListenerAdapter {
 
                 Role roles = guild.getRolesByName("채팅 금지", true).get(0);
 
+                assert member != null;
                 guild.removeRoleFromMember(member, roles).complete();
 
                 String Roletemp = Roles.substring(Roles.indexOf("^"));
@@ -112,7 +117,8 @@ public class GreenServerMuteListener extends ListenerAdapter {
                                         .addField("멘션명", member.getAsMention(), false)
                                         .addField("복구되는 역할", rolesb.toString(), false)
                                         .setColor(Color.GREEN);
-                                channel.sendMessage(builder.build()).queue();
+                            assert channel != null;
+                            channel.sendMessage(builder.build()).queue();
 
                                 break;
                         }

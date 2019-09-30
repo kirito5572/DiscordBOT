@@ -13,10 +13,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class getAirData {
-    private static long time = System.currentTimeMillis();
     private static String[] airkorea_data = new String[16];
     private static String[] airkorea_List = new String[8];
-    {
+    static {
         airkorea_List[0] = "측정시간";
         airkorea_List[1] = "SO2";
         airkorea_List[2] = "CO(일산화탄소)";
@@ -41,7 +40,7 @@ public class getAirData {
             try {
                 File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airkoreaLocationAPIKEY.txt");
                 FileReader fileReader = new FileReader(file);
-                int singalCh = 0;
+                int singalCh;
                 while ((singalCh = fileReader.read()) != -1) {
                     TOKEN.append((char) singalCh);
                 }
@@ -69,6 +68,7 @@ public class getAirData {
             if(node.getNodeType() == Node.ELEMENT_NODE) {
                 Element element = (Element) node;
                 String sidoTemp = get_AirKoreaTagValue("sidoName", element);
+                assert sidoTemp != null;
                 if(sidoTemp.equals(sido)) {
                     tmX = get_AirKoreaTagValue("tmX", element);
                     tmY = get_AirKoreaTagValue("tmY", element);
@@ -77,6 +77,7 @@ public class getAirData {
                     if(node.getNodeType() == Node.ELEMENT_NODE) {
                         element = (Element) node;
                         sidoTemp = get_AirKoreaTagValue("sidoName", element);
+                        assert sidoTemp != null;
                         if(sidoTemp.equals(sido)) {
                             tmX = get_AirKoreaTagValue("tmX", element);
                             tmY = get_AirKoreaTagValue("tmY", element);
@@ -85,6 +86,7 @@ public class getAirData {
                             if(node.getNodeType() == Node.ELEMENT_NODE) {
                                 element = (Element) node;
                                 sidoTemp = get_AirKoreaTagValue("sidoName", element);
+                                assert sidoTemp != null;
                                 if(sidoTemp.equals(sido)) {
                                     tmX = get_AirKoreaTagValue("tmX", element);
                                     tmY = get_AirKoreaTagValue("tmY", element);
@@ -101,6 +103,7 @@ public class getAirData {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        assert tmX != null;
         if(tmX.equals("error")) {
             return "error1";
         }
@@ -110,7 +113,7 @@ public class getAirData {
             try {
                 File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airkoreaLocationAPIKEY.txt");
                 FileReader fileReader = new FileReader(file);
-                int singalCh = 0;
+                int singalCh;
                 while ((singalCh = fileReader.read()) != -1) {
                     TOKEN.append((char) singalCh);
                 }
@@ -141,6 +144,7 @@ public class getAirData {
         }
         airkorea_data[15] = sido + " " + stationName + " 측정소";
         try {
+            assert stationName != null;
             stationName = URLEncoder.encode(stationName, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -156,7 +160,7 @@ public class getAirData {
             try {
                 File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airkoreaAPIKEY.txt");
                 FileReader fileReader = new FileReader(file);
-                int singalCh = 0;
+                int singalCh;
                 while((singalCh = fileReader.read()) != -1) {
                     TOKEN.append((char) singalCh);
                 }

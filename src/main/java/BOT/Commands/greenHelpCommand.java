@@ -14,10 +14,6 @@ public class greenHelpCommand implements ICommand {
 
     private greenCommandManager greenCommandManager;
 
-    private int page = 0;
-    private int x = 0;
-    private int i = 0;
-    private int j = 0;
     private Collection<ICommand> Commands;
 
     public greenHelpCommand(greenCommandManager manager) {
@@ -29,15 +25,10 @@ public class greenHelpCommand implements ICommand {
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         String joined = String.join(" ", args);
 
-        if (args.contains("1") || args.contains("2") || args.isEmpty() || args.contains("3") || args.contains("4") || args.contains("5")) {
-            if(!joined.equals("")) {
-                page = Integer.parseInt(joined);
-            }
+        if(joined.equals("")) {
             generateAndSendEmbed(event);
             return;
         }
-
-
         ICommand command = greenCommandManager.getCommand(joined);
 
         if(command == null) {

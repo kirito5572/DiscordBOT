@@ -11,6 +11,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
 
 import java.util.List;
+import java.util.Objects;
 
 public class JoinCommand implements ICommand {
     @Override
@@ -23,8 +24,9 @@ public class JoinCommand implements ICommand {
             return;
         }
 
-        GuildVoiceState memberVoiceState = event.getMember().getVoiceState();
+        GuildVoiceState memberVoiceState = Objects.requireNonNull(event.getMember()).getVoiceState();
 
+        assert memberVoiceState != null;
         if(!memberVoiceState.inVoiceChannel()) {
             channel.sendMessage("먼저 보이스 채널에 들어오세요").queue();
             return;
@@ -33,6 +35,7 @@ public class JoinCommand implements ICommand {
         VoiceChannel voiceChannel = memberVoiceState.getChannel();
         Member selfMember = event.getGuild().getSelfMember();
 
+        assert voiceChannel != null;
         if(!selfMember.hasPermission(voiceChannel, Permission.VOICE_CONNECT)) {
             channel.sendMessageFormat("%s 보이스 채널에 들어올 권한이 없습니다.",voiceChannel).queue();
             return;

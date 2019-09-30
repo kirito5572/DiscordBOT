@@ -54,7 +54,6 @@ public class CatCommand implements ICommand {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            String ID = message.getId();
 
             message.addReaction("1\u20E3").queue();
             message.addReaction("2\u20E3").queue();

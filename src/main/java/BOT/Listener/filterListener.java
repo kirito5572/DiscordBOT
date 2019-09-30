@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class filterListener extends ListenerAdapter {
@@ -137,7 +138,7 @@ public class filterListener extends ListenerAdapter {
 
 
             if(guild.getId().equals("600010501266866186")) {  //끄린이
-                if(event.getMember().getRoles().contains(event.getGuild().getRoleById("616229894401294356"))) { //외무부
+                if(Objects.requireNonNull(event.getMember()).getRoles().contains(event.getGuild().getRoleById("616229894401294356"))) { //외무부
                     linkPass = true;
                 }
             }
@@ -173,14 +174,14 @@ public class filterListener extends ListenerAdapter {
                 if (rawMessage.contains(s)) {
                     try {
                         try {
-                            if (event.getMember().getRoles().contains(guild.getRolesByName("공개 처형", true).get(0))) {
+                            if (Objects.requireNonNull(event.getMember()).getRoles().contains(guild.getRolesByName("공개 처형", true).get(0))) {
                                 message.delete().complete();
                                 event.getChannel().sendMessage(author.getAsMention() + ", 공개처형자의 링크는 예외 없이 즉시 차단됩니다.").queue();
                             }
                         } catch (Exception ignored) {
                         }
 
-                        if (message.getMember().hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                        if (Objects.requireNonNull(message.getMember()).hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                             logger.warn("관리자가 링크를 첨부했으나, 관리자는 필터링 되지 않습니다. \n" +
                                     "서버: " + event.getGuild().getName() + "\n" +
                                     "이유: " + s + "\n" +
@@ -193,13 +194,13 @@ public class filterListener extends ListenerAdapter {
                             return;
                         }
                         message.delete().queue();
-                        event.getChannel().sendMessage(event.getMember().getAsMention() + ", 링크를 보내지 마세요.").queue();
+                        event.getChannel().sendMessage(Objects.requireNonNull(event.getMember()).getAsMention() + ", 링크를 보내지 마세요.").queue();
                         logger.warn("링크 필터링이 되었습니다. \n" +
                                 "서버: " + event.getGuild().getName() + "\n" +
                                 "이유: " + s + "\n" +
                                 "차단된 링크: " + message.getContentRaw());
                         if(event.getGuild().getId().equals("600010501266866186")) {
-                            event.getGuild().getTextChannelById("623841727823740928").sendMessage("링크 필터링이 되었습니다. \n" +
+                            Objects.requireNonNull(event.getGuild().getTextChannelById("623841727823740928")).sendMessage("링크 필터링이 되었습니다. \n" +
                                     "서버: " + event.getGuild().getName() + "\n" +
                                     "이유: " + s + "\n" +
                                     "차단된 링크: " + message.getContentRaw()).queue();
@@ -230,7 +231,7 @@ public class filterListener extends ListenerAdapter {
             for (String s : List) {
                 if (rawMessage.contains(s)) {
                     try {
-                        if (guild.getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
+                        if (guild.getSelfMember().getUser().getId().equals(Objects.requireNonNull(event.getMember()).getUser().getId())) {
 
                             return;
                         }
@@ -238,7 +239,7 @@ public class filterListener extends ListenerAdapter {
 
                             return;
                         }
-                        if (message.getMember().hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                        if (Objects.requireNonNull(message.getMember()).hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                             logger.warn("관리자가 금지어를 말했으나, 관리자는 필터링 되지 않습니다. \n" +
                                     "서버: " + event.getGuild().getName() + "\n" +
                                     "금지어: " + s + "\n" +
@@ -281,16 +282,16 @@ public class filterListener extends ListenerAdapter {
                                 .addField("문장", message.getContentRaw(), false);
                         switch (guild.getId()) {
                             case "617222347425972234":
-                                guild.getTextChannelById("617244182653829140").sendMessage(builder.build()).queue();
+                                Objects.requireNonNull(guild.getTextChannelById("617244182653829140")).sendMessage(builder.build()).queue();
                                 break;
                             case "617757206929997895":
-                                guild.getTextChannelById("617760924714926113").sendMessage(builder.build()).queue();
+                                Objects.requireNonNull(guild.getTextChannelById("617760924714926113")).sendMessage(builder.build()).queue();
                                 break;
                             case "607390893804093442":
-                                guild.getTextChannelById("620091943522664466").sendMessage(builder.build()).queue();
+                                Objects.requireNonNull(guild.getTextChannelById("620091943522664466")).sendMessage(builder.build()).queue();
                                 break;
                             case "600010501266866186": //끄린이
-                                guild.getTextChannelById("623841727823740928").sendMessage(builder.build()).queue();
+                                Objects.requireNonNull(guild.getTextChannelById("623841727823740928")).sendMessage(builder.build()).queue();
                                 break;
                         }
                     } catch (Exception e) {
@@ -301,11 +302,11 @@ public class filterListener extends ListenerAdapter {
             if (guild.getId().equals("600010501266866186")) {
                 for (String s : greenList) {
                     if (rawMessage.contains(s)) {
-                        if (guild.getSelfMember().getUser().getId().equals(event.getMember().getUser().getId())) {
+                        if (guild.getSelfMember().getUser().getId().equals(Objects.requireNonNull(event.getMember()).getUser().getId())) {
 
                             return;
                         }
-                        if (message.getMember().hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                        if (Objects.requireNonNull(message.getMember()).hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                             logger.warn("관리자가 타서버 언급을 했으나, 관리자는 필터링 되지 않습니다.");
 
                             return;
@@ -344,7 +345,7 @@ public class filterListener extends ListenerAdapter {
                     break;
             }
             try {
-                if (messages.getMember().getRoles().contains(role)) {
+                if (Objects.requireNonNull(messages.getMember()).getRoles().contains(role)) {
                     if (publicflag) {
                         event.getChannel().deleteMessageById(id).queueAfter(time, TimeUnit.SECONDS);
                         EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()

@@ -513,23 +513,6 @@ public class CommandManager {
                             "Usage: `" + App.getPREFIX() + getInvoke() + " <City Name> `";
                 }
             });
-            addCommand(new AirkoreaListCommand());
-            addCommand(new AirkoreaListCommand() {
-                @Override
-                public String getInvoke() {
-                    return "airinforlist";
-                }
-
-                @Override
-                public String getSmallHelp() {
-                    return "";
-                }
-
-                @Override
-                public String getHelp() {
-                    return "local airinformation list by airkorea \n";
-                }
-            });
             addCommand(new AirLocalInforCommand());
             addCommand(new AirLocalInforCommand() {
                 @Override

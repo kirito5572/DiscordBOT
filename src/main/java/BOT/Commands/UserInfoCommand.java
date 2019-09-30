@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 
 public class UserInfoCommand implements ICommand {
     @Override
@@ -18,7 +19,7 @@ public class UserInfoCommand implements ICommand {
         Member member;
         Guild guilda = null;
         if(args.isEmpty()) {
-            user = event.getMember().getUser();
+            user = Objects.requireNonNull(event.getMember()).getUser();
             member = event.getMember();
         } else {
             String joined = String.join(" ", args);

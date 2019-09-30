@@ -9,6 +9,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.exceptions.HierarchyException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class ColorCommand implements ICommand {
@@ -111,7 +112,7 @@ public class ColorCommand implements ICommand {
                     event.getGuild().getRoleById("620090887854227496"),     //subAdmin
                     event.getGuild().getRoleById("607541403614183424")
             };
-            List<Role> role_List = event.getMember().getRoles();
+            List<Role> role_List = Objects.requireNonNull(event.getMember()).getRoles();
             for (Role value : set_Color) {
                 if (role_List.contains(value)) {
                     setChange_flag(true);
@@ -189,6 +190,7 @@ public class ColorCommand implements ICommand {
 
                 }
                 try {
+                    assert final_Role != null;
                     event.getGuild().addRoleToMember(event.getMember(), final_Role).queue();
 
                     channel.sendMessage(event.getMember().getAsMention() + ", #" + temp.toString() + "로 색깔이 지정되었습니다.").queue();
@@ -196,9 +198,6 @@ public class ColorCommand implements ICommand {
                 channel.sendMessage("Error: 봇 권한 < 역할 권한").queue();
                 } catch (Exception e) {
                     channel.sendMessage(event.getMember().getAsMention() + ", 색 지정중 오류가 발생했습니다. 다시 명령어를 입력해주세요.").queue();
-                    if (final_Role == null) {
-                        channel.sendMessage("Error: role == null").queue();
-                    }
                 }
             } else {
                 channel.sendMessage(event.getMember().getAsMention() + ", 당신은 명령어를 쓸 수 있는 역할이 아닙니다.").queue();

@@ -32,13 +32,13 @@ public class getAirLocalData {
             String pageNo = "1";
             String searchCondition = "WEEK";
 
-            String TOKEN = "";
+            StringBuilder TOKEN = new StringBuilder();
             try {
                 File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airkoreaAPIKEY.txt");
                 FileReader fileReader = new FileReader(file);
-                int singalCh = 0;
+                int singalCh;
                 while((singalCh = fileReader.read()) != -1) {
-                    TOKEN = TOKEN + (char)singalCh;
+                    TOKEN.append((char) singalCh);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

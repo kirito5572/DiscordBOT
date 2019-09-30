@@ -11,6 +11,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
 
 import java.util.List;
+import java.util.Objects;
 
 public class VolumeCommand implements ICommand {
     @Override
@@ -30,8 +31,9 @@ public class VolumeCommand implements ICommand {
             return;
         }
 
-        GuildVoiceState memberVoiceState = event.getMember().getVoiceState();
+        GuildVoiceState memberVoiceState = Objects.requireNonNull(event.getMember()).getVoiceState();
 
+        assert memberVoiceState != null;
         if(!memberVoiceState.inVoiceChannel()) {
             channel.sendMessage("먼저 보이스 채널에 들어오세요").queue();
             return;

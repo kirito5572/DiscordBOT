@@ -1,13 +1,12 @@
 package BOT.Listener;
 
-import BOT.App;
 import BOT.Objects.ONIGIRIList;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
-import java.net.URL;
+import java.util.Objects;
 
 public class ONIGIRIListener extends ListenerAdapter {
     private String[] List = ONIGIRIList.getList();
@@ -20,7 +19,7 @@ public class ONIGIRIListener extends ListenerAdapter {
 
                 return;
             }
-            if(event.getGuild().getMemberById("556449367863590923").getOnlineStatus().toString().equals("OFFLINE")) {
+            if(Objects.requireNonNull(event.getGuild().getMemberById("556449367863590923")).getOnlineStatus().toString().equals("OFFLINE")) {
                 for (int i = 0; i < List.length; i++) {
                     if (event.getMessage().getContentRaw().equals(List[i])) {
                         InputStream inputStream = this.getClass().getResourceAsStream("/" + list_File[i]);

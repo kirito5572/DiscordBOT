@@ -15,12 +15,12 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileReader;
+import java.util.Objects;
 
 public class greenListener extends ListenerAdapter {
     private final greenCommandManager manager;
     private final Logger logger = LoggerFactory.getLogger(Listener.class);
-    private static String ID1;
-    private static String ID2;
+
     public greenListener(greenCommandManager manager) {
         this.manager = manager;
     }
@@ -73,8 +73,8 @@ public class greenListener extends ListenerAdapter {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ID1 = IDreader.toString();
-        ID2 = IDreader1.toString();
+        String ID1 = IDreader.toString();
+        String ID2 = IDreader1.toString();
         if (event.getMessage().getContentRaw().equalsIgnoreCase(App.getPREFIX() + "종료") &&
                 (
                         (event.getAuthor().getIdLong() == Long.decode(ID1)) ||
@@ -102,7 +102,7 @@ public class greenListener extends ListenerAdapter {
         }
         if(event.getGuild().getId().equals("600010501266866186")) {
             if(!event.getChannel().getId().equals("600012818879741963")) {
-                if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
                     Role role = event.getGuild().getRoleById("600012069559074822");
                     if(!event.getMember().getRoles().contains(role)) {
                         if (event.getMessage().getContentRaw().startsWith(App.getPREFIX())) {
@@ -143,7 +143,7 @@ public class greenListener extends ListenerAdapter {
                 event.getChannel().sendMessage("디버그 모드 재시작입니다...").queue();
             } else {
                 if(event.getAuthor().getId().equals("284508374924787713") && !event.getJDA().getSelfUser().getId().equals("607585394237636629")){
-                    event.getJDA().getGuildById("607585394237636629").getTextChannelById("600010501266866188").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                    Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById("607585394237636629")).getTextChannelById("600010501266866188")).sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
                 }
             }
             new Thread(() -> {
@@ -158,11 +158,4 @@ public class greenListener extends ListenerAdapter {
         }).start();
     }
 
-    public static String getID1() {
-        return ID1;
-    }
-
-    public static String getID2() {
-        return ID2;
-    }
 }

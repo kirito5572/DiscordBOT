@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileReader;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class Listener extends ListenerAdapter {
@@ -103,7 +104,7 @@ public class Listener extends ListenerAdapter {
         }
         if(event.getGuild().getId().equals("600010501266866186")) {
             if(!event.getChannel().getId().equals("600012818879741963")) {
-                if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
                     Role role = event.getGuild().getRoleById("600012069559074822");
                     if(!event.getMember().getRoles().contains(role)) {
                         if (event.getMessage().getContentRaw().startsWith(App.getPREFIX())) {
@@ -120,7 +121,7 @@ public class Listener extends ListenerAdapter {
         if(event.getGuild().getId().equals("617222347425972234")) {
             if(!event.getChannel().getId().equals("617230917315854356")) {
                 if(!event.getChannel().getId().equals("617229595628011520")) {
-                    if (!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                    if (!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
                         if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
                             event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").complete().delete().queueAfter(7, TimeUnit.SECONDS);
 
@@ -134,7 +135,7 @@ public class Listener extends ListenerAdapter {
         }
         if(event.getGuild().getId().equals("607390893804093442")) {
             if(!event.getChannel().getId().equals("620095220729511977")) {
-                if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
                     if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
                         event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").complete().delete().queueAfter(7, TimeUnit.SECONDS);
 
@@ -160,7 +161,7 @@ public class Listener extends ListenerAdapter {
         }
         if(event.getGuild().getId().equals("439780696999985172")) {
             if(!event.getChannel().getId().equals("447727416660721665")) {
-                if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
                     if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
                         event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").complete().delete().queueAfter(7, TimeUnit.SECONDS);
 
@@ -173,7 +174,7 @@ public class Listener extends ListenerAdapter {
         }
         if(event.getGuild().getId().equals("609985979167670272")) {
             if(!event.getChannel().getId().equals("612293836458426378")) {
-                if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
                     if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
                         event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").complete().delete().queueAfter(7, TimeUnit.SECONDS);
 
@@ -209,16 +210,16 @@ public class Listener extends ListenerAdapter {
                 event.getChannel().sendMessage("디버그 모드 재시작입니다...").queue();
             } else {
                 if (event.getAuthor().getId().equals("284508374924787713") && !event.getJDA().getSelfUser().getId().equals("592987181186940931")) {
-                    event.getJDA().getGuildById("617222347425972234").getTextChannelById("617222347983683586").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
-                    event.getJDA().getGuildById("617757206929997895").getTextChannelById("617757206929997901").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
-                    event.getJDA().getGuildById("479625309788962816").getTextChannelById("479625309788962818").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
-                    event.getJDA().getGuildById("508913681279483913").getTextChannelById("539466073343524864").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
-                    event.getJDA().getGuildById("453817631603032065").getTextChannelById("574856464347430914").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
-                    event.getJDA().getGuildById("607390893804093442").getTextChannelById("620223554172092460").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
-                    event.getJDA().getGuildById("607390203086372866").getTextChannelById("607390781933617182").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                    Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById("617222347425972234")).getTextChannelById("617222347983683586")).sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                    Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById("617757206929997895")).getTextChannelById("617757206929997901")).sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                    Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById("479625309788962816")).getTextChannelById("479625309788962818")).sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                    Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById("508913681279483913")).getTextChannelById("539466073343524864")).sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                    Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById("453817631603032065")).getTextChannelById("574856464347430914")).sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                    Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById("607390893804093442")).getTextChannelById("620223554172092460")).sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                    Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById("607390203086372866")).getTextChannelById("607390781933617182")).sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
                 }
                 if(event.getAuthor().getId().equals("284508374924787713") && !event.getJDA().getSelfUser().getId().equals("607585394237636629")){
-                    event.getJDA().getGuildById("607585394237636629").getTextChannelById("600010501266866188").sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
+                    Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById("607585394237636629")).getTextChannelById("600010501266866188")).sendMessage(event.getJDA().getSelfUser().getAsMention() + " 업데이트틀 위해 1분간 사용이 불가능합니다.").queue();
                 }
             }
             new Thread(() -> {
