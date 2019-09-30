@@ -17,6 +17,7 @@ public class GreenNoticeCommand implements ICommand {
         TextChannel channel = event.getChannel();
         TextChannel[] servers = new TextChannel[5];
         Member[] serverBots = new Member[5];
+        assert member != null;
         if(!member.hasPermission(Permission.MESSAGE_MANAGE)) {
             channel.sendMessage("당신은 이 명령어를 사용할 권한이 없습니다.").queue();
 
@@ -39,7 +40,9 @@ public class GreenNoticeCommand implements ICommand {
         String message = "+bc " + args.get(0) + " " + builder.toString();
 
         for(int i = 0; i < 5; i++) {
+            assert serverBots[i] != null;
             if(serverBots[i].getOnlineStatus().equals(OnlineStatus.ONLINE)) {
+                assert servers[i] != null;
                 servers[i].sendMessage(message).queue();
             }
         }

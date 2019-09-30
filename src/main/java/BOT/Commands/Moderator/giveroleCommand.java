@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class giveroleCommand implements ICommand {
@@ -24,7 +25,7 @@ public class giveroleCommand implements ICommand {
         permission_Int = "";
         pos = "";
         hoisted = false;
-        if(event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+        if(Objects.requireNonNull(event.getMember()).hasPermission(Permission.ADMINISTRATOR)) {
             String rolename;
             String username;
 
@@ -109,6 +110,7 @@ public class giveroleCommand implements ICommand {
             if(!pos.equals("")) {
                 event.getGuild().modifyRolePositions().selectPosition(rolea).moveUp(Integer.parseInt(pos)).complete();
             }
+            assert member != null;
             event.getGuild().addRoleToMember(member, rolea).complete();
 
             event.getChannel().sendMessage("[" + rolename + "] 역할이 [" + user.getName() + "]에게 부여되었습니다..").queue();

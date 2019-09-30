@@ -9,11 +9,13 @@ import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class gameServerBanCommand implements ICommand {
@@ -21,10 +23,12 @@ public class gameServerBanCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
+        Member member = event.getMember();
 
         if(event.getGuild().getId().equals("600010501266866186")) {
-            if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
-                if(!event.getMember().getRoles().contains(event.getGuild().getRoleById("600012069559074822"))) {
+            assert member != null;
+            if(!member.hasPermission(Permission.MANAGE_ROLES)) {
+                if(!Objects.requireNonNull(event.getMember()).getRoles().contains(event.getGuild().getRoleById("600012069559074822"))) {
                     channel.sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
 
                     return;
@@ -280,10 +284,10 @@ public class gameServerBanCommand implements ICommand {
                 .addField("위반 규정 조항", reason.toString(), false)
                 .addField("제재 담당자", event.getAuthor().getAsMention(), false);
         if (steam.get()) {
-            adminChannel.sendMessage("" + event.getMember().getAsMention() + ", ` " + NickName[0] + " ( " + ID + " )제재 완료\n" +
+            adminChannel.sendMessage("" + Objects.requireNonNull(event.getMember()).getAsMention() + ", ` " + NickName[0] + " ( " + ID + " )제재 완료\n" +
                     "기간: " + time + "`").queue();
         } else {
-            adminChannel.sendMessage("" + event.getMember().getAsMention() + ", ` " + NickName[0] + " ( " + ID + " )제재 완료\n" +
+            adminChannel.sendMessage("" + Objects.requireNonNull(event.getMember()).getAsMention() + ", ` " + NickName[0] + " ( " + ID + " )제재 완료\n" +
                     "기간: " + time + "`\n" +
                     "**중요 이 유저는 스팀 프로필이 설정되지 않았습니다**").queue();
             event.getChannel().sendMessage("**중요 이 유저는 스팀 프로필이 설정되지 않았습니다**").queue();
@@ -293,14 +297,14 @@ public class gameServerBanCommand implements ICommand {
         reportChannel.sendMessage(builder.build()).queue();
 
         //event.getGuild().getTextChannelById("600012818879741963").sendMessage("$$정보 " + ID + " " + time_non + " " + reason.toString()).queue();
-        if (event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
-                event.getGuild().getMemberById("580691748276142100").getOnlineStatus().equals(OnlineStatus.IDLE)) {
+        if (Objects.requireNonNull(event.getGuild().getMemberById("580691748276142100")).getOnlineStatus().equals(OnlineStatus.ONLINE) ||
+                Objects.requireNonNull(event.getGuild().getMemberById("580691748276142100")).getOnlineStatus().equals(OnlineStatus.IDLE)) {
             botChannel.sendMessage(text).queue();
         } else {
             event.getChannel().sendMessage("1서버가 종료상태이므로, 1,2,3,4 서버에 밴이 적용되지 않습니다.").queue();
         }
-        if (event.getGuild().getMemberById("600676751118696448").getOnlineStatus().equals(OnlineStatus.ONLINE) ||
-                event.getGuild().getMemberById("600676751118696448").getOnlineStatus().equals(OnlineStatus.IDLE)) {
+        if (Objects.requireNonNull(event.getGuild().getMemberById("600676751118696448")).getOnlineStatus().equals(OnlineStatus.ONLINE) ||
+                Objects.requireNonNull(event.getGuild().getMemberById("600676751118696448")).getOnlineStatus().equals(OnlineStatus.IDLE)) {
 
             botChannel1.sendMessage(text).queue();
         } else {

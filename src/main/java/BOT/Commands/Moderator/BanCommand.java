@@ -1,7 +1,6 @@
 package BOT.Commands.Moderator;
 
 import BOT.App;
-import BOT.Constants;
 import BOT.Objects.ICommand;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
@@ -27,6 +26,7 @@ public class BanCommand implements ICommand {
         Member target = mentionedMembers.get(0);
         String reason = String.join(" ", args.subList(1, args.size()));
 
+        assert member != null;
         if (!member.hasPermission(Permission.BAN_MEMBERS) || !member.canInteract(target)) {
             channel.sendMessage("이 명령어를 사용하기 위한 권한이 없습니다.").queue();
             return;

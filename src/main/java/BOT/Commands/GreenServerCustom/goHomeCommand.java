@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class goHomeCommand implements ICommand {
     @Override
@@ -17,7 +18,7 @@ public class goHomeCommand implements ICommand {
         try {
             boolean flag = false;
             if (event.getGuild().getId().equals("600010501266866186")) {
-                if (event.getMember().hasPermission(Permission.MANAGE_ROLES) ||
+                if (Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES) ||
                         event.getMember().hasPermission(Permission.MANAGE_CHANNEL) ||
                         event.getMember().hasPermission(Permission.ADMINISTRATOR) ||
                         event.getMember().hasPermission(Permission.MESSAGE_MANAGE)) {
@@ -49,14 +50,16 @@ public class goHomeCommand implements ICommand {
 
                     return;
                 }
+                assert roles != null;
                 event.getGuild().removeRoleFromMember(event.getMember(), roles).complete();
+                assert role != null;
                 event.getGuild().addRoleToMember(event.getMember(), role).complete();
                 event.getChannel().sendMessage(event.getMember().getAsMention() + "님, 퇴근이 확인되었습니다.").queue();
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                         .setTitle("퇴근부")
                         .addField("퇴근 한 사람", event.getAuthor().getAsMention(), false)
                         .addField("퇴근 시간", time, false);
-                event.getGuild().getTextChannelById("622076950021799977").sendMessage(builder.build()).queue();
+                Objects.requireNonNull(event.getGuild().getTextChannelById("622076950021799977")).sendMessage(builder.build()).queue();
             }
         } catch (Exception e) {
             e.printStackTrace();

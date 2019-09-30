@@ -12,6 +12,7 @@ import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Objects;
 
 public class certificationCommand implements ICommand {
     private InputStream certification_Img_is1 = getClass().getClassLoader().getResourceAsStream("1.png");
@@ -22,14 +23,19 @@ public class certificationCommand implements ICommand {
         TextChannel channel = event.getChannel();
         if(event.getGuild().getId().equals("600010501266866186")) {
             try {
-                event.getMember().getRoles().contains(event.getGuild().getRolesByName("인증완료", true).get(0));
+                boolean role = Objects.requireNonNull(event.getMember()).getRoles().contains(event.getGuild().getRolesByName("인증완료", true).get(0));
+                if(!role) {
+                    event.getGuild().createRole()
+                            .setName("인증완료")
+                            .complete();
+                }
             } catch (Exception e) {
-                Role role = event.getGuild().createRole()
+                event.getGuild().createRole()
                         .setName("인증완료")
                         .complete();
             }
-            if(!event.getMember().getRoles().contains(event.getGuild().getRolesByName("인증완료",true).get(0))) {
-                String joined = "";
+            if(!Objects.requireNonNull(event.getMember()).getRoles().contains(event.getGuild().getRolesByName("인증완료",true).get(0))) {
+                String joined;
                 String private_key ,Key;
                 joined = String.join(" ", args);
                 if (joined.equals("")) {

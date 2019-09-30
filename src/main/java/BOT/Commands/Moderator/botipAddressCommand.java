@@ -2,7 +2,6 @@ package BOT.Commands.Moderator;
 
 import BOT.Listener.Listener;
 import BOT.Objects.ICommand;
-import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.net.InetAddress;
@@ -10,12 +9,13 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Objects;
 
 public class botipAddressCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         String ip;
-        if(!event.getMember().getUser().getId().equals(Listener.getID1())) {
+        if(!Objects.requireNonNull(event.getMember()).getUser().getId().equals(Listener.getID1())) {
             return;
 
         }

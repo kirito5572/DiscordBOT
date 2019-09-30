@@ -13,7 +13,7 @@ public class VersionCommand implements ICommand {
             event.getChannel().sendMessage("빌드 버젼 V 1.5.1 Preview 1 (" + App.getTime() + ")").queue();
             return;
         }
-        event.getChannel().sendMessage("빌드 버젼 V 1.5.0 BETA1(JDA v4)(" + App.getTime() + ")").queue();
+        event.getChannel().sendMessage("빌드 버젼 V 1.5.0 BETA 2 (JDA v4)(" + App.getTime() + ")").queue();
     }
 
     @Override

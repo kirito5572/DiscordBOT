@@ -15,6 +15,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class publicExecutionCommand implements ICommand {
@@ -23,7 +24,7 @@ public class publicExecutionCommand implements ICommand {
         TextChannel channel = event.getChannel();
 
         String joined = String.join(" ", args);
-        if(!event.getMember().getUser().getId().equals(Listener.getID1()) || !event.getMember().getUser().getId().equals(Listener.getID2())) {
+        if(!Objects.requireNonNull(event.getMember()).getUser().getId().equals(Listener.getID1()) || !event.getMember().getUser().getId().equals(Listener.getID2())) {
             if (!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                 if(event.getGuild().getId().equals("600010501266866186")) {
                     if (!event.getMember().getRoles().contains(event.getGuild().getRoleById("600012069559074822"))) {
@@ -87,6 +88,7 @@ public class publicExecutionCommand implements ICommand {
             channel.sendMessage("공개 처형 역할이 없어 새로 생성했습니다.").queue();
 
         }
+        assert member != null;
         if(member.getRoles().contains(role)) {
             event.getGuild().removeRoleFromMember(member, role).complete();
 
@@ -98,20 +100,20 @@ public class publicExecutionCommand implements ICommand {
                     .addField("지정 담당자", event.getMember().getAsMention(), true);
             switch (event.getGuild().getId()) {
                 case "600010501266866186":
-                    event.getGuild().getTextChannelById("600015587544006679").sendMessage(builder.build()).queue();
-                    event.getGuild().getTextChannelById("609781460785692672").sendMessage(builder.build()).queue();
+                    Objects.requireNonNull(event.getGuild().getTextChannelById("600015587544006679")).sendMessage(builder.build()).queue();
+                    Objects.requireNonNull(event.getGuild().getTextChannelById("609781460785692672")).sendMessage(builder.build()).queue();
                     break;
                 case "617222347425972234":
-                    event.getGuild().getTextChannelById("617244045780975637").sendMessage(builder.build()).queue();
+                    Objects.requireNonNull(event.getGuild().getTextChannelById("617244045780975637")).sendMessage(builder.build()).queue();
                     break;
                 case "617757206929997895":
-                    event.getGuild().getTextChannelById("617760924714926113").sendMessage(builder.build()).queue();
+                    Objects.requireNonNull(event.getGuild().getTextChannelById("617760924714926113")).sendMessage(builder.build()).queue();
                     break;
                 case "607390893804093442":
-                    event.getGuild().getTextChannelById("620091943522664466").sendMessage(builder.build()).queue();
+                    Objects.requireNonNull(event.getGuild().getTextChannelById("620091943522664466")).sendMessage(builder.build()).queue();
                     break;
                 case "607390203086372866":
-                    event.getGuild().getTextChannelById("620560178424578061").sendMessage(builder.build()).queue();
+                    Objects.requireNonNull(event.getGuild().getTextChannelById("620560178424578061")).sendMessage(builder.build()).queue();
                     break;
                 default:
                     channel.sendMessage(builder.build()).queue();
@@ -129,20 +131,20 @@ public class publicExecutionCommand implements ICommand {
 
             switch (event.getGuild().getId()) {
                 case "600010501266866186":
-                    event.getGuild().getTextChannelById("600015587544006679").sendMessage(builder.build()).queue();
-                    event.getGuild().getTextChannelById("609781460785692672").sendMessage(builder.build()).queue();
+                    Objects.requireNonNull(event.getGuild().getTextChannelById("600015587544006679")).sendMessage(builder.build()).queue();
+                    Objects.requireNonNull(event.getGuild().getTextChannelById("609781460785692672")).sendMessage(builder.build()).queue();
                     break;
                 case "617222347425972234":
-                    event.getGuild().getTextChannelById("617244045780975637").sendMessage(builder.build()).queue();
+                    Objects.requireNonNull(event.getGuild().getTextChannelById("617244045780975637")).sendMessage(builder.build()).queue();
                     break;
                 case "617757206929997895":
-                    event.getGuild().getTextChannelById("617760924714926113").sendMessage(builder.build()).queue();
+                    Objects.requireNonNull(event.getGuild().getTextChannelById("617760924714926113")).sendMessage(builder.build()).queue();
                     break;
                 case "607390893804093442":
-                    event.getGuild().getTextChannelById("620091943522664466").sendMessage(builder.build()).queue();
+                    Objects.requireNonNull(event.getGuild().getTextChannelById("620091943522664466")).sendMessage(builder.build()).queue();
                     break;
                 case "607390203086372866":
-                    event.getGuild().getTextChannelById("620560178424578061").sendMessage(builder.build()).queue();
+                    Objects.requireNonNull(event.getGuild().getTextChannelById("620560178424578061")).sendMessage(builder.build()).queue();
                     break;
                 default:
                     channel.sendMessage(builder.build()).queue();

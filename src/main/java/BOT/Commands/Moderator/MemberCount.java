@@ -10,10 +10,10 @@ import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
+import java.util.Objects;
 
 public class MemberCount implements ICommand {
     private String categoryName = "\uD83D\uDCCB서버 상태\uD83D\uDCCB";
-    private String memberCountName = "총 멤버 수";
     private String botCountName = "봇 수";
     private String userCountName = "유저 수";
     private String channelCountName = "채널 수";
@@ -21,7 +21,7 @@ public class MemberCount implements ICommand {
     private Category category;
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
-        if(!event.getMember().hasPermission(Permission.MANAGE_CHANNEL)) {
+        if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_CHANNEL)) {
             event.getChannel().sendMessage("이 명령어를 사용할 권한이 없습니다.").queue();
 
             return;
@@ -50,6 +50,7 @@ public class MemberCount implements ICommand {
                     .setPosition(0)
                     .complete();
             category = guild.getCategoriesByName(categoryName, true).get(0);
+            String memberCountName = "총 멤버 수";
             category.createVoiceChannel(memberCountName + " : " + guild.getMembers().size()).complete();
 
             int numOfBot = 0;

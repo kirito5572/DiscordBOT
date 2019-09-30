@@ -9,11 +9,12 @@ import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
+import java.util.Objects;
 
 public class pollCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
-        if(!(event.getMember().hasPermission(Permission.ADMINISTRATOR) || event.getMember().hasPermission(Permission.MESSAGE_MANAGE))) {
+        if(!(Objects.requireNonNull(event.getMember()).hasPermission(Permission.ADMINISTRATOR) || event.getMember().hasPermission(Permission.MESSAGE_MANAGE))) {
             event.getChannel().sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
 
             return;
