@@ -102,7 +102,7 @@ public class SQL {
         try {
             String message = String.valueOf(caseID);
 
-            File file = new File("C:\\DiscordServerBotSecrets\\SCP-079\\caseID.txt");
+            File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\caseID.txt");
             FileWriter writer;
 
 

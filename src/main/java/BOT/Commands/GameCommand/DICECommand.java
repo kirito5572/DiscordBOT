@@ -43,7 +43,7 @@ public class DICECommand implements ICommand {
             builder.append("\uD83C\uDFB2 #")
                     .append(d)
                     .append(": **")
-                    .append(random.nextInt(sides - 1) + 1)
+                    .append(random.nextInt(sides) + 1)
                     .append("**\n");
         }
 

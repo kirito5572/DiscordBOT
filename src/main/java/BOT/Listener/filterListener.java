@@ -138,7 +138,8 @@ public class filterListener extends ListenerAdapter {
 
 
             if(guild.getId().equals("600010501266866186")) {  //끄린이
-                if(Objects.requireNonNull(event.getMember()).getRoles().contains(event.getGuild().getRoleById("616229894401294356"))) { //외무부
+                Role role = event.getGuild().getRoleById("616229894401294356");
+                if(Objects.requireNonNull(event.getMember()).getRoles().contains(role)) { //외무부
                     linkPass = true;
                 }
             }
