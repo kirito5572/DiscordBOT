@@ -3,10 +3,10 @@ package BOT.Listener;
 import BOT.App;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import me.duncte123.botcommons.messaging.EmbedUtils;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.*;
-import net.dv8tion.jda.core.events.ReadyEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.events.ReadyEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import java.awt.*;
 import java.io.*;
@@ -89,7 +89,7 @@ public class GreenServerMuteListener extends ListenerAdapter {
 
                 Role roles = guild.getRolesByName("채팅 금지", true).get(0);
 
-                guild.getController().removeSingleRoleFromMember(member, roles).complete();
+                guild.removeRoleFromMember(member, roles).complete();
 
                 String Roletemp = Roles.substring(Roles.indexOf("^"));
                 for(;;) {
@@ -97,7 +97,7 @@ public class GreenServerMuteListener extends ListenerAdapter {
                         String Role = Roletemp.substring(1, Roletemp.indexOf("$"));
                         Role giveRole = guild.getRolesByName(Role, true).get(0);
 
-                        guild.getController().addSingleRoleToMember(member, giveRole).complete();
+                        guild.addRoleToMember(member, giveRole).complete();
                         try {
                             Roletemp = Roletemp.substring(Roletemp.indexOf("$") + 2);
                         } catch (Exception e) {

@@ -2,8 +2,8 @@ package BOT.Listener;
 
 import BOT.App;
 import BOT.Objects.ONIGIRIList;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;

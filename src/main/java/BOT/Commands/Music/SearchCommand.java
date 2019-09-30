@@ -3,10 +3,10 @@ package BOT.Commands.Music;
 import BOT.App;
 import BOT.Music.PlayerManager;
 import BOT.Objects.ICommand;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.*;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
-import net.dv8tion.jda.core.managers.AudioManager;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.managers.AudioManager;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -88,19 +88,15 @@ public class SearchCommand implements ICommand {
                 Message message = channel.sendMessage( first_Title + "\n" + "https://youtu.be/" + first_url + "\n" +
                         "재생을 원하시면 :one: 아니면 :two:").complete();
 
-                System.out.println("TP1");
-                Thread.sleep(400);
-                System.out.println("TP2");
-                String ID = channel.getLatestMessageId();
 
-                channel.addReactionById(ID,"1\u20E3").queue();
-                channel.addReactionById(ID,"2\u20E3").queue();
+                message.addReaction("1\u20E3").queue();
+                message.addReaction("2\u20E3").queue();
                 Thread.sleep(500);
 
                 for(int i = 0; i < 11; i++) {
                     Thread.sleep(1000);
-                    System.out.println(channel.getMessageById(ID).complete().getReactions().get(0).getReactionEmote().getEmote());
-                    if(channel.getMessageById(ID).complete().getReactions().get(0).getCount() == 2) {
+                    System.out.println(message.getReactions().get(0).getReactionEmote().getEmote());
+                    if(message.getReactions().get(0).getCount() == 2) {
                         if(!audioManager.isConnected()) {
                             audioManager.openAudioConnection(voiceChannel);
                         }
@@ -110,7 +106,7 @@ public class SearchCommand implements ICommand {
                         message.delete().queueAfter(5, TimeUnit.SECONDS);
                         manager.loadAndPlay(channel, "https://youtu.be/" + first_url);
                         return;
-                    } else if(channel.getMessageById(ID).complete().getReactions().get(1).getCount() == 2){
+                    } else if(message.getReactions().get(1).getCount() == 2){
                         message.delete().complete();
                         message = event.getChannel().sendMessage("검색이 취소되었습니다.").complete();
                         message.delete().queueAfter(5, TimeUnit.SECONDS);

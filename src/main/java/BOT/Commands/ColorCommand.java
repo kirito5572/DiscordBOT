@@ -3,10 +3,10 @@ package BOT.Commands;
 import BOT.App;
 import BOT.Objects.ICommand;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
-import net.dv8tion.jda.core.exceptions.HierarchyException;
+import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.exceptions.HierarchyException;
 
 import java.util.List;
 import java.util.Random;
@@ -140,7 +140,7 @@ public class ColorCommand implements ICommand {
                 for (Role role : roleList) {
                     if (event.getMember().getRoles().contains(role)) {
                         try {
-                            event.getGuild().getController().removeRolesFromMember(event.getMember(), role).complete();
+                            event.getGuild().removeRoleFromMember(event.getMember(), role).complete();
                             if(event.getMember().getRoles().contains(role)) {
                                 channel.sendMessage("기존 색 역할 제거에 실패하였습니다.").queue();
 
@@ -163,7 +163,7 @@ public class ColorCommand implements ICommand {
 
                 assert temp != null;
                 if (event.getGuild().getRolesByName("#" + temp.toString(), true).toString().equals("[]")) {
-                    Role rolea = event.getGuild().getController().createRole()
+                    Role rolea = event.getGuild().createRole()
                             .setColor(joined_int)
                             .setName("#" + temp.toString())
                             .complete();
@@ -171,7 +171,7 @@ public class ColorCommand implements ICommand {
                     while(true) {
                         try {
                             i++;
-                            event.getGuild().getController().modifyRolePositions().selectPosition(rolea).moveUp(i).queue();
+                            event.getGuild().modifyRolePositions().selectPosition(rolea).moveUp(i).queue();
                         } catch (Exception e) {
                             break;
                         }
@@ -189,7 +189,7 @@ public class ColorCommand implements ICommand {
 
                 }
                 try {
-                    event.getGuild().getController().addRolesToMember(event.getMember(), final_Role).queue();
+                    event.getGuild().addRoleToMember(event.getMember(), final_Role).queue();
 
                     channel.sendMessage(event.getMember().getAsMention() + ", #" + temp.toString() + "로 색깔이 지정되었습니다.").queue();
                 } catch (HierarchyException e1) {

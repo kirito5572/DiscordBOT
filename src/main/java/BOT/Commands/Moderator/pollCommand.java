@@ -3,10 +3,10 @@ package BOT.Commands.Moderator;
 import BOT.App;
 import BOT.Objects.ICommand;
 import me.duncte123.botcommons.messaging.EmbedUtils;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
 
@@ -18,10 +18,7 @@ public class pollCommand implements ICommand {
 
             return;
         }
-
-        String ids = event.getChannel().getLatestMessageId();
-        Message message1 = event.getChannel().getMessageById(ids).complete();
-        String pollText = message1.getContentRaw();
+        String pollText = event.getMessage().getContentRaw();
         String temp = App.getPREFIX() + getInvoke();
         pollText = pollText.substring(temp.length());
 
@@ -31,15 +28,14 @@ public class pollCommand implements ICommand {
                 .addField("1\u20E3", "찬성", true)
                 .addField("2\u20E3", "반대", true)
                 .addField("3\u20E3", "기권", true);
-        String id;
+        Message message;
         if(event.getGuild().getId().equals("617222347425972234")) {
-            id = event.getChannel().sendMessage(builder.build() + "@everyone").complete().getId();
+            message =  event.getChannel().sendMessage(builder.build() + "@everyone").complete();
         } else {
-            id = event.getChannel().sendMessage(builder.build()).complete().getId();
+            message = event.getChannel().sendMessage(builder.build()).complete();
         }
 
-        Message message = event.getChannel().getMessageById(id).complete();
-        message1.delete().queue();
+        event.getMessage().delete().complete();
 
         message.addReaction("1\u20E3").complete();
         message.addReaction("2\u20E3").complete();

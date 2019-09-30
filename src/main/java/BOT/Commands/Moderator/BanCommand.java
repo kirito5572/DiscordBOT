@@ -3,10 +3,10 @@ package BOT.Commands.Moderator;
 import BOT.App;
 import BOT.Constants;
 import BOT.Objects.ICommand;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class BanCommand implements ICommand {
             return;
         }
 
-        event.getGuild().getController().ban(target, 1)
+        event.getGuild().ban(target, 1)
                 .reason(String.format("밴 한 사람: %#s, 이유: %s", event.getAuthor(), reason)).queue();
 
         channel.sendMessage("필요 없는 사람 없애기 성공!").queue();

@@ -7,8 +7,8 @@ import BOT.Commands.GreenServerCustom.*;
 import BOT.Commands.Moderator.*;
 import BOT.Commands.Music.*;
 import BOT.Commands.ONIGIRIServerCustom.ONIGIRICommand;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.*;
 import java.util.regex.Pattern;
@@ -581,7 +581,7 @@ public class greenCommandManager {
                 @Override
                 public String getHelp() {
                     return "Kicks a user off the server.\n" +
-                            "Usage: `"  + App.getPREFIX() + getInvoke() + " <user> <reason>`";
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " <user> <reason>`";
                 }
             });
             addCommand(new MuteCommand());
@@ -912,7 +912,7 @@ public class greenCommandManager {
     }
 
     private void addCommand(ICommand command) {
-        if(!commands.containsKey(command.getInvoke())) {
+        if (!commands.containsKey(command.getInvoke())) {
             commands.put(command.getInvoke(), command);
         }
         sleep(10);
@@ -940,7 +940,7 @@ public class greenCommandManager {
                 "(?i)" + Pattern.quote(App.getPREFIX()), "").split("\\s+");
         final String invoke = split[0].toLowerCase();
 
-        if(commands.containsKey(invoke)) {
+        if (commands.containsKey(invoke)) {
             final List<String> args = Arrays.asList(split).subList(1, split.length);
 
             channel.sendTyping().queue();

@@ -2,7 +2,7 @@ package BOT.Commands;
 
 import BOT.App;
 import BOT.Objects.ICommand;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

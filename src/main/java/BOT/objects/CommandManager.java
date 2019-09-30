@@ -2,13 +2,12 @@ package BOT.Objects;
 
 import BOT.App;
 import BOT.Commands.*;
-import BOT.Commands.GameCommand.DICECommand;
-import BOT.Commands.GameCommand.RockPaperScissorsCommand;
+import BOT.Commands.GameCommand.*;
 import BOT.Commands.Moderator.*;
 import BOT.Commands.Music.*;
 import BOT.Commands.ONIGIRIServerCustom.ONIGIRICommand;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.*;
 import java.util.regex.Pattern;

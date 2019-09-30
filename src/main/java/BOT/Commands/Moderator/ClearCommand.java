@@ -2,11 +2,11 @@ package BOT.Commands.Moderator;
 
 import BOT.App;
 import BOT.Objects.ICommand;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.time.OffsetDateTime;
 import java.time.temporal.ChronoUnit;
@@ -39,7 +39,7 @@ public class ClearCommand implements ICommand {
                     .takeAsync(Integer.parseInt(joined))
                     .thenApplyAsync((messages) -> {
                         List<Message> goodMessages = messages.stream()
-                                .filter((m) -> m.getCreationTime().isBefore(
+                                .filter((m) -> m.getTimeCreated().isBefore(
                                         OffsetDateTime.now().plus(2, ChronoUnit.WEEKS)
                                 ))
                                 .collect(Collectors.toList());

@@ -2,12 +2,12 @@ package BOT.Commands.Moderator;
 
 import BOT.App;
 import BOT.Objects.ICommand;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Category;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.VoiceChannel;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Category;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.VoiceChannel;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
 
@@ -19,11 +19,6 @@ public class MemberCount implements ICommand {
     private String channelCountName = "채널 수";
     private String roleCountName = "역할 갯수";
     private Category category;
-    private VoiceChannel memberCount;
-    private VoiceChannel botCount;
-    private VoiceChannel userCount;
-    private VoiceChannel channelCount;
-    private VoiceChannel roleCount;
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         if(!event.getMember().hasPermission(Permission.MANAGE_CHANNEL)) {
@@ -51,7 +46,7 @@ public class MemberCount implements ICommand {
 
             }
 
-            guild.getController().createCategory(categoryName)
+            guild.createCategory(categoryName)
                     .setPosition(0)
                     .complete();
             category = guild.getCategoriesByName(categoryName, true).get(0);

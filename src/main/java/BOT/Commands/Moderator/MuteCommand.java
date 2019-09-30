@@ -2,8 +2,8 @@ package BOT.Commands.Moderator;
 
 import BOT.Constants;
 import BOT.Objects.ICommand;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.awt.*;
 import java.util.List;
@@ -12,7 +12,7 @@ public class MuteCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         //TODO muteCommand
-        Role muteRole = event.getGuild().getController().createRole()
+        Role muteRole = event.getGuild().createRole()
                 .setName("채팅금지")
                 .setColor(Color.RED)
                 .setHoisted(true)

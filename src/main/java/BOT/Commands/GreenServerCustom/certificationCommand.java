@@ -2,10 +2,10 @@ package BOT.Commands.GreenServerCustom;
 
 import BOT.App;
 import BOT.Objects.ICommand;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
-import net.dv8tion.jda.core.exceptions.ErrorResponseException;
+import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.exceptions.ErrorResponseException;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
@@ -24,7 +24,7 @@ public class certificationCommand implements ICommand {
             try {
                 event.getMember().getRoles().contains(event.getGuild().getRolesByName("인증완료", true).get(0));
             } catch (Exception e) {
-                Role role = event.getGuild().getController().createRole()
+                Role role = event.getGuild().createRole()
                         .setName("인증완료")
                         .complete();
             }

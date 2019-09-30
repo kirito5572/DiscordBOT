@@ -1,11 +1,11 @@
 package BOT.Listener;
 
 import me.duncte123.botcommons.messaging.EmbedUtils;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.events.ReadyEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.events.ReadyEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -83,7 +83,7 @@ public class workHomeListener extends ListenerAdapter {
                         .addField("[관리팀] (백은) Silver", status[8], false)
                         .addField("[보안팀장] solminb27", status[9], false)
                         .setFooter("30초 마다 새로 고침 됩니다.", "https://media.istockphoto.com/vectors/refresh-icon-element-of-web-icon-for-mobile-concept-and-web-apps-thin-vector-id1049047088");
-                guild.getTextChannelById("622076975258927125").getMessageById("622647164606349322").complete().editMessage(builder.build()).queue();
+                guild.getTextChannelById("622076975258927125").editMessageById("622647164606349322",builder.build()).queue();
             }
         };
         Timer jobScheduler = new Timer();

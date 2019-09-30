@@ -1,13 +1,13 @@
 package BOT.Listener;
 
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.events.ReadyEvent;
-import net.dv8tion.jda.core.events.message.react.MessageReactionAddEvent;
-import net.dv8tion.jda.core.events.message.react.MessageReactionRemoveEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.events.ReadyEvent;
+import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
+import net.dv8tion.jda.api.events.message.react.MessageReactionRemoveEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import java.io.File;
 import java.io.FileReader;
@@ -25,7 +25,7 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
         Role role1 = guild.getRoleById("620787764430110721");  //Chating2
         Member member = event.getMember();
         if(event.getMessageId().equals(Chating1)) {
-            guild.getController().addSingleRoleToMember(member, role).complete();
+            guild.addRoleToMember(member, role).complete();
         }
     }
     public void onMessageReactionRemove(MessageReactionRemoveEvent event) {
@@ -34,7 +34,7 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
         Role role1 = guild.getRoleById("620787764430110721");  //Chating2
         Member member = event.getMember();
         if(event.getMessageId().equals(Chating1)) {
-            guild.getController().removeSingleRoleFromMember(member, role).complete();
+            guild.removeRoleFromMember(member, role).complete();
         }
     }
 

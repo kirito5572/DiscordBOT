@@ -5,13 +5,13 @@ import BOT.Listener.Listener;
 import BOT.Objects.ICommand;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import me.duncte123.botcommons.messaging.EmbedUtils;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.awt.*;
 import java.util.List;
@@ -73,7 +73,7 @@ public class publicExecutionCommand implements ICommand {
             role = event.getGuild().getRolesByName("공개 처형", true).get(0);
         } catch (Exception e1) {
             try {
-                role = event.getGuild().getController().createRole()
+                role = event.getGuild().createRole()
                         .setName("공개 처형")
                         .setColor(Color.RED)
                         .setPermissions(0L)
@@ -88,7 +88,7 @@ public class publicExecutionCommand implements ICommand {
 
         }
         if(member.getRoles().contains(role)) {
-            event.getGuild().getController().removeSingleRoleFromMember(member, role).complete();
+            event.getGuild().removeRoleFromMember(member, role).complete();
 
             event.getChannel().sendMessage(user.getName() + "을/를 공개 처형 대상자에서 해제 했습니다.").queue();
             EmbedBuilder builder = EmbedUtils.defaultEmbed()
@@ -118,7 +118,7 @@ public class publicExecutionCommand implements ICommand {
                     break;
             }
         } else {
-            event.getGuild().getController().addSingleRoleToMember(member, role).complete();
+            event.getGuild().addRoleToMember(member, role).complete();
 
             event.getChannel().sendMessage(user.getName() + "을/를 공개 처형 대상자로 지정 했습니다.").queue();
             EmbedBuilder builder = EmbedUtils.defaultEmbed()

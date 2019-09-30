@@ -4,13 +4,13 @@ import BOT.Constants;
 import BOT.Objects.ICommand;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.PrivateChannel;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.PrivateChannel;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,8 +56,8 @@ public class CatCommand implements ICommand {
             }
             String ID = message.getId();
 
-            channel.addReactionById(ID, "1\u20E3").queue();
-            channel.addReactionById(ID, "2\u20E3").queue();
+            message.addReaction("1\u20E3").queue();
+            message.addReaction("2\u20E3").queue();
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -71,10 +71,10 @@ public class CatCommand implements ICommand {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if (channel.getMessageById(ID).complete().getReactions().get(0).getCount() == 2) {
+                if (message.getReactions().get(0).getCount() == 2) {
                     message.delete().complete();
                     flag = false;
-                } else if (channel.getMessageById(ID).complete().getReactions().get(1).getCount() == 2) {
+                } else if (message.getReactions().get(1).getCount() == 2) {
                     message.delete().complete();
                     message = event.getChannel().sendMessage("전송이 취소되었습니다.").complete();
                     message.delete().queueAfter(5, TimeUnit.SECONDS);

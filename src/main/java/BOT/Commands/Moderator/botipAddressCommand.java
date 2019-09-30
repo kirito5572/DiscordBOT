@@ -2,8 +2,8 @@ package BOT.Commands.Moderator;
 
 import BOT.Listener.Listener;
 import BOT.Objects.ICommand;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;

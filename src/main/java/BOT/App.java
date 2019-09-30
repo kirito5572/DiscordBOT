@@ -8,11 +8,11 @@ import BOT.Objects.SQL;
 import BOT.Objects.greenCommandManager;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
-import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.entities.Game;
+import net.dv8tion.jda.api.AccountType;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Activity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,7 +37,7 @@ public class App {
     private App() {
         boolean debug;
         date = new Date();
-        SimpleDateFormat format1 = new SimpleDateFormat( "yyyy/MM/dd aa hh:mm:ss z");
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy/MM/dd aa hh:mm:ss z");
         Time = format1.format(date);
         SQL sql = new SQL();
         CommandManager commandManager = new CommandManager();
@@ -59,7 +59,7 @@ public class App {
             File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\TOKEN.txt");
             FileReader fileReader = new FileReader(file);
             int singalCh;
-            while((singalCh = fileReader.read()) != -1) {
+            while ((singalCh = fileReader.read()) != -1) {
                 TOKENreader.append((char) singalCh);
             }
         } catch (Exception e) {
@@ -70,29 +70,29 @@ public class App {
             File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\TOKEN_DEBUG.txt");
             FileReader fileReader = new FileReader(file);
             int singalCh;
-            while((singalCh = fileReader.read()) != -1) {
+            while ((singalCh = fileReader.read()) != -1) {
                 TOKENreader_DEBUG.append((char) singalCh);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        StringBuilder TOKENreaderGreen= new StringBuilder();
+        StringBuilder TOKENreaderGreen = new StringBuilder();
         try {
             File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\Green_TOKEN.txt");
             FileReader fileReader = new FileReader(file);
             int singalCh;
-            while((singalCh = fileReader.read()) != -1) {
+            while ((singalCh = fileReader.read()) != -1) {
                 TOKENreaderGreen.append((char) singalCh);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        if(DEBUG_MODE) {
+        if (DEBUG_MODE) {
             TOKEN = TOKENreader_DEBUG.toString();
             PREFIX = Constants.PREFIX_DEBUG;
             debug = false;
-        } else if(!DEBUG_MODE && ONLINE_DEBUG) {
+        } else if (!DEBUG_MODE && ONLINE_DEBUG) {
             TOKEN = TOKENreader.toString();
             PREFIX = Constants.PREFIX_DEBUG;
             debug = false;
@@ -109,7 +109,7 @@ public class App {
         EmbedUtils.setEmbedBuilder(
                 () -> new EmbedBuilder()
                         .setColor(getRandomColor())
-                        .setFooter("Made By kirito5572#5572",null)
+                        .setFooter("Made By kirito5572#5572", null)
         );
 
         try {
@@ -117,34 +117,25 @@ public class App {
             JDA jda = new JDABuilder(AccountType.BOT)
                     .setToken(TOKEN)
                     .setAutoReconnect(true)
-                    .addEventListener(memberCountListener)
-                    .addEventListener(listener)
-                    .addEventListener(filterlistener)
-                    .addEventListener(salListener)
-                    .addEventListener(onigiriListener)
-                    .addEventListener(nekoDiscordMemberListener)
-                    .setGame(Game.streaming("사용법: "
-                            + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
+                    .addEventListeners(memberCountListener, listener, filterlistener, salListener, onigiriListener, nekoDiscordMemberListener)
+                    //.setActivity(Activity.streaming("사용법: "
+                    //        + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
+                    .setActivity(Activity.playing("JDA v4 BETA"))
                     .build().awaitReady();
             logger.info("부팅완료");
         } catch (LoginException | InterruptedException e) {
             e.printStackTrace();
         }
-        if(debug) {
+        if (debug) {
             try {
                 logger.info("부팅");
                 JDA jda1 = new JDABuilder(AccountType.BOT)
                         .setToken(GreenTOKEN)
                         .setAutoReconnect(true)
-                        .addEventListener(memberCountListener)
-                        .addEventListener(greenListener)
-                        .addEventListener(filterlistener)
-                        .addEventListener(greenServerMuteListener)
-                        .addEventListener(greenServerNoticeListener)
-                        .addEventListener(workHomeListener)
-                        .addEventListener(greenAutoDBWriteListener)
-                        .setGame(Game.streaming("사용법: "
-                                + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
+                        .addEventListeners(memberCountListener, greenListener, filterlistener, greenServerMuteListener, greenServerNoticeListener, workHomeListener, greenAutoDBWriteListener)
+                        //.setActivity(Activity.streaming("사용법: "
+                        //        + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
+                        .setActivity(Activity.playing("JDA v4 BETA"))
                         .build().awaitReady();
                 logger.info("부팅완료");
             } catch (LoginException | InterruptedException e) {

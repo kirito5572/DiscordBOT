@@ -2,10 +2,10 @@ package BOT.Commands.GreenServerCustom;
 
 import BOT.Objects.ICommand;
 import me.duncte123.botcommons.messaging.EmbedUtils;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -49,8 +49,8 @@ public class goHomeCommand implements ICommand {
 
                     return;
                 }
-                event.getGuild().getController().removeSingleRoleFromMember(event.getMember(), roles).complete();
-                event.getGuild().getController().addSingleRoleToMember(event.getMember(), role).complete();
+                event.getGuild().removeRoleFromMember(event.getMember(), roles).complete();
+                event.getGuild().addRoleToMember(event.getMember(), role).complete();
                 event.getChannel().sendMessage(event.getMember().getAsMention() + "님, 퇴근이 확인되었습니다.").queue();
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                         .setTitle("퇴근부")

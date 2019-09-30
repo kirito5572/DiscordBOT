@@ -1,9 +1,9 @@
 package BOT.Commands.GreenServerCustom;
 import BOT.Objects.ICommand;
 import me.duncte123.botcommons.web.WebUtils;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -67,7 +67,7 @@ public class certificationFinCommand implements ICommand {
                                 return;
                             }
                             channel.sendMessage(event.getMember().getAsMention() + ", 스팀 인증에 성공하셨습니다. ").queue();
-                            event.getGuild().getController().addSingleRoleToMember(event.getMember(), role).complete();
+                            event.getGuild().addRoleToMember(event.getMember(), role).complete();
                         }));
                     } else {
                         channel.sendMessage("인증키가 잘못되었습니다.").queue();

@@ -3,11 +3,11 @@ package BOT.Commands.Moderator;
 import BOT.App;
 import BOT.Objects.ICommand;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -81,35 +81,35 @@ public class giveroleCommand implements ICommand {
             Member member = event.getGuild().getMember(user);
             Role rolea;
             if(!colorCode.equals("") && !permission_Int.equals("")) {
-                rolea = event.getGuild().getController().createRole()
+                rolea = event.getGuild().createRole()
                         .setName(rolename)
                         .setColor(Integer.parseInt(colorCode, 16))
                         .setPermissions(Long.parseLong(permission_Int))
                         .setHoisted(hoisted)
                         .complete();
             } else if(!colorCode.equals("")) {
-                rolea = event.getGuild().getController().createRole()
+                rolea = event.getGuild().createRole()
                         .setName(rolename)
                         .setColor(Integer.parseInt(colorCode, 16))
                         .setHoisted(hoisted)
                         .complete();
             } else if(!permission_Int.equals("")) {
-                rolea = event.getGuild().getController().createRole()
+                rolea = event.getGuild().createRole()
                     .setName(rolename)
                     .setPermissions(Long.parseLong(permission_Int))
                     .setHoisted(hoisted)
                     .complete();
             } else {
-                rolea = event.getGuild().getController().createRole()
+                rolea = event.getGuild().createRole()
                     .setName(rolename)
                     .setHoisted(hoisted)
                     .complete();
             }
 
             if(!pos.equals("")) {
-                event.getGuild().getController().modifyRolePositions().selectPosition(rolea).moveUp(Integer.parseInt(pos)).complete();
+                event.getGuild().modifyRolePositions().selectPosition(rolea).moveUp(Integer.parseInt(pos)).complete();
             }
-            event.getGuild().getController().addSingleRoleToMember(member, rolea).complete();
+            event.getGuild().addRoleToMember(member, rolea).complete();
 
             event.getChannel().sendMessage("[" + rolename + "] 역할이 [" + user.getName() + "]에게 부여되었습니다..").queue();
         } else {

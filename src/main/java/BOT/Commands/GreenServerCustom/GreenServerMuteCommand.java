@@ -4,13 +4,13 @@ import BOT.App;
 import BOT.Objects.ICommand;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import me.duncte123.botcommons.messaging.EmbedUtils;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.awt.*;
 import java.io.File;
@@ -185,10 +185,12 @@ public class GreenServerMuteCommand implements ICommand {
 
                 return;
             }
+            List<Role> removeRole = member.getRoles();
+            for(Role role1 : removeRole) {
+                event.getGuild().removeRoleFromMember(member, role1).complete();
+            }
 
-            event.getGuild().getController().removeRolesFromMember(member, member.getRoles()).complete();
-
-            event.getGuild().getController().addSingleRoleToMember(member, role).queue();
+            event.getGuild().addRoleToMember(member, role).queue();
         } else {
             channel.sendMessage("이 명령어는 이 서버에서 지원하지 않습니다.").complete();
         }

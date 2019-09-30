@@ -1,7 +1,7 @@
 package BOT.Commands.Moderator;
 
 import BOT.Objects.ICommand;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
 
@@ -26,22 +26,26 @@ public class BotOwnerNoticeCommand implements ICommand {
             message = message.replaceFirst("!everyone", "@everyone");
         }
         if (event.getJDA().getSelfUser().getId().equals("592987181186940931")) {
-            event.getJDA().getGuildById("617222347425972234").getTextChannelById("617224261139955722") //캣카페
-                    .sendMessage(message).queue();
-            event.getJDA().getGuildById("617757206929997895").getTextChannelById("617759661881556994") //데어라
-                    .sendMessage(message).queue();
-            event.getJDA().getGuildById("479625309788962816").getTextChannelById("479625309788962818") //심플
-                    .sendMessage(message).queue();
-            event.getJDA().getGuildById("508913681279483913").getTextChannelById("539470263121608740") //선우형
-                    .sendMessage(message).queue();
-            event.getJDA().getGuildById("453817631603032065").getTextChannelById("574856464347430914") //주먹밥
-                    .sendMessage(message).queue();
-            event.getJDA().getGuildById("607390893804093442").getTextChannelById("620082301413621771") //소프냥이
-                    .sendMessage(message).queue();
-            event.getJDA().getGuildById("607390203086372866").getTextChannelById("607543076734369792") //제이
-                    .sendMessage(message).queue();
-            event.getJDA().getGuildById("439780696999985172").getTextChannelById("441164108671221761") //네코샘플
-                    .sendMessage(message).queue();
+            try {
+                event.getJDA().getGuildById("617222347425972234").getTextChannelById("617224261139955722") //캣카페
+                        .sendMessage(message).queue();
+                event.getJDA().getGuildById("617757206929997895").getTextChannelById("617759661881556994") //데어라
+                        .sendMessage(message).queue();
+                event.getJDA().getGuildById("479625309788962816").getTextChannelById("479625309788962818") //심플
+                        .sendMessage(message).queue();
+                event.getJDA().getGuildById("508913681279483913").getTextChannelById("539470263121608740") //선우형
+                        .sendMessage(message).queue();
+                event.getJDA().getGuildById("453817631603032065").getTextChannelById("574856464347430914") //주먹밥
+                        .sendMessage(message).queue();
+                event.getJDA().getGuildById("607390893804093442").getTextChannelById("620082301413621771") //소프냥이
+                        .sendMessage(message).queue();
+                event.getJDA().getGuildById("607390203086372866").getTextChannelById("607543076734369792") //제이
+                        .sendMessage(message).queue();
+                event.getJDA().getGuildById("439780696999985172").getTextChannelById("441164108671221761") //네코샘플
+                        .sendMessage(message).queue();
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
         } else {
             event.getJDA().getGuildById("600010501266866186").getTextChannelById("600015178821664769").sendMessage(message).queue();
         }

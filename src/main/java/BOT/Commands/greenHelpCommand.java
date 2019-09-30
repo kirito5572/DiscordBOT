@@ -4,8 +4,8 @@ import BOT.App;
 import BOT.Objects.ICommand;
 import BOT.Objects.greenCommandManager;
 import me.duncte123.botcommons.messaging.EmbedUtils;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.Collection;
 import java.util.List;
@@ -57,7 +57,9 @@ public class greenHelpCommand implements ICommand {
         StringBuilder music = new StringBuilder();
         StringBuilder serverCustom = new StringBuilder();
         StringBuilder moderator = new StringBuilder();
+        StringBuilder game = new StringBuilder();
         StringBuilder other = new StringBuilder();
+        builder.appendDescription(App.getPREFIX() + getInvoke() + " <명령어>를 입력하면 명령어별 상세 정보를 볼 수 있습니다.");
         Commands.forEach(iCommand -> {
             if (iCommand.getSmallHelp().equals("music")) {
                 music.append(iCommand.getInvoke()).append("\n");
@@ -67,6 +69,9 @@ public class greenHelpCommand implements ICommand {
             }
             if (iCommand.getSmallHelp().equals("moderator")) {
                 moderator.append(iCommand.getInvoke()).append("\n");
+            }
+            if (iCommand.getSmallHelp().equals("game")) {
+                game.append(iCommand.getInvoke()).append("\n");
             }
             if (iCommand.getSmallHelp().equals("other")) {
                 other.append(iCommand.getInvoke()).append("\n");
@@ -85,6 +90,11 @@ public class greenHelpCommand implements ICommand {
         builder.addField(
                 "음악",
                 music.toString(),
+                false
+        );
+        builder.addField(
+                "게임",
+                game.toString(),
                 false
         );
         builder.addField(
