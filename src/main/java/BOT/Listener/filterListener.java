@@ -27,6 +27,21 @@ public class filterListener extends ListenerAdapter {
         User author = event.getAuthor();
         Message message = event.getMessage();
         Guild guild = event.getGuild();
+        if(message.getAuthor().isBot()) {
+            return;
+        }
+        if(message.getContentRaw().startsWith("&") || message.getContentRaw().startsWith("$$")) {
+            return;
+        }
+        if(author == null) {
+            return;
+        }
+        if(message == null) {
+            return;
+        }
+        if(guild == null) {
+            return;
+        }
 
         String[] List = FilterList.getList();
         String[] list = FilterList.getCharList();
@@ -136,9 +151,18 @@ public class filterListener extends ListenerAdapter {
                 linkPass = true;
             }
 
+            if(author == null) {
+                return;
+            }
+            if(message == null) {
+                return;
+            }
+            if(guild == null) {
+                return;
+            }
 
             if(guild.getId().equals("600010501266866186")) {  //끄린이
-                Role role = event.getGuild().getRoleById("616229894401294356");
+                Role role = guild.getRoleById("616229894401294356");
                 if(Objects.requireNonNull(event.getMember()).getRoles().contains(role)) { //외무부
                     linkPass = true;
                 }
@@ -216,6 +240,16 @@ public class filterListener extends ListenerAdapter {
             }
         }
 
+        if(author == null) {
+            return;
+        }
+        if(message == null) {
+            return;
+        }
+        if(guild == null) {
+            return;
+        }
+
         if(!filterPass) {
             boolean clean = true;
             while (clean) {
@@ -232,7 +266,7 @@ public class filterListener extends ListenerAdapter {
             for (String s : List) {
                 if (rawMessage.contains(s)) {
                     try {
-                        if (guild.getSelfMember().getUser().getId().equals(Objects.requireNonNull(event.getMember()).getUser().getId())) {
+                        if (guild.getSelfMember().getUser().getId().equals(Objects.requireNonNull(author).getId())) {
 
                             return;
                         }
