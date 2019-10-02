@@ -12,6 +12,14 @@ public class russianRouletteCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         Random random = new Random();
+        if(shot == 0) {
+            event.getChannel().sendMessage("재장전을 한번만 해주세요").queue();
+            return;
+        }
+        if(args.isEmpty()) {
+            event.getChannel().sendMessage("사용법: `" + App.getPREFIX() + getInvoke() + "<재장전/시작>`").queue();
+            return;
+        }
         if(args.get(0).equals("재장전") || args.get(0).equals("reload")) {
             shot = random.nextInt(5) + 1;
             event.getChannel().sendMessage("총알 재장전 완료!.").queue();
@@ -31,7 +39,7 @@ public class russianRouletteCommand implements ICommand {
     @Override
     public String getHelp() {
         return "러시안 룰렛! \n" +
-                "사용법: `" + App.getPREFIX() + getInvoke() + "<재장전/시작>";
+                "사용법: `" + App.getPREFIX() + getInvoke() + "<재장전/시작>`";
     }
 
     @Override
