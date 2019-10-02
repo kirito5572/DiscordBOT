@@ -13,7 +13,11 @@ public class russianRouletteCommand implements ICommand {
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         Random random = new Random();
         if(args.isEmpty()) {
-            event.getChannel().sendMessage("사용법: `" + App.getPREFIX() + getInvoke() + "<재장전/시작>`").queue();
+            event.getChannel().sendMessage("사용법: `" + App.getPREFIX() + getInvoke() + "<재장전/발사>`").queue();
+            return;
+        }
+        if (!(args.get(0).equals("재장전") || args.get(0).equals("발사"))) {
+            event.getChannel().sendMessage("사용법: `" + App.getPREFIX() + getInvoke() + "<재장전/발사>`").queue();
             return;
         }
         if(shot == 0) {
@@ -41,7 +45,7 @@ public class russianRouletteCommand implements ICommand {
     @Override
     public String getHelp() {
         return "러시안 룰렛! \n" +
-                "사용법: `" + App.getPREFIX() + getInvoke() + "<재장전/시작>`";
+                "사용법: `" + App.getPREFIX() + getInvoke() + "<재장전/발사>`";
     }
 
     @Override
