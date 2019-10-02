@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/GameCommand/russianRouletteCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/App.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -343,7 +342,7 @@
       <workItem from="1569831389373" duration="778000" />
       <workItem from="1569834299501" duration="2872000" />
       <workItem from="1569889130964" duration="1512000" />
-      <workItem from="1569972240556" duration="11100000" />
+      <workItem from="1569972240556" duration="11343000" />
     </task>
     <servers />
   </component>
