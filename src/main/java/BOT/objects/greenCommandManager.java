@@ -3,6 +3,8 @@ package BOT.Objects;
 import BOT.App;
 import BOT.Commands.*;
 import BOT.Commands.GameCommand.DICECommand;
+import BOT.Commands.GameCommand.RockPaperScissorsCommand;
+import BOT.Commands.GameCommand.russianRouletteCommand;
 import BOT.Commands.GreenServerCustom.*;
 import BOT.Commands.Moderator.*;
 import BOT.Commands.Music.*;
@@ -889,6 +891,42 @@ public class greenCommandManager {
                 @Override
                 public String getHelp() {
                     return "Pause music which is playing music by bot";
+                }
+            });
+            addCommand(new RockPaperScissorsCommand());
+            addCommand(new RockPaperScissorsCommand() {
+                @Override
+                public String getInvoke() {
+                    return "rockpaperscissors";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Rock! Paper! Scissors! \n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + "<가위/바위/보>";
+                }
+            });
+            addCommand(new russianRouletteCommand());
+            addCommand(new russianRouletteCommand() {
+                @Override
+                public String getInvoke() {
+                    return "russianRoulette";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "RussianRoulette! \n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + "<reload/shot>";
                 }
             });
         }

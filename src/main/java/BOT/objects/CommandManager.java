@@ -804,6 +804,24 @@ public class CommandManager {
                             "Usage: `" + App.getPREFIX() + getInvoke() + "<가위/바위/보>";
                 }
             });
+            addCommand(new russianRouletteCommand());
+            addCommand(new russianRouletteCommand() {
+                @Override
+                public String getInvoke() {
+                    return "russianRoulette";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "RussianRoulette! \n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + "<reload/shot>";
+                }
+            });
         }
     }
 
