@@ -26,7 +26,7 @@ import java.util.Random;
 
 public class App {
     private static boolean DEBUG_MODE = false;
-    private static boolean ONLINE_DEBUG = false;
+    private static boolean ONLINE_DEBUG = true;
     private String GreenTOKEN;
     private static Date date;
     private static String Time;
@@ -52,6 +52,7 @@ public class App {
         workHomeListener workHomeListener = new workHomeListener();
         nekoDiscordMemberListener nekoDiscordMemberListener = new nekoDiscordMemberListener();
         GreenAutoDBWriteListener greenAutoDBWriteListener = new GreenAutoDBWriteListener();
+        SteamServerStatusListener steamServerStatusListener = new SteamServerStatusListener();
 
         StringBuilder TOKENreader = new StringBuilder();
         try {
@@ -117,7 +118,7 @@ public class App {
             JDA jda = new JDABuilder(AccountType.BOT)
                     .setToken(TOKEN)
                     .setAutoReconnect(true)
-                    .addEventListeners(memberCountListener, listener, filterlistener, salListener, onigiriListener, nekoDiscordMemberListener)
+                    .addEventListeners(memberCountListener, listener, filterlistener, salListener, onigiriListener, nekoDiscordMemberListener, steamServerStatusListener)
                     //.setActivity(Activity.streaming("사용법: "
                     //        + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
                     .setActivity(Activity.playing("JDA v4 BETA"))
@@ -132,7 +133,7 @@ public class App {
                 JDA jda1 = new JDABuilder(AccountType.BOT)
                         .setToken(GreenTOKEN)
                         .setAutoReconnect(true)
-                        .addEventListeners(memberCountListener, greenListener, filterlistener, greenServerMuteListener, greenServerNoticeListener, workHomeListener, greenAutoDBWriteListener)
+                        .addEventListeners(memberCountListener, greenListener, filterlistener, greenServerMuteListener, greenServerNoticeListener, workHomeListener, greenAutoDBWriteListener, steamServerStatusListener)
                         //.setActivity(Activity.streaming("사용법: "
                         //        + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
                         .setActivity(Activity.playing("JDA v4 BETA"))
