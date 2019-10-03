@@ -107,12 +107,22 @@ public class Listener extends ListenerAdapter {
                 if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
                     Role role = event.getGuild().getRoleById("600012069559074822");
                     if(!event.getMember().getRoles().contains(role)) {
-                        if (event.getMessage().getContentRaw().startsWith(App.getPREFIX())) {
-                            event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").complete().delete().queueAfter(7, TimeUnit.SECONDS);
+                        if(!event.getAuthor().getId().equals("278086240195182592")) {
+                            if (event.getMessage().getContentRaw().startsWith(App.getPREFIX())) {
+                                event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").complete().delete().queueAfter(7, TimeUnit.SECONDS);
 
-                            message.delete().queue();
+                                message.delete().queue();
 
-                            return;
+                                return;
+                            }
+                        } else {
+                            if(!event.getMessage().getContentRaw().startsWith(App.getPREFIX() + "투표")) {
+                                event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").complete().delete().queueAfter(7, TimeUnit.SECONDS);
+
+                                message.delete().queue();
+
+                                return;
+                            }
                         }
                     }
                 }

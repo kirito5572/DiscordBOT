@@ -15,9 +15,11 @@ public class pollCommand implements ICommand {
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         if(!(Objects.requireNonNull(event.getMember()).hasPermission(Permission.ADMINISTRATOR) || event.getMember().hasPermission(Permission.MESSAGE_MANAGE))) {
-            event.getChannel().sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
+            if(!event.getAuthor().getId().equals("278086240195182592")) {
+                event.getChannel().sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
 
-            return;
+                return;
+            }
         }
         String pollText = event.getMessage().getContentRaw();
         String temp = App.getPREFIX() + getInvoke();
