@@ -4,6 +4,8 @@ import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -13,6 +15,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class certificationFinCommand implements ICommand {
+    private final Logger logger = LoggerFactory.getLogger(certificationFinCommand.class);
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
@@ -64,6 +67,12 @@ public class certificationFinCommand implements ICommand {
                             } catch (IOException e) {
                                 channel.sendMessage("정보를 데이터베이스에 저장하다가 오류가 발생했습니다.").queue();
                                 e.printStackTrace();
+                                StackTraceElement[] eStackTrace = e.getStackTrace();
+                                StringBuilder ab = new StringBuilder();
+                                for (StackTraceElement stackTraceElement : eStackTrace) {
+                                    ab.append(stackTraceElement).append("\n");
+                                }
+                                logger.warn(ab.toString());
                                 return;
                             }
                             channel.sendMessage(event.getMember().getAsMention() + ", 스팀 인증에 성공하셨습니다. ").queue();

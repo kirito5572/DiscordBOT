@@ -11,6 +11,8 @@ import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.PrivateChannel;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 import static BOT.Listener.ONIGIRIListener.convertInputStreamToFile;
 
 public class CatCommand implements ICommand {
+    private final Logger logger = LoggerFactory.getLogger(CatCommand.class);
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
 
@@ -53,6 +56,12 @@ public class CatCommand implements ICommand {
                 Thread.sleep(400);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             }
 
             message.addReaction("1\u20E3").queue();
@@ -61,6 +70,12 @@ public class CatCommand implements ICommand {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             }
             boolean flag = true;
 
@@ -69,6 +84,12 @@ public class CatCommand implements ICommand {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    StackTraceElement[] eStackTrace = e.getStackTrace();
+                    StringBuilder a = new StringBuilder();
+                    for (StackTraceElement stackTraceElement : eStackTrace) {
+                        a.append(stackTraceElement).append("\n");
+                    }
+                    logger.warn(a.toString());
                 }
                 if (message.getReactions().get(0).getCount() == 2) {
                     message.delete().complete();
@@ -114,6 +135,12 @@ public class CatCommand implements ICommand {
                             file = convertInputStreamToFile(inputStream, ".jpg");
                         } catch (IOException e) {
                             e.printStackTrace();
+                            StackTraceElement[] eStackTrace = e.getStackTrace();
+                            StringBuilder ba = new StringBuilder();
+                            for (StackTraceElement stackTraceElement : eStackTrace) {
+                                ba.append(stackTraceElement).append("\n");
+                            }
+                            logger.warn(ba.toString());
 
                             event.getChannel().sendMessage("에러가 발생했습니다.").queue();
 

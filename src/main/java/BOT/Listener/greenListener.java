@@ -72,6 +72,12 @@ public class greenListener extends ListenerAdapter {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
         String ID1 = IDreader.toString();
         String ID2 = IDreader1.toString();
@@ -130,6 +136,12 @@ public class greenListener extends ListenerAdapter {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             }
             jda.shutdown();
             System.exit(0);
@@ -151,6 +163,12 @@ public class greenListener extends ListenerAdapter {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    StackTraceElement[] eStackTrace = e.getStackTrace();
+                    StringBuilder a = new StringBuilder();
+                    for (StackTraceElement stackTraceElement : eStackTrace) {
+                        a.append(stackTraceElement).append("\n");
+                    }
+                    logger.warn(a.toString());
                 }
                 jda.shutdown();
                 System.exit(0);

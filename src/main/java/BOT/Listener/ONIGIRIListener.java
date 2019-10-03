@@ -4,11 +4,14 @@ import BOT.Objects.ONIGIRIList;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.Objects;
 
 public class ONIGIRIListener extends ListenerAdapter {
+    private final Logger logger = LoggerFactory.getLogger(ONIGIRIListener.class);
     private String[] List = ONIGIRIList.getList();
     private String[] list_File = ONIGIRIList.getList_file();
     private String[] list_Suffix = ONIGIRIList.getList_Suffix();
@@ -28,6 +31,12 @@ public class ONIGIRIListener extends ListenerAdapter {
                             file = convertInputStreamToFile(inputStream, list_Suffix[i]);
                         } catch (IOException e) {
                             e.printStackTrace();
+                            StackTraceElement[] eStackTrace = e.getStackTrace();
+                            StringBuilder a = new StringBuilder();
+                            for (StackTraceElement stackTraceElement : eStackTrace) {
+                                a.append(stackTraceElement).append("\n");
+                            }
+                            logger.warn(a.toString());
 
                             event.getChannel().sendMessage("에러가 발생했습니다.").queue();
 
@@ -37,6 +46,12 @@ public class ONIGIRIListener extends ListenerAdapter {
                             event.getChannel().sendFile(file).complete();
                         } catch (Exception e) {
                             e.printStackTrace();
+                            StackTraceElement[] eStackTrace = e.getStackTrace();
+                            StringBuilder a = new StringBuilder();
+                            for (StackTraceElement stackTraceElement : eStackTrace) {
+                                a.append(stackTraceElement).append("\n");
+                            }
+                            logger.warn(a.toString());
                         }
                     }
                 }

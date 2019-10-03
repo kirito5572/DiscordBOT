@@ -1,5 +1,7 @@
 package BOT.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -13,6 +15,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class getAirData {
+    private final Logger logger = LoggerFactory.getLogger(getAirData.class);
     private static String[] airkorea_data = new String[16];
     private static String[] airkorea_List = new String[8];
     static {
@@ -46,6 +49,12 @@ public class getAirData {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             }
             String airkorea_url = "http://openapi.airkorea.or.kr/openapi/services/rest/MsrstnInfoInqireSvc/getTMStdrCrdnt?";
             String numOfRows = "10";
@@ -102,6 +111,12 @@ public class getAirData {
 
         } catch (Exception e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
         assert tmX != null;
         if(tmX.equals("error")) {
@@ -119,6 +134,12 @@ public class getAirData {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             }
             String airkorea_url = "http://openapi.airkorea.or.kr/openapi/services/rest/MsrstnInfoInqireSvc/getNearbyMsrstnList?";
             String airkorea_serviceKey = TOKEN.toString();
@@ -141,6 +162,12 @@ public class getAirData {
 
         } catch (Exception e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
         airkorea_data[15] = sido + " " + stationName + " 측정소";
         try {
@@ -148,6 +175,12 @@ public class getAirData {
             stationName = URLEncoder.encode(stationName, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
         return stationName;
     }
@@ -166,6 +199,12 @@ public class getAirData {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             }
 
             String airkorea_url = "http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty";
@@ -240,6 +279,12 @@ public class getAirData {
 
         } catch (Exception e){
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }	// try~catch end
     }
     static String get_AirKoreaTagValue(String airkorea_tag, Element airkorea_eElement) {

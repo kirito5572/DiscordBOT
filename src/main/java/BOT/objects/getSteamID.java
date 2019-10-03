@@ -1,8 +1,11 @@
 package BOT.Objects;
 
 import me.duncte123.botcommons.web.WebUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class getSteamID {
+    private static final Logger logger = LoggerFactory.getLogger(getSteamID.class);
     public static String[] SteamID(String ID) {
         String[] returns = new String[2];
         final boolean[] flag = {true};
@@ -19,6 +22,12 @@ public class getSteamID {
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                    StackTraceElement[] eStackTrace = e.getStackTrace();
+                    StringBuilder a = new StringBuilder();
+                    for (StackTraceElement stackTraceElement : eStackTrace) {
+                        a.append(stackTraceElement).append("\n");
+                    }
+                    logger.warn(a.toString());
 
                     returns[0] = "error";
                 }
@@ -29,6 +38,12 @@ public class getSteamID {
                     Thread.sleep(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    StackTraceElement[] eStackTrace = e.getStackTrace();
+                    StringBuilder a = new StringBuilder();
+                    for (StackTraceElement stackTraceElement : eStackTrace) {
+                        a.append(stackTraceElement).append("\n");
+                    }
+                    logger.warn(a.toString());
                 }
             }
             return returns;

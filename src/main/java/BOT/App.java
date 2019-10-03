@@ -53,6 +53,7 @@ public class App {
         nekoDiscordMemberListener nekoDiscordMemberListener = new nekoDiscordMemberListener();
         GreenAutoDBWriteListener greenAutoDBWriteListener = new GreenAutoDBWriteListener();
         SteamServerStatusListener steamServerStatusListener = new SteamServerStatusListener();
+        Logger logger = LoggerFactory.getLogger(App.class);
 
         StringBuilder TOKENreader = new StringBuilder();
         try {
@@ -64,6 +65,12 @@ public class App {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
         StringBuilder TOKENreader_DEBUG = new StringBuilder();
         try {
@@ -75,6 +82,12 @@ public class App {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
         StringBuilder TOKENreaderGreen = new StringBuilder();
         try {
@@ -86,6 +99,12 @@ public class App {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
 
         String TOKEN;
@@ -103,7 +122,6 @@ public class App {
             GreenTOKEN = TOKENreaderGreen.toString();
             debug = true;
         }
-        Logger logger = LoggerFactory.getLogger(App.class);
 
         WebUtils.setUserAgent("Chrome 75.0.3770.100 kirito's discord bot/kirito5572#5572");
 
@@ -126,6 +144,12 @@ public class App {
             logger.info("부팅완료");
         } catch (LoginException | InterruptedException e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
         if (debug) {
             try {
@@ -141,6 +165,12 @@ public class App {
                 logger.info("부팅완료");
             } catch (LoginException | InterruptedException e) {
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             }
         }
 

@@ -1,5 +1,8 @@
 package BOT.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -9,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SQL {
+    private static final Logger logger = LoggerFactory.getLogger(SQL.class);
     private static int caseID;
     private static Statement statement;
     private static ResultSet resultSet;
@@ -24,6 +28,12 @@ public class SQL {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
         caseID = Integer.parseInt(caseIDBuilder.toString());
         StringBuilder SQLPassword = new StringBuilder();
@@ -36,6 +46,12 @@ public class SQL {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
         StringBuilder endPoint = new StringBuilder();
         try {
@@ -47,6 +63,12 @@ public class SQL {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
         String driverName = "com.mysql.cj.jdbc.Driver";
         String url = "jdbc:mysql://" + endPoint.toString() + "/ritobotDB?serverTimezone=UTC";
@@ -60,6 +82,12 @@ public class SQL {
             statement = connection.createStatement();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
     }
     public static void SQLupload(String SteamID, String time, String reason, String confirmUser) {
@@ -76,6 +104,12 @@ public class SQL {
             statement.executeUpdate(queryString);
         } catch (Exception e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
     }
     public static String[][] SQLdownload(String SteamID) throws SQLException {
@@ -113,6 +147,12 @@ public class SQL {
             if (writer != null) writer.close();
         } catch (IOException e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
     }
 }

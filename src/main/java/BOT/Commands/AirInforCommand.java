@@ -11,14 +11,17 @@ import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-        import java.util.List;
+import java.util.List;
 
 public class AirInforCommand implements ICommand {
     private boolean listFlag;
 
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
+        Logger logger = LoggerFactory.getLogger(AirInforCommand.class);
         setListFlag(false);
         String[] rank = new String[8];
         TextChannel channel = event.getChannel();
@@ -75,6 +78,12 @@ public class AirInforCommand implements ICommand {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             }
             rank[i] = data[i + 8];
         }

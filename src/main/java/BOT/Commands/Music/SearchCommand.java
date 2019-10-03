@@ -11,6 +11,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.*;
@@ -20,6 +22,7 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class SearchCommand implements ICommand {
+    private final Logger logger = LoggerFactory.getLogger(SearchCommand.class);
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         new Thread(() -> {
@@ -52,6 +55,12 @@ public class SearchCommand implements ICommand {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             }
             try {
                 String name = String.join("+", args);
@@ -124,26 +133,62 @@ public class SearchCommand implements ICommand {
                 Message message = channel.sendMessage("ErrorCode : 0x1402 UNSUPPORT ENCODING ERROR").complete();
                 message.delete().queueAfter(7,TimeUnit.SECONDS);
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             } catch (ProtocolException e) {
                 Message message = channel.sendMessage("ErrorCode : 0x9757 Protocol ERROR").complete();
                 message.delete().queueAfter(7,TimeUnit.SECONDS);
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             } catch (MalformedURLException e) {
                 Message message = channel.sendMessage("ErrorCode : 0x1576 URL ERROR").complete();
                 message.delete().queueAfter(7,TimeUnit.SECONDS);
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             } catch (IOException e) {
                 Message message = channel.sendMessage("ErrorCode : 0x3451 I/O ERROR").complete();
                 message.delete().queueAfter(7,TimeUnit.SECONDS);
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             } catch (ParseException e) {
                 Message message = channel.sendMessage("ErrorCode : 0x6712 PARSE ERROR").complete();
                 message.delete().queueAfter(7,TimeUnit.SECONDS);
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             } catch (InterruptedException e) {
                 Message message = channel.sendMessage("ErrorCode : 0x5734 THREAD ERROR").complete();
                 message.delete().queueAfter(7,TimeUnit.SECONDS);
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             }
         }).start();
     }

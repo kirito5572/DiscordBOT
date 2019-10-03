@@ -193,6 +193,12 @@ public class filterListener extends ListenerAdapter {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
         if(!linkPass) {
             for (String s : Lists) {
@@ -234,6 +240,12 @@ public class filterListener extends ListenerAdapter {
                     } catch (Exception e) {
                         if (event.getJDA().getSelfUser().getId().equals("592987181186940931")) {
                             e.printStackTrace();
+                            StackTraceElement[] eStackTrace = e.getStackTrace();
+                            StringBuilder a = new StringBuilder();
+                            for (StackTraceElement stackTraceElement : eStackTrace) {
+                                a.append(stackTraceElement).append("\n");
+                            }
+                            logger.warn(a.toString());
                         }
                     }
                 }
@@ -331,6 +343,12 @@ public class filterListener extends ListenerAdapter {
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
+                        StackTraceElement[] eStackTrace = e.getStackTrace();
+                        StringBuilder a = new StringBuilder();
+                        for (StackTraceElement stackTraceElement : eStackTrace) {
+                            a.append(stackTraceElement).append("\n");
+                        }
+                        logger.warn(a.toString());
                     }
                 }
             }

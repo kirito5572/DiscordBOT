@@ -1,5 +1,7 @@
 package BOT.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -11,6 +13,7 @@ import java.io.File;
 import java.io.FileReader;
 
 public class getAirLocalData {
+    private final Logger logger = LoggerFactory.getLogger(getAirLocalData.class);
     private static String[] airkorea_data = new String[7];
 
     private static String[] itemCode = new String[] {
@@ -42,6 +45,12 @@ public class getAirLocalData {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             }
 
             DocumentBuilderFactory airkorea_DB_Factoty = DocumentBuilderFactory.newInstance();
@@ -69,6 +78,12 @@ public class getAirLocalData {
 
         } catch (Exception e){
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }	// try~catch end
     }
 }

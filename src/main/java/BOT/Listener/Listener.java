@@ -74,6 +74,12 @@ public class Listener extends ListenerAdapter {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
         ID1 = IDreader.toString();
         ID2 = IDreader1.toString();
@@ -207,6 +213,12 @@ public class Listener extends ListenerAdapter {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             }
             jda.shutdown();
             System.exit(0);
@@ -237,6 +249,12 @@ public class Listener extends ListenerAdapter {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    StackTraceElement[] eStackTrace = e.getStackTrace();
+                    StringBuilder a = new StringBuilder();
+                    for (StackTraceElement stackTraceElement : eStackTrace) {
+                        a.append(stackTraceElement).append("\n");
+                    }
+                    logger.warn(a.toString());
                 }
                 jda.shutdown();
                 System.exit(0);

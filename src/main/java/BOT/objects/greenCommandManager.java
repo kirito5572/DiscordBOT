@@ -11,11 +11,14 @@ import BOT.Commands.Music.*;
 import BOT.Commands.ONIGIRIServerCustom.ONIGIRICommand;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.regex.Pattern;
 
 public class greenCommandManager {
+    private final Logger logger = LoggerFactory.getLogger(greenCommandManager.class);
     private final Map<String, ICommand> commands = new HashMap<>();
 
     public greenCommandManager() {
@@ -944,6 +947,12 @@ public class greenCommandManager {
             Thread.sleep(time);
         } catch (InterruptedException e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
     }
 

@@ -3,6 +3,8 @@ package BOT.Objects;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class getWeather {
+    private static final Logger logger = LoggerFactory.getLogger(getWeather.class);
     private static final SimpleDateFormat clock_aa = new SimpleDateFormat("a");
     private static final SimpleDateFormat clock_am = new SimpleDateFormat("K시 mm분 ss초(z)");
     private static final SimpleDateFormat clock_pm = new SimpleDateFormat("h시 mm분 ss초(z)");
@@ -37,6 +40,12 @@ public class getWeather {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             }
 
             String url = "https://api.openweathermap.org/data/2.5/weather?q="+ city_name + "&appid=" + TOKEN + "&lang=kr" + "&units=metric";
@@ -96,6 +105,12 @@ public class getWeather {
 
         } catch (Exception e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
 
     }

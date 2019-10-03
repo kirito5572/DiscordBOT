@@ -8,11 +8,14 @@ import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.api.events.message.react.MessageReactionRemoveEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileReader;
 
 public class nekoDiscordMemberListener extends ListenerAdapter {
+    private final Logger logger = LoggerFactory.getLogger(nekoDiscordMemberListener.class);
     private static String Chating1;
     private static String Chating2;
     @Override
@@ -53,6 +56,12 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
         Chating1 = Chating_temp.toString();
         try {
@@ -64,6 +73,12 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
         Chating2 = Chating_temp.toString();
     }

@@ -12,6 +12,8 @@ import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class gameServerBanCommand implements ICommand {
+    private final Logger logger = LoggerFactory.getLogger(gameServerBanCommand.class);
     private static String command = "서버밴";
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
@@ -195,6 +198,12 @@ public class gameServerBanCommand implements ICommand {
                                 event);
                     } catch (Exception e) {
                         e.printStackTrace();
+                        StackTraceElement[] eStackTrace = e.getStackTrace();
+                        StringBuilder a = new StringBuilder();
+                        for (StackTraceElement stackTraceElement : eStackTrace) {
+                            a.append(stackTraceElement).append("\n");
+                        }
+                        logger.warn(a.toString());
                         channel.sendMessage("봇이 스팀 프로필을 불러오는데 실패하였습니다.").queue();
                         returnflag.set(true);
                     }
@@ -230,6 +239,12 @@ public class gameServerBanCommand implements ICommand {
                                 event);
                     } catch (Exception e) {
                         e.printStackTrace();
+                        StackTraceElement[] eStackTrace = e.getStackTrace();
+                        StringBuilder a = new StringBuilder();
+                        for (StackTraceElement stackTraceElement : eStackTrace) {
+                            a.append(stackTraceElement).append("\n");
+                        }
+                        logger.warn(a.toString());
                         channel.sendMessage("봇이 스팀 프로필을 불러오는데 실패하였습니다.").queue();
                         returnflag.set(true);
                     }

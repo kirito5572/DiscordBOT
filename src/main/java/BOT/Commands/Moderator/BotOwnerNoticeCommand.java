@@ -2,6 +2,8 @@ package BOT.Commands.Moderator;
 
 import BOT.Objects.ICommand;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Objects;
@@ -9,6 +11,7 @@ import java.util.Objects;
 import static BOT.Listener.Listener.getID1;
 
 public class BotOwnerNoticeCommand implements ICommand {
+    private final Logger logger = LoggerFactory.getLogger(BotOwnerNoticeCommand.class);
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         if(!Objects.requireNonNull(event.getMember()).getUser().getId().equals(getID1())) {
@@ -46,6 +49,12 @@ public class BotOwnerNoticeCommand implements ICommand {
                         .sendMessage(message).queue();
             } catch (NullPointerException e) {
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
             }
         } else {
             Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById("600010501266866186")).getTextChannelById("600015178821664769")).sendMessage(message).queue();

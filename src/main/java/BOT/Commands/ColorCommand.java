@@ -7,12 +7,15 @@ import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.exceptions.HierarchyException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
 public class ColorCommand implements ICommand {
+    private final Logger logger = LoggerFactory.getLogger(ColorCommand.class);
     private final Random random = new Random();
     private boolean flag;
     private boolean change_flag;
@@ -149,6 +152,12 @@ public class ColorCommand implements ICommand {
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
+                            StackTraceElement[] eStackTrace = e.getStackTrace();
+                            StringBuilder a = new StringBuilder();
+                            for (StackTraceElement stackTraceElement : eStackTrace) {
+                                a.append(stackTraceElement).append("\n");
+                            }
+                            logger.warn(a.toString());
                             channel.sendMessage(event.getMember().getAsMention() + ", 기존 색을 제거하다가 오류가 발생했습니다.").complete();
                             break;
                         }

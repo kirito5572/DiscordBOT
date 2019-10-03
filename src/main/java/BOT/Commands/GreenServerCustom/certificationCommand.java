@@ -7,6 +7,8 @@ import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.exceptions.ErrorResponseException;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.security.MessageDigest;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class certificationCommand implements ICommand {
+    private final Logger logger = LoggerFactory.getLogger(certificationCommand.class);
     private InputStream certification_Img_is1 = getClass().getClassLoader().getResourceAsStream("1.png");
     private InputStream certification_Img_is2 = getClass().getClassLoader().getResourceAsStream("2.png");
     private InputStream certification_Img_is3 = getClass().getClassLoader().getResourceAsStream("3.png");
@@ -55,6 +58,12 @@ public class certificationCommand implements ICommand {
                                 file1 = convertInputStreamToFile(certification_Img_is1);
                             } catch (IOException e) {
                                 e.printStackTrace();
+                                StackTraceElement[] eStackTrace = e.getStackTrace();
+                                StringBuilder a = new StringBuilder();
+                                for (StackTraceElement stackTraceElement : eStackTrace) {
+                                    a.append(stackTraceElement).append("\n");
+                                }
+                                logger.warn(a.toString());
 
                                 return;
                             }
@@ -66,6 +75,12 @@ public class certificationCommand implements ICommand {
                                 file2 = convertInputStreamToFile(certification_Img_is2);
                             } catch (IOException e) {
                                 e.printStackTrace();
+                                StackTraceElement[] eStackTrace = e.getStackTrace();
+                                StringBuilder a = new StringBuilder();
+                                for (StackTraceElement stackTraceElement : eStackTrace) {
+                                    a.append(stackTraceElement).append("\n");
+                                }
+                                logger.warn(a.toString());
 
                                 return;
                             }
@@ -81,6 +96,12 @@ public class certificationCommand implements ICommand {
                             file3 = convertInputStreamToFile(certification_Img_is3);
                         } catch (IOException e1) {
                             e.printStackTrace();
+                            StackTraceElement[] eStackTrace = e.getStackTrace();
+                            StringBuilder a = new StringBuilder();
+                            for (StackTraceElement stackTraceElement : eStackTrace) {
+                                a.append(stackTraceElement).append("\n");
+                            }
+                            logger.warn(a.toString());
 
                             return;
                         }

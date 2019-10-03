@@ -7,6 +7,8 @@ import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.io.File;
@@ -20,6 +22,7 @@ import java.util.TimerTask;
 import java.util.stream.Collectors;
 
 public class GreenServerMuteListener extends ListenerAdapter {
+    private final Logger logger = LoggerFactory.getLogger(GreenServerMuteListener.class);
     @Override
     public void onReady(@NotNull ReadyEvent event) {
         TimerTask job = new TimerTask() {
@@ -61,6 +64,12 @@ public class GreenServerMuteListener extends ListenerAdapter {
                     text = String.valueOf(char_array).trim();
                 } catch (IOException e) {
                     e.printStackTrace();
+                    StackTraceElement[] eStackTrace = e.getStackTrace();
+                    StringBuilder a = new StringBuilder();
+                    for (StackTraceElement stackTraceElement : eStackTrace) {
+                        a.append(stackTraceElement).append("\n");
+                    }
+                    logger.warn(a.toString());
 
                     return;
                 }
@@ -71,6 +80,12 @@ public class GreenServerMuteListener extends ListenerAdapter {
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
+                    StackTraceElement[] eStackTrace = e.getStackTrace();
+                    StringBuilder a = new StringBuilder();
+                    for (StackTraceElement stackTraceElement : eStackTrace) {
+                        a.append(stackTraceElement).append("\n");
+                    }
+                    logger.warn(a.toString());
 
                     return;
                 }
@@ -124,6 +139,12 @@ public class GreenServerMuteListener extends ListenerAdapter {
                         }
                     }catch (Exception e) {
                         e.printStackTrace();
+                        StackTraceElement[] eStackTrace = e.getStackTrace();
+                        StringBuilder a = new StringBuilder();
+                        for (StackTraceElement stackTraceElement : eStackTrace) {
+                            a.append(stackTraceElement).append("\n");
+                        }
+                        logger.warn(a.toString());
 
                     }
                 }

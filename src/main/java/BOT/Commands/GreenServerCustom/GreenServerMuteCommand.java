@@ -1,6 +1,7 @@
 package BOT.Commands.GreenServerCustom;
 
 import BOT.App;
+import BOT.Listener.GreenServerMuteListener;
 import BOT.Objects.ICommand;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import me.duncte123.botcommons.messaging.EmbedUtils;
@@ -11,6 +12,8 @@ import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.io.File;
@@ -22,6 +25,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GreenServerMuteCommand implements ICommand {
+    private final Logger logger = LoggerFactory.getLogger(GreenServerMuteListener.class);
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd kk:mm");
@@ -165,6 +169,12 @@ public class GreenServerMuteCommand implements ICommand {
                 channel.sendMessage("메세지를 보내기 전에 문제가 발생했습니다.").complete();
 
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
 
                 return;
             }
@@ -182,6 +192,12 @@ public class GreenServerMuteCommand implements ICommand {
                 channel.sendMessage("파일을 저장하면서 오류가 발생했습니다.").complete();
 
                 e.printStackTrace();
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
 
                 return;
             }

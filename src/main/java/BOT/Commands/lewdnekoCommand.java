@@ -5,6 +5,8 @@ import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import java.util.List;
 import static BOT.Listener.ONIGIRIListener.convertInputStreamToFile;
 
 public class lewdnekoCommand implements ICommand {
+    private final Logger logger = LoggerFactory.getLogger(lewdnekoCommand.class);
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         int num = 1;
@@ -49,6 +52,12 @@ public class lewdnekoCommand implements ICommand {
                             file = convertInputStreamToFile(inputStream, ".jpg");
                         } catch (IOException e) {
                             e.printStackTrace();
+                            StackTraceElement[] eStackTrace = e.getStackTrace();
+                            StringBuilder ab = new StringBuilder();
+                            for (StackTraceElement stackTraceElement : eStackTrace) {
+                                ab.append(stackTraceElement).append("\n");
+                            }
+                            logger.warn(ab.toString());
 
                             event.getChannel().sendMessage("에러가 발생했습니다.").queue();
 
