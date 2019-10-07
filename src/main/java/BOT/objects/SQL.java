@@ -14,6 +14,7 @@ import java.util.Date;
 public class SQL {
     private static final Logger logger = LoggerFactory.getLogger(SQL.class);
     private static int caseID;
+    private static Connection connection;
     private static Statement statement;
     private static ResultSet resultSet;
     public SQL() {
@@ -78,8 +79,7 @@ public class SQL {
         try {
             Class.forName(driverName);
 
-            Connection connection = DriverManager.getConnection(url, user, password);
-            statement = connection.createStatement();
+            connection = DriverManager.getConnection(url, user, password);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             StackTraceElement[] eStackTrace = e.getStackTrace();
@@ -94,14 +94,16 @@ public class SQL {
         caseIDup();
 
         Date date = new Date();
-        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String DBWriteTime = dayTime.format(date);
         String queryString = "INSERT INTO Sanction_Infor VALUE (\"" + caseID + "\",\""+ SteamID + "\", \"" + DBWriteTime + "\", \"" + time + "\", \"" + reason + "\", \"" + confirmUser + "\" );";
 
 
         System.out.println(queryString);
         try {
+            statement = connection.createStatement();
             statement.executeUpdate(queryString);
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
             StackTraceElement[] eStackTrace = e.getStackTrace();
@@ -114,11 +116,18 @@ public class SQL {
     }
     public static String[][] SQLdownload(String SteamID) throws SQLException {
         String[][] data = new String[10][7];
+        for (int i = 0; i < 10; i++) {
+            for(int j = 0; j < 7; j++) {
+                data[i][j] = null;
+            }
+        }
 
         String queryString = "SELECT * FROM Sanction_Infor WHERE SteamID =\"" + SteamID +"\";";
 
 
-        resultSet = statement.executeQuery(queryString);
+        statement = connection.createStatement();
+        statement.executeUpdate(queryString);
+        statement.close();
         int i = 0;
         while (resultSet.next()) {
             data[i][0] = resultSet.getString("caseID");

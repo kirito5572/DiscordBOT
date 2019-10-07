@@ -26,7 +26,7 @@ import java.util.Random;
 
 public class App {
     private static boolean DEBUG_MODE = false;
-    private static boolean ONLINE_DEBUG = false;
+    private static boolean ONLINE_DEBUG = true;
     private String GreenTOKEN;
     private static Date date;
     private static String Time;
@@ -115,7 +115,8 @@ public class App {
         } else if (!DEBUG_MODE && ONLINE_DEBUG) {
             TOKEN = TOKENreader.toString();
             PREFIX = Constants.PREFIX_DEBUG;
-            debug = false;
+            GreenTOKEN = TOKENreaderGreen.toString();
+            debug = true;
         } else {
             TOKEN = TOKENreader.toString();
             PREFIX = Constants.PREFIX;
@@ -151,7 +152,7 @@ public class App {
             }
             logger.warn(a.toString());
         }
-        if (debug) {
+        if(debug) {
             try {
                 logger.info("부팅");
                 JDA jda1 = new JDABuilder(AccountType.BOT)
@@ -173,8 +174,6 @@ public class App {
                 logger.warn(a.toString());
             }
         }
-
-
     }
 
     private Color getRandomColor() {
