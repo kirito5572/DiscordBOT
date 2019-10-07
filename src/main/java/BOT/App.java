@@ -26,7 +26,7 @@ import java.util.Random;
 
 public class App {
     private static boolean DEBUG_MODE = false;
-    private static boolean ONLINE_DEBUG = true;
+    private static boolean ONLINE_DEBUG = false;
     private String GreenTOKEN;
     private static Date date;
     private static String Time;
