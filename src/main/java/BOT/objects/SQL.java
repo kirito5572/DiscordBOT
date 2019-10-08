@@ -126,7 +126,7 @@ public class SQL {
 
 
         statement = connection.createStatement();
-        statement.executeUpdate(queryString);
+        resultSet = statement.executeQuery(queryString);
         statement.close();
         int i = 0;
         while (resultSet.next()) {
