@@ -25,7 +25,7 @@ public class TESTCommand implements ICommand {
         String[][] data;
         try {
             data = SQL.SQLdownload(args.get(0));
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             return;
         }

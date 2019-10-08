@@ -17,6 +17,10 @@ public class SQL {
     private static Connection connection;
     private static Statement statement;
     private static ResultSet resultSet;
+    static String driverName;
+    static String url;
+    static String user;
+    static String password;
     public SQL() {
         //init
         StringBuilder caseIDBuilder = new StringBuilder();
@@ -71,24 +75,10 @@ public class SQL {
             }
             logger.warn(a.toString());
         }
-        String driverName = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://" + endPoint.toString() + "/ritobotDB?serverTimezone=UTC";
-        String user = "admin";
-        String password = SQLPassword.toString();
-
-        try {
-            Class.forName(driverName);
-
-            connection = DriverManager.getConnection(url, user, password);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-            StackTraceElement[] eStackTrace = e.getStackTrace();
-            StringBuilder a = new StringBuilder();
-            for (StackTraceElement stackTraceElement : eStackTrace) {
-                a.append(stackTraceElement).append("\n");
-            }
-            logger.warn(a.toString());
-        }
+        driverName = "com.mysql.cj.jdbc.Driver";
+        url = "jdbc:mysql://" + endPoint.toString() + "/ritobotDB?serverTimezone=UTC";
+        user = "admin";
+        password = SQLPassword.toString();
     }
     public static void SQLupload(String SteamID, String time, String reason, String confirmUser) {
         caseIDup();
@@ -101,9 +91,13 @@ public class SQL {
 
         System.out.println(queryString);
         try {
+            Class.forName(driverName);
+
+            connection = DriverManager.getConnection(url, user, password);
             statement = connection.createStatement();
             statement.executeUpdate(queryString);
             statement.close();
+            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
             StackTraceElement[] eStackTrace = e.getStackTrace();
@@ -114,7 +108,7 @@ public class SQL {
             logger.warn(a.toString());
         }
     }
-    public static String[][] SQLdownload(String SteamID) throws SQLException {
+    public static String[][] SQLdownload(String SteamID) throws SQLException, ClassNotFoundException {
         String[][] data = new String[10][7];
         for (int i = 0; i < 10; i++) {
             for(int j = 0; j < 7; j++) {
@@ -124,10 +118,13 @@ public class SQL {
 
         String queryString = "SELECT * FROM Sanction_Infor WHERE SteamID =\"" + SteamID +"\";";
 
+        Class.forName(driverName);
 
+        connection = DriverManager.getConnection(url, user, password);
         statement = connection.createStatement();
         resultSet = statement.executeQuery(queryString);
         statement.close();
+        connection.close();
         int i = 0;
         while (resultSet.next()) {
             data[i][0] = resultSet.getString("caseID");
