@@ -29,7 +29,7 @@ public class SteamServerStatusListener extends ListenerAdapter {
                     String CM = element.getAsJsonObject().get("services").getAsJsonObject().get("cms").getAsJsonObject().get("status").getAsString();
                     String CM_1 = element.getAsJsonObject().get("services").getAsJsonObject().get("cms").getAsJsonObject().get("title").getAsString();
                     String message;
-                    if((!CM.equals("good"))) {
+                    if((!CM.equals("good")) && (!steamdown)) {
                         steamdown = true;
                         message = "@here 스팀 서버의 상태가 변경되었습니다.\n" +
                             "시간: " + dateFormat.format(date) + "\n" +

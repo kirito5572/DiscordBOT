@@ -1,9 +1,11 @@
 package BOT.Listener;
 
 import BOT.Objects.ONIGIRIList;
+import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.apache.commons.io.IOUtils;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,8 +18,14 @@ public class ONIGIRIListener extends ListenerAdapter {
     private String[] list_File = ONIGIRIList.getList_file();
     private String[] list_Suffix = ONIGIRIList.getList_Suffix();
     @Override
-    public void onMessageReceived(MessageReceivedEvent event) {
-        if(event.getGuild().getId().equals("453817631603032065")) { //453817631603032065
+    public void onMessageReceived(@NotNull MessageReceivedEvent event) {
+        Guild guild;
+        try {
+            guild = event.getGuild();
+        } catch (Exception ignored) {
+            return;
+        }
+        if(guild.getId().equals("453817631603032065")) { //453817631603032065
             if(event.getAuthor().isBot()) {
 
                 return;
@@ -30,7 +38,7 @@ public class ONIGIRIListener extends ListenerAdapter {
                         try {
                             file = convertInputStreamToFile(inputStream, list_Suffix[i]);
                         } catch (IOException e) {
-                            e.printStackTrace();
+
                             StackTraceElement[] eStackTrace = e.getStackTrace();
                             StringBuilder a = new StringBuilder();
                             for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -45,7 +53,7 @@ public class ONIGIRIListener extends ListenerAdapter {
                         try {
                             event.getChannel().sendFile(file).complete();
                         } catch (Exception e) {
-                            e.printStackTrace();
+
                             StackTraceElement[] eStackTrace = e.getStackTrace();
                             StringBuilder a = new StringBuilder();
                             for (StackTraceElement stackTraceElement : eStackTrace) {

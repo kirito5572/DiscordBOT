@@ -26,7 +26,7 @@ public class TESTCommand implements ICommand {
         try {
             data = SQL.SQLdownload(args.get(0));
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+
             return;
         }
         if(data[0][0] == null) {

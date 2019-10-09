@@ -55,7 +55,7 @@ public class CatCommand implements ICommand {
             try {
                 Thread.sleep(400);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -69,7 +69,7 @@ public class CatCommand implements ICommand {
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -83,7 +83,7 @@ public class CatCommand implements ICommand {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+
                     StackTraceElement[] eStackTrace = e.getStackTrace();
                     StringBuilder a = new StringBuilder();
                     for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -134,7 +134,7 @@ public class CatCommand implements ICommand {
                         try {
                             file = convertInputStreamToFile(inputStream, ".jpg");
                         } catch (IOException e) {
-                            e.printStackTrace();
+
                             StackTraceElement[] eStackTrace = e.getStackTrace();
                             StringBuilder ba = new StringBuilder();
                             for (StackTraceElement stackTraceElement : eStackTrace) {

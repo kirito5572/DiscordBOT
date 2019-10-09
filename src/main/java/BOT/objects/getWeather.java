@@ -39,7 +39,7 @@ public class getWeather {
                     TOKEN.append((char) singalCh);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -104,7 +104,7 @@ public class getWeather {
             weather_infor[9] = formatDate(time);
 
         } catch (Exception e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {

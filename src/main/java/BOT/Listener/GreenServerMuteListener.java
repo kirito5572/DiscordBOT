@@ -63,7 +63,7 @@ public class GreenServerMuteListener extends ListenerAdapter {
                     reader.read(char_array);
                     text = String.valueOf(char_array).trim();
                 } catch (IOException e) {
-                    e.printStackTrace();
+
                     StackTraceElement[] eStackTrace = e.getStackTrace();
                     StringBuilder a = new StringBuilder();
                     for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -79,7 +79,7 @@ public class GreenServerMuteListener extends ListenerAdapter {
                         return;
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+
                     StackTraceElement[] eStackTrace = e.getStackTrace();
                     StringBuilder a = new StringBuilder();
                     for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -138,7 +138,7 @@ public class GreenServerMuteListener extends ListenerAdapter {
                                 break;
                         }
                     }catch (Exception e) {
-                        e.printStackTrace();
+
                         StackTraceElement[] eStackTrace = e.getStackTrace();
                         StringBuilder a = new StringBuilder();
                         for (StackTraceElement stackTraceElement : eStackTrace) {

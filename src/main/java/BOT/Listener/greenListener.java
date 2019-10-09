@@ -71,7 +71,7 @@ public class greenListener extends ListenerAdapter {
                 IDreader1.append((char) singalCh1);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -135,7 +135,7 @@ public class greenListener extends ListenerAdapter {
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -162,7 +162,7 @@ public class greenListener extends ListenerAdapter {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+
                     StackTraceElement[] eStackTrace = e.getStackTrace();
                     StringBuilder a = new StringBuilder();
                     for (StackTraceElement stackTraceElement : eStackTrace) {

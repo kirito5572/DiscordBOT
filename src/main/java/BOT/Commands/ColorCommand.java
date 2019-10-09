@@ -151,7 +151,7 @@ public class ColorCommand implements ICommand {
                                 return;
                             }
                         } catch (Exception e) {
-                            e.printStackTrace();
+
                             StackTraceElement[] eStackTrace = e.getStackTrace();
                             StringBuilder a = new StringBuilder();
                             for (StackTraceElement stackTraceElement : eStackTrace) {

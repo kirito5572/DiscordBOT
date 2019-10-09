@@ -21,7 +21,7 @@ public class getSteamID {
                     returns[1] = a1;
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+
                     StackTraceElement[] eStackTrace = e.getStackTrace();
                     StringBuilder a = new StringBuilder();
                     for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -37,7 +37,7 @@ public class getSteamID {
                 try {
                     Thread.sleep(1);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+
                     StackTraceElement[] eStackTrace = e.getStackTrace();
                     StringBuilder a = new StringBuilder();
                     for (StackTraceElement stackTraceElement : eStackTrace) {

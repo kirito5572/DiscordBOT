@@ -60,7 +60,7 @@ public class goWorkCommand implements ICommand {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {

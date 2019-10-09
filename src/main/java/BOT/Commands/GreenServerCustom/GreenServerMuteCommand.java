@@ -168,7 +168,7 @@ public class GreenServerMuteCommand implements ICommand {
             } catch (Exception e) {
                 channel.sendMessage("메세지를 보내기 전에 문제가 발생했습니다.").complete();
 
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -191,7 +191,7 @@ public class GreenServerMuteCommand implements ICommand {
             } catch (IOException e) {
                 channel.sendMessage("파일을 저장하면서 오류가 발생했습니다.").complete();
 
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {

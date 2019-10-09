@@ -77,7 +77,7 @@ public class AirInforCommand implements ICommand {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {

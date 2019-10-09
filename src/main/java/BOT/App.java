@@ -64,7 +64,7 @@ public class App {
                 TOKENreader.append((char) singalCh);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -81,7 +81,7 @@ public class App {
                 TOKENreader_DEBUG.append((char) singalCh);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -98,7 +98,7 @@ public class App {
                 TOKENreaderGreen.append((char) singalCh);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -144,7 +144,7 @@ public class App {
                     .build().awaitReady();
             logger.info("부팅완료");
         } catch (LoginException | InterruptedException e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -165,7 +165,7 @@ public class App {
                         .build().awaitReady();
                 logger.info("부팅완료");
             } catch (LoginException | InterruptedException e) {
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {

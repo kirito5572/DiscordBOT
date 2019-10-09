@@ -83,7 +83,7 @@ public class publicExecutionCommand implements ICommand {
                         .setPermissions(0L)
                         .complete();
             } catch (Exception e) {
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {

@@ -66,7 +66,7 @@ public class certificationFinCommand implements ICommand {
                                 filesave(event.getAuthor().getName(), event.getAuthor().getId(), a1);
                             } catch (IOException e) {
                                 channel.sendMessage("정보를 데이터베이스에 저장하다가 오류가 발생했습니다.").queue();
-                                e.printStackTrace();
+
                                 StackTraceElement[] eStackTrace = e.getStackTrace();
                                 StringBuilder ab = new StringBuilder();
                                 for (StackTraceElement stackTraceElement : eStackTrace) {

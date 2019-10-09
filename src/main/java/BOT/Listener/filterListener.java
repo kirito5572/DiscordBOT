@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,23 +24,22 @@ public class filterListener extends ListenerAdapter {
     private String latestMessage = "";
 
     @Override
-    public void onMessageReceived(MessageReceivedEvent event) {
-        User author = event.getAuthor();
-        Message message = event.getMessage();
-        Guild guild = event.getGuild();
+    public void onMessageReceived(@NotNull MessageReceivedEvent event) {
+        User author;
+        Message message;
+        Guild guild;
+        try {
+            author = event.getAuthor();
+            message = event.getMessage();
+            guild = event.getGuild();
+
+        } catch (Exception ignored) {
+            return;
+        }
         if(message.getAuthor().isBot()) {
             return;
         }
         if(message.getContentRaw().startsWith("&") || message.getContentRaw().startsWith("$$")) {
-            return;
-        }
-        if(author == null) {
-            return;
-        }
-        if(message == null) {
-            return;
-        }
-        if(guild == null) {
             return;
         }
 
@@ -151,16 +151,6 @@ public class filterListener extends ListenerAdapter {
                 linkPass = true;
             }
 
-            if(author == null) {
-                return;
-            }
-            if(message == null) {
-                return;
-            }
-            if(guild == null) {
-                return;
-            }
-
             if(guild.getId().equals("600010501266866186")) {  //끄린이
                 Role role = guild.getRoleById("616229894401294356");
                 if(Objects.requireNonNull(event.getMember()).getRoles().contains(role)) { //외무부
@@ -192,7 +182,7 @@ public class filterListener extends ListenerAdapter {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -239,7 +229,7 @@ public class filterListener extends ListenerAdapter {
                         return;
                     } catch (Exception e) {
                         if (event.getJDA().getSelfUser().getId().equals("592987181186940931")) {
-                            e.printStackTrace();
+
                             StackTraceElement[] eStackTrace = e.getStackTrace();
                             StringBuilder a = new StringBuilder();
                             for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -251,17 +241,6 @@ public class filterListener extends ListenerAdapter {
                 }
             }
         }
-
-        if(author == null) {
-            return;
-        }
-        if(message == null) {
-            return;
-        }
-        if(guild == null) {
-            return;
-        }
-
         if(!filterPass) {
             boolean clean = true;
             while (clean) {
@@ -342,7 +321,7 @@ public class filterListener extends ListenerAdapter {
                                 break;
                         }
                     } catch (Exception e) {
-                        e.printStackTrace();
+
                         StackTraceElement[] eStackTrace = e.getStackTrace();
                         StringBuilder a = new StringBuilder();
                         for (StackTraceElement stackTraceElement : eStackTrace) {

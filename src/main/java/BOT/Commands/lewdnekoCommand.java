@@ -51,7 +51,7 @@ public class lewdnekoCommand implements ICommand {
                         try {
                             file = convertInputStreamToFile(inputStream, ".jpg");
                         } catch (IOException e) {
-                            e.printStackTrace();
+
                             StackTraceElement[] eStackTrace = e.getStackTrace();
                             StringBuilder ab = new StringBuilder();
                             for (StackTraceElement stackTraceElement : eStackTrace) {

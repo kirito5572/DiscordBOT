@@ -48,7 +48,7 @@ public class getAirData {
                     TOKEN.append((char) singalCh);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -110,7 +110,7 @@ public class getAirData {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -133,7 +133,7 @@ public class getAirData {
                     TOKEN.append((char) singalCh);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -161,7 +161,7 @@ public class getAirData {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -174,7 +174,7 @@ public class getAirData {
             assert stationName != null;
             stationName = URLEncoder.encode(stationName, "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -198,7 +198,7 @@ public class getAirData {
                     TOKEN.append((char) singalCh);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -278,7 +278,7 @@ public class getAirData {
             airkorea_data[14] = airkorea_khaiG;
 
         } catch (Exception e){
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {

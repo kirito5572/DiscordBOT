@@ -32,7 +32,7 @@ public class SQL {
                 caseIDBuilder.append((char) singalCh);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -50,7 +50,7 @@ public class SQL {
                 SQLPassword.append((char) singalCh);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -67,7 +67,7 @@ public class SQL {
                 endPoint.append((char) singalCh);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -99,7 +99,7 @@ public class SQL {
             statement.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -152,7 +152,7 @@ public class SQL {
 
             if (writer != null) writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {

@@ -54,7 +54,7 @@ public class SearchCommand implements ICommand {
                     youtube_Key.append((char) singalCh);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -132,7 +132,7 @@ public class SearchCommand implements ICommand {
             } catch (UnsupportedEncodingException e) {
                 Message message = channel.sendMessage("ErrorCode : 0x1402 UNSUPPORT ENCODING ERROR").complete();
                 message.delete().queueAfter(7,TimeUnit.SECONDS);
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -142,7 +142,7 @@ public class SearchCommand implements ICommand {
             } catch (ProtocolException e) {
                 Message message = channel.sendMessage("ErrorCode : 0x9757 Protocol ERROR").complete();
                 message.delete().queueAfter(7,TimeUnit.SECONDS);
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -152,7 +152,7 @@ public class SearchCommand implements ICommand {
             } catch (MalformedURLException e) {
                 Message message = channel.sendMessage("ErrorCode : 0x1576 URL ERROR").complete();
                 message.delete().queueAfter(7,TimeUnit.SECONDS);
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -162,7 +162,7 @@ public class SearchCommand implements ICommand {
             } catch (IOException e) {
                 Message message = channel.sendMessage("ErrorCode : 0x3451 I/O ERROR").complete();
                 message.delete().queueAfter(7,TimeUnit.SECONDS);
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -172,7 +172,7 @@ public class SearchCommand implements ICommand {
             } catch (ParseException e) {
                 Message message = channel.sendMessage("ErrorCode : 0x6712 PARSE ERROR").complete();
                 message.delete().queueAfter(7,TimeUnit.SECONDS);
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -182,7 +182,7 @@ public class SearchCommand implements ICommand {
             } catch (InterruptedException e) {
                 Message message = channel.sendMessage("ErrorCode : 0x5734 THREAD ERROR").complete();
                 message.delete().queueAfter(7,TimeUnit.SECONDS);
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {

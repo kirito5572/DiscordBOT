@@ -197,7 +197,7 @@ public class gameServerBanCommand implements ICommand {
                                 adminChannel, reportChannel, botChannel, botChannel1,
                                 event);
                     } catch (Exception e) {
-                        e.printStackTrace();
+
                         StackTraceElement[] eStackTrace = e.getStackTrace();
                         StringBuilder a = new StringBuilder();
                         for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -238,7 +238,7 @@ public class gameServerBanCommand implements ICommand {
                                 adminChannel, reportChannel, botChannel, botChannel1,
                                 event);
                     } catch (Exception e) {
-                        e.printStackTrace();
+
                         StackTraceElement[] eStackTrace = e.getStackTrace();
                         StringBuilder a = new StringBuilder();
                         for (StackTraceElement stackTraceElement : eStackTrace) {

@@ -44,7 +44,7 @@ public class getAirLocalData {
                     TOKEN.append((char) singalCh);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -77,7 +77,7 @@ public class getAirLocalData {
             }
 
         } catch (Exception e){
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {

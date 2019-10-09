@@ -55,7 +55,7 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                 Chating_temp.append((char) singalCh);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -72,7 +72,6 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                 Chating_temp.append((char) singalCh);
             }
         } catch (Exception e) {
-            e.printStackTrace();
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {

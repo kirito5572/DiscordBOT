@@ -57,7 +57,7 @@ public class certificationCommand implements ICommand {
                             try {
                                 file1 = convertInputStreamToFile(certification_Img_is1);
                             } catch (IOException e) {
-                                e.printStackTrace();
+
                                 StackTraceElement[] eStackTrace = e.getStackTrace();
                                 StringBuilder a = new StringBuilder();
                                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -74,7 +74,7 @@ public class certificationCommand implements ICommand {
                             try {
                                 file2 = convertInputStreamToFile(certification_Img_is2);
                             } catch (IOException e) {
-                                e.printStackTrace();
+
                                 StackTraceElement[] eStackTrace = e.getStackTrace();
                                 StringBuilder a = new StringBuilder();
                                 for (StackTraceElement stackTraceElement : eStackTrace) {
@@ -95,7 +95,7 @@ public class certificationCommand implements ICommand {
                         try {
                             file3 = convertInputStreamToFile(certification_Img_is3);
                         } catch (IOException e1) {
-                            e.printStackTrace();
+
                             StackTraceElement[] eStackTrace = e.getStackTrace();
                             StringBuilder a = new StringBuilder();
                             for (StackTraceElement stackTraceElement : eStackTrace) {

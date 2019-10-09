@@ -48,7 +48,7 @@ public class BotOwnerNoticeCommand implements ICommand {
                 Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById("439780696999985172")).getTextChannelById("441164108671221761")) //네코샘플
                         .sendMessage(message).queue();
             } catch (NullPointerException e) {
-                e.printStackTrace();
+
                 StackTraceElement[] eStackTrace = e.getStackTrace();
                 StringBuilder a = new StringBuilder();
                 for (StackTraceElement stackTraceElement : eStackTrace) {

@@ -65,7 +65,7 @@ public class goHomeCommand implements ICommand {
                 Objects.requireNonNull(event.getGuild().getTextChannelById("622076950021799977")).sendMessage(builder.build()).queue();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
             for (StackTraceElement stackTraceElement : eStackTrace) {
