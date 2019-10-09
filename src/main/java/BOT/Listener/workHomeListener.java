@@ -63,9 +63,9 @@ public class workHomeListener extends ListenerAdapter {
                     status[8] = "퇴근";
                 }
                 if(Objects.requireNonNull(guild.getMemberById("278086240195182592")).getRoles().contains(work)) {
-                    status[8] = "출근";
+                    status[9] = "출근";
                 } else if(Objects.requireNonNull(guild.getMemberById("278086240195182592")).getRoles().contains(home)) {
-                    status[8] = "퇴근";
+                    status[9] = "퇴근";
                 }
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                         .setTitle("[출/퇴근 상태]")
