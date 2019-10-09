@@ -36,16 +36,14 @@ public class QueueDelectCommand implements ICommand {
             }
 
             System.out.println(queue.size());
-            channel.sendMessage("재생목록을 비우는 중입니다.").queue();
-            String a;
+            String a = channel.sendMessage("재생목록을 비우는 중입니다.").complete().getId();
+
             if(joined.equals("")) {
                 musicManager.scheduler.getQueue().clear();
-                a = channel.getLatestMessageId();
                 channel.editMessageById(a,"재생목록을 초기화 했습니다.").queue();
             } else {
                 for(int i = 0; i < Integer.parseInt(joined); i++) {
                     musicManager.scheduler.nextTrack();
-                    a = channel.getLatestMessageId();
                     channel.editMessageById(a,"재생목록에서"+ joined +"개의 노래를 삭제했습니다.").queue();
                 }
             }
