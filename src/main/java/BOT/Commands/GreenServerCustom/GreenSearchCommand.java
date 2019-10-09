@@ -54,7 +54,7 @@ public class GreenSearchCommand implements ICommand {
 
     @Override
     public String getInvoke() {
-        return "검색";
+        return "제재검색";
     }
 
     @Override

@@ -62,6 +62,11 @@ public class workHomeListener extends ListenerAdapter {
                 } else if(Objects.requireNonNull(guild.getMemberById("501414420556152852")).getRoles().contains(home)) {
                     status[8] = "퇴근";
                 }
+                if(Objects.requireNonNull(guild.getMemberById("278086240195182592")).getRoles().contains(work)) {
+                    status[8] = "출근";
+                } else if(Objects.requireNonNull(guild.getMemberById("278086240195182592")).getRoles().contains(home)) {
+                    status[8] = "퇴근";
+                }
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                         .setTitle("[출/퇴근 상태]")
                         .addField("[운영팀장] green1052", status[0], false)
@@ -72,6 +77,7 @@ public class workHomeListener extends ListenerAdapter {
                         .addField("[개발팀] 도리닭 DoryDarg", status[7], false)
                         .addField("[관리팀장] Lava", status[6], false)
                         .addField("[관리팀] (백은) Silver", status[8], false)
+                        .addField("[보안팀] 꽃스시", status[9], false)
                         .setFooter("30초 마다 새로 고침 됩니다.", "https://media.istockphoto.com/vectors/refresh-icon-element-of-web-icon-for-mobile-concept-and-web-apps-thin-vector-id1049047088");
                 Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("622647164606349322",builder.build()).queue();
             }
