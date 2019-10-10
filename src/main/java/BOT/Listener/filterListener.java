@@ -282,7 +282,9 @@ public class filterListener extends ListenerAdapter {
                                 "서버: " + event.getGuild().getName() + "\n" +
                                 "금지어: " + s + "\n" +
                                 "문장: " + message.getContentRaw());
-                        rawMessage = rawMessage.replaceFirst(s, "||[데이터 말소]||");
+                        String messagetemp = message.getContentRaw();
+                        messagetemp = messagetemp.replaceFirst(s, "||[데이터 말소]||");
+                        rawMessage = rawMessage.replaceFirst(s, "");
 
                         boolean flag = true;
                         publicflag = true;
@@ -290,7 +292,8 @@ public class filterListener extends ListenerAdapter {
                             boolean tempflag = false;
                             for (String s1 : List) {
                                 if (rawMessage.contains(s1)) {
-                                    rawMessage = rawMessage.replaceFirst(s1, "||[데이터 말소]||");
+                                    rawMessage = rawMessage.replaceFirst(s1, "");
+                                    messagetemp = messagetemp.replaceFirst(s1, "||[데이터 말소]||");
                                     tempflag = true;
                                 }
                             }
@@ -299,7 +302,7 @@ public class filterListener extends ListenerAdapter {
                             }
                         }
                         message.delete().complete();
-                        id = event.getChannel().sendMessage(rawMessage + "\n " + author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").complete().getId();
+                        id = event.getChannel().sendMessage(messagetemp + "\n " + author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").complete().getId();
                         EmbedBuilder builder = EmbedUtils.defaultEmbed()
                                 .setTitle("금지어 사용")
                                 .setColor(Color.RED)

@@ -97,32 +97,9 @@ public class ColorCommand implements ICommand {
             String[] colorRoleById = config.getColorRoleById();
             Role[] set_Color = new Role[colorRoleById.length - 1];
             for(int i = 0; i < colorRoleById.length - 1; i++) {
-                set_Color[i] = event.getGuild().getRoleById(colorRoleById[i]);
+                System.out.println(colorRoleById[i + 1]);
+                set_Color[i] = event.getGuild().getRoleById(colorRoleById[i + 1]);
             }
-            /*
-            Role[] set_Color = new Role[]{
-                    event.getGuild().getRoleById("539470397846978575"),
-                    event.getGuild().getRoleById("515745144616517652"),
-                    event.getGuild().getRoleById("515745033257746434"),
-                    event.getGuild().getRoleById("515744971597545472"),
-                    event.getGuild().getRoleById("515744849966792719"),
-                    event.getGuild().getRoleById("517842991667216395"),
-                    //위는 CGC서버 아래는 Green 서버
-                    event.getGuild().getRoleById("600011020836143115"),     //O5평의회
-                    event.getGuild().getRoleById("600012814467465236"),     //디스코드담당
-                    event.getGuild().getRoleById("600012855407935520"),     //시스템담당
-                    event.getGuild().getRoleById("600012769596670011"),     //민원담당
-                    event.getGuild().getRoleById("600012069559074822"),     //기지이사관
-                    event.getGuild().getRoleById("600012538817806346"),     //후원자
-                    event.getGuild().getRoleById("600021907374342156"),     //니트로 부스팅 지원자
-                    event.getGuild().getRoleById("618750638699839498"),     //정기후원자
-
-                    //소프냥이 서버
-                    event.getGuild().getRoleById("607499155551682570"),     //소프냥이
-                    event.getGuild().getRoleById("620090887854227496"),     //subAdmin
-                    event.getGuild().getRoleById("607541403614183424")
-            };
-             */
 
             List<Role> role_List = Objects.requireNonNull(event.getMember()).getRoles();
             for (Role value : set_Color) {

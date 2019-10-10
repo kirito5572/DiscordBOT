@@ -33,8 +33,11 @@ public class config {
             }
             logger.warn(a.toString());
         }
-
-        String[] configs = config.toString().split("#");
+        String configtemp = config.toString();
+        while(configtemp.contains("\r")) {
+            configtemp = configtemp.replaceFirst("\r", "");
+        }
+        String[] configs = configtemp.split("#");
         logger.info("미리 구성된 설정 불러오는중...");
         if(!configs[1].contains("rito-bot config")) {
             logger.error("config error!");
