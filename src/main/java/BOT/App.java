@@ -3,10 +3,7 @@ package BOT;/*
  */
 
 import BOT.Listener.*;
-import BOT.Objects.CommandManager;
-import BOT.Objects.SQL;
-import BOT.Objects.getYoutubeSearch;
-import BOT.Objects.greenCommandManager;
+import BOT.Objects.*;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.api.AccountType;
@@ -36,6 +33,7 @@ public class App {
 
     private App() {
         boolean debug;
+        config config = new config();
         date = new Date();
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy/MM/dd aa hh:mm:ss z");
         Time = format1.format(date);

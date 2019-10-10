@@ -2,6 +2,7 @@ package BOT.Commands;
 
 import BOT.App;
 import BOT.Objects.ICommand;
+import BOT.Objects.config;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
@@ -93,6 +94,12 @@ public class ColorCommand implements ICommand {
                     return;
                 }
             }
+            String[] colorRoleById = config.getColorRoleById();
+            Role[] set_Color = new Role[colorRoleById.length - 1];
+            for(int i = 0; i < colorRoleById.length - 1; i++) {
+                set_Color[i] = event.getGuild().getRoleById(colorRoleById[i]);
+            }
+            /*
             Role[] set_Color = new Role[]{
                     event.getGuild().getRoleById("539470397846978575"),
                     event.getGuild().getRoleById("515745144616517652"),
@@ -115,6 +122,8 @@ public class ColorCommand implements ICommand {
                     event.getGuild().getRoleById("620090887854227496"),     //subAdmin
                     event.getGuild().getRoleById("607541403614183424")
             };
+             */
+
             List<Role> role_List = Objects.requireNonNull(event.getMember()).getRoles();
             for (Role value : set_Color) {
                 if (role_List.contains(value)) {
