@@ -1,6 +1,8 @@
 package BOT.Commands;
 
 import BOT.Objects.ICommand;
+import BOT.Objects.config;
+import com.google.gson.internal.$Gson$Preconditions;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -14,6 +16,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import static BOT.Listener.ONIGIRIListener.convertInputStreamToFile;
+import static BOT.Objects.config.getLewdNekoDisable;
 
 public class lewdnekoCommand implements ICommand {
     private final Logger logger = LoggerFactory.getLogger(lewdnekoCommand.class);
@@ -42,8 +45,14 @@ public class lewdnekoCommand implements ICommand {
                 if (event.getChannel().isNSFW()) {
                     event.getChannel().sendMessage(embed.build()).queue();
                 } else {
-                    if (!(event.getGuild().getId().equals("600010501266866186") || event.getGuild().getId().equals("607390203086372866") ||
-                            event.getGuild().getId().equals("439780696999985172") || event.getGuild().getId().equals("609985979167670272"))) {
+                    boolean sendflag = true;
+                    String[] lewdNekoDisable = config.getLewdNekoDisable();
+                    for (String s : lewdNekoDisable) {
+                        if (event.getGuild().getId().equals(s)) {
+                            sendflag = false;
+                        }
+                    }
+                    if (sendflag) {
                         event.getAuthor().openPrivateChannel().complete().sendMessage(embed.build()).queue();
                     } else {
                         InputStream inputStream = this.getClass().getResourceAsStream("/" + "haha1.jpg");

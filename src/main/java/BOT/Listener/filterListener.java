@@ -1,6 +1,7 @@
 package BOT.Listener;
 
 import BOT.Objects.FilterList;
+import BOT.Objects.config;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
@@ -68,18 +69,23 @@ public class filterListener extends ListenerAdapter {
                 linkPass = true;
                 filterPass = true;
             }
-            if (guild.getId().equals("453817631603032065")) {
-                linkPass = true;
-                filterPass = true;
-                killPass = true;
+            String[] linkFilterDisable = config.getLinkFilterDisable();
+            for (String s : linkFilterDisable) {
+                if (guild.getId().equals(s)) {
+                    linkPass = true;
+                }
             }
-            if (guild.getId().equals("439780696999985172")) {  //네코서버
-                linkPass = true;
-                filterPass = true;
+            String[] filterDisable = config.getFilterDisable();
+            for (String s : filterDisable) {
+                if (guild.getId().equals(s)) {
+                    filterPass = true;
+                }
             }
-            if (guild.getId().equals("609985979167670272")) {   //도지서버
-                linkPass = true;
-                filterPass = true;
+            String[] killfilterDiable = config.getKillfilterDiable();
+            for (String s : killfilterDiable) {
+                if (guild.getId().equals(s)) {
+                    killPass = true;
+                }
             }
             if(guild.getSelfMember().getUser().getId().equals(author.getId())) {
                 linkPass = true;

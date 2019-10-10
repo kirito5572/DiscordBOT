@@ -97,24 +97,19 @@ public class ColorCommand implements ICommand {
             String[] colorRoleById = config.getColorRoleById();
             Role[] set_Color = new Role[colorRoleById.length - 1];
             for(int i = 0; i < colorRoleById.length - 1; i++) {
-                System.out.println(colorRoleById[i + 1]);
                 set_Color[i] = event.getGuild().getRoleById(colorRoleById[i + 1]);
             }
-
             List<Role> role_List = Objects.requireNonNull(event.getMember()).getRoles();
             for (Role value : set_Color) {
                 if (role_List.contains(value)) {
                     setChange_flag(true);
                 }
             }
-            if(event.getGuild().getId().equals("617222347425972234")) {
-                setChange_flag(true);
-            }
-            if(event.getGuild().getId().equals("617757206929997895")) {
-                setChange_flag(true);
-            }
-            if(event.getGuild().getId().equals("607390203086372866")) {
-                setChange_flag(true);
+            String[] colorGuildById = config.getColorGuildById();
+            for (String s : colorGuildById) {
+                if (event.getGuild().getId().equals(s)) {
+                    setChange_flag(true);
+                }
             }
             if (isChange_flag() || delete) {
                 StringBuilder temp = null;
