@@ -7,13 +7,14 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import java.util.List;
 
 public class VersionCommand implements ICommand {
+    private static String version = "빌드 버젼 V 1.6.0 BETA 4 (JDA v4)";
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         if(App.isDEBUG_MODE() || App.isONLINE_DEBUG()) {
-            event.getChannel().sendMessage("빌드 버젼 V 1.5.1 Preview 1 (" + App.getTime() + ")").queue();
+            event.getChannel().sendMessage("빌드 버젼 V 1.6.1 Preview 1 (" + App.getTime() + ")").queue();
             return;
         }
-        event.getChannel().sendMessage("빌드 버젼 V 1.6.0 BETA 3 (JDA v4)(" + App.getTime() + ")").queue();
+        event.getChannel().sendMessage(version + "(" + App.getTime() + ")").queue();
     }
 
     @Override
@@ -30,5 +31,9 @@ public class VersionCommand implements ICommand {
     @Override
     public String getSmallHelp() {
         return "other";
+    }
+
+    public static String getVersion() {
+        return version;
     }
 }

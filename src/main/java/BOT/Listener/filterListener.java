@@ -290,7 +290,7 @@ public class filterListener extends ListenerAdapter {
                                 "문장: " + message.getContentRaw());
                         String messagetemp = message.getContentRaw();
                         messagetemp = messagetemp.replaceFirst(s, "||[데이터 말소]||");
-                        rawMessage = rawMessage.replaceFirst(s, "");
+                        rawMessage = rawMessage.replaceFirst(s, "||[데이터 말소]||");
 
                         boolean flag = true;
                         publicflag = true;
@@ -298,7 +298,7 @@ public class filterListener extends ListenerAdapter {
                             boolean tempflag = false;
                             for (String s1 : List) {
                                 if (rawMessage.contains(s1)) {
-                                    rawMessage = rawMessage.replaceFirst(s1, "");
+                                    rawMessage = rawMessage.replaceFirst(s1, "||[데이터 말소]||");
                                     messagetemp = messagetemp.replaceFirst(s1, "||[데이터 말소]||");
                                     tempflag = true;
                                 }

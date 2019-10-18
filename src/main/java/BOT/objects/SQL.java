@@ -15,12 +15,15 @@ public class SQL {
     private static final Logger logger = LoggerFactory.getLogger(SQL.class);
     private static int caseID;
     private static Connection connection;
+    private static Connection loggingConnection;
     private static Statement statement;
+    private static Statement loggingStatement;
     private static ResultSet resultSet;
-    static String driverName;
-    static String url;
-    static String user;
-    static String password;
+    private static ResultSet loggingResultSet;
+    private static String driverName;
+    private static String url;
+    private static String user;
+    private static String password;
     public SQL() {
         //init
         StringBuilder caseIDBuilder = new StringBuilder();
@@ -84,7 +87,7 @@ public class SQL {
         caseIDup();
 
         Date date = new Date();
-        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd aa hh:mm:ss");
         String DBWriteTime = dayTime.format(date);
         String queryString = "INSERT INTO Sanction_Infor VALUE (\"" + caseID + "\",\""+ SteamID + "\", \"" + DBWriteTime + "\", \"" + time + "\", \"" + reason + "\", \"" + confirmUser + "\" );";
 
@@ -116,7 +119,7 @@ public class SQL {
             }
         }
 
-        String queryString = "SELECT * FROM Sanction_Infor WHERE SteamID =\"" + SteamID +"\";";
+        String queryString = "SELECT FROM Sanction_Infor WHERE SteamID =\"" + SteamID +"\";";
 
         Class.forName(driverName);
 
@@ -126,7 +129,7 @@ public class SQL {
         statement.close();
         connection.close();
         int i = 0;
-        while (resultSet.next()) {
+        do {
             data[i][0] = resultSet.getString("caseID");
             data[i][1] = resultSet.getString("SteamID");
             data[i][2] = resultSet.getString("sanctionTime");
@@ -134,7 +137,8 @@ public class SQL {
             data[i][4] = resultSet.getString("reason");
             data[i][5] = resultSet.getString("sendServer");
             data[i][6] = resultSet.getString("serverID");
-        }
+            i++;
+        } while (resultSet.next());
         return data;
     }
     private static void caseIDup() {
@@ -160,5 +164,63 @@ public class SQL {
             }
             logger.warn(a.toString());
         }
+    }
+    public static boolean loggingMessageUpLoad(String guildId, String messageId, String contentRaw) {
+        String queryString = "INSERT INTO messageLogging VALUE (" + guildId + ","+ messageId + ", \"" + contentRaw + "\" );";
+        System.out.println(queryString);
+        try {
+            Class.forName(driverName);
+
+            loggingConnection = DriverManager.getConnection(url, user, password);
+            loggingStatement = connection.createStatement();
+            loggingStatement.executeUpdate(queryString);
+            loggingStatement.close();
+            loggingConnection.close();
+        } catch (Exception e) {
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
+            return false;
+        }
+        return true;
+    }
+    public static String[] loggingMessageDownLoad(String guildId, String messageId) {
+        String[] data = new String[2];
+        String queryString = "SELECT FROM messageLogging WHERE MessageId=" + messageId + ", GuildId=" + guildId + ";";
+        System.out.println(queryString);
+        try {
+            Class.forName(driverName);
+
+            loggingConnection = DriverManager.getConnection(url, user, password);
+            loggingStatement = connection.createStatement();
+            loggingResultSet = loggingStatement.executeQuery(queryString);
+            loggingStatement.close();
+            loggingConnection.close();
+        } catch (Exception e) {
+            try {
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
+                do {
+                    data[0] = loggingResultSet.getString("ContentRaw");
+                    data[1] = loggingResultSet.getString("Author");
+                } while (resultSet.next());
+            } catch(SQLException e1){
+                StackTraceElement[] eStackTrace = e1.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
+            }
+        }
+
+        return data;
     }
 }

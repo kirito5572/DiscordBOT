@@ -143,6 +143,8 @@ public class App {
                     .setActivity(Activity.playing("JDA v4 BETA"))
                     .build().awaitReady();
             logger.info("부팅완료");
+            activityChangeListener activityChangeListener = new activityChangeListener(jda);
+            jda.addEventListener(activityChangeListener);
         } catch (LoginException | InterruptedException e) {
 
             StackTraceElement[] eStackTrace = e.getStackTrace();
