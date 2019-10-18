@@ -6,7 +6,7 @@ plugins {
 
 mainClassName = 'BOT.App'
 group 'com.kirito5572'
-version '1.5.x'
+version '1.6.x'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 
