@@ -18,12 +18,9 @@ import static BOT.Commands.VersionCommand.getVersion;
 public class activityChangeListener extends ListenerAdapter {
     private static JDA jda;
     private int i = 0;
-    public activityChangeListener(JDA jda) {
-        activityChangeListener.jda = jda;
-    }
-
     @Override
     public void onReady(@Nonnull ReadyEvent event) {
+        jda = event.getJDA();
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -34,9 +31,13 @@ public class activityChangeListener extends ListenerAdapter {
                 }
                 switch (i) {
                     case 0: Objects.requireNonNull(jda.getShardManager()).setActivity(Activity.playing("도움말:" + App.getPREFIX() + "명령어"));
+                    break;
                     case 1: Objects.requireNonNull(jda.getShardManager()).setActivity(Activity.playing(guilds.size() + "개의 서버, " + memberSize +"명의 유저"));
+                    break;
                     case 2: Objects.requireNonNull(jda.getShardManager()).setActivity(Activity.playing(getVersion()));
+                    break;
                     case 3: Objects.requireNonNull(jda.getShardManager()).setActivity(Activity.playing("버그/개선 사항은 &제작자"));
+                    break;
                     case 4: Objects.requireNonNull(jda.getShardManager()).setActivity(Activity.playing("JDA v4 BETA"));
                 }
                 i++;

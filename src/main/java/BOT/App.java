@@ -32,14 +32,12 @@ public class App {
     private final Random random = new Random();
 
     private App() {
-        boolean debug;
         config config = new config();
         date = new Date();
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy/MM/dd aa hh:mm:ss z");
         Time = format1.format(date);
         getYoutubeSearch getYoutubeSearch = new getYoutubeSearch();
         CommandManager commandManager = new CommandManager();
-        greenCommandManager greenCommandManager = new greenCommandManager();
         MemberCountListener memberCountListener = new MemberCountListener();
         Listener listener = new Listener(commandManager);
         filterListener filterlistener = new filterListener();
@@ -47,11 +45,11 @@ public class App {
         ONIGIRIListener onigiriListener = new ONIGIRIListener();
         GreenServerMuteListener greenServerMuteListener = new GreenServerMuteListener();
         GreenServerNoticeListener greenServerNoticeListener = new GreenServerNoticeListener();
-        greenListener greenListener = new greenListener(greenCommandManager);
         workHomeListener workHomeListener = new workHomeListener();
         nekoDiscordMemberListener nekoDiscordMemberListener = new nekoDiscordMemberListener();
         GreenAutoDBWriteListener greenAutoDBWriteListener = new GreenAutoDBWriteListener();
         SteamServerStatusListener steamServerStatusListener = new SteamServerStatusListener();
+        activityChangeListener activityChangeListener = new activityChangeListener();
         Logger logger = LoggerFactory.getLogger(App.class);
 
         StringBuilder TOKENreader = new StringBuilder();
@@ -110,18 +108,15 @@ public class App {
         if (DEBUG_MODE) {
             TOKEN = TOKENreader_DEBUG.toString();
             PREFIX = Constants.PREFIX_DEBUG;
-            debug = false;
         } else if (!DEBUG_MODE && ONLINE_DEBUG) {
             TOKEN = TOKENreader.toString();
             PREFIX = Constants.PREFIX_DEBUG;
             GreenTOKEN = TOKENreaderGreen.toString();
-            debug = true;
         } else {
             TOKEN = TOKENreader.toString();
             PREFIX = Constants.PREFIX;
             GreenTOKEN = TOKENreaderGreen.toString();
             SQL sql = new SQL();
-            debug = true;
         }
 
         WebUtils.setUserAgent("Chrome 75.0.3770.100 kirito's discord bot/kirito5572#5572");
@@ -137,14 +132,12 @@ public class App {
             JDA jda = new JDABuilder(AccountType.BOT)
                     .setToken(TOKEN)
                     .setAutoReconnect(true)
-                    .addEventListeners(memberCountListener, listener, filterlistener, salListener, onigiriListener, nekoDiscordMemberListener, steamServerStatusListener)
+                    .addEventListeners(memberCountListener, listener, filterlistener, salListener, onigiriListener, nekoDiscordMemberListener, steamServerStatusListener,
+                            greenServerMuteListener, greenServerNoticeListener, workHomeListener, greenAutoDBWriteListener, activityChangeListener)
                     //.setActivity(Activity.streaming("사용법: "
                     //        + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
-                    .setActivity(Activity.playing("JDA v4 BETA"))
                     .build().awaitReady();
             logger.info("부팅완료");
-            activityChangeListener activityChangeListener = new activityChangeListener(jda);
-            jda.addEventListener(activityChangeListener);
         } catch (LoginException | InterruptedException e) {
 
             StackTraceElement[] eStackTrace = e.getStackTrace();
@@ -153,28 +146,6 @@ public class App {
                 a.append(stackTraceElement).append("\n");
             }
             logger.warn(a.toString());
-        }
-        if(debug) {
-            try {
-                logger.info("부팅");
-                JDA jda1 = new JDABuilder(AccountType.BOT)
-                        .setToken(GreenTOKEN)
-                        .setAutoReconnect(true)
-                        .addEventListeners(memberCountListener, greenListener, filterlistener, greenServerMuteListener, greenServerNoticeListener, workHomeListener, greenAutoDBWriteListener, steamServerStatusListener)
-                        //.setActivity(Activity.streaming("사용법: "
-                        //        + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
-                        .setActivity(Activity.playing("JDA v4 BETA"))
-                        .build().awaitReady();
-                logger.info("부팅완료");
-            } catch (LoginException | InterruptedException e) {
-
-                StackTraceElement[] eStackTrace = e.getStackTrace();
-                StringBuilder a = new StringBuilder();
-                for (StackTraceElement stackTraceElement : eStackTrace) {
-                    a.append(stackTraceElement).append("\n");
-                }
-                logger.warn(a.toString());
-            }
         }
     }
 

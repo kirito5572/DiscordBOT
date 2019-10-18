@@ -3,6 +3,7 @@ package BOT.Objects;
 import BOT.App;
 import BOT.Commands.*;
 import BOT.Commands.GameCommand.*;
+import BOT.Commands.GreenServerCustom.*;
 import BOT.Commands.Moderator.*;
 import BOT.Commands.Music.*;
 import BOT.Commands.ONIGIRIServerCustom.ONIGIRICommand;
@@ -570,6 +571,23 @@ public class CommandManager {
                             "Usage: `"  + App.getPREFIX() + getInvoke() + " <user> <reason>`";
                 }
             });
+            addCommand(new certificationCommand());
+            addCommand(new certificationCommand() {
+                @Override
+                public String getInvoke() {
+                    return "cert";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "certification with discord and steam";
+                }
+            });
             addCommand(new TESTCommand());
             addCommand(new TESTCommand() {
                 @Override
@@ -590,6 +608,24 @@ public class CommandManager {
         }
         //------------------------------------------------------------------//
         {
+            addCommand(new certificationFinCommand());
+            addCommand(new certificationFinCommand() {
+                @Override
+                public String getInvoke() {
+                    return "certfin";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Verify certification between Steam and Discord \n" +
+                            "Usage: `" + App.getPREFIX() + getInvoke() + " <Steam Profile/Steam ID/Steam Nickname> `";
+                }
+            });
             addCommand(new BanCommand());
             addCommand(new BanCommand() {
                 @Override
@@ -680,6 +716,23 @@ public class CommandManager {
                     return "meme command list";
                 }
             });
+            addCommand(new GreenServerMuteCommand());
+            addCommand(new GreenServerMuteCommand() {
+                @Override
+                public String getInvoke() {
+                    return "mutechat";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "Mute chating";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Mute chating";
+                }
+            });
             addCommand(new lewdnekoCommand());
             addCommand(new lewdnekoCommand() {
                 @Override
@@ -695,6 +748,24 @@ public class CommandManager {
                 @Override
                 public String getHelp() {
                     return "lewd neko meme";
+                }
+            });
+            addCommand(new gameServerBanCommand());
+            addCommand(new gameServerBanCommand() {
+                @Override
+                public String getInvoke() {
+                    return "serverban";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "ServerCustomCommand \n" +
+                            "Please use by `" + App.getPREFIX() + gameServerBanCommand.getCommand() + "`";
                 }
             });
             addCommand(new WeatherCommand());
@@ -769,6 +840,40 @@ public class CommandManager {
                 public String getHelp() {
                     return "poll!.\n" +
                             "Usage: `" + App.getPREFIX() + getInvoke() + " [poll content]`";
+                }
+            });
+            addCommand(new goWorkCommand());
+            addCommand(new goWorkCommand() {
+                @Override
+                public String getInvoke() {
+                    return "work";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Go to Work!\n";
+                }
+            });
+            addCommand(new goHomeCommand());
+            addCommand(new goHomeCommand() {
+                @Override
+                public String getInvoke() {
+                    return "home";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Go to Home!\n";
                 }
             });
             addCommand(new BotOwnerNoticeCommand());
