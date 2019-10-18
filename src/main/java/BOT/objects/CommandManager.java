@@ -930,6 +930,23 @@ public class CommandManager {
                             "Usage: `" + App.getPREFIX() + getInvoke() + "<reload/shot>";
                 }
             });
+            addCommand(new CallCommand());
+            addCommand(new CallCommand() {
+                @Override
+                public String getInvoke() {
+                    return "call";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Call to bot maker!";
+                }
+            });
         }
     }
 

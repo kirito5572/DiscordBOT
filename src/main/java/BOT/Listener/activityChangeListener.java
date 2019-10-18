@@ -38,7 +38,7 @@ public class activityChangeListener extends ListenerAdapter {
                     break;
                     case 3: Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("버그/개선 사항은 &제작자"));
                     break;
-                    case 4: Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("JDA v4 BETA"));
+                    case 4: Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("kirito5572#5572 제작"));
                 }
                 i++;
                 if(i > 4) {
@@ -47,6 +47,6 @@ public class activityChangeListener extends ListenerAdapter {
             }
         };
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(timerTask, 0, 3000);
+        timer.scheduleAtFixedRate(timerTask, 0, 5000);
     }
 }
