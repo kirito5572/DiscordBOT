@@ -3,14 +3,16 @@ package BOT;/*
  */
 
 import BOT.Listener.*;
-import BOT.Objects.*;
+import BOT.Objects.CommandManager;
+import BOT.Objects.SQL;
+import BOT.Objects.config;
+import BOT.Objects.getYoutubeSearch;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.entities.Activity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -134,8 +136,6 @@ public class App {
                     .setAutoReconnect(true)
                     .addEventListeners(memberCountListener, listener, filterlistener, salListener, onigiriListener, nekoDiscordMemberListener, steamServerStatusListener,
                             greenServerMuteListener, greenServerNoticeListener, workHomeListener, greenAutoDBWriteListener, activityChangeListener)
-                    //.setActivity(Activity.streaming("사용법: "
-                    //        + PREFIX + "명령어", "https://github.com/kirito5572/DiscordBOT"))
                     .build().awaitReady();
             logger.info("부팅완료");
         } catch (LoginException | InterruptedException e) {

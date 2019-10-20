@@ -49,7 +49,7 @@ public class UserInfoCommand implements ICommand {
                 member = foundMember.get(0);
 
             } catch (Exception e) {
-                event.getChannel().sendMessage("해당 유저를 찾을수 없거나, 인수가 잘못 입력되었습니다.").queue();
+                event.getChannel().sendMessage("해당 유저를 봇이 찾을수 없거나, 인수가 잘못 입력되었습니다.").queue();
 
                 return;
             }

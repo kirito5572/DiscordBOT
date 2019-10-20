@@ -32,7 +32,7 @@ public class activityChangeListener extends ListenerAdapter {
                 switch (i) {
                     case 0: Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("도움말:" + App.getPREFIX() + "명령어"));
                     break;
-                    case 1: Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing(guilds.size() + "개의 서버, " + memberSize +"명의 유저"));
+                    case 1: Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing(guilds.size() + "개의 서버, " + memberSize +" 명의 유저"));
                     break;
                     case 2: Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing(getVersion()));
                     break;

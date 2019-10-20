@@ -63,7 +63,7 @@ public class gameServerBanCommand implements ICommand {
             reason = new StringBuilder();
             try {
                 for(int i = 2; i <= args.size(); i++) {
-                    reason.append(args.get(i));
+                    reason.append(args.get(i)).append(" ");
                 }
             } catch (Exception e) {
                 if(reason.toString().equals("")) {
@@ -80,7 +80,21 @@ public class gameServerBanCommand implements ICommand {
 
             String time = time_non;
             String timeString;
-            String[] returns = getSteamID.SteamID(SteamID);
+            String[] returns;
+            try {
+                returns = getSteamID.SteamID(SteamID);
+            } catch (Exception e) {
+
+                StackTraceElement[] eStackTrace = e.getStackTrace();
+                StringBuilder a = new StringBuilder();
+                for (StackTraceElement stackTraceElement : eStackTrace) {
+                    a.append(stackTraceElement).append("\n");
+                }
+                logger.warn(a.toString());
+
+                channel.sendMessage("에러가 발생했습니다.").queue();
+                return;
+            }
             if(returns[0].equals("profile not found")) {
                 event.getChannel().sendMessage("그런 스팀 프로필을 가진 유저는 없습니다.").queue();
                 return;
@@ -165,9 +179,10 @@ public class gameServerBanCommand implements ICommand {
                 ID = ID.replaceFirst("\n", "");
             }
             System.out.println(NickName[0] + ID);
-            AtomicBoolean returnflag = new AtomicBoolean(false);
+            AtomicBoolean returnFlag = new AtomicBoolean(true);
             AtomicBoolean steam = new AtomicBoolean(true);
-            if(NickName[0].equals("")) {
+            if(NickName[0].equals("") || NickName[0].equals(" ")) {
+                returnFlag.set(false);
                 steam.set(false);
                 String finalTime = time;
                 WebUtils.ins.scrapeWebPage("https://steamid.io/lookup/" + SteamID).async((document1 -> {
@@ -195,7 +210,7 @@ public class gameServerBanCommand implements ICommand {
                         NickName[0] = a1;
                         banMain(NickName, a2, finalTime, reason, timeString, steam,
                                 adminChannel, reportChannel, botChannel, botChannel1,
-                                event);
+                                event, time_non);
                     } catch (Exception e) {
 
                         StackTraceElement[] eStackTrace = e.getStackTrace();
@@ -205,58 +220,17 @@ public class gameServerBanCommand implements ICommand {
                         }
                         logger.warn(a.toString());
                         channel.sendMessage("봇이 스팀 프로필을 불러오는데 실패하였습니다.").queue();
-                        returnflag.set(true);
-                    }
-                }));
-            } else if(NickName[0].equals(" ")) {
-                steam.set(false);
-                String finalTime1 = time;
-                WebUtils.ins.scrapeWebPage("https://steamid.io/lookup/" + SteamID).async((document1 -> {
-                    String a1 = document1.getElementsByTag("body").first().toString();
-                    String a2 = a1;
-                    try {
-                        int b2 = a2.indexOf("data-clipboard-text=\"");
-                        int b1 = a1.indexOf(" <dt class=\"key\">\n" +
-                                "       name");
-                        a1 = a1.substring(b1 + 75);
-                        a2 = a2.substring(b2 + 21);
-                        b2 = a2.indexOf("data-clipboard-text=\"");
-                        a2 = a2.substring(b2 + 21);
-                        b2 = a2.indexOf("data-clipboard-text=\"");
-                        a2 = a2.substring(b2 + 21);
-                        int c1 = a1.indexOf("</dd>");
-                        int c2 = a2.indexOf(" src=");
-                        a1 = a1.substring(0, c1 - 7);
-                        a2 = a2.substring(0, c2 - 1);
-                        System.out.println(a1);
-                        System.out.println(a2);
-                        for(; a1.contains(" ");) {
-                            a1 = a1.replaceFirst(" ", "");
-                        }
-                        NickName[0] = a1;
-                        banMain(NickName, a2, finalTime1, reason, timeString, steam,
-                                adminChannel, reportChannel, botChannel, botChannel1,
-                                event);
-                    } catch (Exception e) {
-
-                        StackTraceElement[] eStackTrace = e.getStackTrace();
-                        StringBuilder a = new StringBuilder();
-                        for (StackTraceElement stackTraceElement : eStackTrace) {
-                            a.append(stackTraceElement).append("\n");
-                        }
-                        logger.warn(a.toString());
-                        channel.sendMessage("봇이 스팀 프로필을 불러오는데 실패하였습니다.").queue();
-                        returnflag.set(true);
+                        returnFlag.set(true);
                     }
                 }));
             }
-            if(returnflag.get()) {
+            if(returnFlag.get()) {
                 return;
             }
             if(steam.get()) {
                 banMain(NickName, ID, time, reason, timeString, steam,
                         adminChannel, reportChannel, botChannel, botChannel1,
-                        event);
+                        event, time_non);
             }
         } else {
             channel.sendMessage("이 명령어는 이 서버에서 지원하지 않습니다.").queue();
@@ -285,7 +259,7 @@ public class gameServerBanCommand implements ICommand {
     }
     private void banMain(String[] NickName, String ID, String time, StringBuilder reason, String timeString, AtomicBoolean steam,
                          TextChannel adminChannel, TextChannel reportChannel, TextChannel botChannel, TextChannel botChannel1,
-                         GuildMessageReceivedEvent event) {
+                         GuildMessageReceivedEvent event, String time_non) {
         String text = "+oban " + NickName[0] + " " + ID + " " + time + " " + reason.toString();
         System.out.println(text);
         SQL.SQLupload(ID, timeString, reason.toString(), event.getAuthor().getName());
@@ -310,8 +284,9 @@ public class gameServerBanCommand implements ICommand {
 
 
         reportChannel.sendMessage(builder.build()).queue();
-
-        //event.getGuild().getTextChannelById("600012818879741963").sendMessage("$$정보 " + ID + " " + time_non + " " + reason.toString()).queue();
+        if(reason.toString().contains("SCP 탈주") || reason.toString().contains("SCP탈주")) {
+            Objects.requireNonNull(event.getGuild().getTextChannelById("600012818879741963")).sendMessage("$$정보 " + ID + " " + time_non + " " + reason.toString()).queue();
+        }
         if (Objects.requireNonNull(event.getGuild().getMemberById("580691748276142100")).getOnlineStatus().equals(OnlineStatus.ONLINE) ||
                 Objects.requireNonNull(event.getGuild().getMemberById("580691748276142100")).getOnlineStatus().equals(OnlineStatus.IDLE)) {
             botChannel.sendMessage(text).queue();
