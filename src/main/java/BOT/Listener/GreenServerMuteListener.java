@@ -106,7 +106,7 @@ public class GreenServerMuteListener extends ListenerAdapter {
                 User user = foundUsers.get(0);
                 Member member = guild.getMember(user);
 
-                Role roles = guild.getRolesByName("채팅 금지", true).get(0);
+                Role roles = guild.getRolesByName("채팅금지", true).get(0);
 
                 assert member != null;
                 guild.removeRoleFromMember(member, roles).complete();

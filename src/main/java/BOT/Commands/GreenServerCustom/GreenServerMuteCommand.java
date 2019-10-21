@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class GreenServerMuteCommand implements ICommand {
@@ -32,7 +33,7 @@ public class GreenServerMuteCommand implements ICommand {
         String time_st;
         TextChannel channel = event.getChannel();
         if(event.getGuild().getId().equals("600010501266866186")) {
-            if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+            if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
                 if(!event.getMember().getRoles().contains(event.getGuild().getRoleById("600012069559074822"))) {
                     channel.sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
 
@@ -84,7 +85,7 @@ public class GreenServerMuteCommand implements ICommand {
             }
             Role role;
             try {
-                role = event.getGuild().getRolesByName("채팅 금지", true).get(0);
+                role = event.getGuild().getRolesByName("채팅금지", true).get(0);
             } catch (Exception e) {
                 channel.sendMessage("채팅 금지 역할을 먼저 생성해주세요.").queue();
 
