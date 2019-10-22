@@ -18,6 +18,7 @@ public class OddOrEvenCommand implements ICommand {
                 Thread.sleep(500);
                 try {
                     String message = event.getChannel().retrieveMessageById(event.getChannel().getLatestMessageId()).complete().getContentRaw();
+                    System.out.println(event.getChannel().getLatestMessageId());
                     if(message.equals("홀수")) {
                         if(even) {
                             event.getChannel().sendMessage("성공!").queue();
