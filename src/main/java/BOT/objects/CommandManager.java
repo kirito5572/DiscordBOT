@@ -947,6 +947,23 @@ public class CommandManager {
                     return "Call to bot maker!";
                 }
             });
+            addCommand(new OddOrEvenCommand());
+            addCommand(new OddOrEvenCommand() {
+                @Override
+                public String getInvoke() {
+                    return "evenodd";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "even/odd game!";
+                }
+            });
         }
     }
 

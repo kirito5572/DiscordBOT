@@ -7,7 +7,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import java.util.List;
 
 public class VersionCommand implements ICommand {
-    private static String version = "빌드 버젼 V 1.6.0";
+    private static String version = "빌드 버젼 V 1.6.1";
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         if(App.isDEBUG_MODE() || App.isONLINE_DEBUG()) {
