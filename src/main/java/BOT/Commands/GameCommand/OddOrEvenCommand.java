@@ -21,19 +21,23 @@ public class OddOrEvenCommand implements ICommand {
                     if(message.equals("홀수")) {
                         if(even) {
                             event.getChannel().sendMessage("성공!").queue();
+                            break;
                         } else {
                             event.getChannel().sendMessage("실패!").queue();
+                            break;
                         }
                     } else if (message.equals("짝수")) {
                         if(even) {
                             event.getChannel().sendMessage("실패").queue();
+                            break;
                         } else {
                             event.getChannel().sendMessage("성공!").queue();
+                            break;
                         }
                     }
 
-                } catch (Exception ignored) {
-
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         } catch (Exception e) {

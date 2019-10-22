@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/GameCommand/OddOrEvenCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/GameCommand/OddOrEvenCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/GameCommand/OddOrEvenCommand.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -374,7 +372,7 @@
       <workItem from="1571471673871" duration="1994000" />
       <workItem from="1571613513590" duration="3393000" />
       <workItem from="1571659182619" duration="605000" />
-      <workItem from="1571731955117" duration="998000" />
+      <workItem from="1571731955117" duration="1303000" />
     </task>
     <servers />
   </component>
