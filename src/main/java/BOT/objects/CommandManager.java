@@ -964,6 +964,23 @@ public class CommandManager {
                     return "even/odd game!";
                 }
             });
+            addCommand(new GreenNoticeCommand());
+            addCommand(new GreenNoticeCommand(){
+                @Override
+                public String getInvoke() {
+                    return "servernotice";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "SCP:SL Green Server notice Command!";
+                }
+            });
         }
     }
 
