@@ -204,7 +204,7 @@ public class gameServerBanCommand implements ICommand {
                         a2 = a2.substring(0, c2 - 1);
                         System.out.println(a1);
                         System.out.println(a2);
-                        for(; a1.contains(" ");) {
+                        for(;a1.contains(" ");) {
                             a1 = a1.replaceFirst(" ", "");
                         }
                         NickName[0] = a1;
@@ -224,7 +224,7 @@ public class gameServerBanCommand implements ICommand {
                     }
                 }));
             }
-            if(returnFlag.get()) {
+            if(!returnFlag.get()) {
                 return;
             }
             if(steam.get()) {

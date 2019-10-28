@@ -119,7 +119,7 @@ public class SQL {
             }
         }
 
-        String queryString = "SELECT FROM Sanction_Infor WHERE SteamID =\"" + SteamID +"\";";
+        String queryString = "SELECT * FROM Sanction_Infor WHERE SteamID =\"" + SteamID +"\";";
 
         Class.forName(driverName);
 
