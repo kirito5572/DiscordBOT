@@ -21,32 +21,48 @@ public class activityChangeListener extends ListenerAdapter {
     @Override
     public void onReady(@Nonnull ReadyEvent event) {
         jda = event.getJDA();
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                List<Guild> guilds = jda.getGuilds();
-                int memberSize = 0;
-                for(Guild guild : guilds) {
-                    memberSize += guild.getMembers().size();
+        if(App.isONLINE_DEBUG() || App.isDEBUG_MODE()) {
+            TimerTask timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("디버깅 작업 실행중...."));
                 }
-                switch (i) {
-                    case 0: Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("도움말:" + App.getPREFIX() + "명령어"));
-                    break;
-                    case 1: Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing(guilds.size() + "개의 서버, " + memberSize +" 명의 유저"));
-                    break;
-                    case 2: Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing(getVersion()));
-                    break;
-                    case 3: Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("버그/개선 사항은 &제작자"));
-                    break;
-                    case 4: Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("kirito5572#5572 제작"));
+            };
+            Timer timer = new Timer();
+            timer.scheduleAtFixedRate(timerTask, 0, 2000);
+        } else {
+            TimerTask timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    List<Guild> guilds = jda.getGuilds();
+                    int memberSize = 0;
+                    for (Guild guild : guilds) {
+                        memberSize += guild.getMembers().size();
+                    }
+                    switch (i) {
+                        case 0:
+                            Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("도움말:" + App.getPREFIX() + "명령어"));
+                            break;
+                        case 1:
+                            Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing(guilds.size() + "개의 서버, " + memberSize + " 명의 유저"));
+                            break;
+                        case 2:
+                            Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing(getVersion()));
+                            break;
+                        case 3:
+                            Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("버그/개선 사항은 &제작자"));
+                            break;
+                        case 4:
+                            Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("kirito5572#5572 제작"));
+                    }
+                    i++;
+                    if (i > 4) {
+                        i = 0;
+                    }
                 }
-                i++;
-                if(i > 4) {
-                    i = 0;
-                }
-            }
-        };
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(timerTask, 0, 5000);
+            };
+            Timer timer = new Timer();
+            timer.scheduleAtFixedRate(timerTask, 0, 5000);
+        }
     }
 }

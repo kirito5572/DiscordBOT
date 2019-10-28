@@ -2,6 +2,7 @@ package BOT.Listener;
 
 import BOT.Objects.FilterList;
 import BOT.Objects.config;
+import BOT.Objects.linkConfirm;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
@@ -18,6 +19,8 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+
+import static BOT.Objects.linkConfirm.getLink;
 
 public class filterListener extends ListenerAdapter {
     private final Logger logger = LoggerFactory.getLogger(filterListener.class);
@@ -199,11 +202,21 @@ public class filterListener extends ListenerAdapter {
         if(!linkPass) {
             for (String s : Lists) {
                 if (rawMessage.contains(s)) {
+                    boolean isLink = linkConfirm.isLink(rawMessage, s);
+                    System.out.println(isLink);
+                    if(!isLink) {
+                        return;
+                    }
                     try {
                         try {
                             if (Objects.requireNonNull(event.getMember()).getRoles().contains(guild.getRolesByName("공개 처형", true).get(0))) {
                                 message.delete().complete();
-                                event.getChannel().sendMessage(author.getAsMention() + ", 공개처형자의 링크는 예외 없이 즉시 차단됩니다.").queue();
+                                event.getChannel().sendMessage("공개처형자 " + author.getAsMention() + ", 링크를 보내지 마세요.").complete().delete().queueAfter(3,TimeUnit.SECONDS);
+                                logger.warn("공개 처형자 링크 필터링이 되었습니다. \n" +
+                                        "서버: " + event.getGuild().getName() + "\n" +
+                                        "이유: " + s + "\n" +
+                                        "보낸 사람: " + event.getMember().getNickname() + "\n" +
+                                        "차단된 링크: " + getLink());
                             }
                         } catch (Exception ignored) {
                         }
@@ -212,7 +225,7 @@ public class filterListener extends ListenerAdapter {
                             logger.warn("관리자가 링크를 첨부했으나, 관리자는 필터링 되지 않습니다. \n" +
                                     "서버: " + event.getGuild().getName() + "\n" +
                                     "이유: " + s + "\n" +
-                                    "차단된 링크: " + message.getContentRaw());
+                                    "차단된 링크: " + getLink());
                             return;
                         }
                         if (!guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) {
@@ -225,12 +238,14 @@ public class filterListener extends ListenerAdapter {
                         logger.warn("링크 필터링이 되었습니다. \n" +
                                 "서버: " + event.getGuild().getName() + "\n" +
                                 "이유: " + s + "\n" +
-                                "차단된 링크: " + message.getContentRaw());
+                                "보낸 사람: " + event.getMember().getNickname() + "\n" +
+                                "차단된 링크: " + getLink());
                         if(event.getGuild().getId().equals("600010501266866186")) {
                             Objects.requireNonNull(event.getGuild().getTextChannelById("623841727823740928")).sendMessage("링크 필터링이 되었습니다. \n" +
                                     "서버: " + event.getGuild().getName() + "\n" +
                                     "이유: " + s + "\n" +
-                                    "차단된 링크: " + message.getContentRaw()).queue();
+                                    "보낸 사람: " + event.getMember().getNickname() + "\n" +
+                                    "차단된 링크: " + getLink()).queue();
                         }
                         return;
                     } catch (Exception e) {

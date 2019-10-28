@@ -2,8 +2,11 @@ package BOT.Commands.GameCommand;
 
 import BOT.App;
 import BOT.Objects.ICommand;
+import me.duncte123.botcommons.messaging.EmbedUtils;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -95,18 +98,22 @@ public class RockPaperScissorsCommand implements ICommand {
                 break;
             default: return;
         }
+        EmbedBuilder builder = EmbedUtils.defaultEmbed();
         if(botwin && (!userwin)) {
-            event.getChannel().sendMessage("봇이 이겼습니다.\n" +
-                    "당신: " + message + "\n" +
-                    "봇: " + mymessage).queue();
+            builder.setTitle("패배")
+                    .setColor(Color.RED)
+                    .addField("당신", message, false)
+                    .addField("봇", mymessage, false);
         } else if((!botwin) && userwin) {
-            event.getChannel().sendMessage("당신이 이겼습니다.\n" +
-                    "당신: " + message + "\n" +
-                    "봇: " + mymessage).queue();
+            builder.setTitle("승리")
+                    .setColor(Color.GREEN)
+                    .addField("당신", message, false)
+                    .addField("봇", mymessage, false);
         } else if((!botwin) && (!userwin)) {
-            event.getChannel().sendMessage("비겼습니다.\n" +
-                    "당신: " + message + "\n" +
-                    "봇: " + mymessage).queue();
+            builder.setTitle("무승부")
+                    .setColor(Color.GRAY)
+                    .addField("당신", message, false)
+                    .addField("봇", mymessage, false);
         } else {
             event.getChannel().sendMessage("에러가 발생했습니다.").complete().delete().queueAfter(7, TimeUnit.SECONDS);
         }

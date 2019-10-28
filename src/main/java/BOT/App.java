@@ -26,8 +26,7 @@ import java.util.Random;
 
 public class App {
     private static boolean DEBUG_MODE = false;
-    private static boolean ONLINE_DEBUG = false;
-    private String GreenTOKEN;
+    private static boolean ONLINE_DEBUG = true;
     private static Date date;
     private static String Time;
     private static String PREFIX;
@@ -107,17 +106,18 @@ public class App {
         }
 
         String TOKEN;
+        String greenTOKEN;
         if (DEBUG_MODE) {
             TOKEN = TOKENreader_DEBUG.toString();
             PREFIX = Constants.PREFIX_DEBUG;
         } else if (!DEBUG_MODE && ONLINE_DEBUG) {
             TOKEN = TOKENreader.toString();
             PREFIX = Constants.PREFIX_DEBUG;
-            GreenTOKEN = TOKENreaderGreen.toString();
+            greenTOKEN = TOKENreaderGreen.toString();
         } else {
             TOKEN = TOKENreader.toString();
             PREFIX = Constants.PREFIX;
-            GreenTOKEN = TOKENreaderGreen.toString();
+            greenTOKEN = TOKENreaderGreen.toString();
             SQL sql = new SQL();
         }
 

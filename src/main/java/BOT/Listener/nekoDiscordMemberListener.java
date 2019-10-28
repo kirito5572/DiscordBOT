@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileReader;
+import java.util.Objects;
 
 public class nekoDiscordMemberListener extends ListenerAdapter {
     private final Logger logger = LoggerFactory.getLogger(nekoDiscordMemberListener.class);
@@ -22,19 +23,26 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
     public void onMessageReactionAdd(MessageReactionAddEvent event) {
         Guild guild = event.getJDA().getGuildById("439780696999985172");
         assert guild != null;
-        Role role = guild.getRoleById("625549604674600970");  //Chating1
+        Role role = guild.getRoleById("625549604674600970");  //휴식자
         Role role1 = guild.getRoleById("620787764430110721");  //Chating2
+        Role role2 = guild.getRoleById("619556312627544105");  //사무직
         Member member = event.getMember();
         if(event.getMessageId().equals(Chating1)) {
             assert member != null;
-            assert role != null;
-            guild.addRoleToMember(member, role).complete();
+            if(member.getRoles().contains(role2)) {
+                Objects.requireNonNull(guild.getTextChannelById("616452604506931230")).removeReactionById(event.getMessageId(),event.getReactionEmote().getEmote(), member.getUser()).complete();
+                member.getUser().openPrivateChannel().complete().sendMessage("휴식자 역할을 부여 받기전 관리직 역할을 부여 받아야 합니다.\n" +
+                        "!join으로 역할을 부여 받으시기 바랍니다.").complete();
+            } else {
+                assert role != null;
+                guild.addRoleToMember(member, role).complete();
+            }
         }
     }
     public void onMessageReactionRemove(MessageReactionRemoveEvent event) {
         Guild guild = event.getJDA().getGuildById("439780696999985172");
         assert guild != null;
-        Role role = guild.getRoleById("625549604674600970");  //Chating1
+        Role role = guild.getRoleById("625549604674600970");  //휴식자
         Role role1 = guild.getRoleById("620787764430110721");  //Chating2
         Member member = event.getMember();
         if(event.getMessageId().equals(Chating1)) {
