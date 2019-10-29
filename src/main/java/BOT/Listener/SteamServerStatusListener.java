@@ -34,16 +34,12 @@ public class SteamServerStatusListener extends ListenerAdapter {
                         message = "@here 스팀 서버의 상태가 변경되었습니다.\n" +
                             "시간: " + dateFormat.format(date) + "\n" +
                             "내용: Steam Connection Manager 서버가 다운되었습니다. (" + CM_1 + ")";
+                        send_message(message, event);
                     } else if (steamdown && CM.equals("good")){
                         steamdown = false;
                         message = "@here 스팀 서버의 상태가 변경되었습니다.\n" +
                                 "시간: " + dateFormat.format(date) + "\n" +
                                 "내용: Steam Connection Manager 서버가 복구되었습니다. (" + CM_1 + ")";
-                    } else {
-                        return;
-                    }
-                    if(!CM.equals("good")) {
-                        steamdown = true;
                         send_message(message, event);
                     }
                 }));

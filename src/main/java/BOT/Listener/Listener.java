@@ -101,8 +101,9 @@ public class Listener extends ListenerAdapter {
             return;
         }
         if(event.getAuthor().isBot()) {
-            return;
-
+            if(!Objects.requireNonNull(event.getMember()).getId().equals("617912267597676545")) {
+                return;
+            }
         }
         if(event.getMessage().isWebhookMessage()) {
 
@@ -164,7 +165,7 @@ public class Listener extends ListenerAdapter {
         }
         if(event.getGuild().getId().equals("607390203086372866")) {
             if(!event.getChannel().getId().equals("619271283586367498")) {
-                if(!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+                if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
                     if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
                         event.getChannel().sendMessage(event.getMember().getAsMention() + " , 명령어는 봇 명령어 채널에서 사용해주세요").complete().delete().queueAfter(7, TimeUnit.SECONDS);
 
