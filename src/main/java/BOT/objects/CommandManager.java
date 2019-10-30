@@ -981,6 +981,40 @@ public class CommandManager {
                     return "SCP:SL Green Server notice Command!";
                 }
             });
+            addCommand(new BETACommand());
+            addCommand(new BETACommand(){
+                @Override
+                public String getInvoke() {
+                    return "beta";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Invite beta bot!";
+                }
+            });
+            addCommand(new QueueMixCommand());
+            addCommand(new QueueMixCommand(){
+                @Override
+                public String getInvoke() {
+                    return "queuemix";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Mix Queue";
+                }
+            });
         }
     }
 
