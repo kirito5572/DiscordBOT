@@ -33,7 +33,7 @@ public class StopCommand implements ICommand {
             return;
         }
 
-        event.getChannel().sendMessage("노래 재생을 멈추고 재생목록을 비웁니다.").queue();
+        event.getChannel().sendMessage("노래 재생을 멈춥니다.").queue();
 
     }
 

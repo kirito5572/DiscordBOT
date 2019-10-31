@@ -1,6 +1,8 @@
 package BOT.Commands.Music;
 
 import BOT.App;
+import BOT.Music.GuildMusicManager;
+import BOT.Music.PlayerManager;
 import BOT.Objects.ICommand;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
@@ -43,6 +45,51 @@ public class JoinCommand implements ICommand {
 
         audioManager.openAudioConnection(voiceChannel);
         channel.sendMessage("보이스채널에 들어왔습니다.").queue();
+        Thread thread = new Thread(() -> {
+            AudioManager audioManager1 = event.getGuild().getAudioManager();
+            VoiceChannel voiceChannel1 = voiceChannel;
+            PlayerManager playerManager = PlayerManager.getInstance();
+            GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
+            while(true) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(!audioManager1.isConnected()) {
+                    break;
+                }
+                if(!musicManager.player.isPaused()) {
+                    if (voiceChannel1.getMembers().size() < 2) {
+                        musicManager.player.isPaused();
+                        event.getChannel().sendMessage("사람이 아무도 없어, 노래가 일시 정지 되었습니다.\n" +
+                                "다시 재생하려면 `" + App.getPREFIX() + "재생` 을 입력해주세요").queue();
+                        musicManager.player.setPaused(true);
+                        new Thread(() -> {
+                            int i = 0;
+                            while (true) {
+                                try {
+                                    Thread.sleep(750);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                if (voiceChannel1.getMembers().size() < 2) {
+                                    i++;
+                                } else {
+                                    break;
+                                }
+                                if(i > 120) {
+                                    event.getChannel().sendMessage("오랫동안 사람이 아무도 없어, 노래 재생이 정지 되었습니다.").queue();
+                                    audioManager.closeAudioConnection();
+                                    break;
+                                }
+                            }
+                        }).start();
+                    }
+                }
+            }
+        });
+        thread.start();
     }
 
     @Override

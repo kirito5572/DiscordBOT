@@ -1,6 +1,7 @@
 package BOT.Commands.Music;
 
 import BOT.App;
+import BOT.Music.GuildMusicManager;
 import BOT.Music.PlayerManager;
 import BOT.Objects.ICommand;
 import BOT.Objects.getYoutubeSearch;
@@ -88,6 +89,50 @@ public class SearchCommand implements ICommand {
                         int a = Integer.parseInt(event.getChannel().retrieveMessageById(event.getChannel().getLatestMessageId()).complete().getContentRaw());
                         if(!audioManager.isConnected()) {
                             audioManager.openAudioConnection(voiceChannel);
+                            Thread thread = new Thread(() -> {
+                                AudioManager audioManager1 = event.getGuild().getAudioManager();
+                                PlayerManager playerManager = PlayerManager.getInstance();
+                                GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
+                                while(true) {
+                                    try {
+                                        Thread.sleep(1000);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    if(!audioManager1.isConnected()) {
+                                        break;
+                                    }
+                                    if(!musicManager.player.isPaused()) {
+                                        if (voiceChannel.getMembers().size() < 2) {
+                                            musicManager.player.isPaused();
+                                            event.getChannel().sendMessage("사람이 아무도 없어, 노래가 일시 정지 되었습니다.\n" +
+                                                    "다시 재생하려면 `" + App.getPREFIX() + "재생` 을 입력해주세요").queue();
+                                            musicManager.player.setPaused(true);
+                                            new Thread(() -> {
+                                                int ia = 0;
+                                                while (true) {
+                                                    try {
+                                                        Thread.sleep(750);
+                                                    } catch (InterruptedException e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                    if (voiceChannel.getMembers().size() < 2) {
+                                                        ia++;
+                                                    } else {
+                                                        break;
+                                                    }
+                                                    if(ia > 120) {
+                                                        event.getChannel().sendMessage("오랫동안 사람이 아무도 없어, 노래 재생이 정지 되었습니다.").queue();
+                                                        audioManager.closeAudioConnection();
+                                                        break;
+                                                    }
+                                                }
+                                            }).start();
+                                        }
+                                    }
+                                }
+                            });
+                            thread.start();
                         }
                         PlayerManager manager = PlayerManager.getInstance();
                         message.delete().complete();

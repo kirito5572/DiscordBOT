@@ -43,15 +43,15 @@ public class QueueCommand implements ICommand {
         int maxTrackCount;
         int minTrackCount;
         if(joined.equals("1")) {
-            maxTrackCount = Math.min(queue.size() + 1, (20 * Integer.parseInt(joined)) - 1);
-            minTrackCount = Math.min(queue.size() + 1, (20 * (Integer.parseInt(joined) - 1)));
+            maxTrackCount = Math.min(queue.size(), (20 * Integer.parseInt(joined)) - 1) + 2;
+            minTrackCount = Math.min(queue.size(), (20 * (Integer.parseInt(joined) - 1)));
         } else {
-            maxTrackCount = Math.min(queue.size() + 1, (20 * Integer.parseInt(joined)) - 1);
-            minTrackCount = Math.min(queue.size() + 1, (20 * (Integer.parseInt(joined) - 1) - 1));
+            maxTrackCount = Math.min(queue.size(), (20 * Integer.parseInt(joined)) - 1) - 1;
+            minTrackCount = Math.min(queue.size(), (20 * (Integer.parseInt(joined) - 1)) + 1);
         }
         List<AudioTrack> tracks = new ArrayList<>(queue);
-        System.out.println(queue.size() + 1);
-        if(minTrackCount >= queue.size() + 1) {
+        System.out.println(queue.size());
+        if(minTrackCount >= queue.size()) {
             channel.sendMessage( "`" + Constants.PREFIX + "queue " + joined + "`는 비어있습니다.\n`" +
                     Constants.PREFIX + "queue " + (int)Math.ceil((queue.size() + 1) / 20.0) +
                     "`까지 재생목록이 존재합니다.").queue();
@@ -59,28 +59,27 @@ public class QueueCommand implements ICommand {
             return;
         }
         EmbedBuilder builder = EmbedUtils.defaultEmbed()
-                .setTitle("현재 재생목록 (총합: " + (queue.size() + 1) + ") 페이지: " + joined);
-        if(joined.equals("1")) {
-            AudioTrackInfo info = player.getPlayingTrack().getInfo();
-            builder.appendDescription(String.format(
-                    (1. +" 현재 재생중") + ": %s - %s\n",
-                    info.title,
-                    info.author
-            ));
-        }
+                .setTitle("현재 재생목록 (총합: " + (queue.size() - 1) + ") 페이지: " + joined);
         if(!queue.isEmpty()) {
             for (int i = minTrackCount; i < maxTrackCount; i++) {
                 AudioTrack track = tracks.get(i);
                 AudioTrackInfo info = track.getInfo();
-
-                builder.appendDescription(String.format(
-                        (i + 1) + ". %s - %s\n",
-                        info.title,
-                        info.author
-                ));
+                if(i == 0) {
+                    builder.appendDescription(String.format(
+                            "현재 재생중: %s - %s\n",
+                            info.title,
+                            info.author
+                    ));
+                } else {
+                    builder.appendDescription(String.format(
+                            (i) + ". %s - %s\n",
+                              info.title,
+                            info.author
+                    ));
+                }
             }
         }
-        if(queue.size() + 1 > maxTrackCount) {
+        if(queue.size() > maxTrackCount) {
             builder.appendDescription("다음 재생목록 확인: `"+ Constants.PREFIX + getInvoke() + " " + (Integer.parseInt(joined) + 1) + "`");
         }
 

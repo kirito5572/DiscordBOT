@@ -32,6 +32,10 @@ public class PlayCommand implements ICommand {
         PlayerManager playerManager = PlayerManager.getInstance();
         GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
         AudioPlayer player = musicManager.player;
+        if(!memberVoiceState.inVoiceChannel()) {
+            channel.sendMessage("먼저 보이스 채널에 들어오세요").queue();
+            return;
+        }
         if(!audioManager.isConnected()) {
 
             Member selfMember = event.getGuild().getSelfMember();
@@ -42,10 +46,6 @@ public class PlayCommand implements ICommand {
                 return;
             }
 
-        }
-        if(!memberVoiceState.inVoiceChannel()) {
-            channel.sendMessage("먼저 보이스 채널에 들어오세요").queue();
-            return;
         }
         if(player.isPaused()) {
             if(player.getPlayingTrack() != null) {
@@ -74,6 +74,48 @@ public class PlayCommand implements ICommand {
         PlayerManager manager = PlayerManager.getInstance();
         if(!audioManager.isConnected()) {
             audioManager.openAudioConnection(voiceChannel);
+            Thread thread = new Thread(() -> {
+                AudioManager audioManager1 = event.getGuild().getAudioManager();
+                PlayerManager playerManager1 = PlayerManager.getInstance();
+                GuildMusicManager musicManager1 = playerManager1.getGuildMusicManager(event.getGuild());
+                while(true) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if(!audioManager1.isConnected()) {
+                        break;
+                    }
+                    if(!musicManager1.player.isPaused()) {
+                        if (voiceChannel.getMembers().size() < 2) {
+                            event.getChannel().sendMessage("사람이 아무도 없어, 노래가 일시 정지 되었습니다.").queue();
+                            musicManager1.player.setPaused(true);
+                            new Thread(() -> {
+                                int i = 0;
+                                while (true) {
+                                    try {
+                                        Thread.sleep(750);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    if (voiceChannel.getMembers().size() < 2) {
+                                        i++;
+                                    } else {
+                                        break;
+                                    }
+                                    if(i > 120) {
+                                        event.getChannel().sendMessage("오랫동안 사람이 아무도 없어, 노래 재생이 정지 되었습니다.").queue();
+                                        audioManager.closeAudioConnection();
+                                        break;
+                                    }
+                                }
+                            }).start();
+                        }
+                    }
+                }
+            });
+            thread.start();
         }
         manager.loadAndPlay(event.getChannel(), input);
 

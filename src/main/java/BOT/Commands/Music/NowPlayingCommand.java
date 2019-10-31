@@ -30,7 +30,7 @@ public class NowPlayingCommand implements ICommand {
         }
 
         if (player.getPlayingTrack() == null) {
-            channel.sendMessage("아무 노래도 재생하고 있지 않습니다..").queue();
+            channel.sendMessage("아무 노래도 재생하고 있지 않습니다.").queue();
 
             return;
         }
@@ -38,7 +38,7 @@ public class NowPlayingCommand implements ICommand {
         AudioTrackInfo info = player.getPlayingTrack().getInfo();
 
         channel.sendMessage(EmbedUtils.embedMessage(String.format(
-                "**재생중: ** [%s](%s)\n%s %s/%s",
+                "**" + (player.isPaused() ? "일시정지중" : "재생중") + ": ** [%s](%s)\n%s %s/%s",
                 info.title,
                 info.uri,
                 player.isPaused() ? "\u23F8" : "▶",
