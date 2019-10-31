@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 public class SQL {
@@ -111,34 +112,70 @@ public class SQL {
             logger.warn(a.toString());
         }
     }
-    public static String[][] SQLdownload(String SteamID) throws SQLException, ClassNotFoundException {
-        String[][] data = new String[10][7];
-        for (int i = 0; i < 10; i++) {
-            for(int j = 0; j < 7; j++) {
-                data[i][j] = null;
-            }
+    public static String[] SQLdownload(String SteamID) throws SQLException, ClassNotFoundException, InterruptedException {
+        String[] data = new String[20];
+        for (int i = 0; i < 20; i++) {
+            data[i] = null;
         }
 
         String queryString = "SELECT * FROM Sanction_Infor WHERE SteamID =\"" + SteamID +"\";";
 
         Class.forName(driverName);
-
-        connection = DriverManager.getConnection(url, user, password);
-        statement = connection.createStatement();
-        resultSet = statement.executeQuery(queryString);
-        statement.close();
-        connection.close();
+        new Thread(() -> {
+            try {
+                connection = DriverManager.getConnection(url, user, password);
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(queryString);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+        Thread.sleep(500);
         int i = 0;
         do {
-            data[i][0] = resultSet.getString("caseID");
-            data[i][1] = resultSet.getString("SteamID");
-            data[i][2] = resultSet.getString("sanctionTime");
-            data[i][3] = resultSet.getString("endTime");
-            data[i][4] = resultSet.getString("reason");
-            data[i][5] = resultSet.getString("sendServer");
-            data[i][6] = resultSet.getString("serverID");
+            resultSet.next();
+            data[i] = resultSet.getString("caseID");
             i++;
         } while (resultSet.next());
+        statement.close();
+        connection.close();
+        if(i > 0) {
+            return Arrays.copyOfRange(data, 0, i);
+        } else {
+            return new String[] {
+                    "error"
+            };
+        }
+    }
+    public static String[] SQLdownload(int caseID) throws SQLException, ClassNotFoundException, InterruptedException {
+        String[] data = new String[5];
+        for (int i = 0; i < 5; i++) {
+            data[i] = null;
+        }
+
+        String queryString = "SELECT * FROM Sanction_Infor WHERE caseID =\"" + caseID +"\";";
+
+        Class.forName(driverName);
+        new Thread(() -> {
+            try {
+                connection = DriverManager.getConnection(url, user, password);
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(queryString);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+        Thread.sleep(500);
+        if(resultSet.next()) {
+            data[0] = resultSet.getString("SteamID");
+            data[1] = resultSet.getString("DBWriteTime");
+            data[2] = resultSet.getString("time");
+            data[3] = resultSet.getString("reason");
+            data[4] = resultSet.getString("confirmUser");
+        }
+        statement.close();
+        connection.close();
+
         return data;
     }
     private static void caseIDup() {
@@ -197,8 +234,6 @@ public class SQL {
             loggingConnection = DriverManager.getConnection(url, user, password);
             loggingStatement = connection.createStatement();
             loggingResultSet = loggingStatement.executeQuery(queryString);
-            loggingStatement.close();
-            loggingConnection.close();
         } catch (Exception e) {
             try {
                 StackTraceElement[] eStackTrace = e.getStackTrace();
@@ -218,6 +253,12 @@ public class SQL {
                     a.append(stackTraceElement).append("\n");
                 }
                 logger.warn(a.toString());
+            }
+            try {
+                loggingStatement.close();
+                loggingConnection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
         }
 

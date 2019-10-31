@@ -51,6 +51,7 @@ public class HelpCommand implements ICommand {
         StringBuilder moderator = new StringBuilder();
         StringBuilder game = new StringBuilder();
         StringBuilder other = new StringBuilder();
+        StringBuilder twitch = new StringBuilder();
         builder.appendDescription(App.getPREFIX() + getInvoke() + " <명령어>를 입력하면 명령어별 상세 정보를 볼 수 있습니다.");
         Commands.forEach(iCommand -> {
             if (iCommand.getSmallHelp().equals("music")) {
@@ -64,6 +65,9 @@ public class HelpCommand implements ICommand {
             }
             if (iCommand.getSmallHelp().equals("game")) {
                 game.append(iCommand.getInvoke()).append("\n");
+            }
+            if(iCommand.getSmallHelp().equals("twitch")) {
+                twitch.append(iCommand.getInvoke()).append("\n");
             }
             if (iCommand.getSmallHelp().equals("other")) {
                 other.append(iCommand.getInvoke()).append("\n");
@@ -87,6 +91,11 @@ public class HelpCommand implements ICommand {
         builder.addField(
                 "게임",
                 game.toString(),
+                false
+        );
+        builder.addField(
+                "트위치",
+                twitch.toString(),
                 false
         );
         builder.addField(

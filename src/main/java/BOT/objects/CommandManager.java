@@ -1015,6 +1015,23 @@ public class CommandManager {
                     return "Mix Queue";
                 }
             });
+            addCommand(new GreenSearchCommand());
+            addCommand(new GreenSearchCommand(){
+                @Override
+                public String getInvoke() {
+                    return "banSearch";
+                }
+
+                @Override
+                public String getSmallHelp() {
+                    return "";
+                }
+
+                @Override
+                public String getHelp() {
+                    return "Search ban log from DB";
+                }
+            });
         }
     }
 

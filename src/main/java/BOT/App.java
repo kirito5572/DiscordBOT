@@ -118,8 +118,8 @@ public class App {
             TOKEN = TOKENreader.toString();
             PREFIX = Constants.PREFIX;
             greenTOKEN = TOKENreaderGreen.toString();
-            SQL sql = new SQL();
         }
+        SQL sql = new SQL();
 
         WebUtils.setUserAgent("Chrome 75.0.3770.100 kirito's discord bot/kirito5572#5572");
 
