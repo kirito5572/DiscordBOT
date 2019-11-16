@@ -101,7 +101,7 @@ public class Listener extends ListenerAdapter {
             return;
         }
         if(event.getAuthor().isBot()) {
-            if(!Objects.requireNonNull(event.getMember()).getId().equals("617912267597676545")) {
+            if(!event.getAuthor().getId().equals("617912267597676545")) {
                 return;
             }
         }

@@ -25,21 +25,17 @@ public class GreenNoticeCommand implements ICommand {
         }
         servers[0] = event.getGuild().getTextChannelById("609055524851286027");
         servers[1] = event.getGuild().getTextChannelById("609055562721787904");
-        servers[2] = event.getGuild().getTextChannelById("609624846892269569");
-        servers[3] = event.getGuild().getTextChannelById("609662026972659723");
-        servers[4] = event.getGuild().getTextChannelById("609057247116525650");
+        servers[2] = event.getGuild().getTextChannelById("609057247116525650");
         serverBots[0] = event.getGuild().getMemberById("580691748276142100");
         serverBots[1] = event.getGuild().getMemberById("586590053539643408");
-        serverBots[2] = event.getGuild().getMemberById("600658772876197888");
-        serverBots[3] = event.getGuild().getMemberById("600660530230722560");
-        serverBots[4] = event.getGuild().getMemberById("600676751118696448");
+        serverBots[2] = event.getGuild().getMemberById("600676751118696448");
         StringBuilder builder = new StringBuilder();
         for(int i = 1; i < args.size(); i++) {
             builder.append(args.get(i)).append(" ");
         }
         String message = "+bc " + args.get(0) + " " + builder.toString();
 
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < serverBots.length; i++) {
             assert serverBots[i] != null;
             if(serverBots[i].getOnlineStatus().equals(OnlineStatus.ONLINE)) {
                 assert servers[i] != null;

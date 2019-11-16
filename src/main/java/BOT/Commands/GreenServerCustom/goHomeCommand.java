@@ -31,6 +31,9 @@ public class goHomeCommand implements ICommand {
                     if (event.getMember().getRoles().contains(event.getGuild().getRoleById("600012069559074822"))) {
                         flag = true;
                     }
+                    if (event.getMember().getRoles().contains(event.getGuild().getRoleById("600012855407935520"))) {
+                        flag = true;
+                    }
                 }
             } else {
                 event.getChannel().sendMessage("이 명령어는 이 서버에서 지원하지 않는 명령어입니다.").queue();

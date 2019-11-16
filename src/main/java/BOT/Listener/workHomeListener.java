@@ -1,12 +1,15 @@
 package BOT.Listener;
 
+import com.sun.xml.internal.ws.api.model.wsdl.editable.EditableWSDLMessage;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
+import javax.annotation.Nonnull;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -18,62 +21,56 @@ public class workHomeListener extends ListenerAdapter {
         assert guild != null;
         Role work = guild.getRoleById("622325436528984084");
         Role home = guild.getRoleById("622325520868311041");
-        String[] status = new String[10];
+        String[] discordID = new String[] {
+                "368688044934561792", "306321660145958913", "284508374924787713", "315746279730839552", "209239034721992704",
+                "456088053933539328", "405018851399565323", "323402686412357632", "602853886218469406",
+                "501414420556152852", "492832169715040276"
+        };
+        String[] status = new String[discordID.length];
         TimerTask job = new TimerTask() {
             @Override
             public void run() {
-                if(Objects.requireNonNull(guild.getMemberById("368688044934561792")).getRoles().contains(work)) {
-                    status[0] = "출근";
-                } else if(Objects.requireNonNull(guild.getMemberById("368688044934561792")).getRoles().contains(home)) {
-                    status[0] = "퇴근";
+                try {
+                    for (int i = 0; i < discordID.length; i++) {
+                        if (Objects.requireNonNull(guild.getMemberById(discordID[i])).getRoles().contains(work)) {
+                            status[i] = "출근";
+                        } else if (Objects.requireNonNull(guild.getMemberById(discordID[i])).getRoles().contains(home)) {
+                            status[i] = "퇴근";
+                        } else {
+                            status[i] = "알수 없음";
+                        }
+                    }
+                    EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                            .setTitle("[O5 Council]")
+                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[0])).getNickname(), status[0], false)
+                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[1])).getNickname(), status[1], false);
+                    EmbedBuilder builder1 = EmbedUtils.defaultEmbed()
+                            .setTitle("[MTF Commander]")
+                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[2])).getNickname(), status[2], false)
+                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[3])).getNickname(), status[3], false)
+                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[4])).getNickname(), status[4], false);
+                    EmbedBuilder builder2 = EmbedUtils.defaultEmbed()
+                            .setTitle("[MTF Scientist]")
+                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[7])).getNickname(), status[7], false)
+                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[8])).getNickname(), status[8], false);
+                    EmbedBuilder builder3 = EmbedUtils.defaultEmbed()
+                            .setTitle("[MTF Lieutenant]")
+                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[5])).getNickname(), status[5], false)
+                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[6])).getNickname(), status[6], false)
+                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[9])).getNickname(), status[9], false);
+                    EmbedBuilder builder4 = EmbedUtils.defaultEmbed()
+                            .setTitle("[MTF Cadet]")
+                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[10])).getNickname(), status[10], false)
+                            .setFooter("30초 마다 새로 고침 됩니다.", "https://media.istockphoto.com/vectors/refresh-icon-element-of-web-icon-for-mobile-concept-and-web-apps-thin-vector-id1049047088");
+                    Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("634728269903560704", builder.build()).queue();
+                    Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("644872970233184276", builder1.build()).queue();
+                    Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("644872980249313280", builder2.build()).queue();
+                    Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("644872989313335296", builder3.build()).queue();
+                    Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("644873089825505291", builder4.build()).queue();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                if(Objects.requireNonNull(guild.getMemberById("306321660145958913")).getRoles().contains(work)) {
-                    status[1] = "출근";
-                } else if(Objects.requireNonNull(guild.getMemberById("306321660145958913")).getRoles().contains(home)) {
-                    status[1] = "퇴근";
-                }
-                if(Objects.requireNonNull(guild.getMemberById("456088053933539328")).getRoles().contains(work)) {
-                    status[3] = "출근";
-                } else if(Objects.requireNonNull(guild.getMemberById("456088053933539328")).getRoles().contains(home)) {
-                    status[3] = "퇴근";
-                }
-                if(Objects.requireNonNull(guild.getMemberById("284508374924787713")).getRoles().contains(work)) {
-                    status[4] = "출근";
-                } else if(Objects.requireNonNull(guild.getMemberById("284508374924787713")).getRoles().contains(home)) {
-                    status[4] = "퇴근";
-                }
-                if(Objects.requireNonNull(guild.getMemberById("342951769627688960")).getRoles().contains(work)) {
-                    status[5] = "출근";
-                } else if(Objects.requireNonNull(guild.getMemberById("342951769627688960")).getRoles().contains(home)) {
-                    status[5] = "퇴근";
-                }
-                if(Objects.requireNonNull(guild.getMemberById("315746279730839552")).getRoles().contains(work)) {
-                    status[6] = "출근";
-                } else if(Objects.requireNonNull(guild.getMemberById("315746279730839552")).getRoles().contains(home)) {
-                    status[6] = "퇴근";
-                }
-                if(Objects.requireNonNull(guild.getMemberById("405018851399565323")).getRoles().contains(work)) {
-                    status[7] = "출근";
-                } else if(Objects.requireNonNull(guild.getMemberById("405018851399565323")).getRoles().contains(home)) {
-                    status[7] = "퇴근";
-                }
-                if(Objects.requireNonNull(guild.getMemberById("501414420556152852")).getRoles().contains(work)) {
-                    status[8] = "출근";
-                } else if(Objects.requireNonNull(guild.getMemberById("501414420556152852")).getRoles().contains(home)) {
-                    status[8] = "퇴근";
-                }
-                EmbedBuilder builder = EmbedUtils.defaultEmbed()
-                        .setTitle("[출/퇴근 상태]")
-                        .addField("[운영팀장/개발팀] green1052", status[0], false)
-                        .addField("[운영팀] Joshua", status[1], false)
-                        .addField("[민원팀장/관리팀] Internal Security Department", status[3], false)
-                        .addField("[개발팀장/관리팀] kirito5572", status[4], false)
-                        .addField("[보안팀장/개발팀] 블루베어", status[5], false)
-                        .addField("[개발팀/관리팀] 도리닭 DoryDarg", status[7], false)
-                        .addField("[관리팀장] Lava", status[6], false)
-                        .addField("[관리팀] (백은) Silver", status[8], false)
-                        .setFooter("30초 마다 새로 고침 됩니다.", "https://media.istockphoto.com/vectors/refresh-icon-element-of-web-icon-for-mobile-concept-and-web-apps-thin-vector-id1049047088");
-                Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("634728269903560704",builder.build()).queue();
             }
         };
         Timer jobScheduler = new Timer();

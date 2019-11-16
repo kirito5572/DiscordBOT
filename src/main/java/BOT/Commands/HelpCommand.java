@@ -33,7 +33,7 @@ public class HelpCommand implements ICommand {
         ICommand command = manager.getCommand(joined);
 
         if(command == null) {
-            event.getChannel().sendMessage( "`"+joined + "`는 존재하지 않는 명령어 입니다.\n" +
+            event.getChannel().sendMessage( " `"+joined + "`는 존재하지 않는 명령어 입니다.\n" +
                     "`" + App.getPREFIX() + getInvoke() + "` 를 사용해 명령어 리스트를 확인하세요.").queue();
             return;
         }

@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 public class getSteamID {
     private static final Logger logger = LoggerFactory.getLogger(getSteamID.class);
+
     public static String[] SteamID(String ID) {
         String[] returns = new String[2];
         final boolean[] flag = {true};
@@ -48,7 +49,7 @@ public class getSteamID {
             }
             return returns;
         } catch (Exception e) {
-            return new String[] {
+            return new String[]{
                     "profile not found"
             };
         }
