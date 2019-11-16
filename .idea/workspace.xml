@@ -4,31 +4,7 @@
     <option name="SYNC_PROJECT_BEFORE_BUILD" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/HelpCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/HelpCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/MemberCount.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/MemberCount.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/TESTCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/TESTCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/VersionCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/VersionCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/Listener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/Listener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/MemberCountListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/MemberCountListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/workHomeListener$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/workHomeListener$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/workHomeListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/workHomeListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Objects/CommandManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Objects/CommandManager$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Objects/getSteamID.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Objects/getSteamID.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/GreenServerCustom/GreenNoticeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/GreenServerCustom/GreenNoticeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/GreenServerCustom/goHomeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/GreenServerCustom/goHomeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/GreenServerCustom/goWorkCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/GreenServerCustom/goWorkCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/HelpCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/MemberCount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/MemberCount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/TESTCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/TESTCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/Listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/Listener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/MemberCountListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/MemberCountListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/nekoDiscordMemberListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/nekoDiscordMemberListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/workHomeListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/workHomeListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/getSteamID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/getSteamID.java" afterDir="false" />
-    </list>
+    <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +138,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="Gradle.DiscordBOT [shadowJar]">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="BOT.App" />
       <module name="BOT.main" />
@@ -391,7 +367,7 @@
       <workItem from="1573095835502" duration="3920000" />
       <workItem from="1573515960999" duration="2741000" />
       <workItem from="1573648331085" duration="2181000" />
-      <workItem from="1573819053343" duration="5522000" />
+      <workItem from="1573819053343" duration="5822000" />
     </task>
     <servers />
   </component>

@@ -1,15 +1,12 @@
 package BOT.Listener;
 
-import com.sun.xml.internal.ws.api.model.wsdl.editable.EditableWSDLMessage;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-import javax.annotation.Nonnull;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
