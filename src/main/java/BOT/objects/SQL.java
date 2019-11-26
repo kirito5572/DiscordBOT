@@ -132,11 +132,10 @@ public class SQL {
         }).start();
         Thread.sleep(500);
         int i = 0;
-        do {
-            resultSet.next();
+        while (resultSet.next()) {
             data[i] = resultSet.getString("caseID");
             i++;
-        } while (resultSet.next());
+        }
         statement.close();
         connection.close();
         if(i > 0) {

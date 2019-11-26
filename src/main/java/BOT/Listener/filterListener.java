@@ -5,17 +5,17 @@ import BOT.Objects.config;
 import BOT.Objects.linkConfirm;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.Permission;
-import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.Role;
-import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.MessageUpdateEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nonnull;
 import java.awt.*;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -28,25 +28,62 @@ public class filterListener extends ListenerAdapter {
     private String latestMessage = "";
 
     @Override
+    public void onMessageUpdate(@Nonnull MessageUpdateEvent event) {
+        User author;
+        Message message;
+        Guild guild;
+        Member member;
+        Message messages;
+        MessageChannel channel;
+        JDA jda;
+        try {
+            author = event.getAuthor();
+            message = event.getMessage();
+            if(message.getAuthor().isBot()) {
+                return;
+            }
+            if(message.getContentRaw().startsWith("&") || message.getContentRaw().startsWith("$$")) {
+                return;
+            }
+            guild = event.getGuild();
+            messages = event.getMessage();
+            member = event.getMember();
+            channel = event.getChannel();
+            jda = event.getJDA();
+            filter(author, message, guild, member, messages, channel, jda);
+        } catch (Exception ignored) {
+        }
+    }
+
+    @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         User author;
         Message message;
         Guild guild;
+        Member member;
+        Message messages;
+        MessageChannel channel;
+        JDA jda;
         try {
             author = event.getAuthor();
             message = event.getMessage();
+            if(message.getAuthor().isBot()) {
+                return;
+            }
+            if(message.getContentRaw().startsWith("&") || message.getContentRaw().startsWith("$$")) {
+                return;
+            }
             guild = event.getGuild();
-
+            messages = event.getMessage();
+            member = event.getMember();
+            channel = event.getChannel();
+            jda = event.getJDA();
+            filter(author, message, guild, member, messages, channel, jda);
         } catch (Exception ignored) {
-            return;
         }
-        if(message.getAuthor().isBot()) {
-            return;
-        }
-        if(message.getContentRaw().startsWith("&") || message.getContentRaw().startsWith("$$")) {
-            return;
-        }
+    }
 
+    private void filter(User author, Message message, Guild guild, Member member, Message messages, MessageChannel channel, JDA jda) {
         String[] List = FilterList.getList();
         String[] list = FilterList.getCharList();
         String[] Lists = FilterList.getWebList();
@@ -162,24 +199,24 @@ public class filterListener extends ListenerAdapter {
 
             if(guild.getId().equals("600010501266866186")) {  //끄린이
                 Role role = guild.getRoleById("616229894401294356");
-                if(Objects.requireNonNull(event.getMember()).getRoles().contains(role)) { //외무부
+                if(Objects.requireNonNull(member).getRoles().contains(role)) { //외무부
                     linkPass = true;
                 }
             }
             if(guild.getId().equals("617222347425972234")) {  //캣카페
-                if(event.getChannel().getId().equals("620104084799750154")) {
+                if(channel.getId().equals("620104084799750154")) {
                     linkPass = true;
                 }
             }
             if(guild.getId().equals("607390203086372866")) {  //제이 서버
-                if(event.getChannel().getId().equals("607390781933617182")) {
+                if(channel.getId().equals("607390781933617182")) {
                     linkPass = true;
                 }
             }
             if(guild.getId().equals("508913681279483913") || guild.getId().equals("453817631603032065")) {  // 선우형 & 주먹밥
                 linkPass = true;
             }
-            if(guild.getId().equals("607390893804093442") || event.getChannel().getId().equals("600021475629727745")) { // 소프냥이 & 그린 영상 채널
+            if(guild.getId().equals("607390893804093442") || channel.getId().equals("600021475629727745")) { // 소프냥이 & 그린 영상 채널
                 if(rawMessage.contains("youtube")) {
                     linkPass = true;
                 }
@@ -209,13 +246,13 @@ public class filterListener extends ListenerAdapter {
                     }
                     try {
                         try {
-                            if (Objects.requireNonNull(event.getMember()).getRoles().contains(guild.getRolesByName("공개 처형", true).get(0))) {
+                            if (Objects.requireNonNull(member).getRoles().contains(guild.getRolesByName("공개 처형", true).get(0))) {
                                 message.delete().complete();
-                                event.getChannel().sendMessage("공개처형자 " + author.getAsMention() + ", 링크를 보내지 마세요.").complete().delete().queueAfter(3,TimeUnit.SECONDS);
+                                channel.sendMessage("공개처형자 " + author.getAsMention() + ", 링크를 보내지 마세요.").complete().delete().queueAfter(3,TimeUnit.SECONDS);
                                 logger.warn("공개 처형자 링크 필터링이 되었습니다. \n" +
-                                        "서버: " + event.getGuild().getName() + "\n" +
+                                        "서버: " + guild.getName() + "\n" +
                                         "이유: " + s + "\n" +
-                                        "보낸 사람: " + event.getMember().getNickname() + "\n" +
+                                        "보낸 사람: " + member.getNickname() + "\n" +
                                         "차단된 링크: " + getLink());
                             }
                         } catch (Exception ignored) {
@@ -223,33 +260,33 @@ public class filterListener extends ListenerAdapter {
 
                         if (Objects.requireNonNull(message.getMember()).hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                             logger.warn("관리자가 링크를 첨부했으나, 관리자는 필터링 되지 않습니다. \n" +
-                                    "서버: " + event.getGuild().getName() + "\n" +
+                                    "서버: " + guild.getName() + "\n" +
                                     "이유: " + s + "\n" +
                                     "차단된 링크: " + getLink());
                             return;
                         }
                         if (!guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) {
-                            event.getChannel().sendMessage("링크가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
+                            channel.sendMessage("링크가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
 
                             return;
                         }
                         message.delete().queue();
-                        event.getChannel().sendMessage(Objects.requireNonNull(event.getMember()).getAsMention() + ", 링크를 보내지 마세요.").queue();
+                        channel.sendMessage(Objects.requireNonNull(member).getAsMention() + ", 링크를 보내지 마세요.").queue();
                         logger.warn("링크 필터링이 되었습니다. \n" +
-                                "서버: " + event.getGuild().getName() + "\n" +
+                                "서버: " + guild.getName() + "\n" +
                                 "이유: " + s + "\n" +
-                                "보낸 사람: " + event.getMember().getNickname() + "\n" +
+                                "보낸 사람: " + member.getNickname() + "\n" +
                                 "차단된 링크: " + getLink());
-                        if(event.getGuild().getId().equals("600010501266866186")) {
-                            Objects.requireNonNull(event.getGuild().getTextChannelById("623841727823740928")).sendMessage("링크 필터링이 되었습니다. \n" +
-                                    "서버: " + event.getGuild().getName() + "\n" +
+                        if(guild.getId().equals("600010501266866186")) {
+                            Objects.requireNonNull(guild.getTextChannelById("623841727823740928")).sendMessage("링크 필터링이 되었습니다. \n" +
+                                    "서버: " + guild.getName() + "\n" +
                                     "이유: " + s + "\n" +
-                                    "보낸 사람: " + event.getMember().getNickname() + "\n" +
+                                    "보낸 사람: " + member.getNickname() + "\n" +
                                     "차단된 링크: " + getLink()).queue();
                         }
                         return;
                     } catch (Exception e) {
-                        if (event.getJDA().getSelfUser().getId().equals("592987181186940931")) {
+                        if (jda.getSelfUser().getId().equals("592987181186940931")) {
 
                             StackTraceElement[] eStackTrace = e.getStackTrace();
                             StringBuilder a = new StringBuilder();
@@ -263,18 +300,6 @@ public class filterListener extends ListenerAdapter {
             }
         }
         if(!filterPass) {
-            boolean clean = true;
-            while (clean) {
-                for (String values : list) {
-                    try {
-                        rawMessage = rawMessage.replace(values, "");
-                    } catch (Exception ignored) {
-                    }
-                }
-                for (String values : list) {
-                    clean = rawMessage.contains(values);
-                }
-            }
             for (String s : List) {
                 if (rawMessage.contains(s)) {
                     try {
@@ -288,19 +313,19 @@ public class filterListener extends ListenerAdapter {
                         }
                         if (Objects.requireNonNull(message.getMember()).hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
                             logger.warn("관리자가 금지어를 말했으나, 관리자는 필터링 되지 않습니다. \n" +
-                                    "서버: " + event.getGuild().getName() + "\n" +
+                                    "서버: " + guild.getName() + "\n" +
                                     "금지어: " + s + "\n" +
                                     "문장: " + message.getContentRaw());
 
                             return;
                         }
                         if (!guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) {
-                            event.getChannel().sendMessage("금지어가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
+                            channel.sendMessage("금지어가 입력되었으나 봇이 삭제할 권한이 없습니다.").queue();
 
                             return;
                         }
                         logger.warn(author.getAsMention() + "가 금지어를 사용하였습니다.\n" +
-                                "서버: " + event.getGuild().getName() + "\n" +
+                                "서버: " + guild.getName() + "\n" +
                                 "금지어: " + s + "\n" +
                                 "문장: " + message.getContentRaw());
                         String messagetemp = message.getContentRaw();
@@ -323,7 +348,7 @@ public class filterListener extends ListenerAdapter {
                             }
                         }
                         message.delete().complete();
-                        id = event.getChannel().sendMessage(messagetemp + "\n " + author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").complete().getId();
+                        id = channel.sendMessage(messagetemp + "\n " + author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").complete().getId();
                         EmbedBuilder builder = EmbedUtils.defaultEmbed()
                                 .setTitle("금지어 사용")
                                 .setColor(Color.RED)
@@ -358,7 +383,7 @@ public class filterListener extends ListenerAdapter {
             if (guild.getId().equals("600010501266866186")) {
                 for (String s : greenList) {
                     if (rawMessage.contains(s)) {
-                        if (guild.getSelfMember().getUser().getId().equals(Objects.requireNonNull(event.getMember()).getUser().getId())) {
+                        if (guild.getSelfMember().getUser().getId().equals(Objects.requireNonNull(member).getUser().getId())) {
 
                             return;
                         }
@@ -368,13 +393,12 @@ public class filterListener extends ListenerAdapter {
                             return;
                         }
                         message.delete().complete();
-                        event.getChannel().sendMessage("타 서버 발언은 모두 차단됩니다.").queue();
+                        channel.sendMessage("타 서버 발언은 모두 차단됩니다.").queue();
                     }
                 }
             }
         }
         if(!killPass) {
-            Message messages = event.getMessage();
 
             Role role;
             try {
@@ -403,15 +427,15 @@ public class filterListener extends ListenerAdapter {
             try {
                 if (Objects.requireNonNull(messages.getMember()).getRoles().contains(role)) {
                     if (publicflag) {
-                        event.getChannel().deleteMessageById(id).queueAfter(time, TimeUnit.SECONDS);
+                        channel.deleteMessageById(id).queueAfter(time, TimeUnit.SECONDS);
                         EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
                                 .addField("공개 처형", "당신의 필터링된 메세지도 " + time + "초후 자동으로 삭제됩니다.", true);
-                        event.getChannel().sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
+                        channel.sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
                     } else {
                         messages.delete().queueAfter(time, TimeUnit.SECONDS);
                         EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
                                 .addField("공개 처형", "당신의 메세지는 " + time + "초후 자동으로 삭제됩니다.", true);
-                        event.getChannel().sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
+                        channel.sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
                     }
                 }
             } catch (Exception ignored) {

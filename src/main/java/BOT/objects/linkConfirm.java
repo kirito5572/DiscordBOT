@@ -8,6 +8,12 @@ import java.util.regex.Pattern;
 public class linkConfirm {
     private static String link;
     public static boolean isLink(String rawMessage, String s) {
+        if(rawMessage.startsWith("http://")) {
+            rawMessage = rawMessage.replaceFirst("http://", "");
+        }
+        if(rawMessage.startsWith("https://")) {
+            rawMessage = rawMessage.replaceFirst("https://", "");
+        }
         Pattern p = Pattern.compile("[A-Za-z0-9_]*" + s);
         Matcher m = p.matcher(rawMessage);
         if(rawMessage.contains(" ")) {

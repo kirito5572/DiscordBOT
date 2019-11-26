@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/filterListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/filterListener.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -369,7 +371,8 @@
       <workItem from="1573095835502" duration="3920000" />
       <workItem from="1573515960999" duration="2741000" />
       <workItem from="1573648331085" duration="2181000" />
-      <workItem from="1573819053343" duration="6619000" />
+      <workItem from="1573819053343" duration="53239000" />
+      <workItem from="1574490768262" duration="6288000" />
     </task>
     <servers />
   </component>
