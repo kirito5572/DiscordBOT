@@ -51,6 +51,7 @@ public class App {
         GreenAutoDBWriteListener greenAutoDBWriteListener = new GreenAutoDBWriteListener();
         SteamServerStatusListener steamServerStatusListener = new SteamServerStatusListener();
         activityChangeListener activityChangeListener = new activityChangeListener();
+        CroissantRoleListener croissantRoleListener = new CroissantRoleListener();
         Logger logger = LoggerFactory.getLogger(App.class);
 
         StringBuilder TOKENreader = new StringBuilder();
@@ -135,7 +136,7 @@ public class App {
                     .setToken(TOKEN)
                     .setAutoReconnect(true)
                     .addEventListeners(memberCountListener, listener, filterlistener, salListener, onigiriListener, nekoDiscordMemberListener, steamServerStatusListener,
-                            greenServerMuteListener, greenServerNoticeListener, workHomeListener, greenAutoDBWriteListener, activityChangeListener)
+                            greenServerMuteListener, greenServerNoticeListener, workHomeListener, greenAutoDBWriteListener, activityChangeListener, croissantRoleListener)
                     .build().awaitReady();
             logger.info("부팅완료");
         } catch (LoginException | InterruptedException e) {
