@@ -20,6 +20,8 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
     private static String Chating1;
     private static String Chating2;
     private static String catCafe = "644872685213581312";
+    private static String greenServer = "656658148093853736";
+
     @Override
     public void onMessageReactionAdd(MessageReactionAddEvent event) {
         Guild guild = event.getGuild();
@@ -49,6 +51,15 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                 guild.addRoleToMember(member, role).complete();
                 member.getUser().openPrivateChannel().complete().sendMessage("확성기 역할 부여!").queue();
             }
+        } else if (guild.getId().equals("600010501266866186")) {
+            Role role = guild.getRoleById("656658408589754378");
+            Member member = event.getMember();
+            if (event.getMessageId().equals(greenServer)) {
+                assert member != null;
+                assert role != null;
+                guild.addRoleToMember(member, role).complete();
+                member.getUser().openPrivateChannel().complete().sendMessage("친목 채널 활성화가 완료되었습니다.").queue();
+            }
         }
     }
     public void onMessageReactionRemove(MessageReactionRemoveEvent event) {
@@ -70,6 +81,15 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                 assert role != null;
                 guild.removeRoleFromMember(member, role).complete();
                 member.getUser().openPrivateChannel().complete().sendMessage("확성기 역할 제거!").queue();
+            }
+        } else if (guild.getId().equals("600010501266866186")) {
+            Role role = guild.getRoleById("656658408589754378");
+            Member member = event.getMember();
+            if (event.getMessageId().equals(greenServer)) {
+                assert member != null;
+                assert role != null;
+                guild.removeRoleFromMember(member, role).complete();
+                member.getUser().openPrivateChannel().complete().sendMessage("친목 채널 비활성화가 완료되었습니다.").queue();
             }
         }
     }
