@@ -20,7 +20,7 @@ public class workHomeListener extends ListenerAdapter {
         Role home = guild.getRoleById("622325520868311041");
         String[] discordID = new String[] {
                 "368688044934561792", "306321660145958913", "284508374924787713", "315746279730839552", "209239034721992704",
-                "456088053933539328", "405018851399565323", "323402686412357632", "602853886218469406",
+                "456088053933539328", "602853886218469406",
                 "501414420556152852", "492832169715040276"
         };
         String[] status = new String[discordID.length];
@@ -47,17 +47,15 @@ public class workHomeListener extends ListenerAdapter {
                             .addField(Objects.requireNonNull(guild.getMemberById(discordID[3])).getNickname(), status[3], false)
                             .addField(Objects.requireNonNull(guild.getMemberById(discordID[4])).getNickname(), status[4], false);
                     EmbedBuilder builder2 = EmbedUtils.defaultEmbed()
-                            .setTitle("[MTF Scientist]")
-                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[7])).getNickname(), status[7], false)
-                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[8])).getNickname(), status[8], false);
+                            .setTitle("[MTF Scientist]");
                     EmbedBuilder builder3 = EmbedUtils.defaultEmbed()
                             .setTitle("[MTF Lieutenant]")
                             .addField(Objects.requireNonNull(guild.getMemberById(discordID[5])).getNickname(), status[5], false)
                             .addField(Objects.requireNonNull(guild.getMemberById(discordID[6])).getNickname(), status[6], false)
-                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[9])).getNickname(), status[9], false);
+                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[7])).getNickname(), status[7], false);
                     EmbedBuilder builder4 = EmbedUtils.defaultEmbed()
                             .setTitle("[MTF Cadet]")
-                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[10])).getNickname(), status[10], false)
+                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[8])).getNickname(), status[8], false)
                             .setFooter("30초 마다 새로 고침 됩니다.", "https://media.istockphoto.com/vectors/refresh-icon-element-of-web-icon-for-mobile-concept-and-web-apps-thin-vector-id1049047088");
                     Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("634728269903560704", builder.build()).queue();
                     Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("644872970233184276", builder1.build()).queue();
