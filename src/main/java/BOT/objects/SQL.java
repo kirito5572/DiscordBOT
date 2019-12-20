@@ -20,6 +20,7 @@ public class SQL {
     private static Statement statement;
     private static Statement loggingStatement;
     private static ResultSet resultSet;
+    private static ResultSet resultSet6;
     private static ResultSet loggingResultSet;
     private static String driverName;
     private static String url;
@@ -83,6 +84,8 @@ public class SQL {
         url = "jdbc:mysql://" + endPoint.toString() + "/ritobotDB?serverTimezone=UTC";
         user = "admin";
         password = SQLPassword.toString();
+        System.out.println(url);
+        System.out.println(password);
     }
     public static void SQLupload(String SteamID, String time, String reason, String confirmUser) {
         caseIDup();
@@ -90,7 +93,7 @@ public class SQL {
         Date date = new Date();
         SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd aa hh:mm:ss");
         String DBWriteTime = dayTime.format(date);
-        String queryString = "INSERT INTO Sanction_Infor VALUE (\"" + caseID + "\",\""+ SteamID + "\", \"" + DBWriteTime + "\", \"" + time + "\", \"" + reason + "\", \"" + confirmUser + "\" );";
+        String queryString = "INSERT INTO Sanction_Infor VALUE (\''" + caseID + "\',\'"+ SteamID + "\', \'" + DBWriteTime + "\', \'" + time + "\', \'" + reason + "\', \'" + confirmUser + "\' );";
 
 
         System.out.println(queryString);
@@ -118,7 +121,7 @@ public class SQL {
             data[i] = null;
         }
 
-        String queryString = "SELECT * FROM Sanction_Infor WHERE SteamID =\"" + SteamID +"\";";
+        String queryString = "SELECT * FROM Sanction_Infor WHERE SteamID =\''" + SteamID +"\';";
 
         Class.forName(driverName);
         new Thread(() -> {
@@ -152,7 +155,7 @@ public class SQL {
             data[i] = null;
         }
 
-        String queryString = "SELECT * FROM Sanction_Infor WHERE caseID =\"" + caseID +"\";";
+        String queryString = "SELECT * FROM Sanction_Infor WHERE caseID =\'" + caseID +"\';";
 
         Class.forName(driverName);
         new Thread(() -> {
@@ -201,14 +204,14 @@ public class SQL {
             logger.warn(a.toString());
         }
     }
-    public static boolean loggingMessageUpLoad(String guildId, String messageId, String contentRaw) {
-        String queryString = "INSERT INTO messageLogging VALUE (" + guildId + ","+ messageId + ", \"" + contentRaw + "\" );";
+    public static boolean loggingMessageUpLoad(String guildId, String messageId, String contentRaw, String authorId) {
+        String queryString = "INSERT INTO messageLogging VALUE (" + guildId + ","+ messageId + ", \'" + contentRaw + "\'," + authorId +");";
         System.out.println(queryString);
         try {
             Class.forName(driverName);
 
             loggingConnection = DriverManager.getConnection(url, user, password);
-            loggingStatement = connection.createStatement();
+            loggingStatement = loggingConnection.createStatement();
             loggingStatement.executeUpdate(queryString);
             loggingStatement.close();
             loggingConnection.close();
@@ -223,44 +226,187 @@ public class SQL {
         }
         return true;
     }
-    public static String[] loggingMessageDownLoad(String guildId, String messageId) {
-        String[] data = new String[2];
-        String queryString = "SELECT FROM messageLogging WHERE MessageId=" + messageId + ", GuildId=" + guildId + ";";
+
+    public static boolean loggingMessageUpdate(String guildId, String messageId, String contentRaw, String authorId) {
+        String queryString = "UPDATE messageLogging SET ContentRaw = \'" + contentRaw +"\' WHERE GuildId = \'" + guildId + "\' AND MessageId = \'" + messageId + "\';";
         System.out.println(queryString);
         try {
             Class.forName(driverName);
 
             loggingConnection = DriverManager.getConnection(url, user, password);
-            loggingStatement = connection.createStatement();
-            loggingResultSet = loggingStatement.executeQuery(queryString);
+            loggingStatement = loggingConnection.createStatement();
+            loggingStatement.executeUpdate(queryString);
+            loggingStatement.close();
+            loggingConnection.close();
         } catch (Exception e) {
-            try {
-                StackTraceElement[] eStackTrace = e.getStackTrace();
-                StringBuilder a = new StringBuilder();
-                for (StackTraceElement stackTraceElement : eStackTrace) {
-                    a.append(stackTraceElement).append("\n");
-                }
-                logger.warn(a.toString());
-                do {
-                    data[0] = loggingResultSet.getString("ContentRaw");
-                    data[1] = loggingResultSet.getString("Author");
-                } while (resultSet.next());
-            } catch(SQLException e1){
-                StackTraceElement[] eStackTrace = e1.getStackTrace();
-                StringBuilder a = new StringBuilder();
-                for (StackTraceElement stackTraceElement : eStackTrace) {
-                    a.append(stackTraceElement).append("\n");
-                }
-                logger.warn(a.toString());
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
             }
-            try {
-                loggingStatement.close();
-                loggingConnection.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+            logger.warn(a.toString());
+            return false;
+        }
+        return true;
+    }
+
+    public static String[] loggingMessageDownLoad(String guildId, String messageId) {
+        String[] data = new String[2];
+        String queryString = "SELECT * FROM messageLogging WHERE MessageId=" + messageId + " AND GuildId=" + guildId + ";";
+        System.out.println(queryString);
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            loggingConnection = DriverManager.getConnection(url, user, password);
+            loggingStatement = loggingConnection.createStatement();
+            loggingResultSet = loggingStatement.executeQuery(queryString);
+            while (loggingResultSet.next()) {
+                data[0] = loggingResultSet.getString("ContentRaw");
+                data[1] = loggingResultSet.getString("Author");
             }
+        } catch (Exception e) {
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
+        }
+        try {
+            loggingStatement.close();
+            loggingConnection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
 
         return data;
+    }
+    public static final int color_guild = 1;
+    public static final int filter = 2;
+    public static final int link_filter = 3;
+    public static final int kill_filter = 4;
+    public static final int lewdneko =5;
+    public static final int color_role = 6;
+
+    public static String[] configDownLoad(int option) {
+        String[] return_data = new String[] {"error"};
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String queryString;
+            int i = 0;
+            switch (option) {
+                case color_guild:
+                    queryString = "SELECT * FROM ritobot_config.color_command_guild WHERE disable = 1";
+                    connection = DriverManager.getConnection(url, user, password);
+                    statement = connection.createStatement();
+                    resultSet6 = statement.executeQuery(queryString);
+                    while (resultSet6.next()) {
+                        if (i == 0) {
+                            return_data = new String[] {
+                                    resultSet6.getString("guildId")};
+                            i++;
+                        } else {
+                            String[] newArray = Arrays.copyOf(return_data, return_data.length + 1);
+                            newArray[return_data.length] = resultSet6.getString("guildId");
+                            return_data = newArray;
+                        }
+                    }
+                    break;
+                case filter:
+                    queryString = "SELECT * FROM ritobot_config.filter_guild WHERE disable = 1";
+                    connection = DriverManager.getConnection(url, user, password);
+                    statement = connection.createStatement();
+                    resultSet6 = statement.executeQuery(queryString);
+                    return_data = new String[resultSet6.getFetchSize()];
+                    while (resultSet6.next()) {
+                        if (i == 0) {
+                            return_data = new String[] {
+                                    resultSet6.getString("guildId")};
+                            i++;
+                        } else {
+                            String[] newArray = Arrays.copyOf(return_data, return_data.length + 1);
+                            newArray[return_data.length] = resultSet6.getString("guildId");
+                            return_data = newArray;
+                        }
+                    }
+                    break;
+                case link_filter:
+                    queryString = "SELECT * FROM ritobot_config.link_filter_guild WHERE disable = 1";
+                    connection = DriverManager.getConnection(url, user, password);
+                    statement = connection.createStatement();
+                    resultSet6 = statement.executeQuery(queryString);
+                    return_data = new String[resultSet6.getFetchSize()];
+                    while (resultSet6.next()) {
+                        if (i == 0) {
+                            return_data = new String[] {
+                                    resultSet6.getString("guildId")};
+                            i++;
+                        } else {
+                            String[] newArray = Arrays.copyOf(return_data, return_data.length + 1);
+                            newArray[return_data.length] = resultSet6.getString("guildId");
+                            return_data = newArray;
+                        }
+                    }
+                    break;
+                case kill_filter:
+                    queryString = "SELECT * FROM ritobot_config.kill_filter_guild WHERE disable = 1";
+                    connection = DriverManager.getConnection(url, user, password);
+                    statement = connection.createStatement();
+                    resultSet6 = statement.executeQuery(queryString);
+                    return_data = new String[resultSet6.getFetchSize()];
+                    while (resultSet6.next()) {
+                        if (i == 0) {
+                            return_data = new String[] {
+                                    resultSet6.getString("guildId")};
+                            i++;
+                        } else {
+                            String[] newArray = Arrays.copyOf(return_data, return_data.length + 1);
+                            newArray[return_data.length] = resultSet6.getString("guildId");
+                            return_data = newArray;
+                        }
+                    }
+                    break;
+                case lewdneko:
+                    queryString = "SELECT * FROM ritobot_config.lewdneko_command WHERE disable = 1";
+                    connection = DriverManager.getConnection(url, user, password);
+                    statement = connection.createStatement();
+                    resultSet6 = statement.executeQuery(queryString);
+                    return_data = new String[resultSet6.getFetchSize()];
+                    while (resultSet6.next()) {
+                        if (i == 0) {
+                            return_data = new String[] {
+                                    resultSet6.getString("guildId")};
+                            i++;
+                        } else {
+                            String[] newArray = Arrays.copyOf(return_data, return_data.length + 1);
+                            newArray[return_data.length] = resultSet6.getString("guildId");
+                            return_data = newArray;
+                        }
+                    }
+                    break;
+                case color_role:
+                    queryString = "SELECT * FROM ritobot_config.color_command_role;";
+                    connection = DriverManager.getConnection(url, user, password);
+                    statement = connection.createStatement();
+                    resultSet6 = statement.executeQuery(queryString);
+                    return_data = new String[resultSet6.getFetchSize()];
+                    while (resultSet6.next()) {
+                        if (i == 0) {
+                            return_data = new String[] {
+                                    resultSet6.getString("roleId")};
+                            i++;
+                        } else {
+                            String[] newArray = Arrays.copyOf(return_data, return_data.length + 1);
+                            newArray[return_data.length] = resultSet6.getString("roleId");
+                            return_data = newArray;
+                        }
+                    }
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return_data = new String [] {"error"};
+        }
+        return return_data;
     }
 }

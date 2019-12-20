@@ -1033,6 +1033,7 @@ public class CommandManager {
                 }
             });
         }
+        addCommand(new OwnerChattingToServer());
     }
 
     private void addCommand(ICommand command) {

@@ -32,7 +32,8 @@ public class App {
     private static String PREFIX;
     private final Random random = new Random();
 
-    private App() {
+    public App() {
+        SQL sql = new SQL();
         config config = new config();
         date = new Date();
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy/MM/dd aa hh:mm:ss z");
@@ -52,6 +53,7 @@ public class App {
         SteamServerStatusListener steamServerStatusListener = new SteamServerStatusListener();
         activityChangeListener activityChangeListener = new activityChangeListener();
         CroissantRoleListener croissantRoleListener = new CroissantRoleListener();
+        loggerListener loggerListener = new loggerListener();
         Logger logger = LoggerFactory.getLogger(App.class);
 
         StringBuilder TOKENreader = new StringBuilder();
@@ -120,7 +122,6 @@ public class App {
             PREFIX = Constants.PREFIX;
             greenTOKEN = TOKENreaderGreen.toString();
         }
-        SQL sql = new SQL();
 
         WebUtils.setUserAgent("Chrome 75.0.3770.100 kirito's discord bot/kirito5572#5572");
 
@@ -136,7 +137,8 @@ public class App {
                     .setToken(TOKEN)
                     .setAutoReconnect(true)
                     .addEventListeners(memberCountListener, listener, filterlistener, salListener, onigiriListener, nekoDiscordMemberListener, steamServerStatusListener,
-                            greenServerMuteListener, greenServerNoticeListener, workHomeListener, greenAutoDBWriteListener, activityChangeListener, croissantRoleListener)
+                            greenServerMuteListener, greenServerNoticeListener, workHomeListener, greenAutoDBWriteListener, activityChangeListener, croissantRoleListener,
+                            loggerListener)
                     .build().awaitReady();
             logger.info("부팅완료");
         } catch (LoginException | InterruptedException e) {

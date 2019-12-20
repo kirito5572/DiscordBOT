@@ -20,8 +20,7 @@ public class workHomeListener extends ListenerAdapter {
         Role home = guild.getRoleById("622325520868311041");
         String[] discordID = new String[] {
                 "368688044934561792", "306321660145958913", "284508374924787713", "315746279730839552", "209239034721992704",
-                "456088053933539328", "602853886218469406",
-                "501414420556152852", "492832169715040276"
+                "405018851399565323", "456088053933539328", "501414420556152852", "492832169715040276"
         };
         String[] status = new String[discordID.length];
         TimerTask job = new TimerTask() {
