@@ -56,11 +56,11 @@ public class workHomeListener extends ListenerAdapter {
                             .setTitle("[MTF Cadet]")
                             .addField(Objects.requireNonNull(guild.getMemberById(discordID[8])).getNickname(), status[8], false)
                             .setFooter("30초 마다 새로 고침 됩니다.", "https://media.istockphoto.com/vectors/refresh-icon-element-of-web-icon-for-mobile-concept-and-web-apps-thin-vector-id1049047088");
-                    Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("634728269903560704", builder.build()).queue();
-                    Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("644872970233184276", builder1.build()).queue();
-                    Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("644872980249313280", builder2.build()).queue();
-                    Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("644872989313335296", builder3.build()).queue();
-                    Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("644873089825505291", builder4.build()).queue();
+                    Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("657901600358137856", builder.build()).queue();
+                    Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("657901620679540746", builder1.build()).queue();
+                    Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("657901624316002364", builder2.build()).queue();
+                    Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("657901627432501258", builder3.build()).queue();
+                    Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("657901634747367425", builder4.build()).queue();
 
                 } catch (Exception e) {
                     e.printStackTrace();

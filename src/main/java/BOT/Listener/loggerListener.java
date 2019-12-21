@@ -18,6 +18,10 @@ import org.apache.http.HttpRequest;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import static BOT.Objects.config.getTextLoggingEnable;
@@ -49,6 +53,9 @@ public class loggerListener extends ListenerAdapter {
         }
         while(messageContent.contains("\"")) {
             messageContent = messageContent.replaceFirst("\"", "");
+        }
+        while(messageContent.contains("\\")) {
+            messageContent = messageContent.replace("\\", "");
         }
         if (messageContent.contains("\\'")) {
             messageContent = messageContent.replace("\\'", "\\\\'");
@@ -92,6 +99,9 @@ public class loggerListener extends ListenerAdapter {
         if (event.getAuthor().isBot()) {
             return;
         }
+        while(messageContent.contains("\\")) {
+            messageContent = messageContent.replace("\\", "");
+        }
         while(messageContent.contains("'")) {
             messageContent = messageContent.replaceFirst("'", "");
         }
@@ -117,11 +127,18 @@ public class loggerListener extends ListenerAdapter {
         }).start();
         Member member = event.getGuild().getMemberById(authorId);
         assert member != null;
+        SimpleDateFormat format2 = new SimpleDateFormat( "yyyy년 MM월dd일 HH시mm분ss초");
+
+        Date time = new Date();
+
+        String time2 = format2.format(time);
         EmbedBuilder builder = EmbedUtils.defaultEmbed()
                 .setTitle("수정된 메세지")
                 .setColor(Color.ORANGE)
+                .setDescription("메세지 수정: " + event.getChannel().getAsMention())
                 .addField("수정전 내용", data[0], false)
                 .addField("수정후 내용", messageContent, false)
+                .addField("수정 시간", time2, false)
                 .setFooter((member.getEffectiveName() + "(" + member.getNickname() + ")"), member.getUser().getAvatarUrl());
         messageLoggingSend(builder, guild);
     }
@@ -144,16 +161,27 @@ public class loggerListener extends ListenerAdapter {
         String messageId = event.getMessageId();
         Guild guild = event.getGuild();
         String[] data = SQL.loggingMessageDownLoad(guild.getId(), messageId);
-        if (data[0].length() < 2) {
+        try {
+            if (data[0].length() < 2) {
+                return;
+            }
+        } catch (NullPointerException e) {
             return;
         }
         Member member = event.getGuild().getMemberById(data[1]);
         assert member != null;
+        SimpleDateFormat format2 = new SimpleDateFormat( "yyyy년 MM월dd일 HH시mm분ss초");
+
+        Date time = new Date();
+
+        String time2 = format2.format(time);
         EmbedBuilder builder = EmbedUtils.defaultEmbed()
                 .setTitle("삭제된 메세지")
                 .setColor(Color.RED)
+                .setDescription("메세지 삭제: " + event.getChannel().getAsMention())
                 .addField("내용", data[0], false)
                 .addField("메세지 ID", messageId, false)
+                .addField("삭제 시간", time2, false)
                 .setFooter((member.getEffectiveName() + "(" + member.getNickname() + ")"), member.getUser().getAvatarUrl());
         messageLoggingSend(builder, guild);
         /*

@@ -23,9 +23,7 @@ public class SQL {
     private static ResultSet resultSet6;
     private static ResultSet loggingResultSet;
     private static String driverName;
-    private static String url;
-    private static String user;
-    private static String password;
+
     public SQL() {
         //init
         StringBuilder caseIDBuilder = new StringBuilder();
@@ -81,11 +79,17 @@ public class SQL {
             logger.warn(a.toString());
         }
         driverName = "com.mysql.cj.jdbc.Driver";
-        url = "jdbc:mysql://" + endPoint.toString() + "/ritobotDB?serverTimezone=UTC";
-        user = "admin";
-        password = SQLPassword.toString();
+        String url = "jdbc:mysql://" + endPoint.toString() + "/ritobotDB?serverTimezone=UTC";
+        String user = "admin";
+        String password = SQLPassword.toString();
         System.out.println(url);
         System.out.println(password);
+        try {
+            connection = DriverManager.getConnection(url, user, password);
+            loggingConnection = DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     public static void SQLupload(String SteamID, String time, String reason, String confirmUser) {
         caseIDup();
@@ -100,11 +104,9 @@ public class SQL {
         try {
             Class.forName(driverName);
 
-            connection = DriverManager.getConnection(url, user, password);
             statement = connection.createStatement();
             statement.executeUpdate(queryString);
             statement.close();
-            connection.close();
         } catch (Exception e) {
 
             StackTraceElement[] eStackTrace = e.getStackTrace();
@@ -126,7 +128,6 @@ public class SQL {
         Class.forName(driverName);
         new Thread(() -> {
             try {
-                connection = DriverManager.getConnection(url, user, password);
                 statement = connection.createStatement();
                 resultSet = statement.executeQuery(queryString);
             } catch (Exception e) {
@@ -140,7 +141,6 @@ public class SQL {
             i++;
         }
         statement.close();
-        connection.close();
         if(i > 0) {
             return Arrays.copyOfRange(data, 0, i);
         } else {
@@ -160,7 +160,6 @@ public class SQL {
         Class.forName(driverName);
         new Thread(() -> {
             try {
-                connection = DriverManager.getConnection(url, user, password);
                 statement = connection.createStatement();
                 resultSet = statement.executeQuery(queryString);
             } catch (Exception e) {
@@ -176,7 +175,6 @@ public class SQL {
             data[4] = resultSet.getString("confirmUser");
         }
         statement.close();
-        connection.close();
 
         return data;
     }
@@ -210,11 +208,9 @@ public class SQL {
         try {
             Class.forName(driverName);
 
-            loggingConnection = DriverManager.getConnection(url, user, password);
             loggingStatement = loggingConnection.createStatement();
             loggingStatement.executeUpdate(queryString);
             loggingStatement.close();
-            loggingConnection.close();
         } catch (Exception e) {
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
@@ -233,11 +229,9 @@ public class SQL {
         try {
             Class.forName(driverName);
 
-            loggingConnection = DriverManager.getConnection(url, user, password);
             loggingStatement = loggingConnection.createStatement();
             loggingStatement.executeUpdate(queryString);
             loggingStatement.close();
-            loggingConnection.close();
         } catch (Exception e) {
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
@@ -257,7 +251,6 @@ public class SQL {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            loggingConnection = DriverManager.getConnection(url, user, password);
             loggingStatement = loggingConnection.createStatement();
             loggingResultSet = loggingStatement.executeQuery(queryString);
             while (loggingResultSet.next()) {
@@ -274,7 +267,6 @@ public class SQL {
         }
         try {
             loggingStatement.close();
-            loggingConnection.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -297,7 +289,6 @@ public class SQL {
             switch (option) {
                 case color_guild:
                     queryString = "SELECT * FROM ritobot_config.color_command_guild WHERE disable = 1";
-                    connection = DriverManager.getConnection(url, user, password);
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     while (resultSet6.next()) {
@@ -314,7 +305,6 @@ public class SQL {
                     break;
                 case filter:
                     queryString = "SELECT * FROM ritobot_config.filter_guild WHERE disable = 1";
-                    connection = DriverManager.getConnection(url, user, password);
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     return_data = new String[resultSet6.getFetchSize()];
@@ -332,7 +322,6 @@ public class SQL {
                     break;
                 case link_filter:
                     queryString = "SELECT * FROM ritobot_config.link_filter_guild WHERE disable = 1";
-                    connection = DriverManager.getConnection(url, user, password);
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     return_data = new String[resultSet6.getFetchSize()];
@@ -350,7 +339,6 @@ public class SQL {
                     break;
                 case kill_filter:
                     queryString = "SELECT * FROM ritobot_config.kill_filter_guild WHERE disable = 1";
-                    connection = DriverManager.getConnection(url, user, password);
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     return_data = new String[resultSet6.getFetchSize()];
@@ -368,7 +356,6 @@ public class SQL {
                     break;
                 case lewdneko:
                     queryString = "SELECT * FROM ritobot_config.lewdneko_command WHERE disable = 1";
-                    connection = DriverManager.getConnection(url, user, password);
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     return_data = new String[resultSet6.getFetchSize()];
@@ -386,7 +373,6 @@ public class SQL {
                     break;
                 case color_role:
                     queryString = "SELECT * FROM ritobot_config.color_command_role;";
-                    connection = DriverManager.getConnection(url, user, password);
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     return_data = new String[resultSet6.getFetchSize()];
@@ -403,6 +389,7 @@ public class SQL {
                     }
                     break;
             }
+            resultSet6.close();
         } catch (Exception e) {
             e.printStackTrace();
             return_data = new String [] {"error"};
