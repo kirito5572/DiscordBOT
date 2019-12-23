@@ -1034,6 +1034,7 @@ public class CommandManager {
             });
         }
         addCommand(new OwnerChattingToServer());
+        addCommand(new configCommand());
     }
 
     private void addCommand(ICommand command) {

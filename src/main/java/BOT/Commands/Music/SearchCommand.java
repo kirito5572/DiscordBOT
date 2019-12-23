@@ -38,7 +38,10 @@ public class SearchCommand implements ICommand {
             if(!audioManager.isConnected()) {
                 Member selfMember = event.getGuild().getSelfMember();
 
-                assert voiceChannel != null;
+                if(voiceChannel == null) {
+                    channel.sendMessage("먼저 보이스 채널에 들어오세요").queue();
+                    return;
+                }
                 if(!selfMember.hasPermission(voiceChannel, Permission.VOICE_CONNECT)) {
                     channel.sendMessageFormat("%s 보이스 채널에 들어올 권한이 없습니다.",voiceChannel).queue();
                     return;

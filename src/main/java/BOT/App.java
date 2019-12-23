@@ -34,7 +34,7 @@ public class App {
 
     public App() {
         SQL sql = new SQL();
-        config config = new config();
+        config.config_load();
         date = new Date();
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy/MM/dd aa hh:mm:ss z");
         Time = format1.format(date);

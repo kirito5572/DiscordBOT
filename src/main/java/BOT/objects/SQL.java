@@ -23,6 +23,9 @@ public class SQL {
     private static ResultSet resultSet6;
     private static ResultSet loggingResultSet;
     private static String driverName;
+    private static String url;
+    private static String user;
+    private static String password;
 
     public SQL() {
         //init
@@ -79,9 +82,9 @@ public class SQL {
             logger.warn(a.toString());
         }
         driverName = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://" + endPoint.toString() + "/ritobotDB?serverTimezone=UTC";
-        String user = "admin";
-        String password = SQLPassword.toString();
+        url = "jdbc:mysql://" + endPoint.toString() + "/ritobotDB?serverTimezone=UTC";
+        user = "admin";
+        password = SQLPassword.toString();
         System.out.println(url);
         System.out.println(password);
         try {
@@ -218,6 +221,11 @@ public class SQL {
                 a.append(stackTraceElement).append("\n");
             }
             logger.warn(a.toString());
+            try {
+                loggingConnection = DriverManager.getConnection(url, user, password);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             return false;
         }
         return true;
@@ -239,6 +247,11 @@ public class SQL {
                 a.append(stackTraceElement).append("\n");
             }
             logger.warn(a.toString());
+            try {
+                loggingConnection = DriverManager.getConnection(url, user, password);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             return false;
         }
         return true;
@@ -264,6 +277,11 @@ public class SQL {
                 a.append(stackTraceElement).append("\n");
             }
             logger.warn(a.toString());
+            try {
+                loggingConnection = DriverManager.getConnection(url, user, password);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
         try {
             loggingStatement.close();
@@ -279,6 +297,158 @@ public class SQL {
     public static final int kill_filter = 4;
     public static final int lewdneko =5;
     public static final int color_role = 6;
+    public static final int textLogging = 7;
+    public static final int channelLogging = 8;
+
+    public static String[] configDownLoad(String guildId) {
+
+        String[] return_data = new String[] {
+                "0", "0", "0", "0", "0", "0", "0", "1"
+        };
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String queryString;
+            queryString = "SELECT * FROM ritobot_config.color_command_guild WHERE guildId =" + guildId;
+            statement = connection.createStatement();
+            resultSet6 = statement.executeQuery(queryString);
+            while (resultSet6.next()) {
+                return_data[0] = resultSet6.getString("disable");
+            }
+            resultSet6.close();
+            queryString = "SELECT * FROM ritobot_config.filter_guild WHERE guildId =" + guildId;
+            resultSet6 = statement.executeQuery(queryString);
+            while (resultSet6.next()) {
+                return_data[1] = resultSet6.getString("disable");
+            }
+            queryString = "SELECT * FROM ritobot_config.link_filter_guild WHERE guildId =" + guildId;
+            resultSet6 = statement.executeQuery(queryString);
+            while (resultSet6.next()) {
+                return_data[2] = resultSet6.getString("disable");
+            }
+            queryString = "SELECT * FROM ritobot_config.kill_filter_guild WHERE guildId =" + guildId;
+            resultSet6 = statement.executeQuery(queryString);
+            while (resultSet6.next()) {
+                return_data[3] = resultSet6.getString("disable");
+            }
+            queryString = "SELECT * FROM ritobot_config.lewdneko_command WHERE guildId =" + guildId;
+            resultSet6 = statement.executeQuery(queryString);
+            while (resultSet6.next()) {
+                return_data[4] = resultSet6.getString("disable");
+            }
+            queryString = "SELECT * FROM ritobot_config.logging_enable WHERE guildId =" + guildId;
+            resultSet6 = statement.executeQuery(queryString);
+            while (resultSet6.next()) {
+                return_data[5] = resultSet6.getString("text_logging");
+                return_data[6] = resultSet6.getString("channel_logging");
+            }
+            queryString = "SELECT * FROM ritobot_config.color_command_role WHERE guildId =" + guildId;
+            resultSet6 = statement.executeQuery(queryString);
+            if (resultSet6.next()) {
+                return_data[7] = "0";
+            } else {
+                return_data[7] = "1";
+            }
+
+            resultSet6.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return_data = new String[] {"error"};
+        }
+        return return_data;
+    }
+
+    public static void configSetup(String guildId, String disable, String roleId, boolean insert) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String queryString = "";
+            if (guildId.length() < 15) {
+                return;
+            }
+            if (insert) {
+                queryString = "INSERT INTO ritobot_config.color_command_role VALUES (" + guildId + ", " + roleId + ")";
+            } else {
+                queryString = "DELETE FROM ritobot_config.color_command_role WHERE guildId =" + guildId + " AND roleId =" + roleId;
+            }
+            System.out.println(queryString);
+            statement = connection.createStatement();
+            statement.executeUpdate(queryString);
+            resultSet6.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void configSetup(String guildId, int option, String disable) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String queryString = "";
+            if (guildId.length() < 15) {
+                return;
+            }
+            switch (option) {
+                case color_guild:
+                    queryString = "UPDATE ritobot_config.color_command_guild SET disable=" + disable + " WHERE guildId =" + guildId;
+                    break;
+                case filter:
+                    queryString = "UPDATE ritobot_config.filter_guild SET disable=" + disable + " WHERE guildId =" + guildId;
+                    break;
+                case kill_filter:
+                    queryString = "UPDATE ritobot_config.kill_filter_guild SET disable=" + disable + " WHERE guildId =" + guildId;
+                    break;
+                case lewdneko:
+                    queryString = "UPDATE ritobot_config.lewdneko_command SET disable=" + disable + " WHERE guildId =" + guildId;
+                    break;
+                case link_filter:
+                    queryString = "UPDATE ritobot_config.link_filter_guild SET disable=" + disable + " WHERE guildId =" + guildId;
+                    break;
+                case color_role:
+                    if (disable.equals("1")) {
+                        queryString = "DELETE FROM ritobot_config.color_command_role WHERE guildId =" + guildId;
+                    }
+                    break;
+                case textLogging:
+                    queryString = "UPDATE ritobot_config.logging_enable SET text_logging=" + (disable.equals("1") ? "0" : "1") + " WHERE guildId =" + guildId;
+                    break;
+                case channelLogging:
+                    queryString = "UPDATE ritobot_config.logging_enable SET channel_logging=" + (disable.equals("1") ? "0" : "1") + " WHERE guildId =" + guildId;
+                    break;
+            }
+            System.out.println(queryString);
+            statement = connection.createStatement();
+            statement.executeUpdate(queryString);
+            resultSet6.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String[] configDownLoad_role(String guildId) {
+        String[] return_data = new String[] {"error"};
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String queryString;
+            int i = 0;
+            queryString = "SELECT * FROM ritobot_config.color_command_role WHERE guildId=" + guildId;
+            statement = connection.createStatement();
+            resultSet6 = statement.executeQuery(queryString);
+            return_data = new String[resultSet6.getFetchSize()];
+            while (resultSet6.next()) {
+                if (i == 0) {
+                    return_data = new String[] {
+                            resultSet6.getString("roleId")};
+                    i++;
+                } else {
+                    String[] newArray = Arrays.copyOf(return_data, return_data.length + 1);
+                    newArray[return_data.length] = resultSet6.getString("roleId");
+                    return_data = newArray;
+                }
+            }
+            resultSet6.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return_data = new String [] {"error"};
+        }
+        return return_data;
+    }
 
     public static String[] configDownLoad(int option) {
         String[] return_data = new String[] {"error"};
@@ -388,6 +558,40 @@ public class SQL {
                         }
                     }
                     break;
+                case textLogging:
+                    queryString = "SELECT * FROM ritobot_config.logging_enable WHERE text_logging = 1;";
+                    statement = connection.createStatement();
+                    resultSet6 = statement.executeQuery(queryString);
+                    return_data = new String[resultSet6.getFetchSize()];
+                    while (resultSet6.next()) {
+                        if (i == 0) {
+                            return_data = new String[] {
+                                    resultSet6.getString("guildId")};
+                            i++;
+                        } else {
+                            String[] newArray = Arrays.copyOf(return_data, return_data.length + 1);
+                            newArray[return_data.length] = resultSet6.getString("guildId");
+                            return_data = newArray;
+                        }
+                    }
+                    break;
+                case channelLogging:
+                    queryString = "SELECT * FROM ritobot_config.logging_enable WHERE channel_logging = 1;";
+                    statement = connection.createStatement();
+                    resultSet6 = statement.executeQuery(queryString);
+                    return_data = new String[resultSet6.getFetchSize()];
+                    while (resultSet6.next()) {
+                        if (i == 0) {
+                            return_data = new String[] {
+                                    resultSet6.getString("guildId")};
+                            i++;
+                        } else {
+                            String[] newArray = Arrays.copyOf(return_data, return_data.length + 1);
+                            newArray[return_data.length] = resultSet6.getString("guildId");
+                            return_data = newArray;
+                        }
+                    }
+                    break;
             }
             resultSet6.close();
         } catch (Exception e) {
@@ -395,5 +599,29 @@ public class SQL {
             return_data = new String [] {"error"};
         }
         return return_data;
+    }
+
+    public static Connection getConnection() {
+        return connection;
+    }
+
+    public static void setConnection(Connection connection) {
+        SQL.connection = connection;
+    }
+
+    public static void setLoggingConnection(Connection loggingConnection) {
+        SQL.loggingConnection = loggingConnection;
+    }
+
+    public static String getUrl() {
+        return url;
+    }
+
+    public static String getUser() {
+        return user;
+    }
+
+    public static String getPassword() {
+        return password;
     }
 }

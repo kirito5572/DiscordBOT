@@ -1,6 +1,5 @@
 package BOT.Objects;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,41 +16,12 @@ public class config {
     private static String[] killfilterDiable;
 
     private static String[] textLoggingEnable;
+    private static String[] channelLoggingEnable;
 
-    private final Logger logger = LoggerFactory.getLogger(config.class);
-    public config() {
-        StringBuilder textconfig = new StringBuilder();
-        try {
-            File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\textlogging_config.txt");
-            FileReader fileReader = new FileReader(file);
-            int singalCh;
-            while ((singalCh = fileReader.read()) != -1) {
-                textconfig.append((char) singalCh);
-            }
-        } catch(Exception e) {
-            StackTraceElement[] eStackTrace = e.getStackTrace();
-            StringBuilder a = new StringBuilder();
-            for (StackTraceElement stackTraceElement : eStackTrace) {
-                a.append(stackTraceElement).append("\n");
-            }
-            logger.warn(a.toString());
-        }
-
-        String textconfigtemp = textconfig.toString();
-
-
-        while(textconfigtemp.contains("\r")) {
-            textconfigtemp = textconfigtemp.replaceFirst("\r", "");
-        }
-        logger.info("미리 구성된 설정 불러오는중...");
-        System.out.println("미리 구성된 설정 불러오는중...");
-
-        String[] textconfigs = textconfigtemp.split("\n");
-        if(!textconfigs[0].contains("#rito-bot textlogging")) {
-            logger.error("text logging config error!");
-            System.exit(0);
-        }
-        textLoggingEnable = Arrays.copyOfRange(textconfigs, 1, textconfigs.length);
+    private static final Logger logger = LoggerFactory.getLogger(config.class);
+    public static void config_load() {
+        logger.info("설정 로딩중...");
+        System.out.println("설정 로딩중...");
 
         colorGuildById = SQL.configDownLoad(SQL.color_guild);
         lewdNekoDisable = SQL.configDownLoad(SQL.lewdneko);
@@ -59,6 +29,8 @@ public class config {
         filterDisable = SQL.configDownLoad(SQL.filter);
         killfilterDiable = SQL.configDownLoad(SQL.kill_filter);
         colorRoleById = SQL.configDownLoad(SQL.color_role);
+        textLoggingEnable = SQL.configDownLoad(SQL.textLogging);
+        channelLoggingEnable = SQL.configDownLoad(SQL.channelLogging);
     }
 
     public static String[] getColorGuildById() {

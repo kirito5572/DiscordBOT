@@ -6,16 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/rito-bot-1.6.x-all.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/rito-bot-1.6.x-all.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/VersionCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/VersionCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/configCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/configCommand.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/loggerListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/loggerListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/workHomeListener$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/workHomeListener$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Objects/SQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Objects/SQL.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Objects/config.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Objects/config.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/objects/CommandManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/objects/CommandManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/configCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/configCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/SearchCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Music/SearchCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/loggerListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/loggerListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/workHomeListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/workHomeListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/CommandManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/SQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/SQL.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +51,19 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="aws DB" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="aws DB" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ritobot_config: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="aws DB" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ritobot_config: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="logging_enable: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -132,7 +145,7 @@
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="discord-application" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -234,7 +247,17 @@
       <list>
         <serviceView>
           <treeState>
-            <expand />
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:aws DB" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:aws DB" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@6fecd400" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
             <select />
           </treeState>
         </serviceView>
@@ -383,7 +406,8 @@
       <workItem from="1576407927918" duration="35812000" />
       <workItem from="1576737621916" duration="2677000" />
       <workItem from="1576797450914" duration="13183000" />
-      <workItem from="1576855151636" duration="10423000" />
+      <workItem from="1576855151636" duration="23485000" />
+      <workItem from="1577058772990" duration="15333000" />
     </task>
     <servers />
   </component>
@@ -418,14 +442,14 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="662" y="127" key="#PHP/0.0.1920.1080@0.0.1920.1080" timestamp="1576729345023" />
-    <state x="552" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576599886644">
+    <state x="552" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577006694061">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="552" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1576599886644" />
-    <state x="765" y="248" key="#com.intellij.ide.util.MemberChooser" timestamp="1576810722619">
+    <state x="552" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1577006694061" />
+    <state x="765" y="248" key="#com.intellij.ide.util.MemberChooser" timestamp="1577066417400">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="765" y="248" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1576810722619" />
+    <state x="765" y="248" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1577066417400" />
     <state x="640" y="264" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1576815843937">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -438,38 +462,38 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="740" y="294" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1576737273347" />
-    <state width="1873" height="386" key="GridCell.Tab.0.bottom" timestamp="1576926494944">
+    <state width="1873" height="386" key="GridCell.Tab.0.bottom" timestamp="1577076203865">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="289" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1576652988296" />
-    <state width="1873" height="386" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1576926494944" />
-    <state width="1873" height="386" key="GridCell.Tab.0.center" timestamp="1576926494943">
+    <state width="1873" height="386" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1577076203865" />
+    <state width="1873" height="386" key="GridCell.Tab.0.center" timestamp="1577076203865">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="289" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1576652988296" />
-    <state width="1873" height="386" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1576926494943" />
-    <state width="1873" height="386" key="GridCell.Tab.0.left" timestamp="1576926494943">
+    <state width="1873" height="386" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1577076203865" />
+    <state width="1873" height="386" key="GridCell.Tab.0.left" timestamp="1577076203865">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="289" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1576652988296" />
-    <state width="1873" height="386" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1576926494943" />
-    <state width="1873" height="386" key="GridCell.Tab.0.right" timestamp="1576926494943">
+    <state width="1873" height="386" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1577076203865" />
+    <state width="1873" height="386" key="GridCell.Tab.0.right" timestamp="1577076203865">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="289" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1576652988296" />
-    <state width="1873" height="386" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1576926494943" />
-    <state x="540" y="273" key="IDE.errors.dialog" timestamp="1576815683125">
+    <state width="1873" height="386" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1577076203865" />
+    <state x="540" y="273" key="IDE.errors.dialog" timestamp="1576940561651">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="540" y="273" key="IDE.errors.dialog/0.0.1920.1080@0.0.1920.1080" timestamp="1576815683125" />
+    <state x="540" y="273" key="IDE.errors.dialog/0.0.1920.1080@0.0.1920.1080" timestamp="1576940561651" />
     <state x="794" y="462" key="NewPhpFileDialog" timestamp="1576727338336">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="794" y="462" key="NewPhpFileDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1576727338336" />
-    <state x="415" y="143" key="SettingsEditor" timestamp="1576926162135">
+    <state x="415" y="143" key="SettingsEditor" timestamp="1577063332305">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="415" y="143" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1576926162135" />
+    <state x="415" y="143" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1577063332305" />
     <state width="200" height="461" key="SqlResolveConfigurable" timestamp="1576737323628">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -486,9 +510,9 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="445" y="50" width="1211" height="723" maximized="true" key="dock-window-1/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1576651894383" />
-    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1576318099127">
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1576948561022">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1576318099127" />
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1576948561022" />
   </component>
 </project>

@@ -7,11 +7,11 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import java.util.List;
 
 public class VersionCommand implements ICommand {
-    private static String version = "빌드 버젼 V 1.7.0 beta 1 hotfix";
+    private static String version = "빌드 버젼 V 1.7.0";
     @Override
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         if(App.isDEBUG_MODE() || App.isONLINE_DEBUG()) {
-            event.getChannel().sendMessage("빌드 버젼 V 1.7.0 beta 2 (" + App.getTime() + ")").queue();
+            event.getChannel().sendMessage("빌드 버젼 V 1.7.1 beta 1 alpha 1 (" + App.getTime() + ")").queue();
             return;
         }
         event.getChannel().sendMessage(version + "(" + App.getTime() + ")").queue();
