@@ -95,7 +95,8 @@ public class HelpCommand implements ICommand {
         );
         builder.addField(
                 "트위치",
-                twitch.toString(),
+                "추가예정",
+                //twitch.toString(),
                 false
         );
         builder.addField(

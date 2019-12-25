@@ -299,11 +299,12 @@ public class SQL {
     public static final int color_role = 6;
     public static final int textLogging = 7;
     public static final int channelLogging = 8;
+    public static final int notice = 9;
 
     public static String[] configDownLoad(String guildId) {
 
         String[] return_data = new String[] {
-                "0", "0", "0", "0", "0", "0", "0", "1"
+                "0", "0", "0", "0", "0", "0", "0", "1", "1", "0"
         };
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -348,6 +349,14 @@ public class SQL {
             } else {
                 return_data[7] = "1";
             }
+            queryString = "SELECT * FROM ritobot_config.notice WHERE guildId =" + guildId;
+            resultSet6 = statement.executeQuery(queryString);
+            if (resultSet6.next()) {
+                return_data[8] = resultSet6.getString("disable");
+                if(return_data[8].equals("0")) {
+                    return_data[9] = resultSet6.getString("channelId");
+                }
+            }
 
             resultSet6.close();
         } catch (Exception e) {
@@ -377,6 +386,23 @@ public class SQL {
             e.printStackTrace();
         }
     }
+    public static void configSetup(String guildId, String disable, String channelId) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String queryString = "";
+            if (guildId.length() < 15) {
+                return;
+            }
+            queryString = "UPDATE ritobot_config.notice SET disable=" + disable + ", channelId = " + channelId + " WHERE guildId =" + guildId;
+            System.out.println(queryString);
+            statement = connection.createStatement();
+            statement.executeUpdate(queryString);
+            resultSet6.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void configSetup(String guildId, int option, String disable) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -411,6 +437,9 @@ public class SQL {
                 case channelLogging:
                     queryString = "UPDATE ritobot_config.logging_enable SET channel_logging=" + (disable.equals("1") ? "0" : "1") + " WHERE guildId =" + guildId;
                     break;
+                case notice:
+                    queryString = "UPDATE ritobot_config.notice SET disable=" + disable + " WHERE guildId =" + guildId;
+                    break;
             }
             System.out.println(queryString);
             statement = connection.createStatement();
@@ -420,9 +449,31 @@ public class SQL {
             e.printStackTrace();
         }
     }
+    public static String configDownLoad_notice(String guildId) {
+        String return_data = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String queryString;
+            int i = 0;
+            queryString = "SELECT * FROM ritobot_config.notice WHERE guildId=" + guildId;
+            System.out.println(queryString);
+            statement = connection.createStatement();
+            resultSet6 = statement.executeQuery(queryString);
+            if (resultSet6.next()) {
+                if(resultSet6.getString("disable").equals("0")) {
+                    return_data = resultSet6.getString("channelId");
+                }
+            }
+            resultSet6.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return_data = "error";
+        }
+        return return_data;
+    }
 
     public static String[] configDownLoad_role(String guildId) {
-        String[] return_data = new String[] {"error"};
+        String[] return_data;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String queryString;
@@ -458,7 +509,7 @@ public class SQL {
             int i = 0;
             switch (option) {
                 case color_guild:
-                    queryString = "SELECT * FROM ritobot_config.color_command_guild WHERE disable = 1";
+                    queryString = "SELECT * FROM ritobot_config.color_command_guild WHERE disable = 0";
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     while (resultSet6.next()) {

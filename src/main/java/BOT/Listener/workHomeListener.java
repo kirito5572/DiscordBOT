@@ -23,6 +23,7 @@ public class workHomeListener extends ListenerAdapter {
                 "405018851399565323", "456088053933539328", "501414420556152852", "492832169715040276"
         };
         String[] status = new String[discordID.length];
+        String[] nickname = new String[discordID.length];
         TimerTask job = new TimerTask() {
             @Override
             public void run() {
@@ -35,26 +36,30 @@ public class workHomeListener extends ListenerAdapter {
                         } else {
                             status[i] = "알수 없음";
                         }
+                        nickname[i] = Objects.requireNonNull(guild.getMemberById(discordID[i])).getNickname();
+                        if(nickname[i] == null) {
+                            nickname[i] = Objects.requireNonNull(guild.getMemberById(discordID[i])).getEffectiveName();
+                        }
                     }
                     EmbedBuilder builder = EmbedUtils.defaultEmbed()
                             .setTitle("[O5 Council]")
-                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[0])).getNickname(), status[0], false)
-                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[1])).getNickname(), status[1], false);
+                            .addField(nickname[0], status[0], false)
+                            .addField(nickname[1], status[1], false);
                     EmbedBuilder builder1 = EmbedUtils.defaultEmbed()
                             .setTitle("[MTF Commander]")
-                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[2])).getNickname(), status[2], false)
-                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[3])).getNickname(), status[3], false)
-                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[4])).getNickname(), status[4], false);
+                            .addField(nickname[2], status[2], false)
+                            .addField(nickname[3], status[3], false)
+                            .addField(nickname[4], status[4], false);
                     EmbedBuilder builder2 = EmbedUtils.defaultEmbed()
                             .setTitle("[MTF Scientist]");
                     EmbedBuilder builder3 = EmbedUtils.defaultEmbed()
                             .setTitle("[MTF Lieutenant]")
-                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[5])).getNickname(), status[5], false)
-                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[6])).getNickname(), status[6], false)
-                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[7])).getNickname(), status[7], false);
+                            .addField(nickname[5], status[5], false)
+                            .addField(nickname[6], status[6], false)
+                            .addField(nickname[7], status[7], false);
                     EmbedBuilder builder4 = EmbedUtils.defaultEmbed()
                             .setTitle("[MTF Cadet]")
-                            .addField(Objects.requireNonNull(guild.getMemberById(discordID[8])).getNickname(), status[8], false)
+                            .addField(nickname[8], status[8], false)
                             .setFooter("30초 마다 새로 고침 됩니다.", "https://media.istockphoto.com/vectors/refresh-icon-element-of-web-icon-for-mobile-concept-and-web-apps-thin-vector-id1049047088");
                     Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("657901600358137856", builder.build()).queue();
                     Objects.requireNonNull(guild.getTextChannelById("622076975258927125")).editMessageById("657901620679540746", builder1.build()).queue();
