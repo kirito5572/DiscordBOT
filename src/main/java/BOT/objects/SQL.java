@@ -1,5 +1,7 @@
 package BOT.Objects;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +23,6 @@ public class SQL {
     private static Statement loggingStatement;
     private static ResultSet resultSet;
     private static ResultSet resultSet6;
-    private static ResultSet loggingResultSet;
     private static String driverName;
     private static String url;
     private static String user;
@@ -100,7 +101,7 @@ public class SQL {
         Date date = new Date();
         SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd aa hh:mm:ss");
         String DBWriteTime = dayTime.format(date);
-        String queryString = "INSERT INTO Sanction_Infor VALUE (\''" + caseID + "\',\'"+ SteamID + "\', \'" + DBWriteTime + "\', \'" + time + "\', \'" + reason + "\', \'" + confirmUser + "\' );";
+        String queryString = "INSERT INTO Sanction_Infor VALUES ("+ SteamID + ", '" + DBWriteTime + "', '" + time + "', '" + reason + "', '" + confirmUser + "' );";
 
 
         System.out.println(queryString);
@@ -120,13 +121,14 @@ public class SQL {
             logger.warn(a.toString());
         }
     }
+    @NotNull
     public static String[] SQLdownload(String SteamID) throws SQLException, ClassNotFoundException, InterruptedException {
         String[] data = new String[20];
         for (int i = 0; i < 20; i++) {
             data[i] = null;
         }
 
-        String queryString = "SELECT * FROM Sanction_Infor WHERE SteamID =\''" + SteamID +"\';";
+        String queryString = "SELECT * FROM Sanction_Infor WHERE SteamID =''" + SteamID + "';";
 
         Class.forName(driverName);
         new Thread(() -> {
@@ -152,13 +154,14 @@ public class SQL {
             };
         }
     }
+    @NotNull
     public static String[] SQLdownload(int caseID) throws SQLException, ClassNotFoundException, InterruptedException {
         String[] data = new String[5];
         for (int i = 0; i < 5; i++) {
             data[i] = null;
         }
 
-        String queryString = "SELECT * FROM Sanction_Infor WHERE caseID =\'" + caseID +"\';";
+        String queryString = "SELECT * FROM Sanction_Infor WHERE caseID ='" + caseID + "';";
 
         Class.forName(driverName);
         new Thread(() -> {
@@ -194,7 +197,7 @@ public class SQL {
             writer.write(message);
             writer.flush();
 
-            if (writer != null) writer.close();
+            writer.close();
         } catch (IOException e) {
 
             StackTraceElement[] eStackTrace = e.getStackTrace();
@@ -206,7 +209,7 @@ public class SQL {
         }
     }
     public static boolean loggingMessageUpLoad(String guildId, String messageId, String contentRaw, String authorId) {
-        String queryString = "INSERT INTO messageLogging VALUE (" + guildId + ","+ messageId + ", \'" + contentRaw + "\'," + authorId +");";
+        String queryString = "INSERT INTO messageLogging VALUE (" + guildId + ","+ messageId + ", '" + contentRaw + "'," + authorId +");";
         System.out.println(queryString);
         try {
             Class.forName(driverName);
@@ -231,8 +234,8 @@ public class SQL {
         return true;
     }
 
-    public static boolean loggingMessageUpdate(String guildId, String messageId, String contentRaw, String authorId) {
-        String queryString = "UPDATE messageLogging SET ContentRaw = \'" + contentRaw +"\' WHERE GuildId = \'" + guildId + "\' AND MessageId = \'" + messageId + "\';";
+    public static boolean loggingMessageUpdate(String guildId, String messageId, String contentRaw) {
+        String queryString = "UPDATE messageLogging SET ContentRaw = '" + contentRaw + "' WHERE GuildId = '" + guildId + "' AND MessageId = '" + messageId + "';";
         System.out.println(queryString);
         try {
             Class.forName(driverName);
@@ -257,6 +260,7 @@ public class SQL {
         return true;
     }
 
+    @NotNull
     public static String[] loggingMessageDownLoad(String guildId, String messageId) {
         String[] data = new String[2];
         String queryString = "SELECT * FROM messageLogging WHERE MessageId=" + messageId + " AND GuildId=" + guildId + ";";
@@ -265,7 +269,7 @@ public class SQL {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             loggingStatement = loggingConnection.createStatement();
-            loggingResultSet = loggingStatement.executeQuery(queryString);
+            ResultSet loggingResultSet = loggingStatement.executeQuery(queryString);
             while (loggingResultSet.next()) {
                 data[0] = loggingResultSet.getString("ContentRaw");
                 data[1] = loggingResultSet.getString("Author");
@@ -299,12 +303,14 @@ public class SQL {
     public static final int color_role = 6;
     public static final int textLogging = 7;
     public static final int channelLogging = 8;
-    public static final int notice = 9;
+    public static final int memberLogging = 9;
+    public static final int notice = 10;
 
+    @NotNull
     public static String[] configDownLoad(String guildId) {
 
         String[] return_data = new String[] {
-                "0", "0", "0", "0", "0", "0", "0", "1", "1", "0"
+                "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "1"
         };
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -341,6 +347,7 @@ public class SQL {
             while (resultSet6.next()) {
                 return_data[5] = resultSet6.getString("text_logging");
                 return_data[6] = resultSet6.getString("channel_logging");
+                return_data[10] = resultSet6.getString("member_logging");
             }
             queryString = "SELECT * FROM ritobot_config.color_command_role WHERE guildId =" + guildId;
             resultSet6 = statement.executeQuery(queryString);
@@ -366,10 +373,10 @@ public class SQL {
         return return_data;
     }
 
-    public static void configSetup(String guildId, String disable, String roleId, boolean insert) {
+    public static void configSetup(@NotNull String guildId, String roleId, boolean insert) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String queryString = "";
+            String queryString;
             if (guildId.length() < 15) {
                 return;
             }
@@ -386,10 +393,10 @@ public class SQL {
             e.printStackTrace();
         }
     }
-    public static void configSetup(String guildId, String disable, String channelId) {
+    public static void configSetup(@NotNull String guildId, String disable, String channelId) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String queryString = "";
+            String queryString;
             if (guildId.length() < 15) {
                 return;
             }
@@ -403,7 +410,7 @@ public class SQL {
         }
     }
 
-    public static void configSetup(String guildId, int option, String disable) {
+    public static void configSetup(@NotNull String guildId, int option, @NotNull String disable) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String queryString = "";
@@ -437,6 +444,9 @@ public class SQL {
                 case channelLogging:
                     queryString = "UPDATE ritobot_config.logging_enable SET channel_logging=" + (disable.equals("1") ? "0" : "1") + " WHERE guildId =" + guildId;
                     break;
+                case memberLogging:
+                    queryString = "UPDATE ritobot_config.logging_enable SET member_logging=" + (disable.equals("1") ? "0" : "1") + " WHERE guildId =" + guildId;
+                    break;
                 case notice:
                     queryString = "UPDATE ritobot_config.notice SET disable=" + disable + " WHERE guildId =" + guildId;
                     break;
@@ -449,12 +459,12 @@ public class SQL {
             e.printStackTrace();
         }
     }
+    @Nullable
     public static String configDownLoad_notice(String guildId) {
         String return_data = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String queryString;
-            int i = 0;
             queryString = "SELECT * FROM ritobot_config.notice WHERE guildId=" + guildId;
             System.out.println(queryString);
             statement = connection.createStatement();
@@ -501,6 +511,7 @@ public class SQL {
         return return_data;
     }
 
+    @NotNull
     public static String[] configDownLoad(int option) {
         String[] return_data = new String[] {"error"};
         try {
@@ -628,6 +639,23 @@ public class SQL {
                     break;
                 case channelLogging:
                     queryString = "SELECT * FROM ritobot_config.logging_enable WHERE channel_logging = 1;";
+                    statement = connection.createStatement();
+                    resultSet6 = statement.executeQuery(queryString);
+                    return_data = new String[resultSet6.getFetchSize()];
+                    while (resultSet6.next()) {
+                        if (i == 0) {
+                            return_data = new String[] {
+                                    resultSet6.getString("guildId")};
+                            i++;
+                        } else {
+                            String[] newArray = Arrays.copyOf(return_data, return_data.length + 1);
+                            newArray[return_data.length] = resultSet6.getString("guildId");
+                            return_data = newArray;
+                        }
+                    }
+                    break;
+                case memberLogging:
+                    queryString = "SELECT * FROM ritobot_config.logging_enable WHERE member_logging = 1;";
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     return_data = new String[resultSet6.getFetchSize()];

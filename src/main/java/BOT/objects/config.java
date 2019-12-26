@@ -3,10 +3,6 @@ package BOT.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileReader;
-import java.util.Arrays;
-
 public class config {
     private static String[] colorRoleById;
     private static String[] colorGuildById;
@@ -17,6 +13,7 @@ public class config {
 
     private static String[] textLoggingEnable;
     private static String[] channelLoggingEnable;
+    private static String[] memberLoggingEnable;
 
     private static final Logger logger = LoggerFactory.getLogger(config.class);
     public static void config_load() {
@@ -31,6 +28,7 @@ public class config {
         colorRoleById = SQL.configDownLoad(SQL.color_role);
         textLoggingEnable = SQL.configDownLoad(SQL.textLogging);
         channelLoggingEnable = SQL.configDownLoad(SQL.channelLogging);
+        memberLoggingEnable = SQL.configDownLoad(SQL.memberLogging);
     }
 
     public static String[] getColorGuildById() {
@@ -61,13 +59,12 @@ public class config {
         return textLoggingEnable;
     }
 
-    public static void setTextLoggingEnable(String textLoggingEnable) {
-        String[] output = new String[config.textLoggingEnable.length + 1];
-        System.arraycopy(config.textLoggingEnable,0,output,0,config.textLoggingEnable.length);
-        output[output.length -1] = textLoggingEnable;
-
-        config.textLoggingEnable = output;
-
-
+    public static String[] getChannelLoggingEnable() {
+        return channelLoggingEnable;
     }
+
+    public static String[] getMemberLoggingEnable() {
+        return memberLoggingEnable;
+    }
+
 }

@@ -8,10 +8,10 @@ import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.exceptions.HierarchyException;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -43,7 +43,7 @@ public class ColorCommand implements ICommand {
     };
 
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         new Thread(() -> {
             delete = false;
             flag = false;
@@ -196,6 +196,7 @@ public class ColorCommand implements ICommand {
         }).start();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return ("닉네임의 색깔을 변경합니다.\n" +
@@ -203,15 +204,18 @@ public class ColorCommand implements ICommand {
                 "색깔명: `" + App.getPREFIX() + getInvoke() + "정보`");
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "색";
     }
 
+    @NotNull
     public static String[][] getColor() {
         return color;
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "other";

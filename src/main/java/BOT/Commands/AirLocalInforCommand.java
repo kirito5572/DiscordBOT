@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class AirLocalInforCommand implements ICommand {
     private int location;
 
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
         Member selfMember = event.getGuild().getSelfMember();
         if (!selfMember.hasPermission(Permission.MESSAGE_WRITE)) {
@@ -67,6 +68,7 @@ public class AirLocalInforCommand implements ICommand {
         channel.sendMessage(builder.build()).queue();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "시도별 대기정보 평균값을 조회합니다.\n" +
@@ -74,11 +76,13 @@ public class AirLocalInforCommand implements ICommand {
                 "`From airkorea.or.kr` `API from data.go.kr`";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "공기질";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "other";

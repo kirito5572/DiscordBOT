@@ -13,6 +13,7 @@ import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
+import org.jetbrains.annotations.NotNull;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,7 +23,7 @@ import java.util.concurrent.BlockingQueue;
 
 public class PlayCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
 
         TextChannel channel = event.getChannel();
         AudioManager audioManager = event.getGuild().getAudioManager();
@@ -88,6 +89,7 @@ public class PlayCommand implements ICommand {
                         break;
                     }
                     if(!musicManager1.player.isPaused()) {
+                        assert voiceChannel != null;
                         if (voiceChannel.getMembers().size() < 2) {
                             event.getChannel().sendMessage("사람이 아무도 없어, 노래가 일시 정지 되었습니다.").queue();
                             musicManager1.player.setPaused(true);
@@ -127,7 +129,7 @@ public class PlayCommand implements ICommand {
         }
     }
 
-    private boolean isUrl(String input) {
+    private boolean isUrl(@NotNull String input) {
         try {
             new URL(input);
 
@@ -137,17 +139,20 @@ public class PlayCommand implements ICommand {
         }
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "URL의 노래를 재생합니다\n" +
                 "사용법 : '" + App.getPREFIX() + getInvoke() + "'[URL]";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "재생";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "music";

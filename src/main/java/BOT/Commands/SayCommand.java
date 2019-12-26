@@ -4,13 +4,14 @@ import BOT.Objects.ICommand;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
 
 public class SayCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         if(!event.getGuild().getSelfMember().hasPermission(event.getChannel(), Permission.MESSAGE_MANAGE)) {
             event.getChannel().sendMessage("봇에 권한이 없어 명령어를 사용할수 없습니다. \n" +
                     "필요한 권한: 메세지 관리").queue();
@@ -47,16 +48,19 @@ public class SayCommand implements ICommand {
         event.getChannel().sendMessage(chat).queue();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "대신 말을 해줍니다.";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "말";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "other";

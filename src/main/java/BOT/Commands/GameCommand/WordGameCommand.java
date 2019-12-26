@@ -6,14 +6,15 @@ import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WordGameCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
-        List<Member> members = new ArrayList<Member>();
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
+        List<Member> members = new ArrayList<>();
         members.add(event.getMember());
         String startingWord = args.get(args.size() - 1);
         args = args.subList(0, args.size() - 2);
@@ -31,6 +32,7 @@ public class WordGameCommand implements ICommand {
                 "\n 참여 인원: " + members.size()).queue();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "끝말 잇기!\n" +
@@ -39,11 +41,13 @@ public class WordGameCommand implements ICommand {
                 "본인은 유저명에 입력하지 않아도 됩니다.";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "끝말잇기";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "game";

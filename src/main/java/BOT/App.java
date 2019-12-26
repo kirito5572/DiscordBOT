@@ -11,8 +11,8 @@ import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,20 +25,20 @@ import java.util.Date;
 import java.util.Random;
 
 public class App {
-    private static boolean DEBUG_MODE = false;
-    private static boolean ONLINE_DEBUG = false;
+    private static final boolean DEBUG_MODE = false;
+    private static final boolean ONLINE_DEBUG = false;
     private static Date date;
     private static String Time;
     private static String PREFIX;
     private final Random random = new Random();
 
     public App() {
-        SQL sql = new SQL();
+        new SQL();
         config.config_load();
         date = new Date();
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy/MM/dd aa hh:mm:ss z");
         Time = format1.format(date);
-        getYoutubeSearch getYoutubeSearch = new getYoutubeSearch();
+        new getYoutubeSearch();
         CommandManager commandManager = new CommandManager();
         MemberCountListener memberCountListener = new MemberCountListener();
         Listener listener = new Listener(commandManager);
@@ -90,37 +90,17 @@ public class App {
             }
             logger.warn(a.toString());
         }
-        StringBuilder TOKENreaderGreen = new StringBuilder();
-        try {
-            File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\Green_TOKEN.txt");
-            FileReader fileReader = new FileReader(file);
-            int singalCh;
-            while ((singalCh = fileReader.read()) != -1) {
-                TOKENreaderGreen.append((char) singalCh);
-            }
-        } catch (Exception e) {
-
-            StackTraceElement[] eStackTrace = e.getStackTrace();
-            StringBuilder a = new StringBuilder();
-            for (StackTraceElement stackTraceElement : eStackTrace) {
-                a.append(stackTraceElement).append("\n");
-            }
-            logger.warn(a.toString());
-        }
 
         String TOKEN;
-        String greenTOKEN;
         if (DEBUG_MODE) {
             TOKEN = TOKENreader_DEBUG.toString();
             PREFIX = Constants.PREFIX_DEBUG;
         } else if (!DEBUG_MODE && ONLINE_DEBUG) {
             TOKEN = TOKENreader.toString();
             PREFIX = Constants.PREFIX_DEBUG;
-            greenTOKEN = TOKENreaderGreen.toString();
         } else {
             TOKEN = TOKENreader.toString();
             PREFIX = Constants.PREFIX;
-            greenTOKEN = TOKENreaderGreen.toString();
         }
 
         WebUtils.setUserAgent("Chrome 75.0.3770.100 kirito's discord bot/kirito5572#5572");
@@ -133,7 +113,7 @@ public class App {
 
         try {
             logger.info("부팅");
-            JDA jda = new JDABuilder(AccountType.BOT)
+            new JDABuilder(AccountType.BOT)
                     .setToken(TOKEN)
                     .setAutoReconnect(true)
                     .addEventListeners(memberCountListener, listener, filterlistener, salListener, onigiriListener, nekoDiscordMemberListener, steamServerStatusListener,
@@ -141,7 +121,7 @@ public class App {
                             loggerListener)
                     .build().awaitReady();
             logger.info("부팅완료");
-        } catch (LoginException | InterruptedException e) {
+        } catch (@NotNull LoginException | InterruptedException e) {
 
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
@@ -152,6 +132,7 @@ public class App {
         }
     }
 
+    @NotNull
     private Color getRandomColor() {
         float r = random.nextFloat();
         float g = random.nextFloat();

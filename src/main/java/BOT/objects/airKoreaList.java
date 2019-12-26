@@ -1,9 +1,13 @@
 package BOT.Objects;
 
+import org.jetbrains.annotations.NotNull;
+
 public class airKoreaList {
+    @NotNull
     public static String[] getLocalListENG() {
         return localListENG;
     }
+    @NotNull
     public static String[] getLocalListKOR() {
         return localListKOR;
     }

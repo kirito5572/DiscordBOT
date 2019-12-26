@@ -9,13 +9,14 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
 
 public class VolumeCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
         PlayerManager manager = PlayerManager.getInstance();
         AudioManager audioManager = event.getGuild().getAudioManager();
@@ -53,17 +54,20 @@ public class VolumeCommand implements ICommand {
         channel.sendMessage("볼륨이 " + joined + "으로 변경되었습니다.").queue();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "노래 소리 조절" +
                 "사용법: `" + App.getPREFIX() + getInvoke() + "`(숫자)";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "볼륨";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "music";

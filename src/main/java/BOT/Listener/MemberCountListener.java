@@ -13,81 +13,82 @@ import net.dv8tion.jda.api.events.guild.member.GuildMemberLeaveEvent;
 import net.dv8tion.jda.api.events.role.RoleCreateEvent;
 import net.dv8tion.jda.api.events.role.RoleDeleteEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 public class MemberCountListener extends ListenerAdapter {
 
 
     @Override
-    public void onGuildJoin(GuildJoinEvent event) {
+    public void onGuildJoin(@NotNull GuildJoinEvent event) {
         Guild guild = event.getGuild();
 
         count(guild);
     }
 
     @Override
-    public void onGuildLeave(GuildLeaveEvent event) {
+    public void onGuildLeave(@NotNull GuildLeaveEvent event) {
         Guild guild = event.getGuild();
 
         count(guild);
     }
 
     @Override
-    public void onGuildMemberJoin(GuildMemberJoinEvent event) {
+    public void onGuildMemberJoin(@NotNull GuildMemberJoinEvent event) {
         Guild guild = event.getGuild();
 
         count(guild);
     }
 
     @Override
-    public void onGuildMemberLeave(GuildMemberLeaveEvent event) {
+    public void onGuildMemberLeave(@NotNull GuildMemberLeaveEvent event) {
         Guild guild = event.getGuild();
 
         count(guild);
     }
 
     @Override
-    public void onTextChannelCreate(TextChannelCreateEvent event) {
+    public void onTextChannelCreate(@NotNull TextChannelCreateEvent event) {
         Guild guild = event.getGuild();
 
         count(guild);
     }
 
     @Override
-    public void onTextChannelDelete(TextChannelDeleteEvent event) {
+    public void onTextChannelDelete(@NotNull TextChannelDeleteEvent event) {
         Guild guild = event.getGuild();
 
         count(guild);
     }
 
     @Override
-    public void onVoiceChannelCreate(VoiceChannelCreateEvent event) {
+    public void onVoiceChannelCreate(@NotNull VoiceChannelCreateEvent event) {
         Guild guild = event.getGuild();
 
         count(guild);
     }
 
     @Override
-    public void onVoiceChannelDelete(VoiceChannelDeleteEvent event) {
+    public void onVoiceChannelDelete(@NotNull VoiceChannelDeleteEvent event) {
         Guild guild = event.getGuild();
 
         count(guild);
     }
 
     @Override
-    public void onRoleCreate(RoleCreateEvent event) {
+    public void onRoleCreate(@NotNull RoleCreateEvent event) {
         Guild guild = event.getGuild();
 
         count(guild);
     }
 
     @Override
-    public void onRoleDelete(RoleDeleteEvent event) {
+    public void onRoleDelete(@NotNull RoleDeleteEvent event) {
         Guild guild = event.getGuild();
 
         count(guild);
     }
 
-    public static void count(Guild guild) {
+    public static void count(@NotNull Guild guild) {
         String categoryName = "\uD83D\uDCCB:서버 상태";
         String categoryName1 = "\uD83D\uDCCB서버 상태\uD83D\uDCCB";
         Category category;

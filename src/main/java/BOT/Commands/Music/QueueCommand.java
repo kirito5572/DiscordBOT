@@ -12,6 +12,7 @@ import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.concurrent.BlockingQueue;
 public class QueueCommand implements ICommand {
 
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
         PlayerManager playerManager = PlayerManager.getInstance();
         GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
@@ -86,17 +87,20 @@ public class QueueCommand implements ICommand {
         channel.sendMessage(builder.build()).queue();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "앞으로 부를 남은 노래는?\n" +
                 "사용법 `" + App.getPREFIX() + getInvoke() + "`";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "재생목록";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "music";

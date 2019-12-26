@@ -1,5 +1,6 @@
 package BOT.Objects;
 
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -14,15 +15,17 @@ import java.io.FileReader;
 
 public class getAirLocalData {
     private final Logger logger = LoggerFactory.getLogger(getAirLocalData.class);
-    private static String[] airkorea_data = new String[7];
+    private static final String[] airkorea_data = new String[7];
 
-    private static String[] itemCode = new String[] {
+    private static final String[] itemCode = new String[] {
             "PM10", "PM25", "O3", "SO2", "CO", "NO2", "측정시간"
     };
 
+    @NotNull
     public String[] getAirkorea_data() {
         return airkorea_data;
     }
+    @NotNull
     public String[] getItemCode() {
         return itemCode;
     }

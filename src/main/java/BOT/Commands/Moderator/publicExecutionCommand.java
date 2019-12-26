@@ -12,6 +12,7 @@ import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +24,7 @@ import java.util.stream.Collectors;
 public class publicExecutionCommand implements ICommand {
     private final Logger logger = LoggerFactory.getLogger(publicExecutionCommand.class);
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
 
         String joined = String.join(" ", args);
@@ -50,13 +51,6 @@ public class publicExecutionCommand implements ICommand {
             channel.sendMessage("유저명란이 비었습니다.").queue();
 
             return;
-        }
-        try {
-            time = args.get(1);
-        } catch (Exception e) {
-            channel.sendMessage("시간이 비었습니다. \n" +
-                    "비었을 경우 수동 해제시까지 적용됩니다.").queue();
-
         }
 
         List<User> foundUsers = FinderUtil.findUsers(userName, event.getGuild().getJDA());
@@ -162,6 +156,7 @@ public class publicExecutionCommand implements ICommand {
         }
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "유저를 공개처형 설정/해제 합니다 \n" +
@@ -169,11 +164,13 @@ public class publicExecutionCommand implements ICommand {
                 "공개처형 역할이 있는 사람에게 명령어를 재차 사용할 경우 공개처형이 해제됩니다. ";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "공개처형";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "moderator";

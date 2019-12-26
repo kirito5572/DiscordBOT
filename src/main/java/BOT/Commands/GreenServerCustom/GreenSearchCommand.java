@@ -6,13 +6,14 @@ import BOT.Objects.SQL;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class GreenSearchCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         if(!event.getGuild().getId().equals("600010501266866186")) {
             event.getChannel().sendMessage("이 명령어는 해당 서버에서 사용 할 수 없습니다.").queue();
 
@@ -28,7 +29,7 @@ public class GreenSearchCommand implements ICommand {
                 String[] data = new String[0];
                 try {
                     data = SQL.SQLdownload(Integer.parseInt(args.get(2)));
-                } catch (SQLException | ClassNotFoundException | InterruptedException e) {
+                } catch (@NotNull SQLException | ClassNotFoundException | InterruptedException e) {
                     e.printStackTrace();
                 }
                 embedBuilder.setTitle("검색된 case ID 제재 기록 정보")
@@ -45,7 +46,7 @@ public class GreenSearchCommand implements ICommand {
             String[] data;
             try {
                 data = SQL.SQLdownload(args.get(0));
-            } catch (SQLException | ClassNotFoundException | InterruptedException e) {
+            } catch (@NotNull SQLException | ClassNotFoundException | InterruptedException e) {
                 e.printStackTrace();
                 return;
             }
@@ -66,17 +67,20 @@ public class GreenSearchCommand implements ICommand {
         event.getChannel().sendMessage(embedBuilder.build()).queue();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "제재된 정보를 검색합니다.\n" +
                 "사용법: `" + App.getPREFIX() + getInvoke() + "` <SteamID> -c <caseID>";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "제재검색";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "serverCustom";

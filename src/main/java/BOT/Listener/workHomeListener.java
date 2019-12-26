@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 import java.util.Timer;
@@ -13,7 +14,7 @@ import java.util.TimerTask;
 
 public class workHomeListener extends ListenerAdapter {
     @Override
-    public void onReady(ReadyEvent event) {
+    public void onReady(@NotNull ReadyEvent event) {
         Guild guild = event.getJDA().getGuildById("600010501266866186");
         assert guild != null;
         Role work = guild.getRoleById("622325436528984084");

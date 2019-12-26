@@ -12,6 +12,7 @@ import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,9 +23,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class gameServerBanCommand implements ICommand {
     private final Logger logger = LoggerFactory.getLogger(gameServerBanCommand.class);
-    private static String command = "서버밴";
+    private static final String command = "서버밴";
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
         Member member = event.getMember();
 
@@ -237,6 +238,7 @@ public class gameServerBanCommand implements ICommand {
         }
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "게임 서버에서 밴을 합니다. \n" +
@@ -244,22 +246,25 @@ public class gameServerBanCommand implements ICommand {
                 "시간 가능 인수: 1m(1min)/1h(1Hour)/1d(1day)/1M(1month)/1y(1year)/영구(99999999min)";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return command;
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "serverCustom";
     }
 
+    @NotNull
     public static String getCommand() {
         return command;
     }
-    private void banMain(String[] NickName, String ID, String time, StringBuilder reason, String timeString, AtomicBoolean steam,
-                         TextChannel adminChannel, TextChannel reportChannel, TextChannel botChannel, TextChannel botChannel1,
-                         GuildMessageReceivedEvent event, String time_non) {
+    private void banMain(String[] NickName, String ID, String time, @NotNull StringBuilder reason, String timeString, @NotNull AtomicBoolean steam,
+                         @NotNull TextChannel adminChannel, @NotNull TextChannel reportChannel, @NotNull TextChannel botChannel, @NotNull TextChannel botChannel1,
+                         @NotNull GuildMessageReceivedEvent event, String time_non) {
         String text = "+oban " + NickName[0] + " " + ID + " " + time + " " + reason.toString();
         System.out.println(text);
         SQL.SQLupload(ID, timeString, reason.toString(), event.getAuthor().getName());

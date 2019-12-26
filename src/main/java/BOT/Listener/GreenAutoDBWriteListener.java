@@ -4,12 +4,13 @@ import BOT.Objects.SQL;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
 public class GreenAutoDBWriteListener extends ListenerAdapter {
     @Override
-    public void onMessageReceived(MessageReceivedEvent event) {
+    public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         if(event.getAuthor().getId().equals("593447324127068173")) {
             if(event.getChannel().getId().equals("600015587544006679")) {
                 MessageEmbed embedMessage = event.getMessage().getEmbeds().get(0);

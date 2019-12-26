@@ -11,13 +11,14 @@ import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
 
 public class JoinCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
         AudioManager audioManager = event.getGuild().getAudioManager();
 
@@ -47,7 +48,6 @@ public class JoinCommand implements ICommand {
         channel.sendMessage("보이스채널에 들어왔습니다.").queue();
         Thread thread = new Thread(() -> {
             AudioManager audioManager1 = event.getGuild().getAudioManager();
-            VoiceChannel voiceChannel1 = voiceChannel;
             PlayerManager playerManager = PlayerManager.getInstance();
             GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
             while(true) {
@@ -60,7 +60,7 @@ public class JoinCommand implements ICommand {
                     break;
                 }
                 if(!musicManager.player.isPaused()) {
-                    if (voiceChannel1.getMembers().size() < 2) {
+                    if (voiceChannel.getMembers().size() < 2) {
                         musicManager.player.isPaused();
                         event.getChannel().sendMessage("사람이 아무도 없어, 노래가 일시 정지 되었습니다.\n" +
                                 "다시 재생하려면 `" + App.getPREFIX() + "재생` 을 입력해주세요").queue();
@@ -73,7 +73,7 @@ public class JoinCommand implements ICommand {
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-                                if (voiceChannel1.getMembers().size() < 2) {
+                                if (voiceChannel.getMembers().size() < 2) {
                                     i++;
                                 } else {
                                     break;
@@ -92,17 +92,20 @@ public class JoinCommand implements ICommand {
         thread.start();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "노래 틀도록 하기 위해 거치는 과정" +
                 "사용법 : '" + App.getPREFIX() + getInvoke() + "'";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "입장";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "music";

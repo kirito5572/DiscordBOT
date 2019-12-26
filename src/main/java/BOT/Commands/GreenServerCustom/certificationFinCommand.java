@@ -4,6 +4,7 @@ import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,11 +14,12 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Objects;
 
 public class certificationFinCommand implements ICommand {
     private final Logger logger = LoggerFactory.getLogger(certificationFinCommand.class);
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
         String joined = String.join("", args);
         if(event.getGuild().getId().equals("600010501266866186")) {
@@ -75,7 +77,7 @@ public class certificationFinCommand implements ICommand {
                                 logger.warn(ab.toString());
                                 return;
                             }
-                            channel.sendMessage(event.getMember().getAsMention() + ", 스팀 인증에 성공하셨습니다. ").queue();
+                            channel.sendMessage(Objects.requireNonNull(event.getMember()).getAsMention() + ", 스팀 인증에 성공하셨습니다. ").queue();
                             event.getGuild().addRoleToMember(event.getMember(), role).complete();
                         }));
                     } else {
@@ -90,21 +92,25 @@ public class certificationFinCommand implements ICommand {
         }
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "스팀과 디스코드서버간의 인증 시스템입니다.";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "인증확인";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "serverCustom";
     }
-    private String SHA256(String msg) throws NoSuchAlgorithmException {
+    @NotNull
+    private String SHA256(@NotNull String msg) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(msg.getBytes());
         byte[] bytes =md.digest();
@@ -127,7 +133,7 @@ public class certificationFinCommand implements ICommand {
         writer.write(message);
         writer.flush();
 
-        if(writer != null) writer.close();
+        writer.close();
 
     }
 }

@@ -7,17 +7,15 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.ReadyEvent;
-import net.dv8tion.jda.api.events.ShutdownEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.FileReader;
-import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -31,13 +29,13 @@ public class Listener extends ListenerAdapter {
     }
 
     @Override
-    public void onReady(ReadyEvent event) {
+    public void onReady(@NotNull ReadyEvent event) {
         logger.info(String.format("로그인 성공: %#s", event.getJDA().getSelfUser()));
         System.out.println(String.format("로그인 성공: %#s", event.getJDA().getSelfUser()));
     }
 
     @Override
-    public void onMessageReceived(MessageReceivedEvent event) {
+    public void onMessageReceived(@NotNull MessageReceivedEvent event) {
 
         User author = event.getAuthor();
         Message message = event.getMessage();
@@ -59,7 +57,7 @@ public class Listener extends ListenerAdapter {
     }
 
     @Override
-    public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
+    public void onGuildMessageReceived(@NotNull GuildMessageReceivedEvent event) {
         Message message = event.getMessage();
         StringBuilder IDreader = new StringBuilder();
         StringBuilder IDreader1 = new StringBuilder();
@@ -202,7 +200,7 @@ public class Listener extends ListenerAdapter {
             manager.handleCommand(event);
         }
     }
-    private void shutdown(JDA jda, GuildMessageReceivedEvent event) {
+    private void shutdown(@NotNull JDA jda, @NotNull GuildMessageReceivedEvent event) {
         new Thread(() -> {
             event.getChannel().sendMessage("봇이 종료됩니다.").queue();
             try {
@@ -221,13 +219,6 @@ public class Listener extends ListenerAdapter {
         }).start();
     }
 
-    private void restart(JDA jda, GuildMessageReceivedEvent event) {
-        new Thread(() -> {
-            event.getChannel().sendMessage("재시작중...").complete();
-            jda.shutdown();
-            new App();
-        }).start();
-    }
 
     public static String getID1() {
         return ID1;

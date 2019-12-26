@@ -8,12 +8,13 @@ import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public class StopCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
         PlayerManager playerManager = PlayerManager.getInstance();
         AudioManager audioManager = event.getGuild().getAudioManager();
         GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
@@ -37,17 +38,20 @@ public class StopCommand implements ICommand {
 
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "노래 재생 정지" +
                 "사용법:`" + App.getPREFIX() + getInvoke() + "`";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "정지";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "music";

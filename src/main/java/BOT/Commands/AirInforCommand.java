@@ -2,7 +2,6 @@
 package BOT.Commands;
 
 import BOT.Constants;
-import BOT.Objects.airKoreaList;
 import BOT.Objects.ICommand;
 import BOT.Objects.getAirData;
 import me.duncte123.botcommons.messaging.EmbedUtils;
@@ -11,18 +10,17 @@ import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 public class AirInforCommand implements ICommand {
-    private boolean listFlag;
 
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         Logger logger = LoggerFactory.getLogger(AirInforCommand.class);
-        setListFlag(false);
         String[] rank = new String[8];
         TextChannel channel = event.getChannel();
         Member selfMember = event.getGuild().getSelfMember();
@@ -110,6 +108,7 @@ public class AirInforCommand implements ICommand {
         channel.sendMessage(builder.build()).queue();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "입력된 광역시도의 읍면동의 미세먼지 값을 불러옵니다.\n" +
@@ -119,21 +118,16 @@ public class AirInforCommand implements ICommand {
                 "이 값은 오차가 있을수도 있습니다. 항상 정확한것은 아닙니다.";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "공기질상세";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "other";
     }
 
-    public void setListFlag(boolean listflag) {
-        this.listFlag = listflag;
-    }
-
-    public boolean isListFlag() {
-        return listFlag;
-    }
 }

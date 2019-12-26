@@ -6,6 +6,7 @@ import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -14,7 +15,7 @@ import java.util.Objects;
 
 public class UserInfoCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         User user;
         Member member;
         Guild guilda = null;
@@ -79,17 +80,20 @@ public class UserInfoCommand implements ICommand {
 
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "유저정보 알기! \n" +
                 "사용법: `" + App.getPREFIX() + getInvoke() + " [유저 이름/@유저/유저 id] `";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "유저정보";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "other";

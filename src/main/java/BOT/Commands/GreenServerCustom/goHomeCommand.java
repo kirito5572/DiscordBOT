@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +18,7 @@ import java.util.Objects;
 public class goHomeCommand implements ICommand {
     private final Logger logger = LoggerFactory.getLogger(goHomeCommand.class);
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
         try {
             boolean flag = false;
             if (event.getGuild().getId().equals("600010501266866186")) {
@@ -78,16 +79,19 @@ public class goHomeCommand implements ICommand {
         }
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "관리자들이 퇴근할때 쓰는 명령어랍니다.";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "퇴근";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "serverCustom";

@@ -3,6 +3,7 @@ package BOT.Commands.GameCommand;
 import BOT.App;
 import BOT.Objects.ICommand;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Random;
@@ -10,7 +11,7 @@ import java.util.Random;
 public class russianRouletteCommand implements ICommand {
     private int shot = 0;
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         Random random = new Random();
         if(args.isEmpty()) {
             event.getChannel().sendMessage("사용법: `" + App.getPREFIX() + getInvoke() + "<재장전/발사>`").queue();
@@ -42,17 +43,20 @@ public class russianRouletteCommand implements ICommand {
         }
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "러시안 룰렛! \n" +
                 "사용법: `" + App.getPREFIX() + getInvoke() + "<재장전/발사>`";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "러시안룰렛";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "game";

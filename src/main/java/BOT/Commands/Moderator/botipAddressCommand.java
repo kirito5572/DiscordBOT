@@ -3,6 +3,7 @@ package BOT.Commands.Moderator;
 import BOT.Listener.Listener;
 import BOT.Objects.ICommand;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -13,7 +14,7 @@ import java.util.Objects;
 
 public class botipAddressCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
         String ip;
         if(!Objects.requireNonNull(event.getMember()).getUser().getId().equals(Listener.getID1())) {
             return;
@@ -39,16 +40,19 @@ public class botipAddressCommand implements ICommand {
         }
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "봇이 구동되고 있는 컴퓨터의 IP를 알아냅니다.";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "내아이피";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "moderator";

@@ -4,14 +4,15 @@ import BOT.Objects.ICommand;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Random;
 
 public class OddOrEvenCommand implements ICommand {
-    private Random random = new Random();
+    private final Random random = new Random();
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
         new Thread(() -> {
             event.getChannel().sendMessage("홀수 또는 짝수를 선택해주세요").queue();
             boolean even = random.nextBoolean();
@@ -72,16 +73,19 @@ public class OddOrEvenCommand implements ICommand {
         }).start();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "홀짝 게임 입니다.";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "홀짝";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "game";

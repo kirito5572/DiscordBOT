@@ -14,9 +14,9 @@ import java.util.Objects;
 
 public class ONIGIRIListener extends ListenerAdapter {
     private final Logger logger = LoggerFactory.getLogger(ONIGIRIListener.class);
-    private String[] List = ONIGIRIList.getList();
-    private String[] list_File = ONIGIRIList.getList_file();
-    private String[] list_Suffix = ONIGIRIList.getList_Suffix();
+    private final String[] List = ONIGIRIList.getList();
+    private final String[] list_File = ONIGIRIList.getList_file();
+    private final String[] list_Suffix = ONIGIRIList.getList_Suffix();
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         Guild guild;
@@ -66,7 +66,8 @@ public class ONIGIRIListener extends ListenerAdapter {
             }
         }
     }
-    public static File convertInputStreamToFile(InputStream is, String suffix) throws IOException {
+    @NotNull
+    public static File convertInputStreamToFile(@NotNull InputStream is, String suffix) throws IOException {
         File file = File.createTempFile("C://temp", suffix);
 
         OutputStream outputStream = new FileOutputStream(file);

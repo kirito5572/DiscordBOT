@@ -11,16 +11,10 @@ import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
-import java.net.*;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 public class SearchCommand implements ICommand {
     private final Logger logger = LoggerFactory.getLogger(SearchCommand.class);
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         new Thread(() -> {
             AudioManager audioManager = event.getGuild().getAudioManager();
             TextChannel channel = event.getChannel();
@@ -50,24 +44,6 @@ public class SearchCommand implements ICommand {
             if(!memberVoiceState.inVoiceChannel()) {
                 channel.sendMessage("먼저 보이스 채널에 들어오세요").queue();
                 return;
-            }
-
-            StringBuilder youtube_Key = new StringBuilder();
-            try {
-                File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\YOUTUBE_DATA_API_KEY.txt");
-                FileReader fileReader = new FileReader(file);
-                int singalCh;
-                while((singalCh = fileReader.read()) != -1) {
-                    youtube_Key.append((char) singalCh);
-                }
-            } catch (Exception e) {
-
-                StackTraceElement[] eStackTrace = e.getStackTrace();
-                StringBuilder a = new StringBuilder();
-                for (StackTraceElement stackTraceElement : eStackTrace) {
-                    a.append(stackTraceElement).append("\n");
-                }
-                logger.warn(a.toString());
             }
             try {
                 String name = String.join("+", args);
@@ -106,6 +82,7 @@ public class SearchCommand implements ICommand {
                                         break;
                                     }
                                     if(!musicManager.player.isPaused()) {
+                                        assert voiceChannel != null;
                                         if (voiceChannel.getMembers().size() < 2) {
                                             musicManager.player.isPaused();
                                             event.getChannel().sendMessage("사람이 아무도 없어, 노래가 일시 정지 되었습니다.\n" +
@@ -166,17 +143,20 @@ public class SearchCommand implements ICommand {
         }).start();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "유튜브에서 노래를 검색합니다\n" +
                 "사용법 : '" + App.getPREFIX() + getInvoke() + "'[검색할 노래]";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "검색";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "music";

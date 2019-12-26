@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class UnbanCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
 
         TextChannel channel = event.getChannel();
 
@@ -60,23 +61,26 @@ public class UnbanCommand implements ICommand {
         });
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "이 서버에서 유저의 밴을 취소합니다.\n" +
                 "사용법: `" + App.getPREFIX() + getInvoke() + " <유저명/유저 ID/@멘션>";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "언밴";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "moderator";
     }
 
-    private boolean isCorrectUser(Guild.Ban ban, String arg) {
+    private boolean isCorrectUser(@NotNull Guild.Ban ban, String arg) {
         User bannedUser = ban.getUser();
 
         return bannedUser.getName().equalsIgnoreCase(arg) || bannedUser.getId().equals(arg)

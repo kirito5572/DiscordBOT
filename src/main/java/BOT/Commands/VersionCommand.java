@@ -3,36 +3,41 @@ package BOT.Commands;
 import BOT.App;
 import BOT.Objects.ICommand;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public class VersionCommand implements ICommand {
-    private static String version = "빌드 버젼 V 1.7.1 beta 1 alpha 1";
+    private static final String version = "빌드 버젼 V 1.7.1 ";
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
         if(App.isDEBUG_MODE() || App.isONLINE_DEBUG()) {
-            event.getChannel().sendMessage("빌드 버젼 V 1.7.1 beta 1 (" + App.getTime() + ")").queue();
+            event.getChannel().sendMessage("빌드 버젼 V 1.7.2 beta 1 (" + App.getTime() + ")").queue();
             return;
         }
         event.getChannel().sendMessage(version + "(" + App.getTime() + ")").queue();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "빌드 버젼을 알려줍니다. \n" +
                 "사용법: `" + App.getPREFIX() + getInvoke() + "`";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "봇버젼";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "other";
     }
 
+    @NotNull
     public static String getVersion() {
         return version;
     }

@@ -7,13 +7,14 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
 
 public class pollCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
         if(!(Objects.requireNonNull(event.getMember()).hasPermission(Permission.ADMINISTRATOR) || event.getMember().hasPermission(Permission.MESSAGE_MANAGE))) {
             if(!event.getAuthor().getId().equals("278086240195182592")) {
                 event.getChannel().sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
@@ -45,17 +46,20 @@ public class pollCommand implements ICommand {
         message.addReaction("3\u20E3").complete();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "유저들에게 투표를 하기 위한 명령어 입니다.\n" +
                 "사용법: `" + App.getPREFIX() + getInvoke() + " <투표 내용> `";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "투표";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "moderator";

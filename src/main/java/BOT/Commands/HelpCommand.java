@@ -6,22 +6,25 @@ import BOT.Objects.ICommand;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.List;
 
 public class HelpCommand implements ICommand {
 
-    private CommandManager manager;
-    private Collection<ICommand> Commands;
+    @NotNull
+    private final CommandManager manager;
+    @NotNull
+    private final Collection<ICommand> Commands;
 
-    public HelpCommand(CommandManager manager) {
+    public HelpCommand(@NotNull CommandManager manager) {
         this.manager = manager;
         Commands = manager.getCommands();
     }
 
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         String joined = String.join(" ", args);
 
         if(joined.equals("")) {
@@ -43,7 +46,7 @@ public class HelpCommand implements ICommand {
         event.getChannel().sendMessage(message).queue();
     }
 
-    private void generateAndSendEmbed(GuildMessageReceivedEvent event) {
+    private void generateAndSendEmbed(@NotNull GuildMessageReceivedEvent event) {
         EmbedBuilder builder = EmbedUtils.defaultEmbed().setTitle("명령어 리스트:");
 
         StringBuilder music = new StringBuilder();
@@ -107,17 +110,20 @@ public class HelpCommand implements ICommand {
         event.getChannel().sendMessage(builder.build()).queue();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "모르는 명령어는 어디서? 여기서.\n" +
                 "명령어: `" + App.getPREFIX() + getInvoke() + " [command]`";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "명령어";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "other";

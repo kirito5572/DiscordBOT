@@ -8,19 +8,23 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class giveroleCommand implements ICommand {
+    @NotNull
     private String colorCode = "";
+    @NotNull
     private String permission_Int = "";
+    @NotNull
     private String pos = "";
     private boolean hoisted = false;
 
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         colorCode = "";
         permission_Int = "";
         pos = "";
@@ -119,6 +123,7 @@ public class giveroleCommand implements ICommand {
         }
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "역할이 없는 사람에게 역할을 만들어서 줍니다.(관리자 전용)\n" +
@@ -129,17 +134,19 @@ public class giveroleCommand implements ICommand {
                 "[$역할 위치] \n예시 `" + App.getPREFIX() + getInvoke() + "[역할명] [유저명] $15`\n" +
                 "[역할 분리 표시] \n예시 `" + App.getPREFIX() + getInvoke() + "[역할명] [유저명] true`";
     }
+    @NotNull
     @Override
     public String getInvoke() {
         return "역할";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "moderator";
     }
 
-    private void convert(String str) {
+    private void convert(@NotNull String str) {
         if(str.contains("#")) {
             colorCode = str.substring(1);
         } else if(str.contains("^")) {

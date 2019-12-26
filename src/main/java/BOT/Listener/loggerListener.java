@@ -4,17 +4,30 @@ import BOT.Objects.SQL;
 import BOT.Objects.config;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.ReconnectedEvent;
+import net.dv8tion.jda.api.events.channel.category.CategoryCreateEvent;
+import net.dv8tion.jda.api.events.channel.category.CategoryDeleteEvent;
+import net.dv8tion.jda.api.events.channel.category.update.CategoryUpdateNameEvent;
+import net.dv8tion.jda.api.events.channel.category.update.CategoryUpdatePermissionsEvent;
+import net.dv8tion.jda.api.events.channel.text.TextChannelCreateEvent;
+import net.dv8tion.jda.api.events.channel.text.TextChannelDeleteEvent;
+import net.dv8tion.jda.api.events.channel.text.update.*;
+import net.dv8tion.jda.api.events.channel.voice.VoiceChannelCreateEvent;
+import net.dv8tion.jda.api.events.channel.voice.VoiceChannelDeleteEvent;
+import net.dv8tion.jda.api.events.channel.voice.update.*;
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent;
+import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
+import net.dv8tion.jda.api.events.guild.member.GuildMemberLeaveEvent;
+import net.dv8tion.jda.api.events.guild.member.GuildMemberRoleAddEvent;
+import net.dv8tion.jda.api.events.guild.member.GuildMemberRoleRemoveEvent;
+import net.dv8tion.jda.api.events.guild.member.update.GuildMemberUpdateNicknameEvent;
 import net.dv8tion.jda.api.events.message.MessageBulkDeleteEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageDeleteEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
@@ -22,6 +35,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -103,10 +118,10 @@ public class loggerListener extends ListenerAdapter {
                 if (data[0].length() < 2) {
                     return;
                 }
-                final boolean[] temp = {SQL.loggingMessageUpdate(guild.getId(), messageId, messageContent, authorId)};
+                final boolean[] temp = {SQL.loggingMessageUpdate(guild.getId(), messageId, messageContent)};
                 new Thread(() -> {
                     while (!temp[0]) {
-                        temp[0] = SQL.loggingMessageUpdate(guild.getId(), messageId, finalMessageContent, authorId);
+                        temp[0] = SQL.loggingMessageUpdate(guild.getId(), messageId, finalMessageContent);
                         try {
                             System.out.println(temp[0]);
                             Thread.sleep(100);
@@ -182,12 +197,38 @@ public class loggerListener extends ListenerAdapter {
             }
         }
     }
-    private void messageLoggingSend(EmbedBuilder builder, Guild guild) {
+    private void messageLoggingSend(@NotNull EmbedBuilder builder, @NotNull Guild guild) {
         List<TextChannel> channels = guild.getTextChannelsByName("채팅-로그", false);
         if(!channels.isEmpty()) {
             channels.get(0).sendMessage(builder.build()).queue();
         } else {
-            List<TextChannel> channels1 = guild.getTextChannelsByName("Chatting-logs", false);
+            List<TextChannel> channels1 = guild.getTextChannelsByName("chat-logs", false);
+            if(!channels.isEmpty()) {
+                channels1.get(0).sendMessage(builder.build()).queue();
+            }
+        }
+
+    }
+
+    private void channelLoggingSend(@NotNull EmbedBuilder builder, @NotNull Guild guild) {
+        List<TextChannel> channels = guild.getTextChannelsByName("채널-로그", false);
+        if(!channels.isEmpty()) {
+            channels.get(0).sendMessage(builder.build()).queue();
+        } else {
+            List<TextChannel> channels1 = guild.getTextChannelsByName("channel-logs", false);
+            if(!channels.isEmpty()) {
+                channels1.get(0).sendMessage(builder.build()).queue();
+            }
+        }
+
+    }
+
+    private void memberLoggingSend(@NotNull EmbedBuilder builder, @NotNull Guild guild) {
+        List<TextChannel> channels = guild.getTextChannelsByName("멤버-로그", false);
+        if(!channels.isEmpty()) {
+            channels.get(0).sendMessage(builder.build()).queue();
+        } else {
+            List<TextChannel> channels1 = guild.getTextChannelsByName("member-logs", false);
             if(!channels.isEmpty()) {
                 channels1.get(0).sendMessage(builder.build()).queue();
             }
@@ -201,7 +242,7 @@ public class loggerListener extends ListenerAdapter {
             Class.forName("com.mysql.cj.jdbc.Driver");
             SQL.setLoggingConnection(DriverManager.getConnection(SQL.getUrl(), SQL.getUser(), SQL.getPassword()));
             SQL.setConnection(DriverManager.getConnection(SQL.getUrl(), SQL.getUser(), SQL.getPassword()));
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (@NotNull SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
     }
@@ -211,16 +252,472 @@ public class loggerListener extends ListenerAdapter {
         String guildId = event.getGuild().getId();
         try {
             Statement statement = SQL.getConnection().createStatement();
-            statement.executeQuery("INSERT INTO ritobot_config.color_command_guild VALUES (" + guildId + ", 0)");
-            statement.executeQuery("INSERT INTO ritobot_config.filter_guild VALUES (" + guildId + ", 1)");
-            statement.executeQuery("INSERT INTO ritobot_config.kill_filter_guild VALUES (" + guildId + ", 1)");
-            statement.executeQuery("INSERT INTO ritobot_config.lewdneko_command VALUES (" + guildId + ", 0)");
-            statement.executeQuery("INSERT INTO ritobot_config.link_filter_guild VALUES (" + guildId + ", 1)");
-            statement.executeQuery("INSERT INTO ritobot_config.logging_enable VALUES (" + guildId + ", 1, 1)");
+            statement.executeUpdate("INSERT INTO ritobot_config.color_command_guild VALUES (" + guildId + ", 1)");
+            statement.executeUpdate("INSERT INTO ritobot_config.filter_guild VALUES (" + guildId + ", 0)");
+            statement.executeUpdate("INSERT INTO ritobot_config.kill_filter_guild VALUES (" + guildId + ", 0)");
+            statement.executeUpdate("INSERT INTO ritobot_config.lewdneko_command VALUES (" + guildId + ", 0)");
+            statement.executeUpdate("INSERT INTO ritobot_config.link_filter_guild VALUES (" + guildId + ", 0)");
+            statement.executeUpdate("INSERT INTO ritobot_config.logging_enable VALUES (" + guildId + ", 1, 1, 1)");
             statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         Objects.requireNonNull(event.getGuild().getDefaultChannel()).sendMessage("&설정 명령어로 봇 설정 해두시기 바랍니다.\n 설정을 하지 않아 발생한 문제는 제작자가 책임지지 않습니다.").queue();
+    }
+
+    @Override
+    public void onTextChannelUpdateName(@Nonnull TextChannelUpdateNameEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("텍스트 채널 이름 변경")
+                        .setColor(Color.GREEN)
+                        .addField("이전 이름", event.getOldName(), false)
+                        .addField("변경된 이름", event.getNewName(), false)
+                        .addField("변경 시간", time2, false);
+                channelLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onTextChannelUpdateTopic(@Nonnull TextChannelUpdateTopicEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("텍스트 채널 토픽 변경")
+                        .setColor(Color.GREEN)
+                        .addField("채널명", event.getChannel().getName(), false)
+                        .addField("이전 토픽", event.getOldTopic(), false)
+                        .addField("변경된 토픽", event.getNewTopic(), false)
+                        .addField("변경 시간", time2, false);
+                channelLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onTextChannelUpdatePermissions(@Nonnull TextChannelUpdatePermissionsEvent event) {
+        super.onTextChannelUpdatePermissions(event);
+        /*
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+
+                StringBuilder builder1 = new StringBuilder();
+                StringBuilder builder2 = new StringBuilder();
+                for(int i = 0; i < event.getChangedRoles().size(); i++) {
+                    builder1.append(event.getChangedRoles().get(i).getName()).append("\n");
+                    builder1.append(event.getChangedPermissionHolders().get(i).getPermissions(event.getChannel()).toString()).append("\n\n");
+                }
+                for(int i = 0; i < event.getChangedMembers().size(); i++) {
+                    builder2.append(event.getChangedMembers().get(i).getNickname()).append("\n");
+                    builder2.append(event.getChangedPermissionHolders().get(i).getPermissions(event.getChannel()).toString()).append("\n\n");
+                }
+
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("텍스트 채널 권한 변경")
+                        .setColor(Color.GREEN)
+                        .addField("채널명", event.getChannel().getName(), false)
+                        .addField("변경된 권한(역할)", builder1.toString(), false)
+                        .addField("변경된 권한(멤버)", builder2.toString(), false)
+                        .addField("변경 시간", time2, false);
+                channelLoggingSend(builder, guild);
+            }
+        }
+
+         */
+    }
+
+    @Override
+    public void onTextChannelUpdateNSFW(@Nonnull TextChannelUpdateNSFWEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder;
+                if(event.getOldNSFW()) {
+                    builder = EmbedUtils.defaultEmbed()
+                            .setTitle("후방 주의 채널 해제")
+                            .setColor(Color.GREEN)
+                            .addField("채널명", event.getChannel().getName(), false)
+                            .addField("변경 시간", time2, false);
+                } else {
+                    builder = EmbedUtils.defaultEmbed()
+                            .setTitle("후방 주의 채널 지정")
+                            .setColor(Color.RED)
+                            .addField("채널명", event.getChannel().getName(), false)
+                            .addField("변경 시간", time2, false);
+                }
+                channelLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onTextChannelUpdateSlowmode(@Nonnull TextChannelUpdateSlowmodeEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                            .setTitle("텍스트 채널 슬로우 모드 지정")
+                            .setColor(Color.YELLOW)
+                            .addField("채널명", event.getChannel().getName(), false)
+                            .addField("이전 슬로우 모드 시간", String.valueOf(event.getOldValue()), false)
+                            .addField("현재 슬로우 모드 시간", String.valueOf(event.getNewSlowmode()), false)
+                            .addField("변경 시간", time2, false);
+                channelLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onTextChannelCreate(@Nonnull TextChannelCreateEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("텍스트 채널 생성")
+                        .setColor(Color.GREEN)
+                        .addField("채널명", event.getChannel().getName(), false)
+                        .addField("변경 시간", time2, false);
+                channelLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onTextChannelDelete(@Nonnull TextChannelDeleteEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("텍스트 채널 삭제")
+                        .setColor(Color.RED)
+                        .addField("채널명", event.getChannel().getName(), false)
+                        .addField("변경 시간", time2, false);
+                channelLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onVoiceChannelCreate(@Nonnull VoiceChannelCreateEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("보이스 채널 생성")
+                        .setColor(Color.GREEN)
+                        .addField("채널명", event.getChannel().getName(), false)
+                        .addField("변경 시간", time2, false);
+                channelLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onVoiceChannelDelete(@Nonnull VoiceChannelDeleteEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("보이스 채널 삭제")
+                        .setColor(Color.RED)
+                        .addField("채널명", event.getChannel().getName(), false)
+                        .addField("변경 시간", time2, false);
+                channelLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onVoiceChannelUpdateName(@Nonnull VoiceChannelUpdateNameEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("보이스 채널 이름 변경")
+                        .setColor(Color.YELLOW)
+                        .addField("이전 이름", event.getOldName(), false)
+                        .addField("변경된 이름", event.getNewName(), false)
+                        .addField("변경 시간", time2, false);
+                channelLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onVoiceChannelUpdateUserLimit(@Nonnull VoiceChannelUpdateUserLimitEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("보이스 채널 유저 제한 수 변경")
+                        .setColor(Color.YELLOW)
+                        .addField("이전 제한 수", String.valueOf(event.getOldUserLimit()), false)
+                        .addField("변경 제한 수", String.valueOf(event.getNewUserLimit()), false)
+                        .addField("변경 시간", time2, false);
+                channelLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onVoiceChannelUpdateBitrate(@Nonnull VoiceChannelUpdateBitrateEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("보이스 채널 비트레이트 변경")
+                        .setColor(Color.YELLOW)
+                        .addField("이전 비트레이트", String.valueOf(event.getOldBitrate()), false)
+                        .addField("변경 비트레이트", String.valueOf(event.getNewBitrate()), false)
+                        .addField("변경 시간", time2, false);
+                channelLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onVoiceChannelUpdatePermissions(@Nonnull VoiceChannelUpdatePermissionsEvent event) {
+        super.onVoiceChannelUpdatePermissions(event);
+    }
+
+    @Override
+    public void onCategoryDelete(@Nonnull CategoryDeleteEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("카테고리 삭제")
+                        .setColor(Color.RED)
+                        .addField("카테고리명", event.getCategory().getName(), false)
+                        .addField("변경 시간", time2, false);
+                channelLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onCategoryUpdateName(@Nonnull CategoryUpdateNameEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("카테고리 이름 변경")
+                        .setColor(Color.ORANGE)
+                        .addField("이전 이름", event.getOldName(), false)
+                        .addField("변경된 이름", event.getNewName(), false)
+                        .addField("변경 시간", time2, false);
+                channelLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onCategoryUpdatePermissions(@Nonnull CategoryUpdatePermissionsEvent event) {
+        super.onCategoryUpdatePermissions(event);
+    }
+
+    @Override
+    public void onCategoryCreate(@Nonnull CategoryCreateEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("카테고리 생성")
+                        .setColor(Color.GREEN)
+                        .addField("카테고리명", event.getCategory().getName(), false)
+                        .addField("변경 시간", time2, false);
+                channelLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onGuildMemberJoin(@Nonnull GuildMemberJoinEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getMemberLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("유저 입장")
+                        .setDescription(event.getMember().getAsMention() + "유저가 서버에 들어왔습니다.")
+                        .setColor(Color.GREEN)
+                        .addField("유저명", event.getMember().getNickname() + "(" + event.getMember().getEffectiveName() + event.getMember().getUser().getAsTag() + ") ", false)
+                        .addField("유저 가입일", event.getMember().getTimeCreated().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME.withZone(ZoneId.systemDefault())), false)
+                        .addField("입장 시간", time2, false);
+                memberLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onGuildMemberLeave(@Nonnull GuildMemberLeaveEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getMemberLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                StringBuilder stringBuilder = new StringBuilder();
+
+                for(Role role : event.getMember().getRoles()) {
+                    stringBuilder.append(role.getName()).append("\n");
+                }
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("유저 퇴장")
+                        .setDescription(event.getMember().getAsMention() + "유저가 서버에서 나갔습니다.")
+                        .setColor(Color.RED)
+                        .addField("유저명", event.getMember().getNickname() + "(" + event.getMember().getEffectiveName() + event.getMember().getUser().getAsTag() + ") ", false)
+                        .addField("유저 가입일", event.getMember().getTimeCreated().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME.withZone(ZoneId.systemDefault())), false)
+                        .addField("유저 서버 입장일", event.getMember().getTimeJoined().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME.withZone(ZoneId.systemDefault())), false)
+                        .addField("역할", stringBuilder.toString(), false)
+                        .addField("퇴장 시간", time2, false);
+                memberLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onGuildMemberRoleAdd(@Nonnull GuildMemberRoleAddEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getMemberLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                StringBuilder stringBuilder = new StringBuilder();
+
+                for(Role role : event.getRoles()) {
+                    stringBuilder.append(role.getName()).append("\n");
+                }
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("유저 역할 추가")
+                        .setDescription("대상유저:" + event.getMember().getAsMention())
+                        .setColor(Color.GREEN)
+                        .addField("유저명", event.getMember().getNickname() + "(" + event.getMember().getEffectiveName() + event.getMember().getUser().getAsTag() + ") ", false)
+                        .addField("추가된 역할", stringBuilder.toString(), false)
+                        .addField("시간", time2, false);
+                memberLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onGuildMemberRoleRemove(@Nonnull GuildMemberRoleRemoveEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getMemberLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                StringBuilder stringBuilder = new StringBuilder();
+
+                for(Role role : event.getRoles()) {
+                    stringBuilder.append(role.getName()).append("\n");
+                }
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("유저 역할 삭제")
+                        .setDescription("대상유저:" + event.getMember().getAsMention())
+                        .setColor(Color.RED)
+                        .addField("유저명", event.getMember().getNickname() + "(" + event.getMember().getEffectiveName() + event.getMember().getUser().getAsTag() + ") ", false)
+                        .addField("삭제된 역할", stringBuilder.toString(), false)
+                        .addField("시간", time2, false);
+                memberLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onGuildMemberUpdateNickname(@Nonnull GuildMemberUpdateNicknameEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getMemberLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("유저 역할 추가")
+                        .setDescription("대상유저:" + event.getMember().getAsMention())
+                        .setColor(Color.GREEN)
+                        .addField("이전 이름", event.getOldNickname(), false)
+                        .addField("현재 이름", event.getNewNickname(), false)
+                        .addField("시간", time2, false);
+                memberLoggingSend(builder, guild);
+            }
+        }
     }
 }

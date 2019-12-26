@@ -12,6 +12,7 @@ import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +29,7 @@ import java.util.stream.Collectors;
 public class GreenServerMuteCommand implements ICommand {
     private final Logger logger = LoggerFactory.getLogger(GreenServerMuteListener.class);
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd kk:mm");
         String time_st;
         TextChannel channel = event.getChannel();
@@ -76,6 +77,7 @@ public class GreenServerMuteCommand implements ICommand {
             User user = foundUsers.get(0);
             Member member = event.getGuild().getMember(user);
 
+            assert member != null;
             if(member.hasPermission(Permission.MANAGE_ROLES) || member.hasPermission(Permission.MESSAGE_MANAGE) ||
                     member.hasPermission(Permission.MANAGE_PERMISSIONS) || member.hasPermission(Permission.MANAGE_SERVER) ||
                     member.hasPermission(Permission.ADMINISTRATOR)) {
@@ -165,7 +167,7 @@ public class GreenServerMuteCommand implements ICommand {
                         .addField("제재 해제 시간", time_st, false)
                         .setColor(Color.RED);
                 Thread.sleep(1);
-                event.getGuild().getTextChannelById("609781460785692672").sendMessage(builder.build()).complete();
+                Objects.requireNonNull(event.getGuild().getTextChannelById("609781460785692672")).sendMessage(builder.build()).complete();
             } catch (Exception e) {
                 channel.sendMessage("메세지를 보내기 전에 문제가 발생했습니다.").complete();
 
@@ -213,6 +215,7 @@ public class GreenServerMuteCommand implements ICommand {
         }
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "채팅 금지를 먹입니다.\n" +
@@ -220,11 +223,13 @@ public class GreenServerMuteCommand implements ICommand {
 
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "채팅금지";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "serverCustom";
@@ -236,14 +241,14 @@ public class GreenServerMuteCommand implements ICommand {
                 "Roles = " + roles;
 
         File file = new File("C:\\디스코드 유저 제재기록\\" + time + ".txt");
-        FileWriter writer = null;
+        FileWriter writer;
 
 
         writer = new FileWriter(file, true);
         writer.write(message);
         writer.flush();
 
-        if(writer != null) writer.close();
+        writer.close();
 
     }
 }

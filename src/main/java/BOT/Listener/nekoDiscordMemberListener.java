@@ -18,17 +18,15 @@ import java.util.Objects;
 public class nekoDiscordMemberListener extends ListenerAdapter {
     private final Logger logger = LoggerFactory.getLogger(nekoDiscordMemberListener.class);
     private static String Chating1;
-    private static String Chating2;
-    private static String catCafe = "644872685213581312";
-    private static String greenServer = "656658148093853736";
+    private static final String catCafe = "644872685213581312";
+    private static final String greenServer = "656658148093853736";
 
     @Override
-    public void onMessageReactionAdd(MessageReactionAddEvent event) {
+    public void onMessageReactionAdd(@NotNull MessageReactionAddEvent event) {
         Guild guild = event.getGuild();
         //getJDA().getGuildById("439780696999985172");
         if(guild.getId().equals("439780696999985172")) {
             Role role = guild.getRoleById("625549604674600970");  //휴식자
-            Role role1 = guild.getRoleById("620787764430110721");  //Chating2
             Role role2 = guild.getRoleById("619556312627544105");  //사무직
             Member member = event.getMember();
             if (event.getMessageId().equals(Chating1)) {
@@ -62,11 +60,10 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
             }
         }
     }
-    public void onMessageReactionRemove(MessageReactionRemoveEvent event) {
+    public void onMessageReactionRemove(@NotNull MessageReactionRemoveEvent event) {
         Guild guild = event.getGuild();
         if(guild.getId().equals("439780696999985172")) {
             Role role = guild.getRoleById("625549604674600970");  //휴식자
-            Role role1 = guild.getRoleById("620787764430110721");  //Chating2
             Member member = event.getMember();
             if (event.getMessageId().equals(Chating1)) {
                 assert member != null;
@@ -114,21 +111,5 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
             logger.warn(a.toString());
         }
         Chating1 = Chating_temp.toString();
-        try {
-            File file = new File("C:\\디스코드봇 파일들\\네코디코 리스너\\Chating2.txt");
-            FileReader fileReader = new FileReader(file);
-            int singalCh;
-            while ((singalCh = fileReader.read()) != -1) {
-                Chating_temp.append((char) singalCh);
-            }
-        } catch (Exception e) {
-            StackTraceElement[] eStackTrace = e.getStackTrace();
-            StringBuilder a = new StringBuilder();
-            for (StackTraceElement stackTraceElement : eStackTrace) {
-                a.append(stackTraceElement).append("\n");
-            }
-            logger.warn(a.toString());
-        }
-        Chating2 = Chating_temp.toString();
     }
 }

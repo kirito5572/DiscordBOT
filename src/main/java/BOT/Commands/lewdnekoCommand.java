@@ -2,11 +2,11 @@ package BOT.Commands;
 
 import BOT.Objects.ICommand;
 import BOT.Objects.config;
-import com.google.gson.internal.$Gson$Preconditions;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,12 +16,11 @@ import java.io.InputStream;
 import java.util.List;
 
 import static BOT.Listener.ONIGIRIListener.convertInputStreamToFile;
-import static BOT.Objects.config.getLewdNekoDisable;
 
 public class lewdnekoCommand implements ICommand {
     private final Logger logger = LoggerFactory.getLogger(lewdnekoCommand.class);
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         int num = 1;
         try {
             num = Integer.parseInt(args.get(0));
@@ -79,16 +78,19 @@ public class lewdnekoCommand implements ICommand {
         }
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "lewd 콘텐츠 커맨드이므로 사용에 주의하여 주시기 바랍니다.";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "후방주의네코";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "other";

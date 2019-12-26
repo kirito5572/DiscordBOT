@@ -2,11 +2,12 @@ package BOT.Commands.GreenServerCustom;
 
 import BOT.App;
 import BOT.Objects.ICommand;
-import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.exceptions.ErrorResponseException;
 import org.apache.commons.io.IOUtils;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,11 +19,14 @@ import java.util.Objects;
 
 public class certificationCommand implements ICommand {
     private final Logger logger = LoggerFactory.getLogger(certificationCommand.class);
-    private InputStream certification_Img_is1 = getClass().getClassLoader().getResourceAsStream("1.png");
-    private InputStream certification_Img_is2 = getClass().getClassLoader().getResourceAsStream("2.png");
-    private InputStream certification_Img_is3 = getClass().getClassLoader().getResourceAsStream("3.png");
+    @Nullable
+    private final InputStream certification_Img_is1 = getClass().getClassLoader().getResourceAsStream("1.png");
+    @Nullable
+    private final InputStream certification_Img_is2 = getClass().getClassLoader().getResourceAsStream("2.png");
+    @Nullable
+    private final InputStream certification_Img_is3 = getClass().getClassLoader().getResourceAsStream("3.png");
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
         if(event.getGuild().getId().equals("600010501266866186")) {
             try {
@@ -116,21 +120,25 @@ public class certificationCommand implements ICommand {
         }
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "서버 접근 인증을 위한 인증키를 생성합니다.";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "인증";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "serverCustom";    }
 
-    private String SHA256(String msg) throws NoSuchAlgorithmException {
+    @NotNull
+    private String SHA256(@NotNull String msg) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(msg.getBytes());
         byte[] bytes =md.digest();
@@ -141,7 +149,8 @@ public class certificationCommand implements ICommand {
         }
         return builder.toString();
     }
-    private File convertInputStreamToFile(InputStream is) throws IOException {
+    @NotNull
+    private File convertInputStreamToFile(@NotNull InputStream is) throws IOException {
         File file = File.createTempFile("C://temp", ".png");
 
         OutputStream outputStream = new FileOutputStream(file);

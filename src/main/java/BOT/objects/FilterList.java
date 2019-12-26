@@ -1,7 +1,9 @@
 package BOT.Objects;
 
+import org.jetbrains.annotations.NotNull;
+
 public class FilterList {
-    private static String[] List= {
+    private static final String[] List= {
             "간나새끼", "갈보", "개간년", "개년", "개새끼", "씨발", "지랄", "족새", "꼰대", 
             "느금마", "니미", "니기미", "닥쳐", "닥처", "대가리", " 등신", "딸딸이", "똘추", 
             "메갈", "메갈리아", "미제", "미친", "병신", "보슬", "보추", "불알", "뻐큐", 
@@ -60,11 +62,11 @@ public class FilterList {
             "후레", "후뢰", "씨ㅋ발", "ㅆ1발", "씌발", "띠발", "띄발", "뛰발", "띠ㅋ발", "뉘뮈", 
 
     };
-    private static String[] charList = {
+    private static final String[] charList = {
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "!", "@", "#", "$", "%", "^", "&", "(", ")",
-            "~", "`", "|", "<", ">", "\"", "\'", ", ", ".", "?", "/", "\\", "-", "_", "+", "=", " "
+            "~", "`", "|", "<", ">", "\"", ", ", ".", "?", "/", "\\", "-", "_", "+", "=", " "
     };
-    private static String[] webList = {
+    private static final String[] webList = {
             ".gg", ".edu", ".org", ".net", ".mil", ".com", ".gov", ".int", ".museum", 
             ".info", ".coop", ".biz", "aero", "pro", ".mobi", ".travel", ".jobs", ".cat", 
             ".tel", ".asia", 
@@ -254,22 +256,21 @@ public class FilterList {
             ".you", ".youtube", ".yt", ".yun", ".za", ".zappos", ".zara", ".zero", ".zip", ".zippo",
             ".zm", ".zone", ".zuerich", ".zw"
     };
-    private static String[] greenList = {
+    private static final String[] greenList = {
         "호류", "니하", "Doge", "스노", "SNO", "독도서버", "독도섭", "시마", "Sima", "가리아", "한국 서버", "인텔 서버"
     };
 
-    public static String[] getCharList() {
-        return charList;
-    }
-
+    @NotNull
     public static String[] getList() {
         return List;
     }
 
+    @NotNull
     public static String[] getWebList() {
         return webList;
     }
 
+    @NotNull
     public static String[] getGreenList() {
         return greenList;
     }

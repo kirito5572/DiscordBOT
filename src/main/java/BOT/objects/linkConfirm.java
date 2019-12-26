@@ -1,5 +1,7 @@
 package BOT.Objects;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.regex.Matcher;
@@ -7,7 +9,7 @@ import java.util.regex.Pattern;
 
 public class linkConfirm {
     private static String link;
-    public static boolean isLink(String rawMessage, String s) {
+    public static boolean isLink(@NotNull String rawMessage, String s) {
         if(rawMessage.startsWith("http://")) {
             rawMessage = rawMessage.replaceFirst("http://", "");
         }

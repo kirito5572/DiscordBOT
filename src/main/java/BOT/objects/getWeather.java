@@ -1,5 +1,6 @@
 package BOT.Objects;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -19,8 +20,8 @@ public class getWeather {
     private static final SimpleDateFormat clock_aa = new SimpleDateFormat("a");
     private static final SimpleDateFormat clock_am = new SimpleDateFormat("K시 mm분 ss초(z)");
     private static final SimpleDateFormat clock_pm = new SimpleDateFormat("h시 mm분 ss초(z)");
-    private static String[] weather_infor = new String[12];
-    private static String[] weather_list = new String[] {
+    private static final String[] weather_infor = new String[12];
+    private static final String[] weather_list = new String[] {
             "날씨 상태", "현재 온도", "대기압", "습도", "풍속",
             "바람의 방향", "3시간 강수량", "3시간 적설량",
             "일출 시간", "일몰 시간"
@@ -114,6 +115,7 @@ public class getWeather {
         }
 
     }
+    @NotNull
     private static String formatDate(Date date) {
         String flag = clock_aa.format(date);
         if(flag.equals("오전")) {
@@ -123,10 +125,12 @@ public class getWeather {
         }
     }
 
+    @NotNull
     public static String[] getWeather_infor() {
         return weather_infor;
     }
 
+    @NotNull
     public static String[] getWeather_list() {
         return weather_list;
     }

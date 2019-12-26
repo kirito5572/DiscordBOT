@@ -11,6 +11,7 @@ import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.PrivateChannel;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +27,7 @@ import static BOT.Listener.ONIGIRIListener.convertInputStreamToFile;
 public class CatCommand implements ICommand {
     private final Logger logger = LoggerFactory.getLogger(CatCommand.class);
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
 
         Member selfMember = event.getGuild().getSelfMember();
         int num = 1;
@@ -156,17 +157,20 @@ public class CatCommand implements ICommand {
         }
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "랜덤 네코 생성기 \n" +
                 "사용법: `" + Constants.PREFIX + getInvoke() + "` <반복숫자>(미입력시 1)";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "네코";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "other";

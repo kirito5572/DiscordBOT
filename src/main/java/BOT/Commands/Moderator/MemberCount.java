@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Category;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -14,7 +15,7 @@ import static BOT.Listener.MemberCountListener.count;
 
 public class MemberCount implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_CHANNEL)) {
             event.getChannel().sendMessage("이 명령어를 사용할 권한이 없습니다.").queue();
 
@@ -94,16 +95,19 @@ public class MemberCount implements ICommand {
         }
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "멤버 카운터 [시작/정지/새로고침]";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "멤버카운팅";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "moderator";

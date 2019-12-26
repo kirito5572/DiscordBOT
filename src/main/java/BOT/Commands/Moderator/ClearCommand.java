@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.OffsetDateTime;
 import java.time.temporal.ChronoUnit;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class ClearCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
         Member selfMember = event.getGuild().getSelfMember();
         Member member = event.getMember();
@@ -71,17 +72,20 @@ public class ClearCommand implements ICommand {
         }
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "더러운 채팅들을 깔끔하게!" +
                 "사용법: `" + App.getPREFIX() + getInvoke() + "` (숫자)";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "청소";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "moderator";

@@ -2,6 +2,7 @@ package BOT.Music;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Holder for both the player and a track scheduler for one guild.
@@ -14,13 +15,14 @@ public class GuildMusicManager {
     /**
      * Track scheduler for the player.
      */
+    @NotNull
     public final TrackScheduler scheduler;
 
     /**
      * Creates a player and a track scheduler.
      * @param manager Audio player manager to use for creating the player.
      */
-    public GuildMusicManager(AudioPlayerManager manager) {
+    public GuildMusicManager(@NotNull AudioPlayerManager manager) {
         player = manager.createPlayer();
         scheduler = new TrackScheduler(player);
         player.addListener(scheduler);
@@ -29,7 +31,7 @@ public class GuildMusicManager {
     /**
      * @return Wrapper around AudioPlayer to use it as an AudioSendHandler.
      */
-    AudioPlayerSendHandler getSendHandler() {
+    @NotNull AudioPlayerSendHandler getSendHandler() {
         return new AudioPlayerSendHandler(player);
     }
 }

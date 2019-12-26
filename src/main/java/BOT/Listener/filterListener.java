@@ -83,9 +83,8 @@ public class filterListener extends ListenerAdapter {
         }
     }
 
-    private void filter(User author, Message message, Guild guild, Member member, Message messages, MessageChannel channel, JDA jda) {
+    private void filter(@NotNull User author, @NotNull Message message, @NotNull Guild guild, @NotNull Member member, @NotNull Message messages, @NotNull MessageChannel channel, @NotNull JDA jda) {
         String[] List = FilterList.getList();
-        String[] list = FilterList.getCharList();
         String[] Lists = FilterList.getWebList();
         String[] greenList = FilterList.getGreenList();
         String id = "";

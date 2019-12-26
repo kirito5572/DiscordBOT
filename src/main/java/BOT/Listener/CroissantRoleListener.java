@@ -16,7 +16,7 @@ import java.io.FileReader;
 
 public class CroissantRoleListener extends ListenerAdapter {
     private final Logger logger = LoggerFactory.getLogger(CroissantRoleListener.class);
-    private static File[] files = new File[] {
+    private static final File[] files = new File[] {
             new File("C:\\디스코드봇 파일들\\크루와상 리스너\\R6.txt"),
             new File("C:\\디스코드봇 파일들\\크루와상 리스너\\PUBG.txt"),
             new File("C:\\디스코드봇 파일들\\크루와상 리스너\\WAR.txt"),
@@ -28,7 +28,7 @@ public class CroissantRoleListener extends ListenerAdapter {
             new File("C:\\디스코드봇 파일들\\크루와상 리스너\\GTA.txt"),
             new File("C:\\디스코드봇 파일들\\크루와상 리스너\\BattleField.txt"),
     };
-    private static String[] role_id = new String[] {
+    private static final String[] role_id = new String[] {
             "655340527017000971",
             "655340598076899338",
             "655340619371380756",
@@ -40,9 +40,9 @@ public class CroissantRoleListener extends ListenerAdapter {
             "655340955863351357",
             "655340968563965983"
     };
-    private static String[] Chating = new String[files.length];
+    private static final String[] Chating = new String[files.length];
     @Override
-    public void onMessageReactionAdd(MessageReactionAddEvent event) {
+    public void onMessageReactionAdd(@NotNull MessageReactionAddEvent event) {
         Guild guild = event.getGuild();
         if(guild.getId().equals("508913681279483913")) {
             Member member = event.getMember();
@@ -60,7 +60,7 @@ public class CroissantRoleListener extends ListenerAdapter {
             }
         }
     }
-    public void onMessageReactionRemove(MessageReactionRemoveEvent event) {
+    public void onMessageReactionRemove(@NotNull MessageReactionRemoveEvent event) {
         Guild guild = event.getGuild();
         if(guild.getId().equals("508913681279483913")) {
             Member member = event.getMember();
@@ -68,6 +68,8 @@ public class CroissantRoleListener extends ListenerAdapter {
                 try {
                     if (event.getMessageId().equals(Chating[i])) {
                         Role role = event.getGuild().getRoleById(role_id[i]);
+                        assert member != null;
+                        assert role != null;
                         guild.removeRoleFromMember(member, role).complete();
                     }
                 } catch (Exception e) {

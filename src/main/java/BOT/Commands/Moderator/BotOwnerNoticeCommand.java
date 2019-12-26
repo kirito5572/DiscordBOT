@@ -2,6 +2,7 @@ package BOT.Commands.Moderator;
 
 import BOT.Objects.ICommand;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +14,7 @@ import static BOT.Listener.Listener.getID1;
 public class BotOwnerNoticeCommand implements ICommand {
     private final Logger logger = LoggerFactory.getLogger(BotOwnerNoticeCommand.class);
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         if(!Objects.requireNonNull(event.getMember()).getUser().getId().equals(getID1())) {
             return;
         }
@@ -62,16 +63,19 @@ public class BotOwnerNoticeCommand implements ICommand {
         event.getChannel().sendMessage("전송이 완료되었습니다.").queue();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "디스코드 제작자가 공지하기 위해 쓰는 것입니다.";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "공지";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "other";

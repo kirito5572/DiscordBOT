@@ -1,5 +1,7 @@
 package BOT.Objects;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -16,8 +18,8 @@ import java.net.URLEncoder;
 
 public class getAirData {
     private final Logger logger = LoggerFactory.getLogger(getAirData.class);
-    private static String[] airkorea_data = new String[16];
-    private static String[] airkorea_List = new String[8];
+    private static final String[] airkorea_data = new String[16];
+    private static final String[] airkorea_List = new String[8];
     static {
         airkorea_List[0] = "측정시간";
         airkorea_List[1] = "SO2";
@@ -29,12 +31,15 @@ public class getAirData {
         airkorea_List[7] = "KHAI(통합대기지수)";
     }
 
+    @NotNull
     public String[] getAirkorea_data() {
         return airkorea_data;
     }
+    @NotNull
     public String[] getAirkorea_List() {
         return airkorea_List;
     }
+    @Nullable
     public String get_StationName(String sido, String dong) {
         String tmX = "error";
         String tmY = "error";
@@ -287,7 +292,8 @@ public class getAirData {
             logger.warn(a.toString());
         }	// try~catch end
     }
-    static String get_AirKoreaTagValue(String airkorea_tag, Element airkorea_eElement) {
+    @Nullable
+    static String get_AirKoreaTagValue(String airkorea_tag, @NotNull Element airkorea_eElement) {
         NodeList nlList = airkorea_eElement.getElementsByTagName(airkorea_tag).item(0).getChildNodes();
         Node nValue = nlList.item(0);
         if(nValue == null)

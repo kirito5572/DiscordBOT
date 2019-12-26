@@ -8,8 +8,6 @@ mainClassName = 'BOT.App'
 group 'com.kirito5572'
 version '1.6.x'
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-
 repositories {
     jcenter()
     mavenCentral()
@@ -28,25 +26,12 @@ dependencies {
     implementation group: 'me.duncte123', name: 'botCommons', version: '1.0.45'
     implementation 'com.google.code.gson:gson:2.8.5'
 }
-sourceSets {
-    main {
-        java {
-            srcDir 'src/main/java'
-        }
-        resources {
-            srcDir 'src/main/resources'
-        }
-    }
-}
+
 shadowJar {
     manifest {
         attributes 'Title': 'rito-bot', 'Main-Class': mainClassName
     }
     baseName = 'rito-bot'
 }
-task stage(dependsOn: ['build', 'clean'])
-build.mustRunAfter clean
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 compileJava.options.encoding = 'UTF-8'

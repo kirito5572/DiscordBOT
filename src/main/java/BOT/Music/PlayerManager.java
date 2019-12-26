@@ -9,13 +9,16 @@ import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.TextChannel;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class PlayerManager {
     private static PlayerManager INSTANCE;
+    @NotNull
     private final AudioPlayerManager playerManager;
+    @NotNull
     private final Map<Long, GuildMusicManager> musicManagers;
 
     private PlayerManager() {
@@ -26,7 +29,7 @@ public class PlayerManager {
         AudioSourceManagers.registerLocalSource(playerManager);
     }
 
-    public synchronized GuildMusicManager getGuildMusicManager(Guild guild) {
+    public synchronized GuildMusicManager getGuildMusicManager(@NotNull Guild guild) {
         long guildID = guild.getIdLong();
         GuildMusicManager musicManager = musicManagers.get(guildID);
 
@@ -40,19 +43,19 @@ public class PlayerManager {
         return musicManager;
     }
 
-    public void loadAndPlay(TextChannel channel, String trackUrl) {
+    public void loadAndPlay(@NotNull TextChannel channel, String trackUrl) {
         GuildMusicManager musicManager = getGuildMusicManager(channel.getGuild());
 
         playerManager.loadItemOrdered(musicManager, trackUrl, new AudioLoadResultHandler() {
             @Override
-            public void trackLoaded(AudioTrack track) {
+            public void trackLoaded(@NotNull AudioTrack track) {
                 channel.sendMessage("재생목록에 추가:" + track.getInfo().title).queue();
 
                 play(musicManager, track);
             }
 
             @Override
-            public void playlistLoaded(AudioPlaylist playlist) {
+            public void playlistLoaded(@NotNull AudioPlaylist playlist) {
                 AudioTrack firstTrack = playlist.getSelectedTrack();
 
                 if (firstTrack == null) {
@@ -73,13 +76,13 @@ public class PlayerManager {
             }
 
             @Override
-            public void loadFailed(FriendlyException exception) {
+            public void loadFailed(@NotNull FriendlyException exception) {
                 channel.sendMessage("로딩 실패: " + exception.getMessage()).queue();
             }
         });
     }
 
-    private void play(GuildMusicManager musicManager, AudioTrack track) {
+    private void play(@NotNull GuildMusicManager musicManager, AudioTrack track) {
         musicManager.scheduler.queue(track);
     }
 

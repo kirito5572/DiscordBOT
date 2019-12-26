@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.Objects;
 
 public class configCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.ADMINISTRATOR)) {
             if(!event.getAuthor().getId().equals(Listener.getID1())) {
                 return;
@@ -38,8 +39,9 @@ public class configCommand implements ICommand {
                     .addField("-linkfilter", "링크 필터링을 설정합니다.", false)
                     .addField("-killfilter", "공개처형을 설정합니다.", false)
                     .addField("-lewdneko", "후방주의 컨텐츠를 설정합니다.", false)
-                    .addField("-chatlog", "채팅 로그를 설정합니다.", false)
-                    .addField("-channellog", "채널 설정 로그를 설정합니다.", false)
+                    .addField("-chatlog", "채팅 관련 로그를 설정합니다.", false)
+                    .addField("-channellog", "채널 관련 로그를 설정합니다.", false)
+                    .addField("-memberlog", "멤버 관련 로그를 설정합니다.", false)
                     .addField("-notice", "공지를 받을 채널을 설정합니다.", false)
                     .setDescription(App.getPREFIX() + getInvoke() + " " + "옵션" + " 활성화/비활성화\n" +
                             "예: " + App.getPREFIX() + getInvoke() + " " + "-filter" + " 활성화");
@@ -53,7 +55,8 @@ public class configCommand implements ICommand {
                     .addField("공개 처형", data[3].equals("0") ? "활성화" : "비활성화", false)
                     .addField("후방주의네코 커맨드", data[4].equals("0") ? "활성화" : "비활성화", false)
                     .addField("채팅 로그", data[5].equals("1") ? "활성화" : "비활성화", false)
-                    .addField("채널 설정 로그", data[6].equals("1") ? "활성화" : "비활성화", false)
+                    .addField("채널 로그", data[6].equals("1") ? "활성화" : "비활성화", false)
+                    .addField("멤버 로그", data[9].equals("1") ? "활성화" : "비활성화", false)
                     .addField("공지 채널 설정", data[8].equals("0") ? data[9] :"없음", false);
         } else if(args.get(0).equals("-guildcolor")) {
             if(args.size() >= 2) {
@@ -117,9 +120,9 @@ public class configCommand implements ICommand {
                 } else {
                     if(args.size() >= 3) {
                         if(args.get(1).equals("추가")) {
-                            SQL.configSetup(guildId, "0", args.get(2), true);
+                            SQL.configSetup(guildId, args.get(2), true);
                         } else if(args.get(1).equals("삭제")) {
-                            SQL.configSetup(guildId, "0", args.get(2), false);
+                            SQL.configSetup(guildId, args.get(2), false);
                         }
                     }
                 }
@@ -162,6 +165,17 @@ public class configCommand implements ICommand {
                             "현재 입력한 옵션값: " + args.get(1)).queue();
                 }
             }
+        } else if(args.get(0).equals("-memberlog")) {
+            if (args.size() >= 2) {
+                if (args.get(1).equals("활성화")) {
+                    SQL.configSetup(guildId, SQL.memberLogging, "0");
+                } else if (args.get(1).equals("비활성화")) {
+                    SQL.configSetup(guildId, SQL.memberLogging, "1");
+                } else {
+                    event.getChannel().sendMessage("활성화 또는 비활성화 옵션을 입력해주세요 \n" +
+                            "현재 입력한 옵션값: " + args.get(1)).queue();
+                }
+            }
         } else if(args.get(0).equals("-notice")) {
             if (args.size() >= 2) {
                 if (args.get(1).equals("활성화")) {
@@ -192,16 +206,19 @@ public class configCommand implements ICommand {
         config.config_load();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "봇의 서버별 설정을 변경합니다.";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "설정";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "moderator";

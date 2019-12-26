@@ -9,13 +9,14 @@ import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
 public class QueueDelectCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         new Thread(() -> {
             TextChannel channel = event.getChannel();
             PlayerManager playerManager = PlayerManager.getInstance();
@@ -51,6 +52,7 @@ public class QueueDelectCommand implements ICommand {
         }).start();
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "재생할 노래가 너무 많아서....\n" +
@@ -59,11 +61,13 @@ public class QueueDelectCommand implements ICommand {
                 "사용법: '" + App.getPREFIX() + getInvoke() + "'(숫자)";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "재생목록정리";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "music";

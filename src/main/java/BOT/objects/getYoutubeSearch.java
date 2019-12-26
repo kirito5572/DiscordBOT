@@ -3,7 +3,8 @@ package BOT.Objects;
 import BOT.Listener.filterListener;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import org.apache.commons.collections4.functors.PredicateTransformer;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,8 +13,8 @@ import java.net.*;
 import java.nio.charset.StandardCharsets;
 
 public class getYoutubeSearch {
-    private final Logger logger = LoggerFactory.getLogger(filterListener.class);
-    private static StringBuilder youtube_Key = new StringBuilder();
+    private static final Logger logger = LoggerFactory.getLogger(filterListener.class);
+    private static final StringBuilder youtube_Key = new StringBuilder();
     public getYoutubeSearch() {
         try {
             File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\YOUTUBE_DATA_API_KEY.txt");
@@ -32,7 +33,8 @@ public class getYoutubeSearch {
             logger.warn(a.toString());
         }
     }
-    public static String[][] Search(String name) {
+    @Nullable
+    public static String[][] Search(@NotNull String name) {
         try {
             String[][] returns = new String[10][2];
             String apiurl = "https://www.googleapis.com/youtube/v3/search";
@@ -76,7 +78,12 @@ public class getYoutubeSearch {
             return returns;
 
         } catch (IOException e) {
-            e.printStackTrace();
+            StackTraceElement[] eStackTrace = e.getStackTrace();
+            StringBuilder a = new StringBuilder();
+            for (StackTraceElement stackTraceElement : eStackTrace) {
+                a.append(stackTraceElement).append("\n");
+            }
+            logger.warn(a.toString());
         }
         return null;
     }

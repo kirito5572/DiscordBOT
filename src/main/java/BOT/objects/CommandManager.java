@@ -7,8 +7,10 @@ import BOT.Commands.GreenServerCustom.*;
 import BOT.Commands.Moderator.*;
 import BOT.Commands.Music.*;
 import BOT.Commands.ONIGIRIServerCustom.ONIGIRICommand;
+import BOT.Commands._OwnerOnlyCommand.getGuildsInforCommand;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,16 +26,19 @@ public class CommandManager {
         {
             addCommand(new HelpCommand(this));
             addCommand(new HelpCommand(this) {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "help";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Shows a list of all the commands.\n" +
@@ -42,16 +47,19 @@ public class CommandManager {
             });
             addCommand(new PingCommand());
             addCommand(new PingCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "ping";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Pong!\n" +
@@ -60,16 +68,19 @@ public class CommandManager {
             });
             addCommand(new UserInfoCommand());
             addCommand(new UserInfoCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "userinfo";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Displays information about a user.\n" +
@@ -78,16 +89,19 @@ public class CommandManager {
             });
             addCommand(new ColorInfoCommand());
             addCommand(new ColorInfoCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "colorinfo";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Print color that you can set in discord \n" +
@@ -96,16 +110,19 @@ public class CommandManager {
             });
             addCommand(new ColorCommand());
             addCommand(new ColorCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "color";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Set discord nickname color \n" +
@@ -115,16 +132,19 @@ public class CommandManager {
 
             addCommand(new ClearCommand());
             addCommand(new ClearCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "clear";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Clears the chat with the specified amount of messages.\n" +
@@ -133,16 +153,19 @@ public class CommandManager {
             });
             addCommand(new giveroleCommand());
             addCommand(new giveroleCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "giverole";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "create a role and give role to member \n" +
@@ -152,16 +175,19 @@ public class CommandManager {
             });
             addCommand(new SayCommand());
             addCommand(new SayCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "say";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "send message by bot(only text)\n " +
@@ -170,16 +196,19 @@ public class CommandManager {
             });
             addCommand(new UnusedColorCommand());
             addCommand(new UnusedColorCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "unusedcolorrole";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Delete unusedcolorrole \n" +
@@ -188,16 +217,19 @@ public class CommandManager {
             });
             addCommand(new JoinCommand());
             addCommand(new JoinCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "join";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Makes the bot join your channel";
@@ -208,32 +240,38 @@ public class CommandManager {
         {
             addCommand(new QueueDelectCommand());
             addCommand(new QueueDelectCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "queuedelect";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Clear Queqe";
                 }
             });
             addCommand(new QueueDelectCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "qd";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Clear Queue";
@@ -241,16 +279,19 @@ public class CommandManager {
             });
             addCommand(new QueueCommand());
             addCommand(new QueueCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "queue";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Shows the current queue for the music player";
@@ -258,32 +299,38 @@ public class CommandManager {
             });
             addCommand(new StopClearCommand());
             addCommand(new StopClearCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "stopclear";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Stop music and clear queue";
                 }
             });
             addCommand(new StopClearCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "sc";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Stop music and clear queue";
@@ -291,16 +338,19 @@ public class CommandManager {
             });
             addCommand(new PlayCommand());
             addCommand(new PlayCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "play";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Plays a song\n" +
@@ -308,16 +358,19 @@ public class CommandManager {
                 }
             });
             addCommand(new PlayCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "p";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Plays a song\n" +
@@ -326,16 +379,19 @@ public class CommandManager {
             });
             addCommand(new leaveCommand());
             addCommand(new leaveCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "leave";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Makes the bot leave your channel";
@@ -344,32 +400,38 @@ public class CommandManager {
 
             addCommand(new NowPlayingCommand());
             addCommand(new NowPlayingCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "nowplaying";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Shows the currently playing track";
                 }
             });
             addCommand(new NowPlayingCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "np";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Shows the currently playing track";
@@ -377,16 +439,19 @@ public class CommandManager {
             });
             addCommand(new SkipCommand());
             addCommand(new SkipCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "skip";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Skips the current song";
@@ -394,16 +459,19 @@ public class CommandManager {
             });
             addCommand(new StopCommand());
             addCommand(new StopCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "stop";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Stops the music player";
@@ -411,16 +479,19 @@ public class CommandManager {
             });
             addCommand(new VolumeCommand());
             addCommand(new VolumeCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "volume";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Set music player's volume\n" +
@@ -428,16 +499,19 @@ public class CommandManager {
                 }
             });
             addCommand(new VolumeCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "vol";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Set music player's volume\n" +
@@ -446,16 +520,19 @@ public class CommandManager {
             });
             addCommand(new VersionCommand());
             addCommand(new VersionCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "version";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "say bot's build version";
@@ -466,16 +543,19 @@ public class CommandManager {
         {
             addCommand(new SearchCommand());
             addCommand(new SearchCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "search";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Serach music from youtube\n" +
@@ -484,16 +564,19 @@ public class CommandManager {
             });
             addCommand(new upTimeCommand());
             addCommand(new upTimeCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "upTime";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Bot's uptime";
@@ -501,16 +584,19 @@ public class CommandManager {
             });
             addCommand(new AirInforCommand());
             addCommand(new AirInforCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "airinfor";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "air information by airkorea\n" +
@@ -519,16 +605,19 @@ public class CommandManager {
             });
             addCommand(new AirLocalInforCommand());
             addCommand(new AirLocalInforCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "airlocalinfor";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "local air information by airkorea\n" +
@@ -538,16 +627,19 @@ public class CommandManager {
 
             addCommand(new CatCommand());
             addCommand(new CatCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "neko";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "neko is come here!";
@@ -555,16 +647,19 @@ public class CommandManager {
             });
             addCommand(new KickCommand());
             addCommand(new KickCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "kick";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Kicks a user off the server.\n" +
@@ -573,16 +668,19 @@ public class CommandManager {
             });
             addCommand(new certificationCommand());
             addCommand(new certificationCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "cert";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "certification with discord and steam";
@@ -590,16 +688,19 @@ public class CommandManager {
             });
             addCommand(new TESTCommand());
             addCommand(new TESTCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "TEST";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "TEST Command";
@@ -610,16 +711,19 @@ public class CommandManager {
         {
             addCommand(new certificationFinCommand());
             addCommand(new certificationFinCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "certfin";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Verify certification between Steam and Discord \n" +
@@ -628,16 +732,19 @@ public class CommandManager {
             });
             addCommand(new BanCommand());
             addCommand(new BanCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "ban";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Ban user from discord server\n" +
@@ -646,16 +753,19 @@ public class CommandManager {
             });
             addCommand(new UnbanCommand());
             addCommand(new UnbanCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "unban";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Unban user from discord server\n" +
@@ -664,16 +774,19 @@ public class CommandManager {
             });
             addCommand(new MemberCount());
             addCommand(new MemberCount() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "membercount";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Start/stop/reload server member counting\n" +
@@ -682,16 +795,19 @@ public class CommandManager {
             });
             addCommand(new publicExecutionCommand());
             addCommand(new publicExecutionCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "publicexe";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "PublicExecution a user\n" +
@@ -701,16 +817,19 @@ public class CommandManager {
 
             addCommand(new ONIGIRICommand());
             addCommand(new ONIGIRICommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "meme";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "meme command list";
@@ -718,16 +837,19 @@ public class CommandManager {
             });
             addCommand(new GreenServerMuteCommand());
             addCommand(new GreenServerMuteCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "mutechat";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "Mute chating";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Mute chating";
@@ -735,16 +857,19 @@ public class CommandManager {
             });
             addCommand(new lewdnekoCommand());
             addCommand(new lewdnekoCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "lewd";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "lewd neko meme";
@@ -752,16 +877,19 @@ public class CommandManager {
             });
             addCommand(new gameServerBanCommand());
             addCommand(new gameServerBanCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "serverban";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "ServerCustomCommand \n" +
@@ -770,16 +898,19 @@ public class CommandManager {
             });
             addCommand(new WeatherCommand());
             addCommand(new WeatherCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "weather";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Search weather information by City name\n" +
@@ -791,16 +922,19 @@ public class CommandManager {
         {
             addCommand(new DICECommand());
             addCommand(new DICECommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "dice";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Rolls a dice.\n" +
@@ -809,16 +943,19 @@ public class CommandManager {
             });
             addCommand(new botipAddressCommand());
             addCommand(new botipAddressCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "myip";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "return bot's ip address";
@@ -826,16 +963,19 @@ public class CommandManager {
             });
             addCommand(new pollCommand());
             addCommand(new pollCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "poll";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "poll!.\n" +
@@ -844,16 +984,19 @@ public class CommandManager {
             });
             addCommand(new goWorkCommand());
             addCommand(new goWorkCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "work";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Go to Work!\n";
@@ -861,16 +1004,19 @@ public class CommandManager {
             });
             addCommand(new goHomeCommand());
             addCommand(new goHomeCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "home";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Go to Home!\n";
@@ -879,16 +1025,19 @@ public class CommandManager {
             addCommand(new BotOwnerNoticeCommand());
             addCommand(new PauseCommand());
             addCommand(new PauseCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "pause";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Pause music which is playing music by bot";
@@ -896,16 +1045,19 @@ public class CommandManager {
             });
             addCommand(new RockPaperScissorsCommand());
             addCommand(new RockPaperScissorsCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "rockpaperscissors";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Rock! Paper! Scissors! \n" +
@@ -914,16 +1066,19 @@ public class CommandManager {
             });
             addCommand(new russianRouletteCommand());
             addCommand(new russianRouletteCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "russianRoulette";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "RussianRoulette! \n" +
@@ -932,16 +1087,19 @@ public class CommandManager {
             });
             addCommand(new CallCommand());
             addCommand(new CallCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "call";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Call to bot maker!";
@@ -949,16 +1107,19 @@ public class CommandManager {
             });
             addCommand(new OddOrEvenCommand());
             addCommand(new OddOrEvenCommand() {
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "evenodd";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "even/odd game!";
@@ -966,16 +1127,19 @@ public class CommandManager {
             });
             addCommand(new GreenNoticeCommand());
             addCommand(new GreenNoticeCommand(){
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "servernotice";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "SCP:SL Green Server notice Command!";
@@ -983,16 +1147,19 @@ public class CommandManager {
             });
             addCommand(new BETACommand());
             addCommand(new BETACommand(){
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "beta";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Invite beta bot!";
@@ -1000,16 +1167,19 @@ public class CommandManager {
             });
             addCommand(new QueueMixCommand());
             addCommand(new QueueMixCommand(){
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "queuemix";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Mix Queue";
@@ -1017,16 +1187,19 @@ public class CommandManager {
             });
             addCommand(new GreenSearchCommand());
             addCommand(new GreenSearchCommand(){
+                @NotNull
                 @Override
                 public String getInvoke() {
                     return "banSearch";
                 }
 
+                @NotNull
                 @Override
                 public String getSmallHelp() {
                     return "";
                 }
 
+                @NotNull
                 @Override
                 public String getHelp() {
                     return "Search ban log from DB";
@@ -1035,18 +1208,59 @@ public class CommandManager {
         }
         addCommand(new OwnerChattingToServer());
         addCommand(new configCommand());
+        addCommand(new configCommand() {
+            @NotNull
+            @Override
+            public String getInvoke() {
+                return "config";
+            }
+
+            @NotNull
+            @Override
+            public String getSmallHelp() {
+                return "";
+            }
+
+            @NotNull
+            @Override
+            public String getHelp() {
+                return "config bot setting";
+            }
+        });
+        addCommand(new inviteCommand());
+        addCommand(new inviteCommand() {
+            @NotNull
+            @Override
+            public String getInvoke() {
+                return "invite";
+            }
+
+            @NotNull
+            @Override
+            public String getSmallHelp() {
+                return "";
+            }
+
+            @NotNull
+            @Override
+            public String getHelp() {
+                return "Invite bot link";
+            }
+        });
+
+        addCommand(new getGuildsInforCommand());
     }
 
-    private void addCommand(ICommand command) {
+    private void addCommand(@NotNull ICommand command) {
         if(!commands.containsKey(command.getInvoke())) {
             commands.put(command.getInvoke(), command);
         }
-        sleep(10);
+        sleep();
     }
 
-    private void sleep(int time) {
+    private void sleep() {
         try {
-            Thread.sleep(time);
+            Thread.sleep(10);
         } catch (InterruptedException e) {
 
             StackTraceElement[] eStackTrace = e.getStackTrace();
@@ -1058,6 +1272,7 @@ public class CommandManager {
         }
     }
 
+    @NotNull
     public Collection<ICommand> getCommands() {
         return commands.values();
     }
@@ -1066,7 +1281,7 @@ public class CommandManager {
         return commands.get(name);
     }
 
-    public void handleCommand(GuildMessageReceivedEvent event) {
+    public void handleCommand(@NotNull GuildMessageReceivedEvent event) {
         final TextChannel channel = event.getChannel();
         final String[] split = event.getMessage().getContentRaw().replaceFirst(
                 "(?i)" + Pattern.quote(App.getPREFIX()), "").split("\\s+");

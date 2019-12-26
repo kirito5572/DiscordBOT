@@ -5,6 +5,7 @@ import com.google.gson.JsonParser;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.text.SimpleDateFormat;
@@ -48,7 +49,7 @@ public class SteamServerStatusListener extends ListenerAdapter {
         Timer jobScheduler = new Timer();
         jobScheduler.scheduleAtFixedRate(job, 1000, 30000);
     }
-    private void send_message(String message, ReadyEvent event) {
+    private void send_message(@NotNull String message, @NotNull ReadyEvent event) {
         Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById("617222347425972234")).getTextChannelById("617230917315854356")).sendMessage(message).queue();
     }
 }

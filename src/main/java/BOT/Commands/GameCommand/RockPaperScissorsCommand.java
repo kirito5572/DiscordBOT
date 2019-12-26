@@ -5,6 +5,7 @@ import BOT.Objects.ICommand;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class RockPaperScissorsCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         event.getMessage().delete().queue();
         String message;
         String mymessage;
@@ -99,37 +100,38 @@ public class RockPaperScissorsCommand implements ICommand {
             default: return;
         }
         EmbedBuilder builder = EmbedUtils.defaultEmbed();
-        if(botwin && (!userwin)) {
+        if(botwin) {
             builder.setTitle("패배")
                     .setColor(Color.RED)
                     .addField("당신", message, false)
                     .addField("봇", mymessage, false);
-        } else if((!botwin) && userwin) {
+        } else if(userwin) {
             builder.setTitle("승리")
                     .setColor(Color.GREEN)
                     .addField("당신", message, false)
                     .addField("봇", mymessage, false);
-        } else if((!botwin) && (!userwin)) {
+        } else {
             builder.setTitle("무승부")
                     .setColor(Color.GRAY)
                     .addField("당신", message, false)
                     .addField("봇", mymessage, false);
-        } else {
-            event.getChannel().sendMessage("에러가 발생했습니다.").complete().delete().queueAfter(7, TimeUnit.SECONDS);
         }
     }
 
+    @NotNull
     @Override
     public String getHelp() {
         return "봇과 가위바위보를 합니다. \n" +
                 "사용법: `" + App.getPREFIX() + getInvoke() + " <가위/바위/보>`";
     }
 
+    @NotNull
     @Override
     public String getInvoke() {
         return "가위바위보";
     }
 
+    @NotNull
     @Override
     public String getSmallHelp() {
         return "game";

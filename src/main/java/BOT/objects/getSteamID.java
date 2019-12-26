@@ -1,12 +1,14 @@
 package BOT.Objects;
 
 import me.duncte123.botcommons.web.WebUtils;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class getSteamID {
     private static final Logger logger = LoggerFactory.getLogger(getSteamID.class);
 
+    @NotNull
     public static String[] SteamID(String ID) {
         String[] returns = new String[2];
         final boolean[] flag = {true};
