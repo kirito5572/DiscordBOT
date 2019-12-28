@@ -37,10 +37,7 @@ public class workHomeListener extends ListenerAdapter {
                         } else {
                             status[i] = "알수 없음";
                         }
-                        nickname[i] = Objects.requireNonNull(guild.getMemberById(discordID[i])).getNickname();
-                        if(nickname[i] == null) {
-                            nickname[i] = Objects.requireNonNull(guild.getMemberById(discordID[i])).getEffectiveName();
-                        }
+                        nickname[i] = Objects.requireNonNull(guild.getMemberById(discordID[i])).getEffectiveName();
                     }
                     EmbedBuilder builder = EmbedUtils.defaultEmbed()
                             .setTitle("[O5 Council]")

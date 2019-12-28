@@ -7,6 +7,7 @@ import BOT.Commands.GreenServerCustom.*;
 import BOT.Commands.Moderator.*;
 import BOT.Commands.Music.*;
 import BOT.Commands.ONIGIRIServerCustom.ONIGIRICommand;
+import BOT.Commands.Moderator.evalCommand;
 import BOT.Commands._OwnerOnlyCommand.getGuildsInforCommand;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -1249,6 +1250,7 @@ public class CommandManager {
         });
 
         addCommand(new getGuildsInforCommand());
+        addCommand(new evalCommand());
     }
 
     private void addCommand(@NotNull ICommand command) {

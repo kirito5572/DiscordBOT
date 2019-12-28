@@ -609,7 +609,7 @@ public class loggerListener extends ListenerAdapter {
                         .setTitle("유저 입장")
                         .setDescription(event.getMember().getAsMention() + "유저가 서버에 들어왔습니다.")
                         .setColor(Color.GREEN)
-                        .addField("유저명", event.getMember().getNickname() + "(" + event.getMember().getEffectiveName() + event.getMember().getUser().getAsTag() + ") ", false)
+                        .addField("유저명", event.getMember().getNickname() + "(" + event.getMember().getUser().getAsTag() + ") ", false)
                         .addField("유저 가입일", event.getMember().getTimeCreated().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME.withZone(ZoneId.systemDefault())), false)
                         .addField("입장 시간", time2, false);
                 memberLoggingSend(builder, guild);
