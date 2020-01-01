@@ -27,6 +27,7 @@ public class OwnerChattingToServer implements ICommand {
                 event.getChannel().sendMessage("전송 완료").queue();
             }
         }
+        event.getMessage().delete().queue();
     }
 
     @NotNull

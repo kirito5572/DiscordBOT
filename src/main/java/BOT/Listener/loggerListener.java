@@ -6,26 +6,25 @@ import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.ReconnectedEvent;
-import net.dv8tion.jda.api.events.channel.category.CategoryCreateEvent;
-import net.dv8tion.jda.api.events.channel.category.CategoryDeleteEvent;
-import net.dv8tion.jda.api.events.channel.category.update.CategoryUpdateNameEvent;
-import net.dv8tion.jda.api.events.channel.category.update.CategoryUpdatePermissionsEvent;
-import net.dv8tion.jda.api.events.channel.text.TextChannelCreateEvent;
-import net.dv8tion.jda.api.events.channel.text.TextChannelDeleteEvent;
+import net.dv8tion.jda.api.events.channel.category.*;
+import net.dv8tion.jda.api.events.channel.category.update.*;
+import net.dv8tion.jda.api.events.channel.text.*;
 import net.dv8tion.jda.api.events.channel.text.update.*;
-import net.dv8tion.jda.api.events.channel.voice.VoiceChannelCreateEvent;
-import net.dv8tion.jda.api.events.channel.voice.VoiceChannelDeleteEvent;
+import net.dv8tion.jda.api.events.channel.voice.*;
 import net.dv8tion.jda.api.events.channel.voice.update.*;
+import net.dv8tion.jda.api.events.emote.EmoteAddedEvent;
+import net.dv8tion.jda.api.events.emote.EmoteRemovedEvent;
+import net.dv8tion.jda.api.events.guild.GuildBanEvent;
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent;
-import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
-import net.dv8tion.jda.api.events.guild.member.GuildMemberLeaveEvent;
-import net.dv8tion.jda.api.events.guild.member.GuildMemberRoleAddEvent;
-import net.dv8tion.jda.api.events.guild.member.GuildMemberRoleRemoveEvent;
+import net.dv8tion.jda.api.events.guild.GuildUnbanEvent;
+import net.dv8tion.jda.api.events.guild.member.*;
 import net.dv8tion.jda.api.events.guild.member.update.GuildMemberUpdateNicknameEvent;
+import net.dv8tion.jda.api.events.guild.voice.GuildVoiceGuildMuteEvent;
 import net.dv8tion.jda.api.events.message.MessageBulkDeleteEvent;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageDeleteEvent;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent;
+import net.dv8tion.jda.api.events.message.guild.*;
+import net.dv8tion.jda.api.events.role.RoleCreateEvent;
+import net.dv8tion.jda.api.events.role.RoleDeleteEvent;
+import net.dv8tion.jda.api.events.role.update.*;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
@@ -258,6 +257,7 @@ public class loggerListener extends ListenerAdapter {
             statement.executeUpdate("INSERT INTO ritobot_config.lewdneko_command VALUES (" + guildId + ", 0)");
             statement.executeUpdate("INSERT INTO ritobot_config.link_filter_guild VALUES (" + guildId + ", 0)");
             statement.executeUpdate("INSERT INTO ritobot_config.logging_enable VALUES (" + guildId + ", 1, 1, 1)");
+            statement.executeUpdate("INSERT INTO ritobot_config.notice VALUES (" + guildId + ", 0, '0')");
             statement.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -719,5 +719,114 @@ public class loggerListener extends ListenerAdapter {
                 memberLoggingSend(builder, guild);
             }
         }
+    }
+
+    @Override
+    public void onGuildBan(@Nonnull GuildBanEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getMemberLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("유저 밴")
+                        .setDescription("대상유저:" + event.getUser().getAsTag())
+                        .setColor(Color.RED)
+                        .addField("시간", time2, false);
+                memberLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onGuildUnban(@Nonnull GuildUnbanEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getMemberLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("유저 밴 헤제")
+                        .setDescription("대상유저:" + event.getUser().getAsTag())
+                        .setColor(Color.GREEN)
+                        .addField("시간", time2, false);
+                memberLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onGuildVoiceGuildMute(@Nonnull GuildVoiceGuildMuteEvent event) {
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getMemberLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed();
+                if(event.isGuildMuted()) {
+                    builder.setTitle("유저 강제 뮤트")
+                        .setDescription("대상유저:" + event.getMember().getEffectiveName())
+                        .setColor(Color.RED)
+                        .addField("시간", time2, false);
+                } else {
+                    builder.setTitle("유저 강제 뮤트 해제")
+                            .setDescription("대상유저:" + event.getMember().getEffectiveName())
+                            .setColor(Color.RED)
+                            .addField("시간", time2, false);
+                }
+                memberLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    @Override
+    public void onRoleCreate(@Nonnull RoleCreateEvent event) {
+        super.onRoleCreate(event);
+    }
+
+    @Override
+    public void onRoleDelete(@Nonnull RoleDeleteEvent event) {
+        super.onRoleDelete(event);
+    }
+
+    @Override
+    public void onRoleUpdateColor(@Nonnull RoleUpdateColorEvent event) {
+        super.onRoleUpdateColor(event);
+    }
+
+    @Override
+    public void onRoleUpdateHoisted(@Nonnull RoleUpdateHoistedEvent event) {
+        super.onRoleUpdateHoisted(event);
+    }
+
+    @Override
+    public void onRoleUpdateMentionable(@Nonnull RoleUpdateMentionableEvent event) {
+        super.onRoleUpdateMentionable(event);
+    }
+
+    @Override
+    public void onRoleUpdateName(@Nonnull RoleUpdateNameEvent event) {
+        super.onRoleUpdateName(event);
+    }
+
+    @Override
+    public void onRoleUpdatePermissions(@Nonnull RoleUpdatePermissionsEvent event) {
+        super.onRoleUpdatePermissions(event);
+    }
+
+    @Override
+    public void onEmoteAdded(@Nonnull EmoteAddedEvent event) {
+        super.onEmoteAdded(event);
+    }
+
+    @Override
+    public void onEmoteRemoved(@Nonnull EmoteRemovedEvent event) {
+        super.onEmoteRemoved(event);
     }
 }

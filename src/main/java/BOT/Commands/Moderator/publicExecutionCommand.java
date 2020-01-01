@@ -125,7 +125,7 @@ public class publicExecutionCommand implements ICommand {
         } else {
             event.getGuild().addRoleToMember(member, role).complete();
 
-            event.getChannel().sendMessage(user.getName() + "을/를 공개 처형 대상자로 지정 했습니다.").queue();
+            event.getChannel().sendMessage(member.getEffectiveName() + "을/를 공개 처형 대상자로 지정 했습니다.").queue();
             EmbedBuilder builder = EmbedUtils.defaultEmbed()
                     .setColor(Color.RED)
                     .setTitle("공개 처형자 지정")
@@ -154,6 +154,7 @@ public class publicExecutionCommand implements ICommand {
                     break;
             }
         }
+        event.getMessage().delete().queue();
     }
 
     @NotNull

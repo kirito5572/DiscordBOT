@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class evalCommand implements ICommand {
     private final GroovyShell engine;
@@ -51,7 +52,7 @@ public class evalCommand implements ICommand {
         }
         if(args.get(0).contains("jda.shutdown()")) {
             if(!event.getAuthor().getId().equals(Listener.getID1())) {
-                event.getChannel().sendMessage("어허, 그건 제가 미리 막아두었습니다 껄껄").queue();
+                event.getChannel().sendMessage("어허, 그건 제가 미리 막아두었습니다 껄껄").queueAfter(5, TimeUnit.SECONDS);
                 return;
             }
             event.getChannel().sendMessage("봇이 종료됩니다.").queue();

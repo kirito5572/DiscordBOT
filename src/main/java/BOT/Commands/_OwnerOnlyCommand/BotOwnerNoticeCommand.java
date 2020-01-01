@@ -1,4 +1,4 @@
-package BOT.Commands.Moderator;
+package BOT.Commands._OwnerOnlyCommand;
 
 import BOT.Objects.ICommand;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;

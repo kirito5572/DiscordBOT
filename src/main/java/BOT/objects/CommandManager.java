@@ -8,6 +8,7 @@ import BOT.Commands.Moderator.*;
 import BOT.Commands.Music.*;
 import BOT.Commands.ONIGIRIServerCustom.ONIGIRICommand;
 import BOT.Commands.Moderator.evalCommand;
+import BOT.Commands._OwnerOnlyCommand.BotOwnerNoticeCommand;
 import BOT.Commands._OwnerOnlyCommand.getGuildsInforCommand;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -1251,6 +1252,23 @@ public class CommandManager {
 
         addCommand(new getGuildsInforCommand());
         addCommand(new evalCommand());
+        addCommand(new MessagePinCommand());
+        addCommand(new MessagePinCommand() {
+            @Override
+            public String getInvoke() {
+                return "pin";
+            }
+
+            @Override
+            public String getSmallHelp() {
+                return "";
+            }
+
+            @Override
+            public String getHelp() {
+                return "pin message in Channel";
+            }
+        });
     }
 
     private void addCommand(@NotNull ICommand command) {
