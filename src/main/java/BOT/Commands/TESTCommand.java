@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TESTCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
     }
 
 

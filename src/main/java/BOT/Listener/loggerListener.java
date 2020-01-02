@@ -254,6 +254,7 @@ public class loggerListener extends ListenerAdapter {
             statement.executeUpdate("INSERT INTO ritobot_config.link_filter_guild VALUES (" + guildId + ", 0)");
             statement.executeUpdate("INSERT INTO ritobot_config.logging_enable VALUES (" + guildId + ", 1, 1, 1)");
             statement.executeUpdate("INSERT INTO ritobot_config.notice VALUES (" + guildId + ", 0, '0')");
+            statement.executeUpdate("INSERT INTO ritobot_config.filter_output_channel VALUES (" + guildId + ", 0, '1')");
             statement.close();
         } catch (Exception e) {
             e.printStackTrace();

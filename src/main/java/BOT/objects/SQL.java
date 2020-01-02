@@ -305,12 +305,13 @@ public class SQL {
     public static final int channelLogging = 8;
     public static final int memberLogging = 9;
     public static final int notice = 10;
+    public static final int filterlog = 11;
 
     @NotNull
     public static String[] configDownLoad(String guildId) {
 
         String[] return_data = new String[] {
-                "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "1"
+                "0", "0", "0", "0", "0", "0", "0", "1", "1", "null", "1", "0", "null"
         };
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -364,6 +365,14 @@ public class SQL {
                     return_data[9] = resultSet6.getString("channelId");
                 }
             }
+            queryString = "SELECT * FROM ritobot_config.filter_output_channel WHERE guildId =" + guildId;
+            resultSet6 = statement.executeQuery(queryString);
+            if (resultSet6.next()) {
+                return_data[11] = resultSet6.getString("disable");
+                if(return_data[11].equals("0")) {
+                    return_data[12] = resultSet6.getString("channelId");
+                }
+            }
 
             resultSet6.close();
         } catch (Exception e) {
@@ -393,17 +402,26 @@ public class SQL {
             e.printStackTrace();
         }
     }
-    public static void configSetup(@NotNull String guildId, String disable, String channelId) {
+    public static void configSetup(@NotNull String guildId, String disable, String channelId, int which) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String queryString;
             if (guildId.length() < 15) {
                 return;
             }
-            queryString = "UPDATE ritobot_config.notice SET disable=" + disable + ", channelId = " + channelId + " WHERE guildId =" + guildId;
-            System.out.println(queryString);
-            statement = connection.createStatement();
-            statement.executeUpdate(queryString);
+            switch (which) {
+                case notice:
+                    queryString = "UPDATE ritobot_config.notice SET disable=" + disable + ", channelId = " + channelId + " WHERE guildId =" + guildId;
+                    System.out.println(queryString);
+                    statement = connection.createStatement();
+                    statement.executeUpdate(queryString);
+                    break;
+                case filterlog:
+                    queryString = "UPDATE ritobot_config.filter_output_channel SET disable=" + disable + ", channelId = " + channelId + " WHERE guildId =" + guildId;
+                    System.out.println(queryString);
+                    statement = connection.createStatement();
+                    statement.executeUpdate(queryString);
+            }
             resultSet6.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -450,6 +468,9 @@ public class SQL {
                 case notice:
                     queryString = "UPDATE ritobot_config.notice SET disable=" + disable + " WHERE guildId =" + guildId;
                     break;
+                case filterlog:
+                    queryString = "UPDATE ritobot_config.filter_output_channel SET disable=" + disable + " WHERE guildId =" + guildId;
+                    break;
             }
             System.out.println(queryString);
             statement = connection.createStatement();
@@ -466,6 +487,29 @@ public class SQL {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String queryString;
             queryString = "SELECT * FROM ritobot_config.notice WHERE guildId=" + guildId;
+            System.out.println(queryString);
+            statement = connection.createStatement();
+            resultSet6 = statement.executeQuery(queryString);
+            if (resultSet6.next()) {
+                if(resultSet6.getString("disable").equals("0")) {
+                    return_data = resultSet6.getString("channelId");
+                }
+            }
+            resultSet6.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return_data = "error";
+        }
+        return return_data;
+    }
+
+    @Nullable
+    public static String configDownLoad_filterlog(String guildId) {
+        String return_data = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String queryString;
+            queryString = "SELECT * FROM ritobot_config.filter_output_channel WHERE guildId=" + guildId;
             System.out.println(queryString);
             statement = connection.createStatement();
             resultSet6 = statement.executeQuery(queryString);
@@ -509,6 +553,27 @@ public class SQL {
             return_data = new String [] {"error"};
         }
         return return_data;
+    }
+
+    @NotNull
+    public static String configDownLoad(int option, String guildId) {
+        try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        String queryString;
+            if(option == filterlog) {
+                queryString = "SELECT * FROM ritobot_config.color_command_guild WHERE disable = 0 AND guildId =" + guildId;
+                statement = connection.createStatement();
+                resultSet6 = statement.executeQuery(queryString);
+                if(resultSet6.next()) {
+                    return resultSet6.getString("channelId");
+                } else {
+                    return "null";
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "error";
     }
 
     @NotNull

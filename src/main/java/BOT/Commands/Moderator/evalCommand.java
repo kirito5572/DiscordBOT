@@ -5,6 +5,7 @@ import BOT.Objects.ICommand;
 import groovy.lang.GroovyShell;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -32,7 +33,7 @@ public class evalCommand implements ICommand {
     }
 
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
         if (!event.getAuthor().getId().equals(Listener.getID1())) {
             if (!Objects.requireNonNull(event.getMember()).hasPermission(Permission.ADMINISTRATOR)) {
                 return;
@@ -70,7 +71,7 @@ public class evalCommand implements ICommand {
             String script = imports + event.getMessage().getContentRaw().split("\\s+", 2)[1];
             Object out = engine.evaluate(script);
 
-            event.getChannel().sendMessage(out == null ? "Executed without error" : out.toString()).queue();
+            event.getChannel().sendMessage(out == null ? "에러 없이 실행이 완료되었습니다." : out.toString()).queue();
         }
         catch (Exception e) {
             event.getChannel().sendMessage(e.getMessage()).queue();

@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.sql.Connection;
@@ -17,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MessagePinCommand implements ICommand {
     @Override
-    public void handle(List<String> args, GuildMessageReceivedEvent event) {
+    public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
         Member member = event.getMember();
         assert member != null;
         if(!(member.hasPermission(Permission.ADMINISTRATOR) || member.hasPermission(Permission.MANAGE_SERVER) ||

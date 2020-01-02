@@ -43,6 +43,7 @@ public class configCommand implements ICommand {
                     .addField("-channellog", "채널 관련 로그를 설정합니다.", false)
                     .addField("-memberlog", "멤버 관련 로그를 설정합니다.", false)
                     .addField("-notice", "공지를 받을 채널을 설정합니다.", false)
+                    .addField("-filterlog", "필터링 검출 항목/제재자 로그를 설정합니다.", false)
                     .setDescription(App.getPREFIX() + getInvoke() + " " + "옵션" + " 활성화/비활성화\n" +
                             "예: " + App.getPREFIX() + getInvoke() + " " + "-filter" + " 활성화");
         } else if(args.get(0).equals("-stat")) {
@@ -56,8 +57,9 @@ public class configCommand implements ICommand {
                     .addField("후방주의네코 커맨드", data[4].equals("0") ? "활성화" : "비활성화", false)
                     .addField("채팅 로그", data[5].equals("1") ? "활성화" : "비활성화", false)
                     .addField("채널 로그", data[6].equals("1") ? "활성화" : "비활성화", false)
-                    .addField("멤버 로그", data[9].equals("1") ? "활성화" : "비활성화", false)
-                    .addField("공지 채널 설정", data[8].equals("0") ? data[9] :"없음", false);
+                    .addField("멤버 로그", data[10].equals("1") ? "활성화" : "비활성화", false)
+                    .addField("공지 채널 설정", data[8].equals("0") ? data[9] :"없음", false)
+                    .addField("필터링 / 제재 로그", data[11].equals("0") ? data[12] : "없음", false);
         } else if(args.get(0).equals("-guildcolor")) {
             if(args.size() >= 2) {
                 if (args.get(1).equals("활성화")) {
@@ -179,7 +181,7 @@ public class configCommand implements ICommand {
         } else if(args.get(0).equals("-notice")) {
             if (args.size() >= 2) {
                 if (args.get(1).equals("활성화")) {
-                    SQL.configSetup(guildId, "0", args.get(2));
+                    SQL.configSetup(guildId, "0", args.get(2), SQL.notice);
                 } else if (args.get(1).equals("비활성화")) {
                     SQL.configSetup(guildId, SQL.notice, "1");
                 } else {
@@ -198,6 +200,29 @@ public class configCommand implements ICommand {
                         .addField("활성화", "공지사항 수신을 활성화 합니다.", false)
                         .addField("현재 등록된 채널 ID", channelId, false)
                         .setFooter("공지사항 채널은 한번 등록하면 삭제할 수 없습니다. 비활성화만 가능합니다.");
+            }
+        } else if(args.get(0).equals("-filterlog")) {
+            if (args.size() >= 2) {
+                if (args.get(1).equals("활성화")) {
+                    SQL.configSetup(guildId, "0", args.get(2), SQL.filterlog);
+                } else if (args.get(1).equals("비활성화")) {
+                    SQL.configSetup(guildId, SQL.filterlog, "1");
+                } else {
+                    event.getChannel().sendMessage("활성화 또는 비활성화 옵션을 입력해주세요 \n" +
+                            "현재 입력한 옵션값: " + args.get(1)).queue();
+                }
+            } else {
+                String channelId = SQL.configDownLoad_filterlog(guildId);
+                if(channelId == null) {
+                    channelId = "비활성화";
+                }
+                builder = EmbedUtils.defaultEmbed()
+                        .setTitle("필터링 로그 안내")
+                        .setDescription("사용법:" + App.getPREFIX() + getInvoke() + " -filterlog 비활성화/활성화 <channelId>")
+                        .addField("비활성화", "필터링 로그를 비활성화 합니다.", false)
+                        .addField("활성화", "필터링 로그를 활성화 합니다.", false)
+                        .addField("현재 등록된 채널 ID", channelId, false)
+                        .setFooter("필터링 로그 채널은 한번 등록하면 삭제할 수 없습니다. 비활성화만 가능합니다.");
             }
         }
         if(builder != null) {

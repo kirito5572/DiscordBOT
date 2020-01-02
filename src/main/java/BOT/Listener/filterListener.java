@@ -1,6 +1,7 @@
 package BOT.Listener;
 
 import BOT.Objects.FilterList;
+import BOT.Objects.SQL;
 import BOT.Objects.config;
 import BOT.Objects.linkConfirm;
 import me.duncte123.botcommons.messaging.EmbedUtils;
@@ -50,6 +51,7 @@ public class filterListener extends ListenerAdapter {
             member = event.getMember();
             channel = event.getChannel();
             jda = event.getJDA();
+            assert member != null;
             filter(author, message, guild, member, messages, channel, jda);
         } catch (Exception ignored) {
         }
@@ -78,6 +80,7 @@ public class filterListener extends ListenerAdapter {
             member = event.getMember();
             channel = event.getChannel();
             jda = event.getJDA();
+            assert member != null;
             filter(author, message, guild, member, messages, channel, jda);
         } catch (Exception ignored) {
         }
@@ -274,16 +277,20 @@ public class filterListener extends ListenerAdapter {
                         logger.warn("링크 필터링이 되었습니다. \n" +
                                 "서버: " + guild.getName() + "\n" +
                                 "이유: " + s + "\n" +
-                                "보낸 사람: " + member.getNickname() + "\n" +
+                                "보낸 사람: " + member.getEffectiveName() + "\n" +
                                 "차단된 링크: " + getLink());
-                        if(guild.getId().equals("600010501266866186")) {
-                            Objects.requireNonNull(guild.getTextChannelById("623841727823740928")).sendMessage("링크 필터링이 되었습니다. \n" +
-                                    "서버: " + guild.getName() + "\n" +
-                                    "이유: " + s + "\n" +
-                                    "보낸 사람: " + member.getNickname() + "\n" +
-                                    "차단된 링크: " + getLink()).queue();
+                        String channelId = SQL.configDownLoad(SQL.filterlog, guild.getId());
+                        if(channelId.equals("error")) {
+                            logger.error("링크 필터링 채널 전송중 에러가 발생했습니다!");
+                        } else if(!channelId.equals("null")) {
+                            EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                                    .setTitle("링크 필터링")
+                                    .setColor(Color.RED)
+                                    .addField("보낸 사람", member.getEffectiveName(), false)
+                                    .addField("이유", s, false)
+                                    .addField("차단된 링크", getLink(), false);
+                            Objects.requireNonNull(guild.getTextChannelById(channelId)).sendMessage(builder.build()).queue();
                         }
-                        return;
                     } catch (Exception e) {
                         if (jda.getSelfUser().getId().equals("592987181186940931")) {
 
@@ -354,19 +361,11 @@ public class filterListener extends ListenerAdapter {
                                 .addField("금지어 사용자", author.getAsMention(), false)
                                 .addField("금지어", s, false)
                                 .addField("문장", message.getContentRaw(), false);
-                        switch (guild.getId()) {
-                            case "617222347425972234":
-                                Objects.requireNonNull(guild.getTextChannelById("617244182653829140")).sendMessage(builder.build()).queue();
-                                break;
-                            case "617757206929997895":
-                                Objects.requireNonNull(guild.getTextChannelById("617760924714926113")).sendMessage(builder.build()).queue();
-                                break;
-                            case "607390893804093442":
-                                Objects.requireNonNull(guild.getTextChannelById("620091943522664466")).sendMessage(builder.build()).queue();
-                                break;
-                            case "600010501266866186": //끄린이
-                                Objects.requireNonNull(guild.getTextChannelById("623841727823740928")).sendMessage(builder.build()).queue();
-                                break;
+                        String channelId = SQL.configDownLoad(SQL.filterlog, guild.getId());
+                        if(channelId.equals("error")) {
+                            logger.error("링크 필터링 채널 전송중 에러가 발생했습니다!");
+                        } else if(!channelId.equals("null")) {
+                            Objects.requireNonNull(guild.getTextChannelById(channelId)).sendMessage(builder.build()).queue();
                         }
                     } catch (Exception e) {
 
@@ -442,4 +441,5 @@ public class filterListener extends ListenerAdapter {
             }
         }
     }
+
 }
