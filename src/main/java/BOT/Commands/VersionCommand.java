@@ -8,11 +8,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class VersionCommand implements ICommand {
-    private static final String version = "빌드 버젼 V 1.7.3 beta 2";
+    private static final String version = "빌드 버젼 V 1.7.3 beta 3";
     @Override
     public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
         if(App.isDEBUG_MODE() || App.isONLINE_DEBUG()) {
-            event.getChannel().sendMessage("빌드 버젼 V 1.7.3 beta 3 (" + App.getTime() + ")").queue();
+            event.getChannel().sendMessage("빌드 버젼 V 1.7.3 beta 4 (" + App.getTime() + ")").queue();
             return;
         }
         event.getChannel().sendMessage(version + "(" + App.getTime() + ")").queue();

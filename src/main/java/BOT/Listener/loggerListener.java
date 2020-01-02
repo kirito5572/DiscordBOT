@@ -3,7 +3,7 @@ package BOT.Listener;
 import BOT.Objects.SQL;
 import BOT.Objects.config;
 import me.duncte123.botcommons.messaging.EmbedUtils;
-import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.*;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.ReconnectedEvent;
 import net.dv8tion.jda.api.events.channel.category.*;
@@ -12,18 +12,14 @@ import net.dv8tion.jda.api.events.channel.text.*;
 import net.dv8tion.jda.api.events.channel.text.update.*;
 import net.dv8tion.jda.api.events.channel.voice.*;
 import net.dv8tion.jda.api.events.channel.voice.update.*;
-import net.dv8tion.jda.api.events.emote.EmoteAddedEvent;
-import net.dv8tion.jda.api.events.emote.EmoteRemovedEvent;
-import net.dv8tion.jda.api.events.guild.GuildBanEvent;
-import net.dv8tion.jda.api.events.guild.GuildJoinEvent;
-import net.dv8tion.jda.api.events.guild.GuildUnbanEvent;
+import net.dv8tion.jda.api.events.emote.*;
+import net.dv8tion.jda.api.events.guild.*;
 import net.dv8tion.jda.api.events.guild.member.*;
 import net.dv8tion.jda.api.events.guild.member.update.GuildMemberUpdateNicknameEvent;
 import net.dv8tion.jda.api.events.guild.voice.GuildVoiceGuildMuteEvent;
 import net.dv8tion.jda.api.events.message.MessageBulkDeleteEvent;
 import net.dv8tion.jda.api.events.message.guild.*;
-import net.dv8tion.jda.api.events.role.RoleCreateEvent;
-import net.dv8tion.jda.api.events.role.RoleDeleteEvent;
+import net.dv8tion.jda.api.events.role.*;
 import net.dv8tion.jda.api.events.role.update.*;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
@@ -144,7 +140,7 @@ public class loggerListener extends ListenerAdapter {
                         .addField("수정전 내용", data[0], false)
                         .addField("수정후 내용", messageContent, false)
                         .addField("수정 시간", time2, false)
-                        .setFooter((member.getEffectiveName() + "(" + member.getNickname() + ")"), member.getUser().getAvatarUrl());
+                        .setFooter((member.getEffectiveName() + "(" + member.getEffectiveName() + ")"), member.getUser().getAvatarUrl());
                 messageLoggingSend(builder, guild);
             }
         }
@@ -191,7 +187,7 @@ public class loggerListener extends ListenerAdapter {
                         .addField("내용", data[0], false)
                         .addField("메세지 ID", messageId, false)
                         .addField("삭제 시간", time2, false)
-                        .setFooter((member.getEffectiveName() + "(" + member.getNickname() + ")"), member.getUser().getAvatarUrl());
+                        .setFooter((member.getEffectiveName() + "(" + member.getEffectiveName() + ")"), member.getUser().getAvatarUrl());
                 messageLoggingSend(builder, guild);
             }
         }
@@ -325,7 +321,7 @@ public class loggerListener extends ListenerAdapter {
                     builder1.append(event.getChangedPermissionHolders().get(i).getPermissions(event.getChannel()).toString()).append("\n\n");
                 }
                 for(int i = 0; i < event.getChangedMembers().size(); i++) {
-                    builder2.append(event.getChangedMembers().get(i).getNickname()).append("\n");
+                    builder2.append(event.getChangedMembers().get(i).getEffectiveName()).append("\n");
                     builder2.append(event.getChangedPermissionHolders().get(i).getPermissions(event.getChannel()).toString()).append("\n\n");
                 }
 
@@ -609,7 +605,7 @@ public class loggerListener extends ListenerAdapter {
                         .setTitle("유저 입장")
                         .setDescription(event.getMember().getAsMention() + "유저가 서버에 들어왔습니다.")
                         .setColor(Color.GREEN)
-                        .addField("유저명", event.getMember().getNickname() + "(" + event.getMember().getUser().getAsTag() + ") ", false)
+                        .addField("유저명", event.getMember().getEffectiveName() + "(" + event.getMember().getUser().getAsTag() + ") ", false)
                         .addField("유저 가입일", event.getMember().getTimeCreated().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME.withZone(ZoneId.systemDefault())), false)
                         .addField("입장 시간", time2, false);
                 memberLoggingSend(builder, guild);
@@ -636,7 +632,7 @@ public class loggerListener extends ListenerAdapter {
                         .setTitle("유저 퇴장")
                         .setDescription(event.getMember().getAsMention() + "유저가 서버에서 나갔습니다.")
                         .setColor(Color.RED)
-                        .addField("유저명", event.getMember().getNickname() + "(" + event.getMember().getEffectiveName() + event.getMember().getUser().getAsTag() + ") ", false)
+                        .addField("유저명", event.getMember().getEffectiveName() + "(" + event.getMember().getUser().getAsTag() + ") ", false)
                         .addField("유저 가입일", event.getMember().getTimeCreated().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME.withZone(ZoneId.systemDefault())), false)
                         .addField("유저 서버 입장일", event.getMember().getTimeJoined().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME.withZone(ZoneId.systemDefault())), false)
                         .addField("역할", stringBuilder.toString(), false)
@@ -665,7 +661,7 @@ public class loggerListener extends ListenerAdapter {
                         .setTitle("유저 역할 추가")
                         .setDescription("대상유저:" + event.getMember().getAsMention())
                         .setColor(Color.GREEN)
-                        .addField("유저명", event.getMember().getNickname() + "(" + event.getMember().getEffectiveName() + event.getMember().getUser().getAsTag() + ") ", false)
+                        .addField("유저명", event.getMember().getEffectiveName() + "(" + event.getMember().getUser().getAsTag() + ") ", false)
                         .addField("추가된 역할", stringBuilder.toString(), false)
                         .addField("시간", time2, false);
                 memberLoggingSend(builder, guild);
@@ -692,7 +688,7 @@ public class loggerListener extends ListenerAdapter {
                         .setTitle("유저 역할 삭제")
                         .setDescription("대상유저:" + event.getMember().getAsMention())
                         .setColor(Color.RED)
-                        .addField("유저명", event.getMember().getNickname() + "(" + event.getMember().getEffectiveName() + event.getMember().getUser().getAsTag() + ") ", false)
+                        .addField("유저명", event.getMember().getEffectiveName() + "(" + event.getMember().getUser().getAsTag() + ") ", false)
                         .addField("삭제된 역할", stringBuilder.toString(), false)
                         .addField("시간", time2, false);
                 memberLoggingSend(builder, guild);
@@ -787,46 +783,169 @@ public class loggerListener extends ListenerAdapter {
 
     @Override
     public void onRoleCreate(@Nonnull RoleCreateEvent event) {
-        super.onRoleCreate(event);
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getMemberLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+                Role role = event.getRole();
+
+                String time2 = format2.format(time);
+                StringBuilder stringBuilder = new StringBuilder();
+                for(Permission permission : role.getPermissions()) {
+                    stringBuilder.append(permission.getName()).append("\n");
+                }
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("역할 생성")
+                        .setColor(role.getColor())
+                        .addField("역할명", role.getName(), false)
+                        .addField("권한", stringBuilder.toString(), false)
+                        .addField("멘션 가능", role.isMentionable() ? "예" : "아니오", true)
+                        .addField("유저 분리 표시", role.isHoisted() ? "예" : "아니오", true)
+                        .addField("시간", time2, false);
+                memberLoggingSend(builder, guild);
+            }
+        }
     }
 
     @Override
     public void onRoleDelete(@Nonnull RoleDeleteEvent event) {
-        super.onRoleDelete(event);
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getMemberLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+                Role role = event.getRole();
+
+                String time2 = format2.format(time);
+                StringBuilder stringBuilder = new StringBuilder();
+                for(Permission permission : role.getPermissions()) {
+                    stringBuilder.append(permission.getName()).append("\n");
+                }
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("역할 삭제")
+                        .setColor(role.getColor())
+                        .addField("역할명", role.getName(), false)
+                        .addField("권한", stringBuilder.toString(), false)
+                        .addField("멘션 가능", role.isMentionable() ? "예" : "아니오", true)
+                        .addField("유저 분리 표시", role.isHoisted() ? "예" : "아니오", true)
+                        .addField("시간", time2, false);
+                memberLoggingSend(builder, guild);
+            }
+        }
+    }
+
+    private void onRoleUpdate(@Nonnull Role role, @Nonnull Guild guild) {
+        SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+        Date time = new Date();
+
+        String time2 = format2.format(time);
+        StringBuilder stringBuilder = new StringBuilder();
+        for(Permission permission : role.getPermissions()) {
+            stringBuilder.append(permission.getName()).append("\n");
+        }
+        EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                .setTitle("역할 변경")
+                .setColor(role.getColor())
+                .addField("역할명", role.getName(), false)
+                .addField("권한", stringBuilder.toString(), false)
+                .addField("멘션 가능", role.isMentionable() ? "예" : "아니오", true)
+                .addField("유저 분리 표시", role.isHoisted() ? "예" : "아니오", true)
+                .addField("시간", time2, false);
+        memberLoggingSend(builder, guild);
     }
 
     @Override
     public void onRoleUpdateColor(@Nonnull RoleUpdateColorEvent event) {
-        super.onRoleUpdateColor(event);
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getMemberLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                onRoleUpdate(event.getRole(), guild);
+            }
+        }
     }
 
     @Override
     public void onRoleUpdateHoisted(@Nonnull RoleUpdateHoistedEvent event) {
-        super.onRoleUpdateHoisted(event);
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getMemberLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                onRoleUpdate(event.getRole(), guild);
+            }
+        }
     }
 
     @Override
     public void onRoleUpdateMentionable(@Nonnull RoleUpdateMentionableEvent event) {
-        super.onRoleUpdateMentionable(event);
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getMemberLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                onRoleUpdate(event.getRole(), guild);
+            }
+        }
     }
 
     @Override
     public void onRoleUpdateName(@Nonnull RoleUpdateNameEvent event) {
-        super.onRoleUpdateName(event);
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getMemberLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                onRoleUpdate(event.getRole(), guild);
+            }
+        }
     }
 
     @Override
     public void onRoleUpdatePermissions(@Nonnull RoleUpdatePermissionsEvent event) {
-        super.onRoleUpdatePermissions(event);
+        Guild guild = event.getGuild();
+        for(String guild1 : config.getMemberLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                onRoleUpdate(event.getRole(), guild);
+            }
+        }
     }
+
+
 
     @Override
     public void onEmoteAdded(@Nonnull EmoteAddedEvent event) {
-        super.onEmoteAdded(event);
+        Guild guild = event.getGuild();
+        Emote emote = event.getEmote();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("서버 이모지 추가")
+                        .setColor(Color.GREEN)
+                        .addField("이모지명", emote.getName(), false)
+                        .setDescription("[이모지 보기](" + emote.getImageUrl() + ")")
+                        .addField("변경 시간", time2, false);
+                channelLoggingSend(builder, guild);
+            }
+        }
     }
 
     @Override
     public void onEmoteRemoved(@Nonnull EmoteRemovedEvent event) {
-        super.onEmoteRemoved(event);
+        Guild guild = event.getGuild();
+        Emote emote = event.getEmote();
+        for(String guild1 : config.getChannelLoggingEnable()) {
+            if (guild.getId().equals(guild1)) {
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+                Date time = new Date();
+
+                String time2 = format2.format(time);
+                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        .setTitle("서버 이모지 제거")
+                        .setColor(Color.GREEN)
+                        .addField("이모지명", emote.getName(), false)
+                        .setDescription("[이모지 보기](" + emote.getImageUrl() + ")")
+                        .addField("변경 시간", time2, false);
+                channelLoggingSend(builder, guild);
+            }
+        }
     }
 }
