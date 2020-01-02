@@ -1,12 +1,12 @@
 plugins {
     id'java'
     id'application'
-    id'com.github.johnrengelman.shadow' version '4.0.2'
+    id'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
 mainClassName = 'BOT.App'
 group 'com.kirito5572'
-version '1.6.x'
+version '1.7.x'
 
 repositories {
     jcenter()
@@ -33,7 +33,10 @@ shadowJar {
     manifest {
         attributes 'Title': 'rito-bot', 'Main-Class': mainClassName
     }
-    baseName = 'rito-bot'
+}
+
+wrapper {
+    gradleVersion = '6.0.1'
 }
 
 compileJava.options.encoding = 'UTF-8'
