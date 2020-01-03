@@ -81,10 +81,15 @@ public class giveroleCommand implements ICommand {
 
                 foundUsers = foundMember.stream().map(Member::getUser).collect(Collectors.toList());
             }
-            //TODO 기존 역할이 있을경우 새로 역할을 제작하는게 아닌 기존 역할을 가져와 줄수 있도록 변경 요망.
             User user = foundUsers.get(0);
             Member member = event.getGuild().getMember(user);
             Role rolea;
+            assert member != null;
+            if(event.getGuild().getRolesByName(rolename, false).size() > 0) {
+                rolea = event.getGuild().getRolesByName(rolename, false).get(0);
+                event.getGuild().addRoleToMember(member, rolea).complete();
+                return;
+            }
             if(!colorCode.equals("") && !permission_Int.equals("")) {
                 rolea = event.getGuild().createRole()
                         .setName(rolename)

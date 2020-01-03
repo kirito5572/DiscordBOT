@@ -1,5 +1,6 @@
 package BOT.Listener;
 
+import BOT.App;
 import BOT.Objects.SQL;
 import BOT.Objects.config;
 import me.duncte123.botcommons.messaging.EmbedUtils;
@@ -23,6 +24,7 @@ import net.dv8tion.jda.api.events.role.*;
 import net.dv8tion.jda.api.events.role.update.*;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
+import org.menudocs.paste.PasteClient;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
@@ -150,14 +152,33 @@ public class loggerListener extends ListenerAdapter {
     public void onMessageBulkDelete(@Nonnull MessageBulkDeleteEvent event) {
         List<String> ids = event.getMessageIds();
         Guild guild = event.getGuild();
+        StringBuilder stringBuilder = new StringBuilder();
+        SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일 HH시mm분ss초");
+
+        Date time = new Date();
+
+        String time2 = format2.format(time);
         for (String messageId : ids) {
             String[] data = SQL.loggingMessageDownLoad(guild.getId(), messageId);
             if (data[0].length() < 2) {
                 return;
+            } else {
+                stringBuilder.append(data[0]).append("\n");
             }
         }
+        PasteClient client = App.getClient();
+        client.createPaste("java", stringBuilder.toString()).async(
+                (id) -> client.getPaste(id).async((paste) -> {
+                    EmbedBuilder builder = new EmbedBuilder()
+                            .setTitle("메세지 대량 삭제")
+                            .setDescription("[삭제 내용](" + paste.getPasteUrl() + ")")
+                            .addField("삭제 시간", time2, false);
+                    messageLoggingSend(builder, guild);
+                })
+        );
 
     }
+
 
     @Override
     public void onGuildMessageDelete(@Nonnull GuildMessageDeleteEvent event) {

@@ -13,6 +13,9 @@ import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDABuilder;
 import org.jetbrains.annotations.NotNull;
+import org.menudocs.paste.PasteClient;
+import org.menudocs.paste.PasteClientBuilder;
+import org.menudocs.paste.PasteHost;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +34,11 @@ public class App {
     private static String Time;
     private static String PREFIX;
     private final Random random = new Random();
+    private static final PasteClient client = new PasteClientBuilder()
+            .setUserAgent("MenuDocs Tutorial bot")
+            .setDefaultExpiry("10m")
+            .setPasteHost(PasteHost.MENUDOCS)
+            .build();
 
     public App() {
         new SQL();
@@ -164,5 +172,9 @@ public class App {
 
     public static Date getDate() {
         return date;
+    }
+
+    public static PasteClient getClient() {
+        return client;
     }
 }

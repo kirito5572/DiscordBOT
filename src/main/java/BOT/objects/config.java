@@ -1,5 +1,7 @@
 package BOT.Objects;
 
+import org.menudocs.paste.PasteClient;
+import org.menudocs.paste.PasteClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +21,7 @@ public class config {
     public static void config_load() {
         logger.info("설정 로딩중...");
         System.out.println("설정 로딩중...");
+
 
         colorGuildById = SQL.configDownLoad(SQL.color_guild);
         lewdNekoDisable = SQL.configDownLoad(SQL.lewdneko);
