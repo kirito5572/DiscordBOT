@@ -5,6 +5,8 @@ import BOT.Objects.SQL;
 import BOT.Objects.config;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.api.*;
+import net.dv8tion.jda.api.audit.AuditLogChange;
+import net.dv8tion.jda.api.audit.AuditLogEntry;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.ReconnectedEvent;
 import net.dv8tion.jda.api.events.channel.category.*;
@@ -36,6 +38,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class loggerListener extends ListenerAdapter {
@@ -375,13 +378,13 @@ public class loggerListener extends ListenerAdapter {
                     builder = EmbedUtils.defaultEmbed()
                             .setTitle("후방 주의 채널 해제")
                             .setColor(Color.GREEN)
-                            .addField("채널명", event.getChannel().getName(), false)
+                            .addField("채널명", event.getChannel().getAsMention(), false)
                             .addField("변경 시간", time2, false);
                 } else {
                     builder = EmbedUtils.defaultEmbed()
                             .setTitle("후방 주의 채널 지정")
                             .setColor(Color.RED)
-                            .addField("채널명", event.getChannel().getName(), false)
+                            .addField("채널명", event.getChannel().getAsMention(), false)
                             .addField("변경 시간", time2, false);
                 }
                 channelLoggingSend(builder, guild);
@@ -401,7 +404,7 @@ public class loggerListener extends ListenerAdapter {
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                             .setTitle("텍스트 채널 슬로우 모드 지정")
                             .setColor(Color.YELLOW)
-                            .addField("채널명", event.getChannel().getName(), false)
+                            .addField("채널명", event.getChannel().getAsMention(), false)
                             .addField("이전 슬로우 모드 시간", String.valueOf(event.getOldValue()), false)
                             .addField("현재 슬로우 모드 시간", String.valueOf(event.getNewSlowmode()), false)
                             .addField("변경 시간", time2, false);
@@ -422,7 +425,7 @@ public class loggerListener extends ListenerAdapter {
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                         .setTitle("텍스트 채널 생성")
                         .setColor(Color.GREEN)
-                        .addField("채널명", event.getChannel().getName(), false)
+                        .addField("채널명", event.getChannel().getAsMention(), false)
                         .addField("변경 시간", time2, false);
                 channelLoggingSend(builder, guild);
             }
@@ -518,6 +521,7 @@ public class loggerListener extends ListenerAdapter {
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                         .setTitle("보이스 채널 유저 제한 수 변경")
                         .setColor(Color.YELLOW)
+                        .addField("채널명", event.getChannel().getName(), false)
                         .addField("이전 제한 수", String.valueOf(event.getOldUserLimit()), false)
                         .addField("변경 제한 수", String.valueOf(event.getNewUserLimit()), false)
                         .addField("변경 시간", time2, false);
@@ -538,6 +542,7 @@ public class loggerListener extends ListenerAdapter {
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                         .setTitle("보이스 채널 비트레이트 변경")
                         .setColor(Color.YELLOW)
+                        .addField("채널명", event.getChannel().getName(), false)
                         .addField("이전 비트레이트", String.valueOf(event.getOldBitrate()), false)
                         .addField("변경 비트레이트", String.valueOf(event.getNewBitrate()), false)
                         .addField("변경 시간", time2, false);
@@ -675,7 +680,7 @@ public class loggerListener extends ListenerAdapter {
                 StringBuilder stringBuilder = new StringBuilder();
 
                 for(Role role : event.getRoles()) {
-                    stringBuilder.append(role.getName()).append("\n");
+                    stringBuilder.append(role.getAsMention()).append("\n");
                 }
 
                 String time2 = format2.format(time);
@@ -702,7 +707,7 @@ public class loggerListener extends ListenerAdapter {
                 StringBuilder stringBuilder = new StringBuilder();
 
                 for(Role role : event.getRoles()) {
-                    stringBuilder.append(role.getName()).append("\n");
+                    stringBuilder.append(role.getAsMention()).append("\n");
                 }
 
                 String time2 = format2.format(time);
@@ -728,7 +733,7 @@ public class loggerListener extends ListenerAdapter {
 
                 String time2 = format2.format(time);
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
-                        .setTitle("유저 역할 추가")
+                        .setTitle("유저 닉네임 변경")
                         .setDescription("대상유저:" + event.getMember().getAsMention())
                         .setColor(Color.GREEN)
                         .addField("이전 이름", event.getOldNickname(), false)
@@ -789,12 +794,12 @@ public class loggerListener extends ListenerAdapter {
                 EmbedBuilder builder = EmbedUtils.defaultEmbed();
                 if(event.isGuildMuted()) {
                     builder.setTitle("유저 강제 뮤트")
-                        .setDescription("대상유저:" + event.getMember().getEffectiveName())
-                        .setColor(Color.RED)
-                        .addField("시간", time2, false);
+                            .setDescription("대상유저:" + event.getMember().getEffectiveName() + "(" + event.getMember().getAsMention() + ")")
+                            .setColor(Color.RED)
+                            .addField("시간", time2, false);
                 } else {
                     builder.setTitle("유저 강제 뮤트 해제")
-                            .setDescription("대상유저:" + event.getMember().getEffectiveName())
+                            .setDescription("대상유저:" + event.getMember().getEffectiveName() + "(" + event.getMember().getAsMention() + ")")
                             .setColor(Color.RED)
                             .addField("시간", time2, false);
                 }
@@ -820,11 +825,14 @@ public class loggerListener extends ListenerAdapter {
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                         .setTitle("역할 생성")
                         .setColor(role.getColor())
-                        .addField("역할명", role.getName(), false)
+                        .addField("역할명", role.getName() + "(" + role.getAsMention() + ")", false)
                         .addField("권한", stringBuilder.toString(), false)
                         .addField("멘션 가능", role.isMentionable() ? "예" : "아니오", true)
                         .addField("유저 분리 표시", role.isHoisted() ? "예" : "아니오", true)
                         .addField("시간", time2, false);
+                List<AuditLogEntry> list = event.getGuild().retrieveAuditLogs().complete();
+                AuditLogEntry log = list.get(list.size() - 1);
+                Map<String, AuditLogChange> changelog = log.getChanges();
                 memberLoggingSend(builder, guild);
             }
         }
@@ -869,7 +877,7 @@ public class loggerListener extends ListenerAdapter {
         EmbedBuilder builder = EmbedUtils.defaultEmbed()
                 .setTitle("역할 변경")
                 .setColor(role.getColor())
-                .addField("역할명", role.getName(), false)
+                .addField("역할명", role.getName() +  "(" + role.getAsMention() + ")", false)
                 .addField("권한", stringBuilder.toString(), false)
                 .addField("멘션 가능", role.isMentionable() ? "예" : "아니오", true)
                 .addField("유저 분리 표시", role.isHoisted() ? "예" : "아니오", true)

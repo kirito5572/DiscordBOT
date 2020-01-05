@@ -9,8 +9,8 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.api.events.message.MessageUpdateEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -29,7 +29,7 @@ public class filterListener extends ListenerAdapter {
     private String latestMessage = "";
 
     @Override
-    public void onMessageUpdate(@Nonnull MessageUpdateEvent event) {
+    public void onGuildMessageUpdate(@Nonnull GuildMessageUpdateEvent event) {
         User author;
         Message message;
         Guild guild;
@@ -53,12 +53,13 @@ public class filterListener extends ListenerAdapter {
             jda = event.getJDA();
             assert member != null;
             filter(author, message, guild, member, messages, channel, jda);
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void onMessageReceived(@NotNull MessageReceivedEvent event) {
+    public void onGuildMessageReceived(@Nonnull GuildMessageReceivedEvent event) {
         User author;
         Message message;
         Guild guild;
@@ -82,14 +83,14 @@ public class filterListener extends ListenerAdapter {
             jda = event.getJDA();
             assert member != null;
             filter(author, message, guild, member, messages, channel, jda);
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     private void filter(@NotNull User author, @NotNull Message message, @NotNull Guild guild, @NotNull Member member, @NotNull Message messages, @NotNull MessageChannel channel, @NotNull JDA jda) {
         String[] List = FilterList.getList();
         String[] Lists = FilterList.getWebList();
-        String[] greenList = FilterList.getGreenList();
         String id = "";
         String rawMessage;
         try {
@@ -123,8 +124,8 @@ public class filterListener extends ListenerAdapter {
                     filterPass = true;
                 }
             }
-            String[] killfilterDiable = config.getKillfilterDiable();
-            for (String s : killfilterDiable) {
+            String[] killfilterDisable = config.getKillfilterDiable();
+            for (String s : killfilterDisable) {
                 if (guild.getId().equals(s)) {
                     killPass = true;
                 }
@@ -378,6 +379,7 @@ public class filterListener extends ListenerAdapter {
                     }
                 }
             }
+            /*
             if (guild.getId().equals("600010501266866186")) {
                 for (String s : greenList) {
                     if (rawMessage.contains(s)) {
@@ -395,9 +397,10 @@ public class filterListener extends ListenerAdapter {
                     }
                 }
             }
+
+             */
         }
         if(!killPass) {
-
             Role role;
             try {
                 role = guild.getRolesByName("공개 처형", true).get(0);

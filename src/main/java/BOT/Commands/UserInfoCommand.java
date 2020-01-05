@@ -22,6 +22,7 @@ public class UserInfoCommand implements ICommand {
         if(args.isEmpty()) {
             user = Objects.requireNonNull(event.getMember()).getUser();
             member = event.getMember();
+            guilda = event.getGuild();
         } else {
             String joined = String.join(" ", args);
             try {
@@ -56,12 +57,17 @@ public class UserInfoCommand implements ICommand {
             }
         }
         StringBuilder serverRole = new StringBuilder();
-        List<Role> role = member.getRoles();
-        for (Role value : role) {
-            serverRole.append(value.getAsMention()).append("\n");
+        if(event.getGuild().getId().equals(guilda.getId())) {
+            List<Role> role = member.getRoles();
+            for (Role value : role) {
+                serverRole.append(value.getAsMention()).append("\n");
+            }
+        } else {
+            List<Role> role = member.getRoles();
+            for (Role value : role) {
+                serverRole.append(value.getName()).append("\n");
+            }
         }
-
-        assert guilda != null;
         MessageEmbed embed = EmbedUtils.defaultEmbed()
                 .setColor(member.getColor())
                 .setThumbnail(user.getEffectiveAvatarUrl())
