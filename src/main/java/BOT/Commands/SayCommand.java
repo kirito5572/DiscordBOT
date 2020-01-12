@@ -1,5 +1,6 @@
 package BOT.Commands;
 
+import BOT.App;
 import BOT.Objects.ICommand;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Message;
@@ -8,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 
 public class SayCommand implements ICommand {
     @Override
@@ -48,10 +50,34 @@ public class SayCommand implements ICommand {
                 return;
             }
         }
-        String chat = String.join(" ",args);
-        List<Message> messages = event.getChannel().getHistory().retrievePast(1).complete();
-        messages.get(0).delete().queue();
-        event.getChannel().sendMessage(chat).queue();
+        if(!event.getMessage().getAttachments().isEmpty()) {
+            try {
+                String message = event.getMessage().getContentRaw().substring(2);
+                if(message.length() > 1) {
+                    event.getChannel().sendFile(event.getMessage().getAttachments().get(0).downloadToFile().get()).append(message).queue();
+                    App.textChannel.sendMessage("말 커맨드 사용 로그\n" +
+                            "메세지 보낸사람: " + event.getMember() + "\n" +
+                            "보낸 서버: " + event.getGuild().getId()).complete().getChannel()
+                            .sendFile(event.getMessage().getAttachments().get(0).downloadToFile().get()).append(message).queue();
+                } else {
+                    event.getChannel().sendFile(event.getMessage().getAttachments().get(0).downloadToFile().get()).queue();
+                    App.textChannel.sendMessage("말 커맨드 사용 로그\n" +
+                            "메세지 보낸사람: " + event.getMember() + "\n" +
+                            "보낸 서버: " + event.getGuild().getId()).complete().getChannel()
+                            .sendFile(event.getMessage().getAttachments().get(0).downloadToFile().get()).queue();
+                }
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+        } else {
+            String chat = event.getMessage().getContentRaw().substring(2);
+            event.getChannel().sendMessage(chat).queue();
+            App.textChannel.sendMessage("말 커맨드 사용 로그\n" +
+                    "메세지 보낸사람: " + event.getMember() + "\n" +
+                    "보낸 서버: " + event.getGuild().getId()).complete().getChannel()
+                    .sendMessage(chat).queue();
+        }
+        event.getMessage().delete().queue();
     }
 
     @NotNull

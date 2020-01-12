@@ -1269,6 +1269,7 @@ public class CommandManager {
                 return "pin message in Channel";
             }
         });
+        addCommand(new PPCommand());
     }
 
     private void addCommand(@NotNull ICommand command) {

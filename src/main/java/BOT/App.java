@@ -11,7 +11,9 @@ import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.TextChannel;
 import org.jetbrains.annotations.NotNull;
 import org.menudocs.paste.PasteClient;
 import org.menudocs.paste.PasteClientBuilder;
@@ -25,6 +27,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Random;
 
 public class App {
@@ -39,6 +42,7 @@ public class App {
             .setDefaultExpiry("10m")
             .setPasteHost(PasteHost.MENUDOCS)
             .build();
+    public static TextChannel textChannel;
 
     public App() {
         new SQL();
@@ -122,7 +126,7 @@ public class App {
 
         try {
             logger.info("부팅");
-            new JDABuilder(AccountType.BOT)
+            JDA jda = new JDABuilder(AccountType.BOT)
                     .setToken(TOKEN)
                     .setAutoReconnect(true)
                     .addEventListeners(memberCountListener, listener, filterlistener, salListener, onigiriListener, nekoDiscordMemberListener, steamServerStatusListener,
@@ -130,6 +134,7 @@ public class App {
                             loggerListener, messagePinListener)
                     .build().awaitReady();
             logger.info("부팅완료");
+            textChannel = Objects.requireNonNull(Objects.requireNonNull(jda.getGuildById("665581943382999048")).getTextChannelById("665581943382999051"));
         } catch (@NotNull LoginException | InterruptedException e) {
 
             StackTraceElement[] eStackTrace = e.getStackTrace();

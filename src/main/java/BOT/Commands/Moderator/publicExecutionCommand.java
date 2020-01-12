@@ -95,7 +95,7 @@ public class publicExecutionCommand implements ICommand {
         if(member.getRoles().contains(role)) {
             event.getGuild().removeRoleFromMember(member, role).complete();
 
-            event.getChannel().sendMessage(user.getName() + "을/를 공개 처형 대상자에서 해제 했습니다.").queue();
+            event.getChannel().sendMessage(member.getEffectiveName() + "을/를 공개 처형 대상자에서 해제 했습니다.").queue();
             EmbedBuilder builder = EmbedUtils.defaultEmbed()
                     .setColor(Color.GREEN)
                     .setTitle("공개 처형자 해제")

@@ -415,6 +415,7 @@ public class filterListener extends ListenerAdapter {
                 case "600010501266866186":
                     time = 3;
                     break;
+                case "661656224181518368":
                 case "607390893804093442":
                     time = 5;
                     break;
