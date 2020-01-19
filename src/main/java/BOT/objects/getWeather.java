@@ -1,9 +1,9 @@
 package BOT.Objects;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.jetbrains.annotations.NotNull;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,46 +61,89 @@ public class getWeather {
             while((line=bf.readLine()) != null) {
                 result = result.concat(line);
             }
-
+            /*
+            {
+              "coord": {
+                "lon": 126.42,
+                "lat": 37.45
+              },
+              "weather": [
+                {
+                  "id": 802,
+                  "main": "Clouds",
+                  "description": "구름조금",
+                  "icon": "03n"
+                }
+              ],
+              "base": "stations",
+              "main": {
+                "temp": -1.45,
+                "feels_like": -6.46,
+                "temp_min": -4,
+                "temp_max": 1,
+                "pressure": 1021,
+                "humidity": 64
+              },
+              "visibility": 10000,
+              "wind": {
+                "speed": 3.1,
+                "deg": 310
+              },
+              "clouds": {
+                "all": 28
+              },
+              "dt": 1579473024,
+              "sys": {
+                "type": 1,
+                "id": 8093,
+                "country": "KR",
+                "sunrise": 1579473965,
+                "sunset": 1579509817
+              },
+              "timezone": 32400,
+              "id": 1843561,
+              "name": "Incheon",
+              "cod": 200
+            }
+             */
             bf.close();
-            JSONParser parser = new JSONParser();
-            JSONObject obj = (JSONObject) parser.parse(result);
-            JSONArray parse_weather = (JSONArray) obj.get("weather");
-            JSONObject parse_main = (JSONObject) obj.get("main");
-            JSONObject parse_wind = (JSONObject) obj.get("wind");
-            JSONObject parse_rain = (JSONObject) obj.get("rain");
-            JSONObject parse_snow = (JSONObject) obj.get("snow");
-            JSONObject parse_sys = (JSONObject) obj.get("sys");
+            JsonParser parser = new JsonParser();
+            JsonObject element = parser.parse(result).getAsJsonObject();
+            JsonArray parse_weather = element.get("weather").getAsJsonArray();
+            JsonObject parse_main = element.get("main").getAsJsonObject();
+            JsonObject parse_wind = element.get("wind").getAsJsonObject();
+            JsonObject parse_rain = element.get("rain").getAsJsonObject();
+            JsonObject parse_snow = element.get("snow").getAsJsonObject();
+            JsonObject parse_sys = element.get("sys").getAsJsonObject();
 
-            weather_infor[0] = parse_weather.get(0).toString();   //날씨 상태
-            weather_infor[0] = weather_infor[0].substring(weather_infor[0].indexOf("\"description\":\"") + 15, weather_infor[0].indexOf("\",\"main\""));
-            weather_infor[1] = parse_main.get("temp").toString() + "Cº";      // 온도
+            weather_infor[0] = parse_weather.get(0).getAsJsonObject().get("description").getAsString();   //날씨 상태
+            weather_infor[1] = parse_main.get("temp").getAsString() + "Cº";      // 온도
 
-            weather_infor[2] = parse_main.get("pressure").toString() + "hPa";      // 대기압
+            weather_infor[2] = parse_main.get("pressure").getAsString() + "hPa";      // 대기압
 
-            weather_infor[3] = parse_main.get("humidity").toString() + "%";      // 습도
+            weather_infor[3] = parse_main.get("humidity").getAsString() + "%";      // 습도
 
-            weather_infor[4] = parse_wind.get("speed").toString() + "m/s";      // 풍속
+            weather_infor[4] = parse_wind.get("speed").getAsString() + "m/s";      // 풍속
 
-            weather_infor[5] = parse_wind.get("deg").toString() + "º";      // 풍향
+            weather_infor[5] = parse_wind.get("deg").getAsString() + "º";      // 풍향
 
             if(weather_infor[0].equals("비")) {
-                weather_infor[6] = parse_rain.get("3h").toString() + "mm";      // 3시간 강수량
+                weather_infor[6] = parse_rain.get("3h").getAsString() + "mm";      // 3시간 강수량
             } else {
                 weather_infor[6] = "null";
             }
             if(weather_infor[0].equals("눈")) {
-                weather_infor[7] = parse_snow.get("3h").toString() + "cm";      // 3시간 적설량
+                weather_infor[7] = parse_snow.get("3h").getAsString() + "cm";      // 3시간 적설량
             } else {
                 weather_infor[7] = "null";
             }
 
             Date time;
-            weather_infor[8] = parse_sys.get("sunrise").toString();      // 일출시간
+            weather_infor[8] = parse_sys.get("sunrise").getAsString();      // 일출시간
             time = new Date(Long.parseLong(weather_infor[8]) * 1000);
             weather_infor[8] = formatDate(time);
 
-            weather_infor[9] = parse_sys.get("sunset").toString();      // 일몰시간
+            weather_infor[9] = parse_sys.get("sunset").getAsString();      // 일몰시간
             time = new Date(Long.parseLong(weather_infor[9]) * 1000);
             weather_infor[9] = formatDate(time);
 

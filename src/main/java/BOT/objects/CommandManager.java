@@ -1270,6 +1270,24 @@ public class CommandManager {
             }
         });
         addCommand(new PPCommand());
+        addCommand(new naverCommand());
+        addCommand(new ServerInfoCommand());
+        addCommand(new ServerInfoCommand() {
+            @Override
+            public String getInvoke() {
+                return "serverInfo";
+            }
+
+            @Override
+            public String getSmallHelp() {
+                return "";
+            }
+
+            @Override
+            public String getHelp() {
+                return "Print your server's information";
+            }
+        });
     }
 
     private void addCommand(@NotNull ICommand command) {

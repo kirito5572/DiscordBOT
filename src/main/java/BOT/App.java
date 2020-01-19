@@ -15,9 +15,6 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 import org.jetbrains.annotations.NotNull;
-import org.menudocs.paste.PasteClient;
-import org.menudocs.paste.PasteClientBuilder;
-import org.menudocs.paste.PasteHost;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,11 +34,6 @@ public class App {
     private static String Time;
     private static String PREFIX;
     private final Random random = new Random();
-    private static final PasteClient client = new PasteClientBuilder()
-            .setUserAgent("MenuDocs Tutorial bot")
-            .setDefaultExpiry("10m")
-            .setPasteHost(PasteHost.MENUDOCS)
-            .build();
     public static TextChannel textChannel;
 
     public App() {
@@ -126,7 +118,7 @@ public class App {
 
         try {
             logger.info("부팅");
-            JDA jda = new JDABuilder(AccountType.BOT)
+            JDA jda= new JDABuilder(AccountType.BOT)
                     .setToken(TOKEN)
                     .setAutoReconnect(true)
                     .addEventListeners(memberCountListener, listener, filterlistener, salListener, onigiriListener, nekoDiscordMemberListener, steamServerStatusListener,
@@ -134,8 +126,12 @@ public class App {
                             loggerListener, messagePinListener)
                     .build().awaitReady();
             logger.info("부팅완료");
-            textChannel = Objects.requireNonNull(Objects.requireNonNull(jda.getGuildById("665581943382999048")).getTextChannelById("665581943382999051"));
-        } catch (@NotNull LoginException | InterruptedException e) {
+            try {
+                textChannel = Objects.requireNonNull(Objects.requireNonNull(jda.getGuildById("665581943382999048")).getTextChannelById("665581943382999051"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } catch (LoginException | InterruptedException e) {
 
             StackTraceElement[] eStackTrace = e.getStackTrace();
             StringBuilder a = new StringBuilder();
@@ -177,9 +173,5 @@ public class App {
 
     public static Date getDate() {
         return date;
-    }
-
-    public static PasteClient getClient() {
-        return client;
     }
 }

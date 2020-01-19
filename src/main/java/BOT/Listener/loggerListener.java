@@ -26,7 +26,6 @@ import net.dv8tion.jda.api.events.role.*;
 import net.dv8tion.jda.api.events.role.update.*;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
-import org.menudocs.paste.PasteClient;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
@@ -115,6 +114,9 @@ public class loggerListener extends ListenerAdapter {
                 }
                 String finalMessageContent = messageContent;
                 String[] data = SQL.loggingMessageDownLoad(guild.getId(), messageId);
+                if(data[0] == null) {
+                    return;
+                }
                 if (data[0].length() < 2) {
                     return;
                 }
@@ -169,16 +171,6 @@ public class loggerListener extends ListenerAdapter {
                 stringBuilder.append(data[0]).append("\n");
             }
         }
-        PasteClient client = App.getClient();
-        client.createPaste("java", stringBuilder.toString()).async(
-                (id) -> client.getPaste(id).async((paste) -> {
-                    EmbedBuilder builder = new EmbedBuilder()
-                            .setTitle("메세지 대량 삭제")
-                            .setDescription("[삭제 내용](" + paste.getPasteUrl() + ")")
-                            .addField("삭제 시간", time2, false);
-                    messageLoggingSend(builder, guild);
-                })
-        );
 
     }
 
@@ -315,11 +307,15 @@ public class loggerListener extends ListenerAdapter {
                 Date time = new Date();
 
                 String time2 = format2.format(time);
+                String topic = event.getOldTopic();
+                if(topic == null) {
+                    topic = "없음";
+                }
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                         .setTitle("텍스트 채널 토픽 변경")
                         .setColor(Color.GREEN)
                         .addField("채널명", event.getChannel().getName(), false)
-                        .addField("이전 토픽", event.getOldTopic(), false)
+                        .addField("이전 토픽", topic, false)
                         .addField("변경된 토픽", event.getNewTopic(), false)
                         .addField("변경 시간", time2, false);
                 channelLoggingSend(builder, guild);
@@ -732,11 +728,15 @@ public class loggerListener extends ListenerAdapter {
                 Date time = new Date();
 
                 String time2 = format2.format(time);
+                String nickname = event.getOldNickname();
+                if(nickname == null) {
+                    nickname = "없음";
+                }
                 EmbedBuilder builder = EmbedUtils.defaultEmbed()
                         .setTitle("유저 닉네임 변경")
                         .setDescription("대상유저:" + event.getMember().getAsMention())
                         .setColor(Color.GREEN)
-                        .addField("이전 이름", event.getOldNickname(), false)
+                        .addField("이전 이름", nickname, false)
                         .addField("현재 이름", event.getNewNickname(), false)
                         .addField("시간", time2, false);
                 memberLoggingSend(builder, guild);

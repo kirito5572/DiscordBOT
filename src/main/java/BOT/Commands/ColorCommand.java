@@ -128,9 +128,12 @@ public class ColorCommand implements ICommand {
                         try {
                             event.getGuild().removeRoleFromMember(event.getMember(), role).complete();
                             if(event.getMember().getRoles().contains(role)) {
-                                channel.sendMessage("기존 색 역할 제거에 실패하였습니다.").queue();
+                                event.getGuild().removeRoleFromMember(event.getMember(), role).complete();
+                                if(event.getMember().getRoles().contains(role)) {
+                                    channel.sendMessage("기존 색 역할 제거에 실패하였습니다.").queue();
 
-                                return;
+                                    return;
+                                }
                             }
                         } catch (Exception e) {
 

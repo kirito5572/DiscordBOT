@@ -55,8 +55,6 @@ public class activityChangeListener extends ListenerAdapter {
                         case 4:
                             Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("kirito5572#5572 제작"));
                             break;
-                        case 5:
-                            Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("업타임: "));
                     }
                     i++;
                     if (i > 4) {

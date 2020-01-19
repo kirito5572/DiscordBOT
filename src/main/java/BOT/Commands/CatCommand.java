@@ -49,24 +49,14 @@ public class CatCommand implements ICommand {
         }
         TextChannel channel = event.getChannel();
         Message message;
+        String messageId;
         if(event.getGuild().getId().equals("600010501266866186")) {
             message = channel.sendMessage("*주의 이 커맨드는 네다씹 커맨드입니다*." + "\n" +
                     "실행을 원하시면 :one: 아니면 :two:").complete();
+            message.addReaction("1\u20E3").complete();
+            message.addReaction("2\u20E3").complete();
+            messageId = message.getId();
 
-            try {
-                Thread.sleep(400);
-            } catch (InterruptedException e) {
-
-                StackTraceElement[] eStackTrace = e.getStackTrace();
-                StringBuilder a = new StringBuilder();
-                for (StackTraceElement stackTraceElement : eStackTrace) {
-                    a.append(stackTraceElement).append("\n");
-                }
-                logger.warn(a.toString());
-            }
-
-            message.addReaction("1\u20E3").queue();
-            message.addReaction("2\u20E3").queue();
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -91,6 +81,11 @@ public class CatCommand implements ICommand {
                         a.append(stackTraceElement).append("\n");
                     }
                     logger.warn(a.toString());
+                }
+                message = event.getChannel().retrieveMessageById(messageId).complete();
+                if(message.getReactions().isEmpty()) {
+                    System.out.println("리액션이 없음");
+                    continue;
                 }
                 if (message.getReactions().get(0).getCount() == 2) {
                     message.delete().complete();

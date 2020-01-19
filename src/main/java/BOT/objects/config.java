@@ -1,7 +1,5 @@
 package BOT.Objects;
 
-import org.menudocs.paste.PasteClient;
-import org.menudocs.paste.PasteClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

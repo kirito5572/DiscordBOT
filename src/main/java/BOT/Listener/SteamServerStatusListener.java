@@ -50,6 +50,6 @@ public class SteamServerStatusListener extends ListenerAdapter {
         jobScheduler.scheduleAtFixedRate(job, 1000, 30000);
     }
     private void send_message(@NotNull String message, @NotNull ReadyEvent event) {
-        Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById("617222347425972234")).getTextChannelById("617230917315854356")).sendMessage(message).queue();
+        Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById("617222347425972234")).getTextChannelById("628768703152128000")).sendMessage(message).queue();
     }
 }

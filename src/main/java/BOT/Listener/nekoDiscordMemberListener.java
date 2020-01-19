@@ -41,22 +41,27 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                 }
             }
         } else if (guild.getId().equals("617222347425972234")) {
-            Role role = guild.getRoleById("626682646793158665");
-            Member member = event.getMember();
-            if (event.getMessageId().equals(catCafe)) {
-                assert member != null;
-                assert role != null;
-                guild.addRoleToMember(member, role).complete();
-                member.getUser().openPrivateChannel().complete().sendMessage("확성기 역할 부여!").queue();
+            Role role = null;
+            Member member = null;
+            switch (event.getMessageId()) {
+                case "661969267729629194":
+                    role = guild.getRoleById("658290356692975616");
+                    member = event.getMember();
+                    assert member != null;
+                    assert role != null;
+                    guild.addRoleToMember(member, role).complete();
+                    break;
+
+                case "668590253786791943":
+                    role = guild.getRoleById("666828960503693338");
+                    member = event.getMember();
+                    assert member != null;
+                    assert role != null;
+                    guild.addRoleToMember(member, role).complete();
+                    break;
             }
-        } else if (guild.getId().equals("600010501266866186")) {
-            Role role = guild.getRoleById("656658408589754378");
-            Member member = event.getMember();
-            if (event.getMessageId().equals(greenServer)) {
-                assert member != null;
-                assert role != null;
-                guild.addRoleToMember(member, role).complete();
-                member.getUser().openPrivateChannel().complete().sendMessage("친목 채널 활성화가 완료되었습니다.").queue();
+            if(member != null) {
+                member.getUser().openPrivateChannel().complete().sendMessage(role.getName() + " 역할 부여!").queue();
             }
         }
     }
@@ -71,13 +76,27 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                 guild.removeRoleFromMember(member, role).complete();
             }
         } else if(guild.getId().equals("617222347425972234")) {
-            Role role = guild.getRoleById("626682646793158665");
-            Member member = event.getMember();
-            if (event.getMessageId().equals(catCafe)) {
-                assert member != null;
-                assert role != null;
-                guild.removeRoleFromMember(member, role).complete();
-                member.getUser().openPrivateChannel().complete().sendMessage("확성기 역할 제거!").queue();
+            Role role = null;
+            Member member = null;
+            switch (event.getMessageId()) {
+                case "661969267729629194":
+                    role = guild.getRoleById("658290356692975616");
+                    member = event.getMember();
+                    assert member != null;
+                    assert role != null;
+                    guild.removeRoleFromMember(member, role).complete();
+                    break;
+
+                case "668590253786791943":
+                    role = guild.getRoleById("666828960503693338");
+                    member = event.getMember();
+                    assert member != null;
+                    assert role != null;
+                    guild.removeRoleFromMember(member, role).complete();
+                    break;
+            }
+            if(member != null) {
+                member.getUser().openPrivateChannel().complete().sendMessage(role.getName() + " 역할 제거!").queue();
             }
         } else if (guild.getId().equals("600010501266866186")) {
             Role role = guild.getRoleById("656658408589754378");
