@@ -45,6 +45,6 @@ public class ServerInfoCommand implements ICommand {
 
     @Override
     public String getSmallHelp() {
-        return null;
+        return "other";
     }
 }

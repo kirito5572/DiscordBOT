@@ -24,7 +24,6 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
     @Override
     public void onMessageReactionAdd(@NotNull MessageReactionAddEvent event) {
         Guild guild = event.getGuild();
-        //getJDA().getGuildById("439780696999985172");
         if(guild.getId().equals("439780696999985172")) {
             Role role = guild.getRoleById("625549604674600970");  //휴식자
             Role role2 = guild.getRoleById("619556312627544105");  //사무직

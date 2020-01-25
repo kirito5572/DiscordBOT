@@ -503,9 +503,8 @@ public class SQL {
         return return_data;
     }
 
-    @Nullable
     public static String configDownLoad_filterlog(String guildId) {
-        String return_data = null;
+        String return_data = "error";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String queryString;

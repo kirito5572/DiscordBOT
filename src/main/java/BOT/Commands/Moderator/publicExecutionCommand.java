@@ -3,6 +3,7 @@ package BOT.Commands.Moderator;
 import BOT.App;
 import BOT.Listener.Listener;
 import BOT.Objects.ICommand;
+import BOT.Objects.SQL;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -92,67 +93,33 @@ public class publicExecutionCommand implements ICommand {
 
         }
         assert member != null;
+        EmbedBuilder builder;
         if(member.getRoles().contains(role)) {
             event.getGuild().removeRoleFromMember(member, role).complete();
 
             event.getChannel().sendMessage(member.getEffectiveName() + "을/를 공개 처형 대상자에서 해제 했습니다.").queue();
-            EmbedBuilder builder = EmbedUtils.defaultEmbed()
+            builder = EmbedUtils.defaultEmbed()
                     .setColor(Color.GREEN)
                     .setTitle("공개 처형자 해제")
                     .addField("대상자", member.getAsMention(), true)
                     .addField("지정 담당자", event.getMember().getAsMention(), true);
-            switch (event.getGuild().getId()) {
-                case "600010501266866186":
-                    Objects.requireNonNull(event.getGuild().getTextChannelById("600015587544006679")).sendMessage(builder.build()).queue();
-                    Objects.requireNonNull(event.getGuild().getTextChannelById("609781460785692672")).sendMessage(builder.build()).queue();
-                    break;
-                case "617222347425972234":
-                    Objects.requireNonNull(event.getGuild().getTextChannelById("617244045780975637")).sendMessage(builder.build()).queue();
-                    break;
-                case "617757206929997895":
-                    Objects.requireNonNull(event.getGuild().getTextChannelById("617760924714926113")).sendMessage(builder.build()).queue();
-                    break;
-                case "607390893804093442":
-                    Objects.requireNonNull(event.getGuild().getTextChannelById("620091943522664466")).sendMessage(builder.build()).queue();
-                    break;
-                case "607390203086372866":
-                    Objects.requireNonNull(event.getGuild().getTextChannelById("620560178424578061")).sendMessage(builder.build()).queue();
-                    break;
-                default:
-                    channel.sendMessage(builder.build()).queue();
-                    break;
-            }
+
         } else {
             event.getGuild().addRoleToMember(member, role).complete();
 
             event.getChannel().sendMessage(member.getEffectiveName() + "을/를 공개 처형 대상자로 지정 했습니다.").queue();
-            EmbedBuilder builder = EmbedUtils.defaultEmbed()
+            builder = EmbedUtils.defaultEmbed()
                     .setColor(Color.RED)
                     .setTitle("공개 처형자 지정")
                     .addField("대상자", member.getAsMention(), true)
                     .addField("지정 담당자", event.getMember().getAsMention(), true);
-
-            switch (event.getGuild().getId()) {
-                case "600010501266866186":
-                    Objects.requireNonNull(event.getGuild().getTextChannelById("600015587544006679")).sendMessage(builder.build()).queue();
-                    Objects.requireNonNull(event.getGuild().getTextChannelById("609781460785692672")).sendMessage(builder.build()).queue();
-                    break;
-                case "617222347425972234":
-                    Objects.requireNonNull(event.getGuild().getTextChannelById("617244045780975637")).sendMessage(builder.build()).queue();
-                    break;
-                case "617757206929997895":
-                    Objects.requireNonNull(event.getGuild().getTextChannelById("617760924714926113")).sendMessage(builder.build()).queue();
-                    break;
-                case "607390893804093442":
-                    Objects.requireNonNull(event.getGuild().getTextChannelById("620091943522664466")).sendMessage(builder.build()).queue();
-                    break;
-                case "607390203086372866":
-                    Objects.requireNonNull(event.getGuild().getTextChannelById("620560178424578061")).sendMessage(builder.build()).queue();
-                    break;
-                default:
-                    channel.sendMessage(builder.build()).queue();
-                    break;
-            }
+        }
+        String channelId = SQL.configDownLoad_filterlog(event.getGuild().getId());
+        assert channelId != null;
+        if(channelId.equals("error")) {
+            logger.error("공개처형 전송중 에러가 발생했습니다!");
+        } else if(!channelId.equals("null")) {
+            Objects.requireNonNull(event.getGuild().getTextChannelById(channelId)).sendMessage(builder.build()).queue();
         }
         event.getMessage().delete().queue();
     }

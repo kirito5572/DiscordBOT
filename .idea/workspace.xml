@@ -8,56 +8,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37fe3ce4-5292-4a9e-8592-af67e32a80f9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/ServerInfoCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/naverCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/CatCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/CatCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/ColorCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/ColorCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/TESTCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/TESTCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/VersionCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/VersionCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/SteamServerStatusListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/SteamServerStatusListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/activityChangeListener$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/activityChangeListener$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/activityChangeListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/activityChangeListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/loggerListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/loggerListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/config.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/config.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/getWeather.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/getWeather.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/BOT-1.7.x-all.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/BOT-1.7.x-all.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/CatCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/CatCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/ColorCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/ColorCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/TESTCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/TESTCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/VersionCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/VersionCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/SteamServerStatusListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/SteamServerStatusListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/activityChangeListener$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/activityChangeListener$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/activityChangeListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/activityChangeListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/loggerListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/loggerListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/nekoDiscordMemberListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Objects/config.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Objects/config.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/objects/CommandManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/objects/CommandManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/objects/getWeather.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/objects/getWeather.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/CatCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/CatCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/ColorCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/ColorCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/TESTCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/TESTCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/SteamServerStatusListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/SteamServerStatusListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/activityChangeListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/activityChangeListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/loggerListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/loggerListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/filterListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/filterListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/nekoDiscordMemberListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/nekoDiscordMemberListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/publicExecutionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/publicExecutionCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/ServerInfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/ServerInfoCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/filterListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/filterListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/nekoDiscordMemberListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/nekoDiscordMemberListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/CommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/getWeather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/getWeather.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/SQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/SQL.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +137,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+    <property name="settings.editor.selected.configurable" value="discord-application" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -199,7 +157,7 @@
       <recent name="C:\Users\ruby0\Documents\GitHub\DiscordBOT\src\main\java\BOT\Commands\Music" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="Gradle.DiscordBOT [shadowJar]">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="BOT.App" />
       <module name="BOT.main" />
@@ -468,7 +426,9 @@
       <workItem from="1578835982307" duration="6651000" />
       <workItem from="1578898914458" duration="625000" />
       <workItem from="1578914618943" duration="2941000" />
-      <workItem from="1578925102156" duration="33678000" />
+      <workItem from="1578925102156" duration="36641000" />
+      <workItem from="1579483249148" duration="1361000" />
+      <workItem from="1579916464752" duration="2618000" />
     </task>
     <servers />
   </component>
@@ -537,34 +497,34 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="976" y="303" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1579035761102" />
-    <state width="1873" height="264" key="GridCell.Tab.0.bottom" timestamp="1579474951218">
+    <state width="1873" height="264" key="GridCell.Tab.0.bottom" timestamp="1579917326232">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1873" height="269" key="GridCell.Tab.0.bottom/0.0.1920.1080/0.-1080.1920.1080@0.-1080.1920.1080" timestamp="1578032539224" />
     <state width="1873" height="344" key="GridCell.Tab.0.bottom/0.0.1920.1080/0.-1080.1920.1080@0.0.1920.1080" timestamp="1577664028685" />
     <state width="1877" height="289" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1576652988296" />
-    <state width="1873" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1579474951218" />
-    <state width="1873" height="264" key="GridCell.Tab.0.center" timestamp="1579474951217">
+    <state width="1873" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1579917326232" />
+    <state width="1873" height="264" key="GridCell.Tab.0.center" timestamp="1579917326232">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1873" height="269" key="GridCell.Tab.0.center/0.0.1920.1080/0.-1080.1920.1080@0.-1080.1920.1080" timestamp="1578032539224" />
     <state width="1873" height="344" key="GridCell.Tab.0.center/0.0.1920.1080/0.-1080.1920.1080@0.0.1920.1080" timestamp="1577664028685" />
     <state width="1877" height="289" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1576652988296" />
-    <state width="1873" height="264" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1579474951217" />
-    <state width="1873" height="264" key="GridCell.Tab.0.left" timestamp="1579474951217">
+    <state width="1873" height="264" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1579917326232" />
+    <state width="1873" height="264" key="GridCell.Tab.0.left" timestamp="1579917326232">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1873" height="269" key="GridCell.Tab.0.left/0.0.1920.1080/0.-1080.1920.1080@0.-1080.1920.1080" timestamp="1578032539224" />
     <state width="1873" height="344" key="GridCell.Tab.0.left/0.0.1920.1080/0.-1080.1920.1080@0.0.1920.1080" timestamp="1577664028685" />
     <state width="1877" height="289" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1576652988296" />
-    <state width="1873" height="264" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1579474951217" />
-    <state width="1873" height="264" key="GridCell.Tab.0.right" timestamp="1579474951217">
+    <state width="1873" height="264" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1579917326232" />
+    <state width="1873" height="264" key="GridCell.Tab.0.right" timestamp="1579917326232">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1873" height="269" key="GridCell.Tab.0.right/0.0.1920.1080/0.-1080.1920.1080@0.-1080.1920.1080" timestamp="1578032539224" />
     <state width="1873" height="344" key="GridCell.Tab.0.right/0.0.1920.1080/0.-1080.1920.1080@0.0.1920.1080" timestamp="1577664028685" />
     <state width="1877" height="289" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1576652988296" />
-    <state width="1873" height="264" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1579474951217" />
+    <state width="1873" height="264" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1579917326232" />
     <state x="540" y="273" key="IDE.errors.dialog" timestamp="1577214553770">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -573,10 +533,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="794" y="462" key="NewPhpFileDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1576727338336" />
-    <state x="128" y="201" key="SettingsEditor" timestamp="1579026836571">
+    <state x="128" y="201" key="SettingsEditor" timestamp="1579917320492">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="128" y="201" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1579026836571" />
+    <state x="128" y="201" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1579917320492" />
     <state width="200" height="461" key="SqlResolveConfigurable" timestamp="1576737323628">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

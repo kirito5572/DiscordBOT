@@ -362,7 +362,8 @@ public class filterListener extends ListenerAdapter {
                                 .addField("금지어 사용자", author.getAsMention(), false)
                                 .addField("금지어", s, false)
                                 .addField("문장", message.getContentRaw(), false);
-                        String channelId = SQL.configDownLoad(SQL.filterlog, guild.getId());
+                        String channelId = SQL.configDownLoad_filterlog(guild.getId());
+                        assert channelId != null;
                         if(channelId.equals("error")) {
                             logger.error("링크 필터링 채널 전송중 에러가 발생했습니다!");
                         } else if(!channelId.equals("null")) {
