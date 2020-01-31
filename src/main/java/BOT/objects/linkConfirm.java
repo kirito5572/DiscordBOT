@@ -16,15 +16,15 @@ public class linkConfirm {
         if(rawMessage.startsWith("https://")) {
             rawMessage = rawMessage.replaceFirst("https://", "");
         }
-        Pattern p = Pattern.compile("[A-Za-z0-9_]*" + s);
+        Pattern p = Pattern.compile("[A-Za-z0-9_]+" + s + "$");
         Matcher m = p.matcher(rawMessage);
         if(rawMessage.contains(" ")) {
-            p = Pattern.compile("\\s[A-Za-z0-9_]*" + s);
+            p = Pattern.compile("\\s[A-Za-z0-9_]+" + s + "$");
             m = p.matcher(rawMessage);
         }
         boolean hangulflag = false;
         if(!m.find()) {
-            p = Pattern.compile("[가-힣][A-Za-z0-9_]*" + s);
+            p = Pattern.compile("[가-힣][A-Za-z0-9_]+" + s + "$");
             m = p.matcher(rawMessage);
             hangulflag = true;
         }

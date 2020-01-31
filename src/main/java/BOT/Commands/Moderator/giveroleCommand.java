@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.exceptions.HierarchyException;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -87,7 +88,13 @@ public class giveroleCommand implements ICommand {
             assert member != null;
             if(event.getGuild().getRolesByName(rolename, false).size() > 0) {
                 rolea = event.getGuild().getRolesByName(rolename, false).get(0);
-                event.getGuild().addRoleToMember(member, rolea).complete();
+                try {
+                    event.getGuild().addRoleToMember(member, rolea).complete();
+                } catch (HierarchyException e) {
+                    e.printStackTrace();
+                    event.getChannel().sendMessage("봇의 역할보다 상위에 있는 역할은 지급할 수 없습니다.").queue();
+                    return;
+                }
                 return;
             }
             if(!colorCode.equals("") && !permission_Int.equals("")) {

@@ -49,7 +49,6 @@ public class HelpCommand implements ICommand {
     private void generateAndSendEmbed(@NotNull GuildMessageReceivedEvent event) {
         EmbedBuilder builder = EmbedUtils.defaultEmbed().setTitle("명령어 리스트:");
 
-        StringBuilder music = new StringBuilder();
         StringBuilder serverCustom = new StringBuilder();
         StringBuilder moderator = new StringBuilder();
         StringBuilder game = new StringBuilder();
@@ -57,9 +56,6 @@ public class HelpCommand implements ICommand {
         StringBuilder twitch = new StringBuilder();
         builder.appendDescription(App.getPREFIX() + getInvoke() + " <명령어>를 입력하면 명령어별 상세 정보를 볼 수 있습니다.");
         Commands.forEach(iCommand -> {
-            if (iCommand.getSmallHelp().equals("music")) {
-                music.append(iCommand.getInvoke()).append("\n");
-            }
             if (iCommand.getSmallHelp().equals("serverCustom")) {
                 serverCustom.append(iCommand.getInvoke()).append("\n");
             }
@@ -84,11 +80,6 @@ public class HelpCommand implements ICommand {
         builder.addField(
                 "서버커스텀",
                 serverCustom.toString(),
-                false
-        );
-        builder.addField(
-                "음악",
-                music.toString(),
                 false
         );
         builder.addField(

@@ -1,6 +1,7 @@
 package BOT.Commands;
 
 import BOT.App;
+import BOT.Listener.Listener;
 import BOT.Objects.ICommand;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Message;
@@ -10,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 public class SayCommand implements ICommand {
     @Override
@@ -20,34 +22,42 @@ public class SayCommand implements ICommand {
 
             return;
         }
-        if(event.getGuild().getId().equals("607390893804093442")) {
-            if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
-                event.getChannel().sendMessage("당신은 이 명령어를 사용 할 수 없습니다.").queue();
-                return;
+        if(!event.getAuthor().getId().equals(Listener.getID1())) {
+            if (event.getGuild().getId().equals("670665835618107393")) {
+                if (!Objects.requireNonNull(event.getMember()).hasPermission(Permission.ADMINISTRATOR)) {
+                    event.getChannel().sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용 할 수 없습니다.").complete().delete().queueAfter(5, TimeUnit.SECONDS);
+                    return;
+                }
             }
-        }
-        if(event.getGuild().getId().equals("617222347425972234")) {
-            if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
-                event.getChannel().sendMessage("당신은 이 명령어를 사용 할 수 없습니다.").queue();
-                return;
+            if (event.getGuild().getId().equals("607390893804093442")) {
+                if (!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
+                    event.getChannel().sendMessage("당신은 이 명령어를 사용 할 수 없습니다.").queue();
+                    return;
+                }
             }
-        }
-        if(event.getGuild().getId().equals("607390893804093442")) {
-            if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
-                event.getChannel().sendMessage("당신은 이 명령어를 사용 할 수 없습니다.").queue();
-                return;
+            if (event.getGuild().getId().equals("617222347425972234")) {
+                if (!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
+                    event.getChannel().sendMessage("당신은 이 명령어를 사용 할 수 없습니다.").queue();
+                    return;
+                }
             }
-        }
-        if(event.getGuild().getId().equals("439780696999985172")) {
-            if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
-                event.getChannel().sendMessage("당신은 이 명령어를 사용 할 수 없습니다.").queue();
-                return;
+            if (event.getGuild().getId().equals("607390893804093442")) {
+                if (!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
+                    event.getChannel().sendMessage("당신은 이 명령어를 사용 할 수 없습니다.").queue();
+                    return;
+                }
             }
-        }
-        if(event.getGuild().getId().equals("659364876384469022")) {
-            if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
-                event.getChannel().sendMessage("당신은 이 명령어를 사용 할 수 없습니다.").queue();
-                return;
+            if (event.getGuild().getId().equals("439780696999985172")) {
+                if (!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
+                    event.getChannel().sendMessage("당신은 이 명령어를 사용 할 수 없습니다.").queue();
+                    return;
+                }
+            }
+            if (event.getGuild().getId().equals("659364876384469022")) {
+                if (!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
+                    event.getChannel().sendMessage("당신은 이 명령어를 사용 할 수 없습니다.").queue();
+                    return;
+                }
             }
         }
         if(!event.getMessage().getAttachments().isEmpty()) {

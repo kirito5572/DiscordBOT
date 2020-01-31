@@ -216,9 +216,6 @@ public class filterListener extends ListenerAdapter {
                     linkPass = true;
                 }
             }
-            if(guild.getId().equals("508913681279483913") || guild.getId().equals("453817631603032065")) {  // 선우형 & 주먹밥
-                linkPass = true;
-            }
             if(guild.getId().equals("607390893804093442") || channel.getId().equals("600021475629727745")) { // 소프냥이 & 그린 영상 채널
                 if(rawMessage.contains("youtube")) {
                     linkPass = true;

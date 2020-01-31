@@ -10,7 +10,12 @@ import java.util.Objects;
 public class CallCommand implements ICommand {
     @Override
     public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
-        event.getChannel().sendMessage(Objects.requireNonNull(event.getGuild().getMemberById("284508374924787713")).getAsMention()).queue();
+        try {
+            event.getChannel().sendMessage(Objects.requireNonNull(event.getGuild().getMemberById("284508374924787713")).getAsMention()).queue();
+        } catch (Exception e) {
+            event.getChannel().sendMessage("error:java.lang.NullPointerException: null\n해당 서버에 봇 제작자가 없는것 같아요. <@284508374924787713> 이 곳으로 1대1 멘션 부탁드립니다.").queue();
+            return;
+        }
         event.getChannel().sendMessage("무슨 오류가 발생했는지 상세하게 적어주시면 확인후에, 결과를 알려드리도록 하겠습니다.").queue();
     }
 

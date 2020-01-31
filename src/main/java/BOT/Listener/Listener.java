@@ -30,8 +30,8 @@ public class Listener extends ListenerAdapter {
 
     @Override
     public void onReady(@NotNull ReadyEvent event) {
-        logger.info(String.format("로그인 성공: %#s", event.getJDA().getSelfUser()));
-        System.out.println(String.format("로그인 성공: %#s", event.getJDA().getSelfUser()));
+        logger.info(String.format("main_core 로그인 성공: %#s", event.getJDA().getSelfUser()));
+        System.out.println(String.format("main_core 로그인 성공: %#s", event.getJDA().getSelfUser()));
     }
 
     @Override

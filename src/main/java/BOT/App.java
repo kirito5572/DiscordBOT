@@ -6,7 +6,6 @@ import BOT.Listener.*;
 import BOT.Objects.CommandManager;
 import BOT.Objects.SQL;
 import BOT.Objects.config;
-import BOT.Objects.getYoutubeSearch;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.api.AccountType;
@@ -42,7 +41,6 @@ public class App {
         date = new Date();
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy/MM/dd aa hh:mm:ss z");
         Time = format1.format(date);
-        new getYoutubeSearch();
         CommandManager commandManager = new CommandManager();
         MemberCountListener memberCountListener = new MemberCountListener();
         Listener listener = new Listener(commandManager);
@@ -57,7 +55,6 @@ public class App {
         SteamServerStatusListener steamServerStatusListener = new SteamServerStatusListener();
         activityChangeListener activityChangeListener = new activityChangeListener();
         CroissantRoleListener croissantRoleListener = new CroissantRoleListener();
-        loggerListener loggerListener = new loggerListener();
         messagePinListener messagePinListener = new messagePinListener();
         Logger logger = LoggerFactory.getLogger(App.class);
 
@@ -123,7 +120,7 @@ public class App {
                     .setAutoReconnect(true)
                     .addEventListeners(memberCountListener, listener, filterlistener, salListener, onigiriListener, nekoDiscordMemberListener, steamServerStatusListener,
                             greenServerMuteListener, greenServerNoticeListener, workHomeListener, greenAutoDBWriteListener, activityChangeListener, croissantRoleListener,
-                            loggerListener, messagePinListener)
+                            messagePinListener)
                     .build().awaitReady();
             logger.info("부팅완료");
             try {

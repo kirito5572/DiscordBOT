@@ -11,7 +11,8 @@ public class PingCommand implements ICommand {
     @Override
     public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
         event.getChannel().sendMessage("퐁!").queue((message) ->
-                message.editMessageFormat("결과: %sms", event.getJDA().getGatewayPing()).queue()
+                message.editMessageFormat("main_core\n" +
+                        "결과: %sms", event.getJDA().getGatewayPing()).queue()
         );
     }
 
