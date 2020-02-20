@@ -45,13 +45,9 @@ public class App {
         MemberCountListener memberCountListener = new MemberCountListener();
         Listener listener = new Listener(commandManager);
         filterListener filterlistener = new filterListener();
-        salListener salListener = new salListener();
         ONIGIRIListener onigiriListener = new ONIGIRIListener();
-        GreenServerMuteListener greenServerMuteListener = new GreenServerMuteListener();
-        GreenServerNoticeListener greenServerNoticeListener = new GreenServerNoticeListener();
-        workHomeListener workHomeListener = new workHomeListener();
+        muteListener muteListener = new muteListener();
         nekoDiscordMemberListener nekoDiscordMemberListener = new nekoDiscordMemberListener();
-        GreenAutoDBWriteListener greenAutoDBWriteListener = new GreenAutoDBWriteListener();
         SteamServerStatusListener steamServerStatusListener = new SteamServerStatusListener();
         activityChangeListener activityChangeListener = new activityChangeListener();
         CroissantRoleListener croissantRoleListener = new CroissantRoleListener();
@@ -118,8 +114,8 @@ public class App {
             JDA jda= new JDABuilder(AccountType.BOT)
                     .setToken(TOKEN)
                     .setAutoReconnect(true)
-                    .addEventListeners(memberCountListener, listener, filterlistener, salListener, onigiriListener, nekoDiscordMemberListener, steamServerStatusListener,
-                            greenServerMuteListener, greenServerNoticeListener, workHomeListener, greenAutoDBWriteListener, activityChangeListener, croissantRoleListener,
+                    .addEventListeners(memberCountListener, listener, filterlistener, onigiriListener, nekoDiscordMemberListener, steamServerStatusListener,
+                            muteListener, activityChangeListener, croissantRoleListener,
                             messagePinListener)
                     .build().awaitReady();
             logger.info("부팅완료");
