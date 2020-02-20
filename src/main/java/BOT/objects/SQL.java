@@ -208,93 +208,6 @@ public class SQL {
             logger.warn(a.toString());
         }
     }
-    public static boolean loggingMessageUpLoad(String guildId, String messageId, String contentRaw, String authorId) {
-        String queryString = "INSERT INTO messageLogging VALUE (" + guildId + ","+ messageId + ", '" + contentRaw + "'," + authorId +");";
-        System.out.println(queryString);
-        try {
-            Class.forName(driverName);
-
-            loggingStatement = loggingConnection.createStatement();
-            loggingStatement.executeUpdate(queryString);
-            loggingStatement.close();
-        } catch (Exception e) {
-            StackTraceElement[] eStackTrace = e.getStackTrace();
-            StringBuilder a = new StringBuilder();
-            for (StackTraceElement stackTraceElement : eStackTrace) {
-                a.append(stackTraceElement).append("\n");
-            }
-            logger.warn(a.toString());
-            try {
-                loggingConnection = DriverManager.getConnection(url, user, password);
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean loggingMessageUpdate(String guildId, String messageId, String contentRaw) {
-        String queryString = "UPDATE messageLogging SET ContentRaw = '" + contentRaw + "' WHERE GuildId = '" + guildId + "' AND MessageId = '" + messageId + "';";
-        System.out.println(queryString);
-        try {
-            Class.forName(driverName);
-
-            loggingStatement = loggingConnection.createStatement();
-            loggingStatement.executeUpdate(queryString);
-            loggingStatement.close();
-        } catch (Exception e) {
-            StackTraceElement[] eStackTrace = e.getStackTrace();
-            StringBuilder a = new StringBuilder();
-            for (StackTraceElement stackTraceElement : eStackTrace) {
-                a.append(stackTraceElement).append("\n");
-            }
-            logger.warn(a.toString());
-            try {
-                loggingConnection = DriverManager.getConnection(url, user, password);
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-            return false;
-        }
-        return true;
-    }
-
-    @NotNull
-    public static String[] loggingMessageDownLoad(String guildId, String messageId) {
-        String[] data = new String[2];
-        String queryString = "SELECT * FROM messageLogging WHERE MessageId=" + messageId + " AND GuildId=" + guildId + ";";
-        System.out.println(queryString);
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            loggingStatement = loggingConnection.createStatement();
-            ResultSet loggingResultSet = loggingStatement.executeQuery(queryString);
-            while (loggingResultSet.next()) {
-                data[0] = loggingResultSet.getString("ContentRaw");
-                data[1] = loggingResultSet.getString("Author");
-            }
-        } catch (Exception e) {
-            StackTraceElement[] eStackTrace = e.getStackTrace();
-            StringBuilder a = new StringBuilder();
-            for (StackTraceElement stackTraceElement : eStackTrace) {
-                a.append(stackTraceElement).append("\n");
-            }
-            logger.warn(a.toString());
-            try {
-                loggingConnection = DriverManager.getConnection(url, user, password);
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        }
-        try {
-            loggingStatement.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        return data;
-    }
     public static final int color_guild = 1;
     public static final int filter = 2;
     public static final int link_filter = 3;
@@ -306,12 +219,13 @@ public class SQL {
     public static final int memberLogging = 9;
     public static final int notice = 10;
     public static final int filterlog = 11;
+    public static final int botchannel = 12;
 
     @NotNull
     public static String[] configDownLoad(String guildId) {
 
         String[] return_data = new String[] {
-                "0", "0", "0", "0", "0", "0", "0", "1", "1", "null", "1", "0", "null"
+                "0", "0", "0", "0", "0", "0", "0", "1", "1", "null", "1", "0", "null", "0", "null"
         };
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -373,6 +287,14 @@ public class SQL {
                     return_data[12] = resultSet6.getString("channelId");
                 }
             }
+            queryString = "SELECT * FROM ritobot_config.bot_channel WHERE guildId =" + guildId;
+            resultSet6 = statement.executeQuery(queryString);
+            if (resultSet6.next()) {
+                return_data[13] = resultSet6.getString("disable");
+                if(return_data[13].equals("0")) {
+                    return_data[14] = resultSet6.getString("channelId");
+                }
+            }
 
             resultSet6.close();
         } catch (Exception e) {
@@ -418,6 +340,11 @@ public class SQL {
                     break;
                 case filterlog:
                     queryString = "UPDATE ritobot_config.filter_output_channel SET disable=" + disable + ", channelId = " + channelId + " WHERE guildId =" + guildId;
+                    System.out.println(queryString);
+                    statement = connection.createStatement();
+                    statement.executeUpdate(queryString);
+                case botchannel:
+                    queryString = "UPDATE ritobot_config.bot_channel SET disable=" + disable + ", channelId = " + channelId + " WHERE guildId =" + guildId;
                     System.out.println(queryString);
                     statement = connection.createStatement();
                     statement.executeUpdate(queryString);
@@ -471,6 +398,9 @@ public class SQL {
                 case filterlog:
                     queryString = "UPDATE ritobot_config.filter_output_channel SET disable=" + disable + " WHERE guildId =" + guildId;
                     break;
+                case botchannel:
+                    queryString = "UPDATE ritobot_config.bot_channel SET disable=" + disable + " WHERE guildId =" + guildId;
+                    break;
             }
             System.out.println(queryString);
             statement = connection.createStatement();
@@ -509,6 +439,28 @@ public class SQL {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String queryString;
             queryString = "SELECT * FROM ritobot_config.filter_output_channel WHERE guildId=" + guildId;
+            System.out.println(queryString);
+            statement = connection.createStatement();
+            resultSet6 = statement.executeQuery(queryString);
+            if (resultSet6.next()) {
+                if(resultSet6.getString("disable").equals("0")) {
+                    return_data = resultSet6.getString("channelId");
+                }
+            }
+            resultSet6.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return_data = "error";
+        }
+        return return_data;
+    }
+
+    public static String configDownLoad_botchannel(String guildId) {
+        String return_data = "error";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String queryString;
+            queryString = "SELECT * FROM ritobot_config.bot_channel WHERE guildId=" + guildId;
             System.out.println(queryString);
             statement = connection.createStatement();
             resultSet6 = statement.executeQuery(queryString);

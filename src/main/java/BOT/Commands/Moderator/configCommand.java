@@ -44,6 +44,7 @@ public class configCommand implements ICommand {
                     .addField("-memberlog", "멤버 관련 로그를 설정합니다.", false)
                     .addField("-notice", "공지를 받을 채널을 설정합니다.", false)
                     .addField("-filterlog", "필터링 검출 항목/제재자 로그를 설정합니다.", false)
+                    .addField("botchannel", "봇 채널 로깅을 설정합니다.", false)
                     .setDescription(App.getPREFIX() + getInvoke() + " " + "옵션" + " 활성화/비활성화\n" +
                             "예: " + App.getPREFIX() + getInvoke() + " " + "-filter" + " 활성화");
         } else if(args.get(0).equals("-stat")) {
@@ -59,7 +60,8 @@ public class configCommand implements ICommand {
                     .addField("채널 로그", data[6].equals("1") ? "활성화" : "비활성화", false)
                     .addField("멤버 로그", data[10].equals("1") ? "활성화" : "비활성화", false)
                     .addField("공지 채널 설정", data[8].equals("0") ? data[9] :"없음", false)
-                    .addField("필터링 / 제재 로그", data[11].equals("0") ? data[12] : "없음", false);
+                    .addField("필터링 / 제재 로그", data[11].equals("0") ? data[12] : "없음", false)
+                    .addField("봇 채널", data[13].equals("0") ? data[14] : "없음", false);
         } else if(args.get(0).equals("-guildcolor")) {
             if(args.size() >= 2) {
                 if (args.get(1).equals("활성화")) {
@@ -223,6 +225,29 @@ public class configCommand implements ICommand {
                         .addField("활성화", "필터링 로그를 활성화 합니다.", false)
                         .addField("현재 등록된 채널 ID", channelId, false)
                         .setFooter("필터링 로그 채널은 한번 등록하면 삭제할 수 없습니다. 비활성화만 가능합니다.");
+            }
+        } else if(args.get(0).equals("botchannel")) {
+            if (args.size() >= 2) {
+                if (args.get(1).equals("활성화")) {
+                    SQL.configSetup(guildId, "0", args.get(2), SQL.botchannel);
+                } else if (args.get(1).equals("비활성화")) {
+                    SQL.configSetup(guildId, SQL.notice, "1");
+                } else {
+                    event.getChannel().sendMessage("활성화 또는 비활성화 옵션을 입력해주세요 \n" +
+                            "현재 입력한 옵션값: " + args.get(1)).queue();
+                }
+            } else {
+                String channelId = SQL.configDownLoad_botchannel(guildId);
+                if(channelId == null) {
+                    channelId = "비활성화";
+                }
+                builder = EmbedUtils.defaultEmbed()
+                        .setTitle("봇채널 안내")
+                        .setDescription("사용법:" + App.getPREFIX() + getInvoke() + " botchannel 비활성화/활성화 <channelId>")
+                        .addField("비활성화", "봇채널 설정을 비활성화 합니다.", false)
+                        .addField("활성화", "봇채널을 활성화 합니다.", false)
+                        .addField("현재 등록된 채널 ID", channelId, false)
+                        .setFooter("봇 채널은 한번 등록하면 삭제할 수 없습니다. 비활성화만 가능합니다.");
             }
         }
         if(builder != null) {
