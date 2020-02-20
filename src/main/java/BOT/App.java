@@ -114,7 +114,7 @@ public class App {
             JDA jda= new JDABuilder(AccountType.BOT)
                     .setToken(TOKEN)
                     .setAutoReconnect(true)
-                    .addEventListeners(memberCountListener, listener, filterlistener, onigiriListener, nekoDiscordMemberListener, steamServerStatusListener,
+                    .addEventListeners(memberCountListener, listener, filterlistener, onigiriListener, nekoDiscordMemberListener,
                             muteListener, activityChangeListener, croissantRoleListener,
                             messagePinListener)
                     .build().awaitReady();
