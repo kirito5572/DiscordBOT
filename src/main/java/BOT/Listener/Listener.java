@@ -36,28 +36,6 @@ public class Listener extends ListenerAdapter {
     }
 
     @Override
-    public void onMessageReceived(@NotNull MessageReceivedEvent event) {
-
-        User author = event.getAuthor();
-        Message message = event.getMessage();
-        String content = message.getContentDisplay();
-
-        if (event.isFromType(ChannelType.TEXT)) {
-
-            Guild guild = event.getGuild();
-            TextChannel textChannel = event.getTextChannel();
-
-            logger.info(String.format("\n" +
-                    "보낸사람: %#s\n" +
-                    "친 내용: %s\n" +
-                    "[서버: %s]  " +
-                    "[채팅방: %s]", author, content, guild.getName(), textChannel.getName()));
-        } else if (event.isFromType(ChannelType.PRIVATE)) {
-            logger.info(String.format("[PRIV]<%#s>: %s", author, content));
-        }
-    }
-
-    @Override
     public void onGuildMessageReceived(@NotNull GuildMessageReceivedEvent event) {
         Message message = event.getMessage();
         StringBuilder IDreader = new StringBuilder();
@@ -104,19 +82,21 @@ public class Listener extends ListenerAdapter {
             return;
         }
         String channelId = SQL.configDownLoad_botchannel(event.getGuild().getId());
-        if(!channelId.equals(event.getChannel().getId())) {
-            Member member = event.getMember();
-            assert member != null;
-            if(!(member.hasPermission(Permission.MESSAGE_MANAGE) ||
-                    member.hasPermission(Permission.MANAGE_CHANNEL) ||
-                    member.hasPermission(Permission.MANAGE_PERMISSIONS) ||
-                    member.hasPermission(Permission.MANAGE_ROLES) ||
-                    member.hasPermission(Permission.MANAGE_SERVER) ||
-                    member.hasPermission(Permission.ADMINISTRATOR))) {
-                event.getChannel().sendMessage(member.getAsMention() + ", <#" + channelId + ">에서 명령어를 사용하여주세요").complete().delete().queueAfter(5, TimeUnit.SECONDS);
-            }
-        }
         if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
+            if(!channelId.equals(event.getChannel().getId())) {
+                if(!channelId.equals("error")) {
+                    Member member = event.getMember();
+                    assert member != null;
+                    if (!(member.hasPermission(Permission.MESSAGE_MANAGE) ||
+                            member.hasPermission(Permission.MANAGE_CHANNEL) ||
+                            member.hasPermission(Permission.MANAGE_PERMISSIONS) ||
+                            member.hasPermission(Permission.MANAGE_ROLES) ||
+                            member.hasPermission(Permission.MANAGE_SERVER) ||
+                            member.hasPermission(Permission.ADMINISTRATOR))) {
+                        event.getChannel().sendMessage(member.getAsMention() + ", <#" + channelId + ">에서 명령어를 사용하여주세요").complete().delete().queueAfter(5, TimeUnit.SECONDS);
+                    }
+                }
+            }
             manager.handleCommand(event);
         }
     }
