@@ -29,25 +29,6 @@ public class SQL {
     private static String password;
 
     public SQL() {
-        //init
-        StringBuilder caseIDBuilder = new StringBuilder();
-        try {
-            File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\caseID.txt");
-            FileReader fileReader = new FileReader(file);
-            int singalCh;
-            while((singalCh = fileReader.read()) != -1) {
-                caseIDBuilder.append((char) singalCh);
-            }
-        } catch (Exception e) {
-
-            StackTraceElement[] eStackTrace = e.getStackTrace();
-            StringBuilder a = new StringBuilder();
-            for (StackTraceElement stackTraceElement : eStackTrace) {
-                a.append(stackTraceElement).append("\n");
-            }
-            logger.warn(a.toString());
-        }
-        caseID = Integer.parseInt(caseIDBuilder.toString());
         StringBuilder SQLPassword = new StringBuilder();
         try {
             File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\SQLPassword.txt");
@@ -95,21 +76,28 @@ public class SQL {
             e.printStackTrace();
         }
     }
-    public static void SQLupload(String SteamID, String time, String reason, String confirmUser) {
+    public static String SQLupload(String SteamID, String time, String reason, String confirmUser) {
         caseIDup();
-
+        String caseID = "error";
         Date date = new Date();
         SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd aa hh:mm:ss");
         String DBWriteTime = dayTime.format(date);
-        String queryString = "INSERT INTO Sanction_Infor VALUES ("+ SteamID + ", '" + DBWriteTime + "', '" + time + "', '" + reason + "', '" + confirmUser + "' );";
-
-
-        System.out.println(queryString);
+        String queryString;
         try {
             Class.forName(driverName);
-
             statement = connection.createStatement();
+            queryString = "SELECT * FROM byeolhaDB.config;";
+            ResultSet resultSet = statement.executeQuery(queryString);
+            if(resultSet.next()) {
+                caseID = resultSet.getString("caseID");
+            } else {
+                return caseID;
+            }
+            queryString = "UPDATE byeolhaDB.config SET caseID=" + (Integer.parseInt(caseID) + 1) + " WHERE caseID=" + caseID +";";
             statement.executeUpdate(queryString);
+            queryString = "INSERT INTO byeolhaDB.Sanction_Infor VALUES ('" + caseID + "', '" + SteamID + "', '" +
+                    time + "', '" + reason + "', '" + confirmUser + "', '" + DBWriteTime+ "');";
+            statement.execute(queryString);
             statement.close();
         } catch (Exception e) {
 
@@ -120,15 +108,16 @@ public class SQL {
             }
             logger.warn(a.toString());
         }
+        return caseID;
     }
     @NotNull
-    public static String[] SQLdownload(String SteamID) throws SQLException, ClassNotFoundException, InterruptedException {
-        String[] data = new String[20];
+    public static String[] SQLdownload(String ID) throws SQLException, ClassNotFoundException, InterruptedException {
+        String[] data = new String[30];
         for (int i = 0; i < 20; i++) {
             data[i] = null;
         }
 
-        String queryString = "SELECT * FROM Sanction_Infor WHERE SteamID =''" + SteamID + "';";
+        String queryString = "SELECT * FROM byeolhaDB.Sanction_Infor WHERE ID ='" + ID + "';";
 
         Class.forName(driverName);
         new Thread(() -> {
@@ -161,24 +150,21 @@ public class SQL {
             data[i] = null;
         }
 
-        String queryString = "SELECT * FROM Sanction_Infor WHERE caseID ='" + caseID + "';";
-
+        String queryString = "SELECT * FROM byeolhaDB.Sanction_Infor WHERE caseID ='" + caseID + "';";
         Class.forName(driverName);
-        new Thread(() -> {
-            try {
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(queryString);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }).start();
-        Thread.sleep(500);
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(queryString);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new String[] {"error"};
+        }
         if(resultSet.next()) {
-            data[0] = resultSet.getString("SteamID");
-            data[1] = resultSet.getString("DBWriteTime");
-            data[2] = resultSet.getString("time");
-            data[3] = resultSet.getString("reason");
-            data[4] = resultSet.getString("confirmUser");
+            data[0] = resultSet.getString("ID");
+            data[1] = resultSet.getString("length");
+            data[2] = resultSet.getString("reason");
+            data[3] = resultSet.getString("user");
+            data[4] = resultSet.getString("DBWrite");
         }
         statement.close();
 
