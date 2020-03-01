@@ -6,6 +6,7 @@ import BOT.Listener.*;
 import BOT.Objects.CommandManager;
 import BOT.Objects.SQL;
 import BOT.Objects.config;
+import BOT.Objects.byeolhaCommandManager;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.api.AccountType;
@@ -42,8 +43,10 @@ public class App {
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy/MM/dd aa hh:mm:ss z");
         Time = format1.format(date);
         CommandManager commandManager = new CommandManager();
+        byeolhaCommandManager byeolhaCommandManager = new byeolhaCommandManager();
         MemberCountListener memberCountListener = new MemberCountListener();
         Listener listener = new Listener(commandManager);
+        byeolhaListener byeolhaListener = new byeolhaListener(byeolhaCommandManager);
         filterListener filterlistener = new filterListener();
         ONIGIRIListener onigiriListener = new ONIGIRIListener();
         muteListener muteListener = new muteListener();
@@ -115,7 +118,7 @@ public class App {
                     .setToken(TOKEN)
                     .setAutoReconnect(true)
                     .addEventListeners(memberCountListener, listener, filterlistener, onigiriListener, nekoDiscordMemberListener,
-                            muteListener, activityChangeListener, croissantRoleListener,
+                            muteListener, activityChangeListener, croissantRoleListener, byeolhaListener,
                             messagePinListener)
                     .build().awaitReady();
             logger.info("부팅완료");
