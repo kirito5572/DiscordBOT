@@ -16,11 +16,11 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'net.dv8tion', name: 'JDA', version: '4.1.0_100'
+    implementation group: 'net.dv8tion', name: 'JDA', version: '4.1.1_110'
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     implementation group: 'org.jsoup', name:'jsoup', version: '1.12.1'
     implementation group: 'com.jagrosh', name:'jda-utilities', version: '3.0.2'
-    implementation group: 'com.sedmelluq', name: 'lavaplayer', version: '1.3.33'
+    implementation group: 'com.sedmelluq', name: 'lavaplayer', version: '1.3.34'
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.18'
     implementation group: 'me.duncte123', name: 'botCommons', version: '1.0.73'
     implementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.0-rc-3'
