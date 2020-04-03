@@ -10,11 +10,15 @@ import org.jetbrains.annotations.NotNull;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.List;
 
 public class TESTCommand implements ICommand {
     @Override
     public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
+        System.out.println(Arrays.toString(event.getGuild().getMembers().toArray()));
+        System.out.println(event.getGuild().getMembers().size());
+        System.out.println(event.getMember());
     }
 
 
