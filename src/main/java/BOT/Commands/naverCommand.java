@@ -27,14 +27,21 @@ public class naverCommand implements ICommand {
             }
             EmbedBuilder builder = EmbedUtils.defaultEmbed()
                     .setTitle("네이버 실시간 검색어");
-            for(int i = 0; i < 10; i++) {
+            for(int i = 0; i < 9; i++) {
                 try {
-                    builder.addField("[" + i + 1 + ". " + data[i] + "](" + "https://search.naver.com/search.naver?query=" + URLEncoder.encode(data[i], "UTF-8") + ")", "", false);
+                    builder.addField("","[0" + (i + 1) + ". " + data[i] + "](" + "https://search.naver.com/search.naver?query=" + URLEncoder.encode(data[i], "UTF-8") + ")", false);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                     event.getChannel().sendMessage("에러가 발생했습니다.").queue();
                     return;
                 }
+            }
+            try {
+                builder.addField("","[" + (10) + ". " + data[9] + "](" + "https://search.naver.com/search.naver?query=" + URLEncoder.encode(data[9], "UTF-8") + ")", false);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                event.getChannel().sendMessage("에러가 발생했습니다.").queue();
+                return;
             }
 
             event.getChannel().sendMessage(builder.build()).queue();

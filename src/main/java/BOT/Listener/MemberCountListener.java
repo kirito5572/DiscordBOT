@@ -9,14 +9,15 @@ import net.dv8tion.jda.api.events.channel.voice.VoiceChannelDeleteEvent;
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent;
 import net.dv8tion.jda.api.events.guild.GuildLeaveEvent;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
-import net.dv8tion.jda.api.events.guild.member.GuildMemberLeaveEvent;
+import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent;
 import net.dv8tion.jda.api.events.role.RoleCreateEvent;
 import net.dv8tion.jda.api.events.role.RoleDeleteEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
-public class MemberCountListener extends ListenerAdapter {
+import javax.annotation.Nonnull;
 
+public class MemberCountListener extends ListenerAdapter {
 
     @Override
     public void onGuildJoin(@NotNull GuildJoinEvent event) {
@@ -40,7 +41,7 @@ public class MemberCountListener extends ListenerAdapter {
     }
 
     @Override
-    public void onGuildMemberLeave(@NotNull GuildMemberLeaveEvent event) {
+    public void onGuildMemberRemove(@Nonnull GuildMemberRemoveEvent event) {
         Guild guild = event.getGuild();
 
         count(guild);

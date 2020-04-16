@@ -13,6 +13,8 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.utils.ChunkingFilter;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -111,12 +113,13 @@ public class App {
 
         try {
             logger.info("부팅");
-            JDA jda= new JDABuilder(AccountType.BOT)
-                    .setToken(TOKEN)
+            JDA jda = JDABuilder.createDefault(TOKEN)
                     .setAutoReconnect(true)
                     .addEventListeners(memberCountListener, listener, filterlistener, onigiriListener, nekoDiscordMemberListener,
                             muteListener, activityChangeListener, croissantRoleListener,
                             messagePinListener)
+                    .setEnabledIntents(GatewayIntent.getIntents(GatewayIntent.ALL_INTENTS))
+                    .setChunkingFilter(ChunkingFilter.ALL)
                     .build().awaitReady();
             logger.info("부팅완료");
             try {
