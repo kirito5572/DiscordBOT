@@ -21,8 +21,11 @@ public class UnusedColorCommand implements ICommand {
             List<Member> members = event.getGuild().getMembers();
             channel.sendMessage(event.getMember().getAsMention() + ", 안 쓰는 색 역할 삭제를 시작합니다.").queue();
 
-            boolean delete_flag = true;
-            List<Role> foundRole = FinderUtil.findRoles("#",event.getGuild());
+            List<Role> foundRole = FinderUtil.findRoles("#", event.getGuild());
+            if(foundRole.isEmpty()) {
+                channel.sendMessage(event.getMember().getAsMention() + ", 삭제 할 역할이 없습니다.").queue();
+                return;
+            }
             for (Role value : foundRole) {
                 boolean role_delete = true;
                 for (Member member : members) {
@@ -31,15 +34,10 @@ public class UnusedColorCommand implements ICommand {
                     }
                 }
                 if (role_delete) {
-                    delete_flag = false;
                     channel.sendMessage(value.getAsMention() + " 역할이 삭제되었습니다.").complete();
                     value.delete().complete();
                     System.out.println(value.getAsMention());
                 }
-            }
-            if(delete_flag) {
-                channel.sendMessage(event.getMember().getAsMention() + ", 삭제 할 역할이 없습니다.").queue();
-                return;
             }
             channel.sendMessage(event.getMember().getAsMention() + " 색 역할 삭제가 완료되었습니다.").queue();
         } else {

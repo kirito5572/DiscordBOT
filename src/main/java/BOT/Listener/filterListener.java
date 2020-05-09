@@ -18,6 +18,9 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -27,6 +30,9 @@ public class filterListener extends ListenerAdapter {
     private final Logger logger = LoggerFactory.getLogger(filterListener.class);
     private boolean publicflag = false;
     private String latestMessage = "";
+    String[] List = FilterList.getList();
+    String[] Lists = FilterList.getWebList();
+    private static Map<String, List<String>> customFilterWordMap = new HashMap<>();
 
     @Override
     public void onGuildMessageUpdate(@Nonnull GuildMessageUpdateEvent event) {
@@ -89,8 +95,6 @@ public class filterListener extends ListenerAdapter {
     }
 
     private void filter(@NotNull User author, @NotNull Message message, @NotNull Guild guild, @NotNull Member member, @NotNull Message messages, @NotNull MessageChannel channel, @NotNull JDA jda) {
-        String[] List = FilterList.getList();
-        String[] Lists = FilterList.getWebList();
         String id = "";
         String rawMessage;
         try {
@@ -106,6 +110,7 @@ public class filterListener extends ListenerAdapter {
         boolean linkPass = false;
         boolean filterPass = false;
         boolean killPass = false;
+        boolean customFilterPass = false;
         try {
             if (author.getId().equals("342951769627688960") || author.getId().equals("492832169715040276")) {
                 //그린서버 보안부
@@ -116,6 +121,12 @@ public class filterListener extends ListenerAdapter {
             for (String s : linkFilterDisable) {
                 if (guild.getId().equals(s)) {
                     linkPass = true;
+                }
+            }
+            String[] customFilterDisable = config.getCustomFilterDisable();
+            for (String s : customFilterDisable) {
+                if (guild.getId().equals(s)) {
+                    customFilterPass = true;
                 }
             }
             String[] filterDisable = config.getFilterDisable();
@@ -303,6 +314,18 @@ public class filterListener extends ListenerAdapter {
                 }
             }
         }
+        if(!customFilterPass) {
+            try {
+                for (String s : customFilterWordMap.get(guild.getId())) {
+                    if (rawMessage.contains(s)) {
+                        System.out.println(s);
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println(guild.getId());
+                e.printStackTrace();
+            }
+        }
         if(!filterPass) {
             for (String s : List) {
                 if (rawMessage.contains(s)) {
@@ -359,12 +382,13 @@ public class filterListener extends ListenerAdapter {
                                 .addField("금지어 사용자", author.getAsMention(), false)
                                 .addField("금지어", s, false)
                                 .addField("문장", message.getContentRaw(), false);
-                        String channelId = SQL.configDownLoad_filterlog(guild.getId());
-                        assert channelId != null;
-                        if(channelId.equals("error")) {
-                            logger.error("링크 필터링 채널 전송중 에러가 발생했습니다!");
-                        } else if(!channelId.equals("null")) {
-                            Objects.requireNonNull(guild.getTextChannelById(channelId)).sendMessage(builder.build()).queue();
+                        String channelId = SQL.configDownLoad(guild.getId(), SQL.filterlog);
+                        if(channelId != null) {
+                            if (channelId.equals("error")) {
+                                logger.error("링크 필터링 채널 전송중 에러가 발생했습니다!");
+                            } else if (!channelId.equals("null")) {
+                                Objects.requireNonNull(guild.getTextChannelById(channelId)).sendMessage(builder.build()).queue();
+                            }
                         }
                     } catch (Exception e) {
 
@@ -377,26 +401,6 @@ public class filterListener extends ListenerAdapter {
                     }
                 }
             }
-            /*
-            if (guild.getId().equals("600010501266866186")) {
-                for (String s : greenList) {
-                    if (rawMessage.contains(s)) {
-                        if (guild.getSelfMember().getUser().getId().equals(Objects.requireNonNull(member).getUser().getId())) {
-
-                            return;
-                        }
-                        if (Objects.requireNonNull(message.getMember()).hasPermission(Permission.ADMINISTRATOR) || message.getMember().hasPermission(Permission.MANAGE_ROLES)) {
-                            logger.warn("관리자가 타서버 언급을 했으나, 관리자는 필터링 되지 않습니다.");
-
-                            return;
-                        }
-                        message.delete().complete();
-                        channel.sendMessage("타 서버 발언은 모두 차단됩니다.").queue();
-                    }
-                }
-            }
-
-             */
         }
         if(!killPass) {
             Role role;
@@ -444,4 +448,7 @@ public class filterListener extends ListenerAdapter {
         }
     }
 
+    public static void setCustomFilterWordMap(Map<String, java.util.List<String>> customFilterWordMap) {
+        filterListener.customFilterWordMap = customFilterWordMap;
+    }
 }

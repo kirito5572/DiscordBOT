@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileReader;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -25,6 +26,7 @@ public class Listener extends ListenerAdapter {
     private final Logger logger = LoggerFactory.getLogger(Listener.class);
     private static String ID1;
     private static String ID2;
+    private static Map<String, String> botChannel;
     public Listener(CommandManager manager) {
         this.manager = manager;
     }
@@ -81,19 +83,24 @@ public class Listener extends ListenerAdapter {
 
             return;
         }
-        String channelId = SQL.configDownLoad_botchannel(event.getGuild().getId());
+        String channelId = botChannel.get(event.getGuild().getId());
+        if(channelId == null) {
+            channelId = "0";
+        }
         if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
             if(!channelId.equals(event.getChannel().getId())) {
                 if(!channelId.equals("error")) {
-                    Member member = event.getMember();
-                    assert member != null;
-                    if (!(member.hasPermission(Permission.MESSAGE_MANAGE) ||
-                            member.hasPermission(Permission.MANAGE_CHANNEL) ||
-                            member.hasPermission(Permission.MANAGE_PERMISSIONS) ||
-                            member.hasPermission(Permission.MANAGE_ROLES) ||
-                            member.hasPermission(Permission.MANAGE_SERVER) ||
-                            member.hasPermission(Permission.ADMINISTRATOR))) {
-                        event.getChannel().sendMessage(member.getAsMention() + ", <#" + channelId + ">에서 명령어를 사용하여주세요").complete().delete().queueAfter(5, TimeUnit.SECONDS);
+                    if(!channelId.equals("0")) {
+                        Member member = event.getMember();
+                        assert member != null;
+                        if (!(member.hasPermission(Permission.MESSAGE_MANAGE) ||
+                                member.hasPermission(Permission.MANAGE_CHANNEL) ||
+                                member.hasPermission(Permission.MANAGE_PERMISSIONS) ||
+                                member.hasPermission(Permission.MANAGE_ROLES) ||
+                                member.hasPermission(Permission.MANAGE_SERVER) ||
+                                member.hasPermission(Permission.ADMINISTRATOR))) {
+                            event.getChannel().sendMessage(member.getAsMention() + ", <#" + channelId + ">에서 명령어를 사용하여주세요").complete().delete().queueAfter(5, TimeUnit.SECONDS);
+                        }
                     }
                 }
             }
@@ -126,6 +133,10 @@ public class Listener extends ListenerAdapter {
 
     public static String getID2() {
         return ID2;
+    }
+
+    public static void setBotChannel(Map<String, String> botChannel) {
+        Listener.botChannel = botChannel;
     }
 }
 

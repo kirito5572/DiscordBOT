@@ -39,6 +39,8 @@ public class activityChangeListener extends ListenerAdapter {
                     for (Guild guild : guilds) {
                         memberSize += guild.getMembers().size();
                     }
+                    jda.getPresence().setActivity(Activity.playing("기술 지원: https://discord.gg/JB3fYeg"));
+                    /*
                     switch (i) {
                         case 0:
                             Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("도움말:" + App.getPREFIX() + "명령어"));
@@ -56,6 +58,8 @@ public class activityChangeListener extends ListenerAdapter {
                             Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("kirito5572#5572 제작"));
                             break;
                     }
+
+                     */
                     i++;
                     if (i > 4) {
                         i = 0;

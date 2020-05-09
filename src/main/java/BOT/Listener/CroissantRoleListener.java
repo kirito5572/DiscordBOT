@@ -27,6 +27,8 @@ public class CroissantRoleListener extends ListenerAdapter {
             new File("C:\\디스코드봇 파일들\\크루와상 리스너\\OverWatch.txt"),
             new File("C:\\디스코드봇 파일들\\크루와상 리스너\\GTA.txt"),
             new File("C:\\디스코드봇 파일들\\크루와상 리스너\\BattleField.txt"),
+            new File("C:\\디스코드봇 파일들\\크루와상 리스너\\타르코프.txt"),
+            new File("C:\\디스코드봇 파일들\\크루와상 리스너\\발로란트.txt")
     };
     private static final String[] role_id = new String[] {
             "655340527017000971",
@@ -38,7 +40,9 @@ public class CroissantRoleListener extends ListenerAdapter {
             "655340894916182047",
             "655340921243697152",
             "655340955863351357",
-            "655340968563965983"
+            "655340968563965983",
+            "708316944758996995",
+            "708316991643189368"
     };
     private static final String[] Chating = new String[files.length];
     @Override

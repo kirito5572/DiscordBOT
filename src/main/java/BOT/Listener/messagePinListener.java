@@ -35,6 +35,7 @@ public class messagePinListener extends ListenerAdapter {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            SQL.reConnection();
         }
     }
 }

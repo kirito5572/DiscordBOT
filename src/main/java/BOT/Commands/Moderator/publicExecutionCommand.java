@@ -114,12 +114,12 @@ public class publicExecutionCommand implements ICommand {
                     .addField("대상자", member.getAsMention(), true)
                     .addField("지정 담당자", event.getMember().getAsMention(), true);
         }
-        String channelId = SQL.configDownLoad_filterlog(event.getGuild().getId());
-        assert channelId != null;
-        if(channelId.equals("error")) {
-            logger.error("공개처형 전송중 에러가 발생했습니다!");
-        } else if(!channelId.equals("null")) {
+        String channelId = SQL.configDownLoad(event.getGuild().getId(), SQL.filterlog);
+        if(!(channelId == null || channelId.equals("null"))) {
             Objects.requireNonNull(event.getGuild().getTextChannelById(channelId)).sendMessage(builder.build()).queue();
+        } else if((channelId != null) || channelId.equals("error")) {
+
+            logger.error("공개처형 전송중 에러가 발생했습니다!");
         }
         event.getMessage().delete().queue();
     }

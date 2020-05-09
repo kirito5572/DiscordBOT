@@ -44,16 +44,7 @@ public class evalCommand implements ICommand {
 
             return;
         }
-
-        if(args.get(0).contains("System.exit")) {
-            event.getChannel().sendMessage("어허, 그건 제가 미리 막아두었습니다 껄껄").queue();
-            return;
-        }
         if(args.get(0).contains("jda.shutdown()")) {
-            if(!event.getAuthor().getId().equals(Listener.getID1())) {
-                event.getChannel().sendMessage("어허, 그건 제가 미리 막아두었습니다 껄껄").queueAfter(5, TimeUnit.SECONDS);
-                return;
-            }
             event.getChannel().sendMessage("봇이 종료됩니다.").queue();
         }
 
@@ -69,7 +60,7 @@ public class evalCommand implements ICommand {
             String script = imports + event.getMessage().getContentRaw().split("\\s+", 2)[1];
             Object out = engine.evaluate(script);
 
-            event.getChannel().sendMessage(out == null ? "에러 없이 실행이 완료되었습니다." : out.toString()).complete().delete().queueAfter(5, TimeUnit.SECONDS);
+            event.getChannel().sendMessage(out == null ? "에러 없이 실행이 완료되었습니다." : out.toString()).complete();
         }
         catch (Exception e) {
             event.getChannel().sendMessage(e.getMessage()).queue();

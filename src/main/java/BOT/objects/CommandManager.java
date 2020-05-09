@@ -3,7 +3,6 @@ package BOT.Objects;
 import BOT.App;
 import BOT.Commands.*;
 import BOT.Commands.GameCommand.*;
-import BOT.Commands.GreenServerCustom.*;
 import BOT.Commands.Moderator.*;
 import BOT.Commands.ONIGIRIServerCustom.ONIGIRICommand;
 import BOT.Commands._OwnerOnlyCommand.evalCommand;
@@ -346,26 +345,6 @@ public class CommandManager {
                             "Usage: `"  + App.getPREFIX() + getInvoke() + " <user> <reason>`";
                 }
             });
-            addCommand(new certificationCommand());
-            addCommand(new certificationCommand() {
-                @NotNull
-                @Override
-                public String getInvoke() {
-                    return "cert";
-                }
-
-                @NotNull
-                @Override
-                public String getSmallHelp() {
-                    return "";
-                }
-
-                @NotNull
-                @Override
-                public String getHelp() {
-                    return "certification with discord and steam";
-                }
-            });
             addCommand(new TESTCommand());
             addCommand(new TESTCommand() {
                 @NotNull
@@ -389,27 +368,6 @@ public class CommandManager {
         }
         //------------------------------------------------------------------//
         {
-            addCommand(new certificationFinCommand());
-            addCommand(new certificationFinCommand() {
-                @NotNull
-                @Override
-                public String getInvoke() {
-                    return "certfin";
-                }
-
-                @NotNull
-                @Override
-                public String getSmallHelp() {
-                    return "";
-                }
-
-                @NotNull
-                @Override
-                public String getHelp() {
-                    return "Verify certification between Steam and Discord \n" +
-                            "Usage: `" + App.getPREFIX() + getInvoke() + " <Steam Profile/Steam ID/Steam Nickname> `";
-                }
-            });
             addCommand(new BanCommand());
             addCommand(new BanCommand() {
                 @NotNull
@@ -515,26 +473,6 @@ public class CommandManager {
                     return "meme command list";
                 }
             });
-            addCommand(new GreenServerMuteCommand());
-            addCommand(new GreenServerMuteCommand() {
-                @NotNull
-                @Override
-                public String getInvoke() {
-                    return "mutechat";
-                }
-
-                @NotNull
-                @Override
-                public String getSmallHelp() {
-                    return "Mute chating";
-                }
-
-                @NotNull
-                @Override
-                public String getHelp() {
-                    return "Mute chating";
-                }
-            });
             addCommand(new lewdnekoCommand());
             addCommand(new lewdnekoCommand() {
                 @NotNull
@@ -553,27 +491,6 @@ public class CommandManager {
                 @Override
                 public String getHelp() {
                     return "lewd neko meme";
-                }
-            });
-            addCommand(new gameServerBanCommand());
-            addCommand(new gameServerBanCommand() {
-                @NotNull
-                @Override
-                public String getInvoke() {
-                    return "serverban";
-                }
-
-                @NotNull
-                @Override
-                public String getSmallHelp() {
-                    return "";
-                }
-
-                @NotNull
-                @Override
-                public String getHelp() {
-                    return "ServerCustomCommand \n" +
-                            "Please use by `" + App.getPREFIX() + gameServerBanCommand.getCommand() + "`";
                 }
             });
             addCommand(new WeatherCommand());
@@ -662,46 +579,6 @@ public class CommandManager {
                             "Usage: `" + App.getPREFIX() + getInvoke() + " [poll content]`";
                 }
             });
-            addCommand(new goWorkCommand());
-            addCommand(new goWorkCommand() {
-                @NotNull
-                @Override
-                public String getInvoke() {
-                    return "work";
-                }
-
-                @NotNull
-                @Override
-                public String getSmallHelp() {
-                    return "";
-                }
-
-                @NotNull
-                @Override
-                public String getHelp() {
-                    return "Go to Work!\n";
-                }
-            });
-            addCommand(new goHomeCommand());
-            addCommand(new goHomeCommand() {
-                @NotNull
-                @Override
-                public String getInvoke() {
-                    return "home";
-                }
-
-                @NotNull
-                @Override
-                public String getSmallHelp() {
-                    return "";
-                }
-
-                @NotNull
-                @Override
-                public String getHelp() {
-                    return "Go to Home!\n";
-                }
-            });
             addCommand(new BotOwnerNoticeCommand());
             addCommand(new RockPaperScissorsCommand());
             addCommand(new RockPaperScissorsCommand() {
@@ -785,26 +662,6 @@ public class CommandManager {
                     return "even/odd game!";
                 }
             });
-            addCommand(new GreenNoticeCommand());
-            addCommand(new GreenNoticeCommand(){
-                @NotNull
-                @Override
-                public String getInvoke() {
-                    return "servernotice";
-                }
-
-                @NotNull
-                @Override
-                public String getSmallHelp() {
-                    return "";
-                }
-
-                @NotNull
-                @Override
-                public String getHelp() {
-                    return "SCP:SL Green Server notice Command!";
-                }
-            });
             addCommand(new BETACommand());
             addCommand(new BETACommand(){
                 @NotNull
@@ -823,26 +680,6 @@ public class CommandManager {
                 @Override
                 public String getHelp() {
                     return "Invite beta bot!";
-                }
-            });
-            addCommand(new GreenSearchCommand());
-            addCommand(new GreenSearchCommand(){
-                @NotNull
-                @Override
-                public String getInvoke() {
-                    return "banSearch";
-                }
-
-                @NotNull
-                @Override
-                public String getSmallHelp() {
-                    return "";
-                }
-
-                @NotNull
-                @Override
-                public String getHelp() {
-                    return "Search ban log from DB";
                 }
             });
         }
@@ -924,6 +761,20 @@ public class CommandManager {
             @Override
             public String getHelp() {
                 return "Print your server's information";
+            }
+        });
+        addCommand(new MuteCommand());
+        addCommand(new MuteCommand() {
+            @Override
+            public @NotNull String getInvoke() {
+                return "mute";
+            }
+        });
+        addCommand(new UnmuteCommand());
+        addCommand(new UnmuteCommand() {
+            @Override
+            public @NotNull String getInvoke() {
+                return "mute";
             }
         });
     }

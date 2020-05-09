@@ -12,11 +12,35 @@ import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class configCommand implements ICommand {
+    public static class ConfigData {
+        public boolean colorCommand;
+        public boolean roleColorCommand;
+        public boolean filter;
+        public boolean linkFilter;
+        public boolean executionCommand;
+        public boolean lewdCommand;
+        public boolean enableChatLog;
+        public String chatLogChannelId;
+        public boolean enableChannelLog;
+        public String channelLogChannelId;
+        public boolean enableMemberLog;
+        public String memberLogChannelId;
+        public boolean enableNotice;
+        public String noticeChannelId;
+        public boolean enableFilterLog;
+        public String filterChannelId;
+        public boolean enableBotChannel;
+        public String botChannelId;
+        public boolean enableCustomFilter;
+        public List<String> customFilterList;
+    }
+
     @Override
     public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.ADMINISTRATOR)) {
@@ -24,10 +48,8 @@ public class configCommand implements ICommand {
                 return;
             }
         }
-
         String guildId = event.getGuild().getId();
-        String[] data = SQL.configDownLoad(guildId);
-        System.out.println(Arrays.toString(data));
+        ConfigData configData = SQL.configDownLoad(guildId);
         EmbedBuilder builder = null;
         if (args.isEmpty()) {
             builder = EmbedUtils.defaultEmbed()
@@ -45,23 +67,26 @@ public class configCommand implements ICommand {
                     .addField("-notice", "공지를 받을 채널을 설정합니다.", false)
                     .addField("-filterlog", "필터링 검출 항목/제재자 로그를 설정합니다.", false)
                     .addField("botchannel", "봇 채널 로깅을 설정합니다.", false)
+                    .addField("customfilter", "서버별로 커스텀 필터를 설정합니다", false)
                     .setDescription(App.getPREFIX() + getInvoke() + " " + "옵션" + " 활성화/비활성화\n" +
                             "예: " + App.getPREFIX() + getInvoke() + " " + "-filter" + " 활성화");
         } else if(args.get(0).equals("-stat")) {
             builder = EmbedUtils.defaultEmbed()
                     .setTitle(event.getGuild().getName() + "서버의 설정")
-                    .addField("색 커맨드", data[0].equals("0") ? "활성화" : "비활성화", false)
-                    .addField("역할 색 커맨드", data[7].equals("0")? "있음" : "없음", false)
-                    .addField("욕설 필터", data[1].equals("0") ? "활성화" : "비활성화", false)
-                    .addField("링크 차단", data[2].equals("0") ? "활성화" : "비활성화", false)
-                    .addField("공개 처형", data[3].equals("0") ? "활성화" : "비활성화", false)
-                    .addField("후방주의네코 커맨드", data[4].equals("0") ? "활성화" : "비활성화", false)
-                    .addField("채팅 로그", data[5].equals("1") ? "활성화" : "비활성화", false)
-                    .addField("채널 로그", data[6].equals("1") ? "활성화" : "비활성화", false)
-                    .addField("멤버 로그", data[10].equals("1") ? "활성화" : "비활성화", false)
-                    .addField("공지 채널 설정", data[8].equals("0") ? data[9] :"없음", false)
-                    .addField("필터링 / 제재 로그", data[11].equals("0") ? data[12] : "없음", false)
-                    .addField("봇 채널", data[13].equals("0") ? data[14] : "없음", false);
+                    .addField("색 커맨드", configData.colorCommand ? "활성화" : "비활성화", false)
+                    .addField("역할 색 커맨드", configData.roleColorCommand ? "있음" : "없음", false)
+                    .addField("욕설 필터", configData.filter ? "활성화" : "비활성화", false)
+                    .addField("링크 차단", configData.linkFilter ? "활성화" : "비활성화", false)
+                    .addField("공개 처형", configData.executionCommand ? "활성화" : "비활성화", false)
+                    .addField("후방주의네코 커맨드", configData.lewdCommand ? "활성화" : "비활성화", false)
+                    .addField("채팅 로그", configData.enableChatLog ? configData.channelLogChannelId : "비활성화", false)
+                    .addField("채널 로그", configData.enableChannelLog ? configData.channelLogChannelId : "비활성화", false)
+                    .addField("멤버 로그", configData.enableMemberLog ? configData.memberLogChannelId : "비활성화", false)
+                    .addField("공지 채널 설정", configData.enableNotice ? configData.noticeChannelId :"없음", false)
+                    .addField("필터링 / 제재 로그", configData.enableFilterLog ? configData.filterChannelId : "없음", false)
+                    .addField("봇 채널", configData.enableBotChannel ? configData.botChannelId : "없음", false)
+                    .addField("멤버 로그 채널", configData.enableMemberLog ? configData.memberLogChannelId : "없음", false)
+                    .addField("커스텀 필터", configData.enableCustomFilter ? "있음" : "없음", false);
         } else if(args.get(0).equals("-guildcolor")) {
             if(args.size() >= 2) {
                 if (args.get(1).equals("활성화")) {
@@ -132,7 +157,7 @@ public class configCommand implements ICommand {
                 }
             } else {
                 StringBuilder stringBuilder = new StringBuilder();
-                data = SQL.configDownLoad_role(guildId);
+                String[] data = SQL.configDownLoad_array(guildId, SQL.color_role);
                 for (String roleId : data) {
                     Role role = event.getGuild().getRoleById(roleId);
                     if (role != null) {
@@ -149,35 +174,80 @@ public class configCommand implements ICommand {
             }
         } else if(args.get(0).equals("-chatlog")) {
             if (args.size() >= 2) {
-                if (args.get(1).equals("활성화")) {
-                    SQL.configSetup(guildId, SQL.textLogging, "0");
-                } else if (args.get(1).equals("비활성화")) {
-                    SQL.configSetup(guildId, SQL.textLogging, "1");
-                } else {
-                    event.getChannel().sendMessage("활성화 또는 비활성화 옵션을 입력해주세요 \n" +
-                            "현재 입력한 옵션값: " + args.get(1)).queue();
+                switch (args.get(1)) {
+                    case "활성화":
+                        SQL.configSetup(guildId, SQL.textLogging, "0");
+                        break;
+                    case "비활성화":
+                        SQL.configSetup(guildId, SQL.textLogging, "1");
+                        break;
+                    case "채널":
+                        String channelId;
+                        try {
+                            channelId = args.get(2);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            event.getChannel().sendMessage("채널 ID가 없습니다.").queue();
+                            return;
+                        }
+                        SQL.configSetup(guildId, "", channelId, SQL.textLogging);
+                        break;
+                    default:
+                        event.getChannel().sendMessage("활성화/비활성화/채널 옵션을 입력해주세요 \n" +
+                                "현재 입력한 옵션값: " + args.get(1)).queue();
+                        break;
                 }
             }
         } else if(args.get(0).equals("-channellog")) {
             if (args.size() >= 2) {
-                if (args.get(1).equals("활성화")) {
-                    SQL.configSetup(guildId, SQL.channelLogging, "0");
-                } else if (args.get(1).equals("비활성화")) {
-                    SQL.configSetup(guildId, SQL.channelLogging, "1");
-                } else {
-                    event.getChannel().sendMessage("활성화 또는 비활성화 옵션을 입력해주세요 \n" +
-                            "현재 입력한 옵션값: " + args.get(1)).queue();
+                switch (args.get(1)) {
+                    case "활성화":
+                        SQL.configSetup(guildId, SQL.channelLogging, "0");
+                        break;
+                    case "비활성화":
+                        SQL.configSetup(guildId, SQL.channelLogging, "1");
+                        break;
+                    case "채널":
+                        String channelId;
+                        try {
+                            channelId = args.get(2);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            event.getChannel().sendMessage("채널 ID가 없습니다.").queue();
+                            return;
+                        }
+                        SQL.configSetup(guildId, "", channelId, SQL.channelLogging);
+                        break;
+                    default:
+                        event.getChannel().sendMessage("활성화/비활성화/채널 옵션을 입력해주세요 \n" +
+                                "현재 입력한 옵션값: " + args.get(1)).queue();
+                        break;
                 }
             }
         } else if(args.get(0).equals("-memberlog")) {
             if (args.size() >= 2) {
-                if (args.get(1).equals("활성화")) {
-                    SQL.configSetup(guildId, SQL.memberLogging, "0");
-                } else if (args.get(1).equals("비활성화")) {
-                    SQL.configSetup(guildId, SQL.memberLogging, "1");
-                } else {
-                    event.getChannel().sendMessage("활성화 또는 비활성화 옵션을 입력해주세요 \n" +
-                            "현재 입력한 옵션값: " + args.get(1)).queue();
+                switch (args.get(1)) {
+                    case "활성화":
+                        SQL.configSetup(guildId, SQL.memberLogging, "0");
+                        break;
+                    case "비활성화":
+                        SQL.configSetup(guildId, SQL.memberLogging, "1");
+                        break;
+                    case "채널":
+                        String channelId;
+                        try {
+                            channelId = args.get(2);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            event.getChannel().sendMessage("채널 ID가 없습니다.").queue();
+                            return;
+                        }
+                        SQL.configSetup(guildId, "", channelId, SQL.memberLogging);
+                        break;
+                    default:
+                        event.getChannel().sendMessage("활성화/비활성화/채널 옵션을 입력해주세요 \n" +
+                                "현재 입력한 옵션값: " + args.get(1)).queue();
+                        break;
                 }
             }
         } else if(args.get(0).equals("-notice")) {
@@ -191,7 +261,7 @@ public class configCommand implements ICommand {
                             "현재 입력한 옵션값: " + args.get(1)).queue();
                 }
             } else {
-                String channelId = SQL.configDownLoad_notice(guildId);
+                String channelId = SQL.configDownLoad(guildId, SQL.notice);
                 if(channelId == null) {
                     channelId = "비활성화";
                 }
@@ -214,7 +284,7 @@ public class configCommand implements ICommand {
                             "현재 입력한 옵션값: " + args.get(1)).queue();
                 }
             } else {
-                String channelId = SQL.configDownLoad_filterlog(guildId);
+                String channelId = SQL.configDownLoad(guildId, SQL.filterlog);
                 if(channelId == null) {
                     channelId = "비활성화";
                 }
@@ -237,7 +307,7 @@ public class configCommand implements ICommand {
                             "현재 입력한 옵션값: " + args.get(1)).queue();
                 }
             } else {
-                String channelId = SQL.configDownLoad_botchannel(guildId);
+                String channelId = SQL.configDownLoad(guildId, SQL.botchannel);
                 if(channelId == null) {
                     channelId = "비활성화";
                 }
@@ -249,9 +319,83 @@ public class configCommand implements ICommand {
                         .addField("현재 등록된 채널 ID", channelId, false)
                         .setFooter("봇 채널은 한번 등록하면 삭제할 수 없습니다. 비활성화만 가능합니다.");
             }
+        } else if(args.get(0).equals("customfilter")) {
+            if (args.size() >= 2) {
+                switch (args.get(1)) {
+                    case "활성화":
+                        SQL.configSetup(guildId, "0", "", SQL.customFilter);
+                        break;
+                    case "비활성화":
+                        SQL.configSetup(guildId, "1", "", SQL.customFilter);
+                        break;
+                    case "추가":
+                        String[] a = SQL.configDownLoad_array(guildId, SQL.customFilter);
+                        List<String> list = Arrays.asList(a);
+                        list = new ArrayList<>(list);
+                        list.remove("none");
+                        for (int i = 2; i < args.size(); i++) {
+                            String da = args.get(i).replace(",", "");
+                            System.out.println(list.add(da));
+                        }
+                        if (list.isEmpty()) {
+                            event.getChannel().sendMessage("추가할 단어가 없었습니다.").queue();
+                            return;
+                        }
+                        list.remove("none");
+                        SQL.configSetup(guildId, list);
+                        break;
+                    case "제거":
+                        a = SQL.configDownLoad_array(guildId, SQL.customFilter);
+                        list = Arrays.asList(a);
+                        list = new ArrayList<>(list);
+                        for (int i = 2; i < args.size(); i++) {
+                            list.remove(args.get(i).replace(",", ""));
+                        }
+                        if (list.isEmpty()) {
+                            event.getChannel().sendMessage("제거할 단어가 없었습니다.").queue();
+                            return;
+                        }
+                        list.remove("none");
+                        SQL.configSetup(guildId, list);
+                        break;
+                    case "조회":
+                        String[] data = SQL.configDownLoad_array(guildId, SQL.customFilter);
+                        StringBuilder stringBuilder = new StringBuilder();
+                        for(String c : data) {
+                            stringBuilder.append(c).append(", ");
+                        }
+                        builder = EmbedUtils.defaultEmbed()
+                                .setTitle("커스텀 필터링 단어 목록")
+                                .setDescription(stringBuilder.toString().substring(0, stringBuilder.toString().length() - 2));
+                        break;
+                    default:
+                        builder = EmbedUtils.defaultEmbed()
+                                .setTitle("커스텀 필터링 안내")
+                                .setDescription("사용법: " + App.getPREFIX() + getInvoke() + " customfilter 활성화/비활성화\n" +
+                                        App.getPREFIX() + getInvoke() + " customfilter 추가/삭제 단어")
+                                .addField("활성화", "커스텀 필터링을 활성화 합니다.", false)
+                                .addField("비활성화", "커스텀 필터링을 비활성화 합니다", false)
+                                .addField("조회", "커스텀 필터링 단어 목록을 조회합니다.", false)
+                                .addField("추가 <단어1 단어2 단어3...>", "커스텀 필터링 단어 목록을 추가합니다", false)
+                                .addField("삭제 <단어1 단어2 단어3...>", "커스텀 필터링 단어 목록을 삭제합니다", false);
+                        break;
+                }
+            } else {
+                builder = EmbedUtils.defaultEmbed()
+                        .setTitle("커스텀 필터링 안내")
+                        .setDescription("사용법: " + App.getPREFIX() + getInvoke() + " customfilter 활성화/비활성화\n" +
+                                App.getPREFIX() + getInvoke() + " customfilter 추가/삭제 단어")
+                        .addField("활성화", "커스텀 필터링을 활성화 합니다.", false)
+                        .addField("비활성화", "커스텀 필터링을 비활성화 합니다", false)
+                        .addField("추가 <단어1 단어2 단어3...>", "커스텀 필터링 단어 목록을 추가합니다", false)
+                        .addField("삭제 <단어1 단어2 단어3...>", "커스텀 필터링 단어 목록을 삭제합니다", false);
+
+            }
         }
         if(builder != null) {
             event.getChannel().sendMessage(builder.build()).queue();
+        } else {
+            event.getChannel().sendMessage("설정이 완료되었습니다.").queue();
         }
         config.config_load();
     }

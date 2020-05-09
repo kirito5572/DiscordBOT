@@ -48,7 +48,7 @@ public class App {
         Listener listener = new Listener(commandManager);
         filterListener filterlistener = new filterListener();
         ONIGIRIListener onigiriListener = new ONIGIRIListener();
-        muteListener muteListener = new muteListener();
+        MuteListener muteListener = new MuteListener();
         nekoDiscordMemberListener nekoDiscordMemberListener = new nekoDiscordMemberListener();
         SteamServerStatusListener steamServerStatusListener = new SteamServerStatusListener();
         activityChangeListener activityChangeListener = new activityChangeListener();
