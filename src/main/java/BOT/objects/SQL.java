@@ -30,7 +30,6 @@ public class SQL {
     private static Statement statement;
     private static ResultSet resultSet;
     private static ResultSet resultSet6;
-    private static String driverName;
     private static String url;
     private static String user;
     private static String password;
@@ -70,111 +69,17 @@ public class SQL {
             }
             logger.warn(a.toString());
         }
-        driverName = "com.mysql.cj.jdbc.Driver";
+        String driverName = "com.mysql.cj.jdbc.Driver";
         url = "jdbc:mysql://" + endPoint.toString() + "/ritobotDB?serverTimezone=UTC";
         user = "ritobot";
         password = SQLPassword.toString();
         System.out.println(url);
-        System.out.println(password);
+        System.out.println(user);
         try {
             connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-    public static String SQLupload(String SteamID, String time, String reason, String confirmUser) {
-        caseIDup();
-        String caseID = "error";
-        Date date = new Date();
-        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd aa hh:mm:ss");
-        String DBWriteTime = dayTime.format(date);
-        String queryString;
-        try {
-            Class.forName(driverName);
-            statement = connection.createStatement();
-            queryString = "SELECT * FROM byeolhaDB.config;";
-            ResultSet resultSet = statement.executeQuery(queryString);
-            if(resultSet.next()) {
-                caseID = resultSet.getString("caseID");
-            } else {
-                return caseID;
-            }
-            queryString = "UPDATE byeolhaDB.config SET caseID=" + (Integer.parseInt(caseID) + 1) + " WHERE caseID=" + caseID +";";
-            statement.executeUpdate(queryString);
-            queryString = "INSERT INTO byeolhaDB.Sanction_Infor VALUES ('" + caseID + "', '" + SteamID + "', '" +
-                    time + "', '" + reason + "', '" + confirmUser + "', '" + DBWriteTime+ "');";
-            statement.execute(queryString);
-            statement.close();
-        } catch (Exception e) {
-
-            StackTraceElement[] eStackTrace = e.getStackTrace();
-            StringBuilder a = new StringBuilder();
-            for (StackTraceElement stackTraceElement : eStackTrace) {
-                a.append(stackTraceElement).append("\n");
-            }
-            logger.warn(a.toString());
-        }
-        return caseID;
-    }
-    @NotNull
-    public static String[] SQLdownload(String ID) throws SQLException, ClassNotFoundException, InterruptedException {
-        String[] data = new String[30];
-        for (int i = 0; i < 20; i++) {
-            data[i] = null;
-        }
-
-        String queryString = "SELECT * FROM byeolhaDB.Sanction_Infor WHERE ID ='" + ID + "';";
-
-        Class.forName(driverName);
-        new Thread(() -> {
-            try {
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(queryString);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }).start();
-        Thread.sleep(500);
-        int i = 0;
-        while (resultSet.next()) {
-            data[i] = resultSet.getString("caseID");
-            i++;
-        }
-        statement.close();
-        if(i > 0) {
-            return Arrays.copyOfRange(data, 0, i);
-        } else {
-            return new String[] {
-                    "error"
-            };
-        }
-    }
-    @NotNull
-    public static String[] SQLdownload(int caseID) throws SQLException, ClassNotFoundException, InterruptedException {
-        String[] data = new String[5];
-        for (int i = 0; i < 5; i++) {
-            data[i] = null;
-        }
-
-        String queryString = "SELECT * FROM byeolhaDB.Sanction_Infor WHERE caseID ='" + caseID + "';";
-        Class.forName(driverName);
-        try {
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(queryString);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new String[] {"error"};
-        }
-        if(resultSet.next()) {
-            data[0] = resultSet.getString("ID");
-            data[1] = resultSet.getString("length");
-            data[2] = resultSet.getString("reason");
-            data[3] = resultSet.getString("user");
-            data[4] = resultSet.getString("DBWrite");
-        }
-        statement.close();
-
-        return data;
     }
     private static void caseIDup() {
         caseID++;
