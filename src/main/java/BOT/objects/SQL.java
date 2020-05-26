@@ -72,7 +72,7 @@ public class SQL {
         }
         driverName = "com.mysql.cj.jdbc.Driver";
         url = "jdbc:mysql://" + endPoint.toString() + "/ritobotDB?serverTimezone=UTC";
-        user = "admin";
+        user = "ritobot";
         password = SQLPassword.toString();
         System.out.println(url);
         System.out.println(password);
