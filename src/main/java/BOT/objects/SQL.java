@@ -5,9 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.mysql.cj.xdevapi.Type;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,9 +14,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Date;
 
 public class SQL {
     static class Data {
@@ -73,8 +69,6 @@ public class SQL {
         url = "jdbc:mysql://" + endPoint.toString() + "/ritobotDB?serverTimezone=UTC";
         user = "ritobot";
         password = SQLPassword.toString();
-        System.out.println(url);
-        System.out.println(user);
         try {
             connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {

@@ -16,6 +16,8 @@ repositories {
 }
 
 dependencies {
+    //implementation group: 'org.hyperic', name: 'sigar', version: '1.6.4'
+    implementation group: 'org.fusesource', name: 'sigar', version: '1.6.4'
     implementation group: 'net.dv8tion', name: 'JDA', version: '4.1.1_127'
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     implementation group: 'org.jsoup', name:'jsoup', version: '1.12.1'
