@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 public class VersionCommand implements ICommand {
-    private static final String version = "빌드 버젼 V 1.7.5 preview 5";
+    private static final String version = "빌드 버젼 V 1.7.5.1";
     @Override
     public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
         int serverCount = 0;

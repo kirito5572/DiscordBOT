@@ -18,8 +18,6 @@ import java.util.Objects;
 public class nekoDiscordMemberListener extends ListenerAdapter {
     private final Logger logger = LoggerFactory.getLogger(nekoDiscordMemberListener.class);
     private static String Chating1;
-    private static final String catCafe = "644872685213581312";
-    private static final String greenServer = "656658148093853736";
 
     @Override
     public void onMessageReactionAdd(@NotNull MessageReactionAddEvent event) {
@@ -96,15 +94,6 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
             }
             if(member != null) {
                 member.getUser().openPrivateChannel().complete().sendMessage(role.getName() + " 역할 제거!").queue();
-            }
-        } else if (guild.getId().equals("600010501266866186")) {
-            Role role = guild.getRoleById("656658408589754378");
-            Member member = event.getMember();
-            if (event.getMessageId().equals(greenServer)) {
-                assert member != null;
-                assert role != null;
-                guild.removeRoleFromMember(member, role).complete();
-                member.getUser().openPrivateChannel().complete().sendMessage("친목 채널 비활성화가 완료되었습니다.").queue();
             }
         }
     }
