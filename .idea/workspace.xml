@@ -5,64 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd8e5d3e-5add-4926-baff-840c821349c0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/AirInforCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/AirInforCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/AirLocalInforCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/AirLocalInforCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/BETACommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/BETACommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/CallCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/CallCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/CatCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/CatCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/ColorCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/ColorCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/ColorInfoCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/ColorInfoCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/GameCommand/DICECommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/GameCommand/DICECommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/GameCommand/OddOrEvenCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/GameCommand/OddOrEvenCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/GameCommand/RockPaperScissorsCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/GameCommand/RockPaperScissorsCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/GameCommand/WordGameCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/GameCommand/WordGameCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/GameCommand/russianRouletteCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/GameCommand/russianRouletteCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/HelpCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/HelpCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/BanCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/BanCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/ClearCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/ClearCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/KickCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/KickCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/MemberCount.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/MemberCount.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/MessagePinCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/MessagePinCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/OwnerChattingToServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/OwnerChattingToServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/UnbanCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/UnbanCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/botipAddressCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/botipAddressCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/configCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/configCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/giveroleCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/giveroleCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/pollCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/pollCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/publicExecutionCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/publicExecutionCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/ONIGIRIServerCustom/ONIGIRICommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/ONIGIRIServerCustom/ONIGIRICommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/PingCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/PingCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/SayCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/SayCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/TESTCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/TESTCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/TwitchCommand/StreamerSearchCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/TwitchCommand/StreamerSearchCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/UnusedColorCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/UnusedColorCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/UserInfoCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/UserInfoCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/nekoDiscordMemberListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/nekoDiscordMemberListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/VersionCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/VersionCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/WeatherCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/WeatherCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/_OwnerOnlyCommand/BotOwnerNoticeCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/_OwnerOnlyCommand/BotOwnerNoticeCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/_OwnerOnlyCommand/evalCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/_OwnerOnlyCommand/evalCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/_OwnerOnlyCommand/getGuildsInforCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/_OwnerOnlyCommand/getGuildsInforCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/inviteCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/inviteCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/lewdnekoCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/lewdnekoCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/upTimeCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/upTimeCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/CroissantRoleListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/CroissantRoleListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/Listener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/Listener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/MemberCountListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/MemberCountListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/ONIGIRIListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/ONIGIRIListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/SteamServerStatusListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/SteamServerStatusListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/filterListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/filterListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/muteListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/muteListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/nekoDiscordMemberListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/nekoDiscordMemberListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/salListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/salListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/workHomeListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/workHomeListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Objects/SQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Objects/SQL.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Objects/linkConfirm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Objects/linkConfirm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/objects/CommandManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/objects/CommandManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/objects/getAirData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/objects/getAirData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/activityChangeListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/activityChangeListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/nekoDiscordMemberListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/nekoDiscordMemberListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,6 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JupyterTrust" id="d930e995-acfd-410f-be90-790eb236b5e3" />
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
@@ -114,7 +68,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.statistic.project.settings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -199,7 +153,10 @@
       <workItem from="1595844012170" duration="2275000" />
       <workItem from="1596285381975" duration="6679000" />
       <workItem from="1597769763371" duration="712000" />
-      <workItem from="1599398502347" duration="2138000" />
+      <workItem from="1599398502347" duration="2754000" />
+      <workItem from="1599412016749" duration="31000" />
+      <workItem from="1599412064395" duration="47000" />
+      <workItem from="1599661230413" duration="2516000" />
     </task>
     <servers />
   </component>
@@ -219,22 +176,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1594029139091" />
-    <state width="1877" height="268" key="GridCell.Tab.0.bottom" timestamp="1599401770077">
+    <state width="1860" height="268" key="GridCell.Tab.0.bottom" timestamp="1599663950123">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="268" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599401770077" />
-    <state width="1877" height="268" key="GridCell.Tab.0.center" timestamp="1599401770077">
+    <state width="1860" height="268" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599663950123" />
+    <state width="1860" height="268" key="GridCell.Tab.0.center" timestamp="1599663950123">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="268" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599401770077" />
-    <state width="1877" height="268" key="GridCell.Tab.0.left" timestamp="1599401770077">
+    <state width="1860" height="268" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599663950123" />
+    <state width="1860" height="268" key="GridCell.Tab.0.left" timestamp="1599663950123">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="268" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599401770077" />
-    <state width="1877" height="268" key="GridCell.Tab.0.right" timestamp="1599401770077">
+    <state width="1860" height="268" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599663950123" />
+    <state width="1860" height="268" key="GridCell.Tab.0.right" timestamp="1599663950123">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="268" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599401770077" />
+    <state width="1860" height="268" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599663950123" />
     <state width="1877" height="301" key="GridCell.Tab.1.bottom" timestamp="1592835770900">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -251,10 +208,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="301" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592835770900" />
-    <state x="461" y="164" key="SettingsEditor" timestamp="1591028691401">
+    <state x="297" y="158" key="SettingsEditor" timestamp="1599412108388">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1591028691401" />
+    <state x="297" y="158" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1599412108388" />
     <state x="339" y="129" key="new project wizard" timestamp="1594029160933">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
