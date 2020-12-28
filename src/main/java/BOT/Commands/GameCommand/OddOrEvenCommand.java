@@ -35,7 +35,7 @@ public class OddOrEvenCommand implements ICommand {
                                 result[0] = "짝수";
                                 result[1] = "실패";
                             }
-                            EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                            EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                                     .setTitle("홀/짝")
                                     .addField("결과", result[1], false)
                                     .addField("추첨 결과", result[0], false)
@@ -51,7 +51,7 @@ public class OddOrEvenCommand implements ICommand {
                                 result[0] = "짝수";
                                 result[1] = "성공";
                             }
-                            EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                            EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                                     .setTitle("홀/짝")
                                     .addField("결과", result[1], false)
                                     .addField("추첨 결과", result[0], false)

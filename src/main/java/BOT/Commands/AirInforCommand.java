@@ -85,7 +85,7 @@ public class AirInforCommand implements ICommand {
             }
             rank[i] = data[i + 8];
         }
-        EmbedBuilder builder = EmbedUtils.defaultEmbed()
+        EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                 .setTitle("공기질 측정표(" + data[15] + ")");
         builder.addField(
                 "1. " + air_list[0] + "\n",

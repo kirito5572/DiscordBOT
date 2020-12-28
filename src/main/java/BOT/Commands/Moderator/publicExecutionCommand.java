@@ -98,7 +98,7 @@ public class publicExecutionCommand implements ICommand {
             event.getGuild().removeRoleFromMember(member, role).complete();
 
             event.getChannel().sendMessage(member.getEffectiveName() + "을/를 공개 처형 대상자에서 해제 했습니다.").queue();
-            builder = EmbedUtils.defaultEmbed()
+            builder = EmbedUtils.getDefaultEmbed()
                     .setColor(Color.GREEN)
                     .setTitle("공개 처형자 해제")
                     .addField("대상자", member.getAsMention(), true)
@@ -108,7 +108,7 @@ public class publicExecutionCommand implements ICommand {
             event.getGuild().addRoleToMember(member, role).complete();
 
             event.getChannel().sendMessage(member.getEffectiveName() + "을/를 공개 처형 대상자로 지정 했습니다.").queue();
-            builder = EmbedUtils.defaultEmbed()
+            builder = EmbedUtils.getDefaultEmbed()
                     .setColor(Color.RED)
                     .setTitle("공개 처형자 지정")
                     .addField("대상자", member.getAsMention(), true)

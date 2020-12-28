@@ -25,7 +25,7 @@ public class naverCommand implements ICommand {
                 temp = temp.substring(25, temp.indexOf("</span>"));
                 data[i - 1] = temp;
             }
-            EmbedBuilder builder = EmbedUtils.defaultEmbed()
+            EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                     .setTitle("네이버 실시간 검색어");
             for(int i = 0; i < 9; i++) {
                 try {

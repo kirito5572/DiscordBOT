@@ -47,7 +47,7 @@ public class HelpCommand implements ICommand {
     }
 
     private void generateAndSendEmbed(@NotNull GuildMessageReceivedEvent event) {
-        EmbedBuilder builder = EmbedUtils.defaultEmbed().setTitle("명령어 리스트:");
+        EmbedBuilder builder = EmbedUtils.getDefaultEmbed().setTitle("명령어 리스트:");
 
         StringBuilder serverCustom = new StringBuilder();
         StringBuilder moderator = new StringBuilder();

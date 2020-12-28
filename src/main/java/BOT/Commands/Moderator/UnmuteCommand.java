@@ -82,7 +82,7 @@ public class UnmuteCommand implements ICommand {
         EmbedBuilder builder;
         try {
             Thread.sleep(1);
-            builder = EmbedUtils.defaultEmbed()
+            builder = EmbedUtils.getDefaultEmbed()
                     .setTitle("채팅 금지 제재 해제")
                     .addField("유저명", user.getName(), false)
                     .addField("멘션명", member.getAsMention(), false)
@@ -115,7 +115,7 @@ public class UnmuteCommand implements ICommand {
 
             event.getGuild().removeRoleFromMember(member, role).queue();
             Objects.requireNonNull(event.getGuild().getTextChannelById(SQL.configDownLoad(event.getGuild().getId(), SQL.filterlog))).sendMessage(builder.build()).complete();
-            builder = EmbedUtils.defaultEmbed()
+            builder = EmbedUtils.getDefaultEmbed()
                     .setTitle("채팅 금지 제재 해제")
                     .addField("멘션명", member.getAsMention(), false);
             event.getChannel().sendMessage(builder.build()).queue();

@@ -38,7 +38,7 @@ public class WeatherCommand implements ICommand {
         getWeather.get_api(listENG[getLocation()]);
         String[] data = getWeather.getWeather_infor();
 
-        EmbedBuilder builder = EmbedUtils.defaultEmbed()
+        EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                 .setTitle(listKOR[getLocation()] + "지역의 날씨 정보")
                 .setFooter("Infor from openweathermap.org", "https://openweathermap.org/");
         int j = 0;

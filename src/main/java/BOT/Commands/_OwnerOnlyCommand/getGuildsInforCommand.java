@@ -26,7 +26,7 @@ public class getGuildsInforCommand implements ICommand {
                     stringBuilder.append("\n");
                 }
             }
-            EmbedBuilder builder = EmbedUtils.defaultEmbed()
+            EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                     .setTitle("접속된 서버 정보")
                     .setDescription(stringBuilder.toString());
 

@@ -38,7 +38,7 @@ public class MessagePinCommand implements ICommand {
                 statement.executeUpdate("DELETE FROM ritobotDB.Pin WHERE channelId=" + channelId);
                 event.getChannel().sendMessage("핀이 해제되었습니다.").complete().delete().queueAfter(10, TimeUnit.SECONDS);
             } else {
-                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                         .setTitle("고정된 메세지")
                         .setColor(Color.GREEN)
                         .setDescription(event.getMessage().getContentRaw().substring(2));

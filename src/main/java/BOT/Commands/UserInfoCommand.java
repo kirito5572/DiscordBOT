@@ -68,7 +68,7 @@ public class UserInfoCommand implements ICommand {
                 serverRole.append(value.getName()).append("\n");
             }
         }
-        MessageEmbed embed = EmbedUtils.defaultEmbed()
+        MessageEmbed embed = EmbedUtils.getDefaultEmbed()
                 .setColor(member.getColor())
                 .setThumbnail(user.getEffectiveAvatarUrl())
                 .addField("유저이름#번호", String.format("%#s", user), false)

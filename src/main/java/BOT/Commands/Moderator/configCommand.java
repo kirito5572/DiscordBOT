@@ -52,7 +52,7 @@ public class configCommand implements ICommand {
         ConfigData configData = SQL.configDownLoad(guildId);
         EmbedBuilder builder = null;
         if (args.isEmpty()) {
-            builder = EmbedUtils.defaultEmbed()
+            builder = EmbedUtils.getDefaultEmbed()
                     .setTitle("설정 도움말")
                     .addField("stat(-s)", "서버의 설정 상태를 불러옵니다.", false)
                     .addField("guildcolor(-g)", "색 커맨드를 설정합니다.(서버 전체)", false)
@@ -74,7 +74,7 @@ public class configCommand implements ICommand {
             switch (args.get(0)) {
                 case "stat":
                 case "-s":
-                    builder = EmbedUtils.defaultEmbed()
+                    builder = EmbedUtils.getDefaultEmbed()
                             .setTitle(event.getGuild().getName() + "서버의 설정")
                             .addField("색 커맨드", configData.colorCommand ? "활성화" : "비활성화", false)
                             .addField("역할 색 커맨드", configData.roleColorCommand ? "있음" : "없음", false)
@@ -179,7 +179,7 @@ public class configCommand implements ICommand {
                                 stringBuilder.append(role.getName()).append("(").append(roleId).append(")").append("\n");
                             }
                         }
-                        builder = EmbedUtils.defaultEmbed()
+                        builder = EmbedUtils.getDefaultEmbed()
                                 .setTitle("역할 색 지정 안내")
                                 .setDescription("사용법:" + App.getPREFIX() + getInvoke() + " -guildcolorrole 비활성화/추가/삭제 <roleId>")
                                 .addField("비활성화", "색 명령어 사용이 가능한 역할을 초기화 합니다.", false)
@@ -288,7 +288,7 @@ public class configCommand implements ICommand {
                         if (channelId == null) {
                             channelId = "비활성화";
                         }
-                        builder = EmbedUtils.defaultEmbed()
+                        builder = EmbedUtils.getDefaultEmbed()
                                 .setTitle("공지사항 안내")
                                 .setDescription("사용법:" + App.getPREFIX() + getInvoke() + " -notice 비활성화/활성화 <channelId>")
                                 .addField("비활성화", "공지사항 수신을 비활성화 합니다.", false)
@@ -313,7 +313,7 @@ public class configCommand implements ICommand {
                         if (channelId == null) {
                             channelId = "비활성화";
                         }
-                        builder = EmbedUtils.defaultEmbed()
+                        builder = EmbedUtils.getDefaultEmbed()
                                 .setTitle("필터링 로그 안내")
                                 .setDescription("사용법:" + App.getPREFIX() + getInvoke() + " -filterlog 비활성화/활성화 <channelId>")
                                 .addField("비활성화", "필터링 로그를 비활성화 합니다.", false)
@@ -338,7 +338,7 @@ public class configCommand implements ICommand {
                         if (channelId == null) {
                             channelId = "비활성화";
                         }
-                        builder = EmbedUtils.defaultEmbed()
+                        builder = EmbedUtils.getDefaultEmbed()
                                 .setTitle("봇채널 안내")
                                 .setDescription("사용법:" + App.getPREFIX() + getInvoke() + " botchannel 비활성화/활성화 <channelId>")
                                 .addField("비활성화", "봇채널 설정을 비활성화 합니다.", false)
@@ -393,12 +393,12 @@ public class configCommand implements ICommand {
                                 for (String c : data) {
                                     stringBuilder.append(c).append(", ");
                                 }
-                                builder = EmbedUtils.defaultEmbed()
+                                builder = EmbedUtils.getDefaultEmbed()
                                         .setTitle("커스텀 필터링 단어 목록")
                                         .setDescription(stringBuilder.toString().substring(0, stringBuilder.toString().length() - 2));
                                 break;
                             default:
-                                builder = EmbedUtils.defaultEmbed()
+                                builder = EmbedUtils.getDefaultEmbed()
                                         .setTitle("커스텀 필터링 안내")
                                         .setDescription("사용법: " + App.getPREFIX() + getInvoke() + " customfilter 활성화/비활성화\n" +
                                                 App.getPREFIX() + getInvoke() + " customfilter 추가/삭제 단어")
@@ -410,7 +410,7 @@ public class configCommand implements ICommand {
                                 break;
                         }
                     } else {
-                        builder = EmbedUtils.defaultEmbed()
+                        builder = EmbedUtils.getDefaultEmbed()
                                 .setTitle("커스텀 필터링 안내")
                                 .setDescription("사용법: " + App.getPREFIX() + getInvoke() + " customfilter 활성화/비활성화\n" +
                                         App.getPREFIX() + getInvoke() + " customfilter 추가/삭제 단어")

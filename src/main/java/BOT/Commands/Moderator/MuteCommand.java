@@ -169,7 +169,7 @@ public class MuteCommand implements ICommand {
         try {
             time_st = sdf.format(date);
             Thread.sleep(1);
-            builder = EmbedUtils.defaultEmbed()
+            builder = EmbedUtils.getDefaultEmbed()
                     .setTitle("채팅 금지 제재")
                     .addField("유저명", user.getName(), false)
                     .addField("멘션명", member.getAsMention(), false)
@@ -207,7 +207,7 @@ public class MuteCommand implements ICommand {
 
             event.getGuild().addRoleToMember(member, role).queue();
             Objects.requireNonNull(event.getGuild().getTextChannelById(SQL.configDownLoad(event.getGuild().getId(), SQL.filterlog))).sendMessage(builder.build()).complete();
-            builder = EmbedUtils.defaultEmbed()
+            builder = EmbedUtils.getDefaultEmbed()
                     .setTitle("채팅 금지 제재")
                     .addField("멘션명", member.getAsMention(), false);
             event.getChannel().sendMessage(builder.build()).queue();

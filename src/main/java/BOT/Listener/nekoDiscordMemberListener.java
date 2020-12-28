@@ -1,5 +1,6 @@
 package BOT.Listener;
 
+import net.dv8tion.jda.api.entities.Emote;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
@@ -60,7 +61,17 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
             if (event.getMessageId().equals(Chating1)) {
                 assert member != null;
                 if (member.getRoles().contains(role2)) {
-                    Objects.requireNonNull(guild.getTextChannelById("616452604506931230")).removeReactionById(event.getMessageId(), event.getReactionEmote().getEmote(), member.getUser()).complete();
+                    Emote emote = null;
+                    try {
+                        emote = event.getReactionEmote().getEmote();
+                    } catch (IllegalStateException e) {
+                        e.printStackTrace();
+                    }
+                    if(emote != null) {
+                        Objects.requireNonNull(guild.getTextChannelById("616452604506931230")).removeReactionById(event.getMessageId(), emote, member.getUser()).complete();
+                    } else {
+                        Objects.requireNonNull(guild.getTextChannelById("616452604506931230")).removeReactionById(event.getMessageId(), event.getReactionEmote().getEmoji(), member.getUser()).complete();
+                    }
                     member.getUser().openPrivateChannel().complete().sendMessage("휴식자 역할을 부여 받기전 관리직 역할을 부여 받아야 합니다.\n" +
                             "!join으로 역할을 부여 받으시기 바랍니다.").complete();
                 } else {

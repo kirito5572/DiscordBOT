@@ -13,7 +13,7 @@ public class ColorInfoCommand implements ICommand {
     @Override
     public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
-        EmbedBuilder builder = EmbedUtils.defaultEmbed()
+        EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                 .setTitle("색 목록");
         String[][] color = ColorCommand.getColor();
         for(int i = 0; i < 17; i++) {

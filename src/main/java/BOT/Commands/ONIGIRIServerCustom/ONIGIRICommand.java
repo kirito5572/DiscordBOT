@@ -14,7 +14,7 @@ public class ONIGIRICommand implements ICommand {
     public void handle(List<String> args, @NotNull GuildMessageReceivedEvent event) {
         if(event.getGuild().getId().equals("453817631603032065")) {
             String[] list = ONIGIRIList.getList();
-            EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed();
+            EmbedBuilder embedBuilder = EmbedUtils.getDefaultEmbed();
             for (String s : list) {
                 embedBuilder.addField(s, "", false);
             }

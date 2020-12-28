@@ -44,7 +44,7 @@ public class VersionCommand implements ICommand {
             return;
         }
         OperatingSystemMXBean osBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
-        EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
+        EmbedBuilder embedBuilder = EmbedUtils.getDefaultEmbed()
                 .setTitle("봇 정보")
                 .addField("제작자", "**kirito5572#5572**", true)
                 .addField("서버수", String.valueOf(serverCount), true)

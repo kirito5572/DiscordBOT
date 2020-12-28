@@ -38,7 +38,7 @@ public class MuteListener extends ListenerAdapter {
                 time = time.substring(0, time.length() - 4);
                 time += "0000";
                 try {
-                    PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("SELECT * FROM mute_Data_List WHERE endTime > ? ");
+                    PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("SELECT * FROM ritobotDB.mute_Data_List WHERE endTime > ? ");
                     preparedStatement.setString(1, time);
                     ResultSet resultSet = preparedStatement.executeQuery();
                     if(resultSet.next()) {
@@ -53,6 +53,7 @@ public class MuteListener extends ListenerAdapter {
                     preparedStatement.execute();
                 } catch (SQLException e) {
                     e.printStackTrace();
+                    SQL.reConnection();
                     return;
                 }
                 Member member;
@@ -97,7 +98,7 @@ public class MuteListener extends ListenerAdapter {
                 }
                 assert member != null;
                 guild.removeRoleFromMember(member, role).complete();
-                EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                         .setTitle("채팅 금지 제재 해제")
                         .addField("유저명", user.getName(), false)
                         .addField("멘션명", member.getAsMention(), false)

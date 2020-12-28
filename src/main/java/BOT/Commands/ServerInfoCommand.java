@@ -15,7 +15,7 @@ public class ServerInfoCommand implements ICommand {
     @Override
     public void handle(List<String> args, @Nonnull GuildMessageReceivedEvent event) {
         System.out.println(event.getGuild().getRegion().getKey());
-        EmbedBuilder builder = EmbedUtils.defaultEmbed()
+        EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                 .setTitle(event.getGuild().getName() + " 서버의 유저정보")
                 .setDescription("한국 리전이 한국에서만 활성화가 되어 봇 API에 해당 정보가 없어, 리전 정보에 한국이 나오지 않습니다.")
                 .addField("서버 이름", event.getGuild().getName(), false)

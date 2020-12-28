@@ -759,6 +759,7 @@ public class SQL {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        logger.warn("SQL ReConnection Complete");
     }
 
     public static String getUrl() {

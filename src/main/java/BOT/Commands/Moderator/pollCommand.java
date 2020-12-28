@@ -26,7 +26,7 @@ public class pollCommand implements ICommand {
         String temp = App.getPREFIX() + getInvoke();
         pollText = pollText.substring(temp.length());
 
-        EmbedBuilder builder = EmbedUtils.defaultEmbed()
+        EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                 .addField("투표 안건", pollText, false)
                 .setTitle("투표")
                 .addField("1\u20E3", "찬성", true)

@@ -39,23 +39,23 @@ public class workHomeListener extends ListenerAdapter {
                         }
                         nickname[i] = Objects.requireNonNull(guild.getMemberById(discordID[i])).getEffectiveName();
                     }
-                    EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                    EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                             .setTitle("[O5 Council]")
                             .addField(nickname[0], status[0], false)
                             .addField(nickname[1], status[1], false);
-                    EmbedBuilder builder1 = EmbedUtils.defaultEmbed()
+                    EmbedBuilder builder1 = EmbedUtils.getDefaultEmbed()
                             .setTitle("[MTF Commander]")
                             .addField(nickname[2], status[2], false)
                             .addField(nickname[3], status[3], false)
                             .addField(nickname[4], status[4], false);
-                    EmbedBuilder builder2 = EmbedUtils.defaultEmbed()
+                    EmbedBuilder builder2 = EmbedUtils.getDefaultEmbed()
                             .setTitle("[MTF Scientist]");
-                    EmbedBuilder builder3 = EmbedUtils.defaultEmbed()
+                    EmbedBuilder builder3 = EmbedUtils.getDefaultEmbed()
                             .setTitle("[MTF Lieutenant]")
                             .addField(nickname[5], status[5], false)
                             .addField(nickname[6], status[6], false)
                             .addField(nickname[7], status[7], false);
-                    EmbedBuilder builder4 = EmbedUtils.defaultEmbed()
+                    EmbedBuilder builder4 = EmbedUtils.getDefaultEmbed()
                             .setTitle("[MTF Cadet]")
                             .addField(nickname[8], status[8], false)
                             .setFooter("30초 마다 새로 고침 됩니다.", "https://media.istockphoto.com/vectors/refresh-icon-element-of-web-icon-for-mobile-concept-and-web-apps-thin-vector-id1049047088");

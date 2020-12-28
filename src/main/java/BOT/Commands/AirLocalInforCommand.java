@@ -46,7 +46,7 @@ public class AirLocalInforCommand implements ICommand {
         airData.get_API(listENG[getLocation()]);
         String[] data = airData.getAirkorea_data();
         String[] air_list = airData.getItemCode();
-        EmbedBuilder builder = EmbedUtils.defaultEmbed()
+        EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                 .setTitle(listKOR[getLocation()] + "지역의 공기질 측정표");
         builder.addField(
                 "1. " + air_list[6] + "\n",

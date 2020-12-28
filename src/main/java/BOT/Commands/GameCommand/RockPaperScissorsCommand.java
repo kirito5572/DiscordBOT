@@ -99,7 +99,7 @@ public class RockPaperScissorsCommand implements ICommand {
                 break;
             default: return;
         }
-        EmbedBuilder builder = EmbedUtils.defaultEmbed();
+        EmbedBuilder builder = EmbedUtils.getDefaultEmbed();
         if(botwin) {
             builder.setTitle("패배")
                     .setColor(Color.RED)

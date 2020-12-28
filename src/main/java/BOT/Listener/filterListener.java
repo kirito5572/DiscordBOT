@@ -292,7 +292,7 @@ public class filterListener extends ListenerAdapter {
                         if(channelId.equals("error")) {
                             logger.error("링크 필터링 채널 전송중 에러가 발생했습니다!");
                         } else if(!channelId.equals("null")) {
-                            EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                            EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                                     .setTitle("링크 필터링")
                                     .setColor(Color.RED)
                                     .addField("보낸 사람", member.getEffectiveName(), false)
@@ -376,7 +376,7 @@ public class filterListener extends ListenerAdapter {
                         }
                         message.delete().complete();
                         id = channel.sendMessage(messagetemp + "\n " + author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").complete().getId();
-                        EmbedBuilder builder = EmbedUtils.defaultEmbed()
+                        EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                                 .setTitle("금지어 사용")
                                 .setColor(Color.RED)
                                 .addField("금지어 사용자", author.getAsMention(), false)
@@ -432,12 +432,12 @@ public class filterListener extends ListenerAdapter {
                 if (Objects.requireNonNull(messages.getMember()).getRoles().contains(role)) {
                     if (publicflag) {
                         channel.deleteMessageById(id).queueAfter(time, TimeUnit.SECONDS);
-                        EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
+                        EmbedBuilder embedBuilder = EmbedUtils.getDefaultEmbed()
                                 .addField("공개 처형", "당신의 필터링된 메세지도 " + time + "초후 자동으로 삭제됩니다.", true);
                         channel.sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
                     } else {
                         messages.delete().queueAfter(time, TimeUnit.SECONDS);
-                        EmbedBuilder embedBuilder = EmbedUtils.defaultEmbed()
+                        EmbedBuilder embedBuilder = EmbedUtils.getDefaultEmbed()
                                 .addField("공개 처형", "당신의 메세지는 " + time + "초후 자동으로 삭제됩니다.", true);
                         channel.sendMessage(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
                     }
