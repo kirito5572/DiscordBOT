@@ -64,45 +64,45 @@ public class getWeather {
             /*
             {
               "coord": {
-                "lon": 126.42,
-                "lat": 37.45
+                "lon": 126.5219,
+                "lat": 33.5097
               },
               "weather": [
                 {
-                  "id": 802,
+                  "id": 803,
                   "main": "Clouds",
-                  "description": "구름조금",
-                  "icon": "03n"
+                  "description": "튼구름",
+                  "icon": "04d"
                 }
               ],
               "base": "stations",
               "main": {
-                "temp": -1.45,
-                "feels_like": -6.46,
-                "temp_min": -4,
-                "temp_max": 1,
-                "pressure": 1021,
-                "humidity": 64
+                "temp": 10,
+                "feels_like": 5.27,
+                "temp_min": 10,
+                "temp_max": 10,
+                "pressure": 1026,
+                "humidity": 71
               },
               "visibility": 10000,
               "wind": {
-                "speed": 3.1,
-                "deg": 310
+                "speed": 5.14,
+                "deg": 80
               },
               "clouds": {
-                "all": 28
+                "all": 75
               },
-              "dt": 1579473024,
+              "dt": 1615106842,
               "sys": {
                 "type": 1,
-                "id": 8093,
+                "id": 8087,
                 "country": "KR",
-                "sunrise": 1579473965,
-                "sunset": 1579509817
+                "sunrise": 1615067719,
+                "sunset": 1615109699
               },
               "timezone": 32400,
-              "id": 1843561,
-              "name": "Incheon",
+              "id": 1846266,
+              "name": "Jeju City",
               "cod": 200
             }
              */
@@ -112,8 +112,16 @@ public class getWeather {
             JsonArray parse_weather = element.get("weather").getAsJsonArray();
             JsonObject parse_main = element.get("main").getAsJsonObject();
             JsonObject parse_wind = element.get("wind").getAsJsonObject();
-            JsonObject parse_rain = element.get("rain").getAsJsonObject();
-            JsonObject parse_snow = element.get("snow").getAsJsonObject();
+            JsonObject parse_rain = null;
+            JsonObject parse_snow = null;
+            try {
+                parse_rain = element.get("rain").getAsJsonObject();
+            } catch (Exception ignored) {
+            }
+            try {
+                parse_snow = element.get("snow").getAsJsonObject();
+            } catch (Exception ignored) {
+            }
             JsonObject parse_sys = element.get("sys").getAsJsonObject();
 
             weather_infor[0] = parse_weather.get(0).getAsJsonObject().get("description").getAsString();   //날씨 상태
@@ -128,12 +136,18 @@ public class getWeather {
             weather_infor[5] = parse_wind.get("deg").getAsString() + "º";      // 풍향
 
             if(weather_infor[0].equals("비")) {
-                weather_infor[6] = parse_rain.get("3h").getAsString() + "mm";      // 3시간 강수량
+                if(parse_rain == null) {
+                    assert false;
+                    weather_infor[6] = parse_rain.get("3h").getAsString() + "mm";      // 3시간 강수량
+                }
             } else {
                 weather_infor[6] = "null";
             }
             if(weather_infor[0].equals("눈")) {
-                weather_infor[7] = parse_snow.get("3h").getAsString() + "cm";      // 3시간 적설량
+                if(parse_snow == null) {
+                    assert false;
+                    weather_infor[7] = parse_snow.get("3h").getAsString() + "cm";      // 3시간 적설량
+                }
             } else {
                 weather_infor[7] = "null";
             }

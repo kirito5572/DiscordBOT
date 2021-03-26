@@ -51,9 +51,11 @@ public class ClearCommand implements ICommand {
                         return goodMessages.size();
                     })
                     .whenCompleteAsync(
-                            (count, thr) -> channel.sendMessageFormat("`%d` 개의 채팅 삭제 완료", count).queue(
-                                    (message) -> message.delete().queueAfter(10, TimeUnit.SECONDS)
-                            )
+                            (count, thr) -> channel.sendMessageFormat("`%d` 개의 채팅 삭제 완료", count).queue((message) -> {
+                                if(message != null) {
+                                    message.delete().queueAfter(10, TimeUnit.SECONDS);
+                                }
+                            })
                     )
                     .exceptionally((thr) -> {
                         String cause = "";

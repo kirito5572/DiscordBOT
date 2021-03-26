@@ -14,32 +14,55 @@ import java.util.List;
 
 public class WeatherCommand implements ICommand {
     private boolean listFlag;
-    private int location;
+    private String location;
 
     @Override
     public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
         setListFlag(false);
-        String[] listENG = airKoreaList.getLocalListENG();
+        String[][] listENG = airKoreaList.getLocal();
         String[] listKOR = airKoreaList.getLocalListKOR();
+        String[][] listChangeKOR = airKoreaList.getLocalListChangeKOR();
+        String[] listSelectKOR = airKoreaList.getLocalListSelectKOR();
         String[] list = getWeather.getWeather_list();
         TextChannel channel = event.getChannel();
         String joined = String.join("",args);
-        for(int i = 0; i < 17; i++) {
-            if(joined.equals(listKOR[i])) {
+        for (String s : listKOR) {
+            if (joined.equals(s)) {
                 setListFlag(true);
-                setLocation(i);
+                location = s;
+            }
+        }
+        for (String[] s : listChangeKOR) {
+            if (joined.equals(s[0])) {
+                setListFlag(true);
+                location = s[1];
+            }
+        }
+        for (String s : listSelectKOR) {
+            if (joined.equals(s)) {
+                channel.sendMessage("선택한 지역은 남과 북으로 나눠져 있습니다.").queue();
+                return;
             }
         }
         if(!isListFlag()) {
-            channel.sendMessage("그런 지역은 없습니다.\n").queue();
-
+            if(args.isEmpty()) {
+                channel.sendMessage("광역시도명을 입력하여주십시오").queue();
+            } else {
+                channel.sendMessage("그런 지역은 없습니다.\n").queue();
+            }
             return;
         }
-        getWeather.get_api(listENG[getLocation()]);
+        for (String[] s : listENG) {
+            if(s[0].equals(location)) {
+                location = s[1];
+                break;
+            }
+        }
+        getWeather.get_api(location);
         String[] data = getWeather.getWeather_infor();
 
         EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
-                .setTitle(listKOR[getLocation()] + "지역의 날씨 정보")
+                .setTitle(joined + "의 날씨 정보")
                 .setFooter("Infor from openweathermap.org", "https://openweathermap.org/");
         int j = 0;
         for(int i = 0; i < 10; i++) {
@@ -86,13 +109,5 @@ public class WeatherCommand implements ICommand {
 
     private boolean isListFlag() {
         return listFlag;
-    }
-
-    private int getLocation() {
-        return location;
-    }
-
-    private void setLocation(int location) {
-        this.location = location;
     }
 }

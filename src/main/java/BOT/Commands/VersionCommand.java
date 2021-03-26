@@ -46,7 +46,7 @@ public class VersionCommand implements ICommand {
         OperatingSystemMXBean osBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
         EmbedBuilder embedBuilder = EmbedUtils.getDefaultEmbed()
                 .setTitle("봇 정보")
-                .addField("제작자", "**kirito5572#5572**", true)
+                .addField("제작자", "**LiODi5572#5572**", true)
                 .addField("서버수", String.valueOf(serverCount), true)
                 .addField("유저수", String.valueOf(userCount), true)
                 .addField("업타임", String.format("%s일 %s시간 %s분 %s초", upTime.getTime()/86400000%100, upTime.getTime()/3600000%24, upTime.getTime()/60000%60, upTime.getTime()/1000%60), true)

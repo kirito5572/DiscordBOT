@@ -8,7 +8,6 @@ import BOT.Objects.SQL;
 import BOT.Objects.config;
 import me.duncte123.botcommons.messaging.EmbedUtils;
 import me.duncte123.botcommons.web.WebUtils;
-import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -103,12 +102,12 @@ public class App {
             PREFIX = Constants.PREFIX;
         }
 
-        WebUtils.setUserAgent("Chrome 75.0.3770.100 kirito's discord bot/kirito5572#5572");
+        WebUtils.setUserAgent("Chrome 75.0.3770.100 LiODi's discord bot/LiODi5572#5572");
 
         EmbedUtils.setEmbedBuilder(
                 () -> new EmbedBuilder()
                         .setColor(getRandomColor())
-                        .setFooter("Made By kirito5572#5572", null)
+                        .setFooter("Made By LiODi5572#5572", null)
         );
 
         try {

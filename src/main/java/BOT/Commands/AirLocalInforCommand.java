@@ -16,7 +16,7 @@ import java.util.List;
 
 public class AirLocalInforCommand implements ICommand {
     private boolean listFlag;
-    private int location;
+    private String location;
 
     @Override
     public void handle(@NotNull List<String> args, @NotNull GuildMessageReceivedEvent event) {
@@ -28,14 +28,20 @@ public class AirLocalInforCommand implements ICommand {
             return;
         }
         setListFlag(false);
-        String[] listENG = airKoreaList.getLocalListENG();
+        String[][] listENG = airKoreaList.getLocal();
         String[] listKOR = airKoreaList.getLocalListKOR();
         String joined = String.join("", args);
         getAirLocalData airData = new getAirLocalData();
-        for (int i = 0; i < 17; i++) {
-            if (joined.equals(listKOR[i])) {
+        for (String s : listKOR) {
+            if (joined.equals(s)) {
                 setListFlag(true);
-                setLocation(i);
+                location = s;
+            }
+        }
+        for (String[] s : listENG) {
+            if(s[0].equals(location)) {
+                location = s[1];
+                break;
             }
         }
         if (!isListFlag()) {
@@ -43,11 +49,11 @@ public class AirLocalInforCommand implements ICommand {
 
             return;
         }
-        airData.get_API(listENG[getLocation()]);
+        airData.get_API(location);
         String[] data = airData.getAirkorea_data();
         String[] air_list = airData.getItemCode();
         EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
-                .setTitle(listKOR[getLocation()] + "지역의 공기질 측정표");
+                .setTitle(location + "지역의 공기질 측정표");
         builder.addField(
                 "1. " + air_list[6] + "\n",
                 data[6],
@@ -96,11 +102,4 @@ public class AirLocalInforCommand implements ICommand {
         return listFlag;
     }
 
-    private int getLocation() {
-        return location;
-    }
-
-    private void setLocation(int location) {
-        this.location = location;
-    }
 }

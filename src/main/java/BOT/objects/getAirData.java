@@ -61,7 +61,7 @@ public class getAirData {
                 }
                 logger.warn(a.toString());
             }
-            String airkorea_url = "http://openapi.airkorea.or.kr/openapi/services/rest/MsrstnInfoInqireSvc/getTMStdrCrdnt?";
+            String airkorea_url = "http://apis.data.go.kr/B552584/MsrstnInfoInqireSvc/getTMStdrCrdnt?";
             String numOfRows = "10";
             String pageNo = "1";
             String airkorea_serviceKey = TOKEN.toString();
@@ -146,7 +146,7 @@ public class getAirData {
                 }
                 logger.warn(a.toString());
             }
-            String airkorea_url = "http://openapi.airkorea.or.kr/openapi/services/rest/MsrstnInfoInqireSvc/getNearbyMsrstnList?";
+            String airkorea_url = "http://apis.data.go.kr/B552584/MsrstnInfoInqireSvc/getNearbyMsrstnList?";
             String airkorea_serviceKey = TOKEN.toString();
 
             DocumentBuilderFactory airkorea_DB_Factoty = DocumentBuilderFactory.newInstance();
@@ -212,7 +212,7 @@ public class getAirData {
                 logger.warn(a.toString());
             }
 
-            String airkorea_url = "http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty";
+            String airkorea_url = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty";
             String dataTerm = "DAILY";
             String numOfRows = "10";
             String pageNo = "1";
