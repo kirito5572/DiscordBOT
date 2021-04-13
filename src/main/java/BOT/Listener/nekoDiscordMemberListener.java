@@ -35,19 +35,18 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
     public void onGuildMessageReceived(@NotNull GuildMessageReceivedEvent event) {
         Guild guild = event.getGuild();
         if(guild.getId().equals(nekoDiscordServerId)) {
-            if(event.getMessage().getContentRaw().startsWith("!")) {
-                if(event.getMessage().getContentRaw().startsWith("!join")) {
-                    Role role = guild.getRoleById(nekoDiscordTeamRoleId[random.nextInt(10)]);
-                    assert role != null;
-                    guild.addRoleToMember(Objects.requireNonNull(event.getMember()), role).complete();
-                    try {
-                        event.getMember().getUser().openPrivateChannel().complete()
-                                .sendMessage("랜덤으로 팀이 배정되었습니다. 배정된 팀은 **\"" + role.getName() + "\"**").queue();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+            if(event.getMessage().getContentRaw().startsWith("!join")) {
+                Role role = guild.getRoleById(nekoDiscordTeamRoleId[random.nextInt(10)]);
+                assert role != null;
+                guild.addRoleToMember(Objects.requireNonNull(event.getMember()), role).complete();
+                try {
+                    event.getMember().getUser().openPrivateChannel().complete()
+                            .sendMessage("랜덤으로 팀이 배정되었습니다. 배정된 팀은 **\"" + role.getName() + "\"**").queue();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
+
         }
     }
 

@@ -5,29 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd8e5d3e-5add-4926-baff-840c821349c0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/AirLocalInforCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/AirLocalInforCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/ClearCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/Moderator/ClearCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/PPCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/PPCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/VersionCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/VersionCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Commands/WeatherCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Commands/WeatherCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/activityChangeListener$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/activityChangeListener$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Objects/airKoreaList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Objects/airKoreaList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/objects/getAirData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/objects/getAirData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/objects/getWeather.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/objects/getWeather.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/AirLocalInforCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/AirLocalInforCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/ClearCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/ClearCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/PPCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/PPCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/WeatherCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Commands/WeatherCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/activityChangeListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/activityChangeListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/airKoreaList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/airKoreaList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/getAirData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/getAirData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/getWeather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/objects/getWeather.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/Listener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/Listener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/nekoDiscordMemberListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/nekoDiscordMemberListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/Listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/Listener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/nekoDiscordMemberListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/nekoDiscordMemberListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +37,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/BOT/Listener/Listener.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="JupyterTrust" id="d930e995-acfd-410f-be90-790eb236b5e3" />
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
@@ -69,7 +54,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ritobot-logger" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../blitz-bot" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -86,7 +71,7 @@
       <recent name="BOT.Commands.Moderator" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.DiscordBOT [shadowJar]">
+  <component name="RunManager" selected="애플리케이션.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="BOT.App" />
       <module name="DiscordBOT.main" />
@@ -150,8 +135,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.DiscordBOT [shadowJar]" />
         <item itemvalue="애플리케이션.App" />
+        <item itemvalue="Gradle.DiscordBOT [shadowJar]" />
         <item itemvalue="Gradle.DiscordBOT [dependencies]" />
       </list>
     </recent_temporary>
@@ -200,7 +185,10 @@
       <workItem from="1614938484863" duration="9613000" />
       <workItem from="1615462558691" duration="94000" />
       <workItem from="1615462685242" duration="58000" />
-      <workItem from="1616491024551" duration="1799000" />
+      <workItem from="1616491024551" duration="1981000" />
+      <workItem from="1616997703757" duration="2811000" />
+      <workItem from="1617357718809" duration="11304000" />
+      <workItem from="1617983325993" duration="7413000" />
     </task>
     <servers />
   </component>

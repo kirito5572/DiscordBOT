@@ -87,7 +87,7 @@ public class Listener extends ListenerAdapter {
         if(channelId == null) {
             channelId = "0";
         }
-        if (event.getMessage().getContentRaw().startsWith(Constants.PREFIX)) {
+        if (event.getMessage().getContentRaw().startsWith(App.getPREFIX())) {
             if(!channelId.equals(event.getChannel().getId())) {
                 if(!channelId.equals("error")) {
                     if(!channelId.equals("0")) {
