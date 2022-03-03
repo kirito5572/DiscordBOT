@@ -4,6 +4,8 @@
 /build/resources/
 /build/tmp/
 .idea
+BOT
+.BOT
 out
 gradle
 

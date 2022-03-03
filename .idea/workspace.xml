@@ -5,11 +5,284 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd8e5d3e-5add-4926-baff-840c821349c0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/AirInformationCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/AirLocalInformationCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/BETACommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/CallCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/CatCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/ColorCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/ColorInfoCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/GAMECO~1/RockPaperScissorsCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/GAMECO~1/WordGameCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/GameCommand/DICECommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/GameCommand/OddOrEvenCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/GameCommand/RockPaperScissorsCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/GameCommand/WordGameCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/GameCommand/russianRouletteCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/HelpCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/MODERA~1/MemberCount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/MODERA~1/UnmuteCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/MODERA~1/botIpAddressCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/MODERA~1/configCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/Moderator/BanCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/Moderator/ClearCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/Moderator/KickCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/Moderator/MemberCount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/Moderator/MessagePinCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/Moderator/MuteCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/Moderator/OwnerChattingToServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/Moderator/SlashSetupCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/Moderator/UnbanCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/Moderator/UnmuteCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/Moderator/botipAddressCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/Moderator/configCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/Moderator/giveroleCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/Moderator/pollCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/Moderator/publicExecutionCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/ONIGIRIServerCustom/ONIGIRICommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/PPCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/PingCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/SayCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/ServerInfoCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/TESTCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/TwitchCommand/StreamerSearchCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/UnusedColorCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/UserInfoCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/VendingMachineCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/VersionCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/WeatherCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/inviteCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/lewdnekoCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/naverCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/owneronlycommand/BotOwnerNoticeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/owneronlycommand/evalCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/owneronlycommand/getGuildsInformationCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/commands/main/upTimeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/listener/logger/Listener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/listener/logger/LoggerListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/listener/main/CroissantRoleListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/listener/main/Listener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/listener/main/MemberCountListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/listener/main/MuteListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/listener/main/ONIGIRIListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/listener/main/SteamServerStatusListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/listener/main/activityChangeListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/listener/main/filterListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/listener/main/messagePinListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/listener/main/nekoDiscordMemberListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/listener/main/salListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/listener/main/workHomeListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/objects/logger/SQL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/objects/logger/config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/objects/main/CommandList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/objects/main/CommandManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/objects/main/EventPackage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/objects/main/FilterList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/objects/main/ICommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/objects/main/ONIGIRIList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/objects/main/SQL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/objects/main/airKoreaList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/objects/main/config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/objects/main/getAirData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/objects/main/getAirLocalData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/objects/main/getWeather.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/objects/main/linkConfirm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kirito5572/objects/main/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/ruby0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/ruby0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/Listener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/Listener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BOT/Listener/nekoDiscordMemberListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/BOT/Listener/nekoDiscordMemberListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/Listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/Listener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/nekoDiscordMemberListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BOT/Listener/nekoDiscordMemberListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/AirInforCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/AirLocalInforCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/BETACommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/CallCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/CatCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/ColorCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/ColorInfoCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/GameCommand/DICECommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/GameCommand/OddOrEvenCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/GameCommand/RockPaperScissorsCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/GameCommand/WordGameCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/GameCommand/russianRouletteCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/HelpCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Moderator/BanCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Moderator/ClearCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Moderator/KickCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Moderator/MemberCount.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Moderator/MessagePinCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Moderator/OwnerChattingToServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Moderator/UnbanCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Moderator/botipAddressCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Moderator/configCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Moderator/giveroleCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Moderator/pollCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/Moderator/publicExecutionCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/ONIGIRIServerCustom/ONIGIRICommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/PPCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/PingCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/SayCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/ServerInfoCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/TESTCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/TwitchCommand/StreamerSearchCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/UnusedColorCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/UserInfoCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/VersionCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/WeatherCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/_OwnerOnlyCommand/BotOwnerNoticeCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/_OwnerOnlyCommand/evalCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/_OwnerOnlyCommand/getGuildsInforCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/inviteCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/lewdnekoCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/naverCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Commands/upTimeCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Constants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/CroissantRoleListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/Listener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/MemberCountListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/ONIGIRIListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/SteamServerStatusListener$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/SteamServerStatusListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/activityChangeListener$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/activityChangeListener$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/activityChangeListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/filterListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/messagePinListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/muteListener$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/muteListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/nekoDiscordMemberListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/salListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/workHomeListener$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Listener/workHomeListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$10.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$11.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$12.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$13.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$14.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$15.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$16.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$17.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$18.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$19.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$20.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$21.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$22.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$23.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$24.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$25.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$26.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$27.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$28.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$29.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$30.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$31.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$32.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$33.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$34.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$35.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$36.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$37.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager$9.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/CommandManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/FilterList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/ONIGIRIList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/SQL.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/airKoreaList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/config.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/getAirData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/getAirLocalData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/getSteamID.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/getWeather.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/Objects/linkConfirm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/BOT/objects/ICommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/shadowJar/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/shadowJar/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid216728.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid314008.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid89380.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/AirInforCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/AirLocalInforCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/BETACommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/CallCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/CatCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/ColorCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/ColorInfoCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/GameCommand/DICECommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/GameCommand/OddOrEvenCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/GameCommand/RockPaperScissorsCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/GameCommand/WordGameCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/GameCommand/russianRouletteCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/HelpCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/BanCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/ClearCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/KickCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/MemberCount.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/MessagePinCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/MuteCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/OwnerChattingToServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/UnbanCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/UnmuteCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/botipAddressCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/configCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/giveroleCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/pollCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/Moderator/publicExecutionCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/ONIGIRIServerCustom/ONIGIRICommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/PPCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/PingCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/SayCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/ServerInfoCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/TESTCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/TwitchCommand/StreamerSearchCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/UnusedColorCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/UserInfoCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/VendingMachineCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/VersionCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/WeatherCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/_OwnerOnlyCommand/BotOwnerNoticeCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/_OwnerOnlyCommand/evalCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/_OwnerOnlyCommand/getGuildsInforCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/inviteCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/lewdnekoCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/naverCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Commands/upTimeCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/CroissantRoleListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/Listener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/MemberCountListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/MuteListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/ONIGIRIListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/SteamServerStatusListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/activityChangeListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/filterListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/messagePinListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/nekoDiscordMemberListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/salListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/Listener/workHomeListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/CommandManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/FilterList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/ICommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/ONIGIRIList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/SQL.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/airKoreaList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/config.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/getAirData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/getAirLocalData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/getSteamID.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/getWeather.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/linkConfirm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BOT/objects/test.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +300,36 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DiscordBOT" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DiscordBOT" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DiscordBOT" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -37,24 +340,25 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/BOT/Listener/Listener.java" root0="SKIP_INSPECTION" />
-  </component>
   <component name="JupyterTrust" id="d930e995-acfd-410f-be90-790eb236b5e3" />
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1apnuA2w7cDt5wjJSqCMgN91zjm" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../blitz-bot" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/kirito5572/listener/main" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -64,24 +368,38 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\GitHub\DiscordBOT\src\main\java\com\kirito5572\listener\main" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="BOT.Commands.Moderator" />
     </key>
   </component>
-  <component name="RunManager" selected="애플리케이션.App">
-    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="BOT.App" />
+  <component name="RunManager" selected="Gradle.DiscordBOT [shadowJar]">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.kirito5572.App" />
       <module name="DiscordBOT.main" />
-      <option name="VM_PARAMETERS" value="-Djava.library.path=&quot;C:\Program Files\Java\graalvm-ce-java11-windows-amd64-19.3.2\graalvm-ce-java11-19.3.2\lib&quot;" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="BOT.*" />
+          <option name="PATTERN" value="com.kirito5572.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -112,13 +430,34 @@
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
             <option value="shadowJar" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="DiscordBOT [wrapper]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="wrapper" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -129,15 +468,18 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.App" />
       <item itemvalue="Gradle.DiscordBOT [dependencies]" />
       <item itemvalue="Gradle.DiscordBOT [shadowJar]" />
-      <item itemvalue="애플리케이션.App" />
+      <item itemvalue="Gradle.DiscordBOT [wrapper]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="애플리케이션.App" />
         <item itemvalue="Gradle.DiscordBOT [shadowJar]" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="Application.App" />
         <item itemvalue="Gradle.DiscordBOT [dependencies]" />
+        <item itemvalue="Gradle.DiscordBOT [wrapper]" />
       </list>
     </recent_temporary>
   </component>
@@ -189,10 +531,23 @@
       <workItem from="1616997703757" duration="2811000" />
       <workItem from="1617357718809" duration="11304000" />
       <workItem from="1617983325993" duration="7413000" />
+      <workItem from="1646283395752" duration="369000" />
+      <workItem from="1646283776764" duration="525000" />
+      <workItem from="1646286839647" duration="9140000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="net.dv8tion.jda.internal.entities.ReceivedMessage" memberName="components" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

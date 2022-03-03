@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
 Title: rito-bot
-Main-Class: BOT.App
+Main-Class: com.kirito5572.App
 
