@@ -14,72 +14,74 @@ public class evalCommand implements ICommand {
 
     public evalCommand() {
         this.engine = new GroovyShell();
-        this.imports = "import java.io.*\n" +
-                "import java.lang.*\n" +
-                "import java.util.*\n" +
-                "import java.util.Arrays.*\n" +
-                "import java.util.concurrent.*\n" +
-                "import java.sql.*\n" +
-                "import net.dv8tion.jda.api.*\n" +
-                "import net.dv8tion.jda.api.entities.*\n" +
-                "import net.dv8tion.jda.api.entities.impl.*\n" +
-                "import net.dv8tion.jda.api.managers.*\n" +
-                "import net.dv8tion.jda.api.managers.impl.*\n" +
-                "import net.dv8tion.jda.api.utils.*\n" +
-                "import me.duncte123.botcommons.messaging.*\n" +
-                "import net.dv8tion.jda.api.events.message.guild.*\n" +
-                "import net.dv8tion.jda.api.exceptions.*\n" +
-                "import net.dv8tion.jda.api.audio.*\n" +
-                "import net.dv8tion.jda.api.events.*\n" +
-                "import net.dv8tion.jda.api.events.channel.category.update.*\n" +
-                "import net.dv8tion.jda.api.events.channel.category.*\n" +
-                "import net.dv8tion.jda.api.events.channel.priv.*\n" +
-                "import net.dv8tion.jda.api.events.channel.store.update.*\n" +
-                "import net.dv8tion.jda.api.events.channel.store.*\n" +
-                "import net.dv8tion.jda.api.events.channel.text.update.*\n" +
-                "import net.dv8tion.jda.api.events.channel.text.*\n" +
-                "import net.dv8tion.jda.api.events.channel.voice.update.*\n" +
-                "import net.dv8tion.jda.api.events.channel.voice.*\n" +
-                "import net.dv8tion.jda.api.events.emote.update.*\n" +
-                "import net.dv8tion.jda.api.events.emote.*\n" +
-                "import net.dv8tion.jda.api.events.guild.update.*\n" +
-                "import net.dv8tion.jda.api.events.guild.voice.*\n" +
-                "import net.dv8tion.jda.api.events.guild.member.*\n" +
-                "import net.dv8tion.jda.api.events.guild.invite.*\n" +
-                "import net.dv8tion.jda.api.events.guild.override.*\n" +
-                "import net.dv8tion.jda.api.events.guild.*\n" +
-                "import net.dv8tion.jda.api.events.http.*\n" +
-                "import net.dv8tion.jda.api.events.message.guild.*\n" +
-                "import net.dv8tion.jda.api.events.message.guild.react.*\n" +
-                "import net.dv8tion.jda.api.events.message.react.*\n" +
-                "import net.dv8tion.jda.api.events.message.priv.react.*\n" +
-                "import net.dv8tion.jda.api.events.message.priv.*\n" +
-                "import net.dv8tion.jda.api.events.message.*\n" +
-                "import net.dv8tion.jda.api.events.role.*\n" +
-                "import net.dv8tion.jda.api.events.role.update.*\n" +
-                "import net.dv8tion.jda.api.events.self.*\n" +
-                "import net.dv8tion.jda.api.events.role.*\n" +
-                "import net.dv8tion.jda.api.events.role.update.*\n" +
-                "import net.dv8tion.jda.api.events.*\n" +
-                "import net.dv8tion.jda.api.managers.*\n" +
-                "import me.duncte123.botcommons.*\n" +
-                "import me.duncte123.botcommons.text.*\n" +
-                "import me.duncte123.botcommons.commands.*\n" +
-                "import me.duncte123.botcommons.config.*\n" +
-                "import me.duncte123.botcommons.messaging.*\n" +
-                "import me.duncte123.botcommons.web.*\n" +
-                "import BOT.Listener.*\n" +
-                "import BOT.Commands.*\n" +
-                "import BOT.Commands._OwnerOnlyCommand.*\n" +
-                "import BOT.Commands.GameCommand.*;\n" +
-                "import BOT.Commands.Moderator.*\n" +
-                "import BOT.Commands.ONIGIRIServerCustom.*\n" +
-                "import BOT.Commands.SharkyCustomCommand.*\n" +
-                "import BOT.Commands.TwitchCommand.*\n" +
-                "import BOT.Objects.*\n" +
-                "import BOT.*\n" +
-                "import com.google.gson.*\n" +
-                "import org.hyperic.sigar.*\n";
+        this.imports = """
+                import java.io.*
+                import java.lang.*
+                import java.util.*
+                import java.util.Arrays.*
+                import java.util.concurrent.*
+                import java.sql.*
+                import net.dv8tion.jda.api.*
+                import net.dv8tion.jda.api.entities.*
+                import net.dv8tion.jda.api.entities.impl.*
+                import net.dv8tion.jda.api.managers.*
+                import net.dv8tion.jda.api.managers.impl.*
+                import net.dv8tion.jda.api.utils.*
+                import me.duncte123.botcommons.messaging.*
+                import net.dv8tion.jda.api.events.message.guild.*
+                import net.dv8tion.jda.api.exceptions.*
+                import net.dv8tion.jda.api.audio.*
+                import net.dv8tion.jda.api.events.*
+                import net.dv8tion.jda.api.events.channel.category.update.*
+                import net.dv8tion.jda.api.events.channel.category.*
+                import net.dv8tion.jda.api.events.channel.priv.*
+                import net.dv8tion.jda.api.events.channel.store.update.*
+                import net.dv8tion.jda.api.events.channel.store.*
+                import net.dv8tion.jda.api.events.channel.text.update.*
+                import net.dv8tion.jda.api.events.channel.text.*
+                import net.dv8tion.jda.api.events.channel.voice.update.*
+                import net.dv8tion.jda.api.events.channel.voice.*
+                import net.dv8tion.jda.api.events.emote.update.*
+                import net.dv8tion.jda.api.events.emote.*
+                import net.dv8tion.jda.api.events.guild.update.*
+                import net.dv8tion.jda.api.events.guild.voice.*
+                import net.dv8tion.jda.api.events.guild.member.*
+                import net.dv8tion.jda.api.events.guild.invite.*
+                import net.dv8tion.jda.api.events.guild.override.*
+                import net.dv8tion.jda.api.events.guild.*
+                import net.dv8tion.jda.api.events.http.*
+                import net.dv8tion.jda.api.events.message.guild.*
+                import net.dv8tion.jda.api.events.message.guild.react.*
+                import net.dv8tion.jda.api.events.message.react.*
+                import net.dv8tion.jda.api.events.message.priv.react.*
+                import net.dv8tion.jda.api.events.message.priv.*
+                import net.dv8tion.jda.api.events.message.*
+                import net.dv8tion.jda.api.events.role.*
+                import net.dv8tion.jda.api.events.role.update.*
+                import net.dv8tion.jda.api.events.self.*
+                import net.dv8tion.jda.api.events.role.*
+                import net.dv8tion.jda.api.events.role.update.*
+                import net.dv8tion.jda.api.events.*
+                import net.dv8tion.jda.api.managers.*
+                import me.duncte123.botcommons.*
+                import me.duncte123.botcommons.text.*
+                import me.duncte123.botcommons.commands.*
+                import me.duncte123.botcommons.config.*
+                import me.duncte123.botcommons.messaging.*
+                import me.duncte123.botcommons.web.*
+                import BOT.Listener.*
+                import BOT.Commands.*
+                import BOT.Commands._OwnerOnlyCommand.*
+                import BOT.Commands.GameCommand.*;
+                import BOT.Commands.Moderator.*
+                import BOT.Commands.ONIGIRIServerCustom.*
+                import BOT.Commands.SharkyCustomCommand.*
+                import BOT.Commands.TwitchCommand.*
+                import BOT.Objects.*
+                import BOT.*
+                import com.google.gson.*
+                import org.hyperic.sigar.*
+                """;
     }
 
     @Override
