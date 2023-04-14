@@ -43,7 +43,7 @@ public class configCommand implements ICommand {
 
     @Override
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
-        if (!Objects.requireNonNull(event.getMember()).hasPermission(Permission.ADMINISTRATOR)) {
+        if (!Objects.requireNonNull(event.member()).hasPermission(Permission.ADMINISTRATOR)) {
             if (!event.getAuthor().getId().equals(Listener.getID1())) {
                 return;
             }
@@ -72,27 +72,23 @@ public class configCommand implements ICommand {
                             "예: " + App.getPREFIX() + getInvoke() + " " + "-filter" + " 활성화");
         } else {
             switch (args.get(0)) {
-                case "stat":
-                case "-s":
-                    builder = EmbedUtils.getDefaultEmbed()
-                            .setTitle(event.getGuild().getName() + "서버의 설정")
-                            .addField("색 커맨드", configData.colorCommand ? "활성화" : "비활성화", false)
-                            .addField("역할 색 커맨드", configData.roleColorCommand ? "있음" : "없음", false)
-                            .addField("욕설 필터", configData.filter ? "활성화" : "비활성화", false)
-                            .addField("링크 차단", configData.linkFilter ? "활성화" : "비활성화", false)
-                            .addField("공개 처형", configData.executionCommand ? "활성화" : "비활성화", false)
-                            .addField("후방주의네코 커맨드", configData.lewdCommand ? "활성화" : "비활성화", false)
-                            .addField("채팅 로그", configData.enableChatLog ? configData.channelLogChannelId : "비활성화", false)
-                            .addField("채널 로그", configData.enableChannelLog ? configData.channelLogChannelId : "비활성화", false)
-                            .addField("멤버 로그", configData.enableMemberLog ? configData.memberLogChannelId : "비활성화", false)
-                            .addField("공지 채널 설정", configData.enableNotice ? configData.noticeChannelId : "없음", false)
-                            .addField("필터링 / 제재 로그", configData.enableFilterLog ? configData.filterChannelId : "없음", false)
-                            .addField("봇 채널", configData.enableBotChannel ? configData.botChannelId : "없음", false)
-                            .addField("멤버 로그 채널", configData.enableMemberLog ? configData.memberLogChannelId : "없음", false)
-                            .addField("커스텀 필터", configData.enableCustomFilter ? "활성화" : "비활성화", false);
-                    break;
-                case "guildcolor":
-                case "-g":
+                case "stat", "-s" -> builder = EmbedUtils.getDefaultEmbed()
+                        .setTitle(event.getGuild().getName() + "서버의 설정")
+                        .addField("색 커맨드", configData.colorCommand ? "활성화" : "비활성화", false)
+                        .addField("역할 색 커맨드", configData.roleColorCommand ? "있음" : "없음", false)
+                        .addField("욕설 필터", configData.filter ? "활성화" : "비활성화", false)
+                        .addField("링크 차단", configData.linkFilter ? "활성화" : "비활성화", false)
+                        .addField("공개 처형", configData.executionCommand ? "활성화" : "비활성화", false)
+                        .addField("후방주의네코 커맨드", configData.lewdCommand ? "활성화" : "비활성화", false)
+                        .addField("채팅 로그", configData.enableChatLog ? configData.channelLogChannelId : "비활성화", false)
+                        .addField("채널 로그", configData.enableChannelLog ? configData.channelLogChannelId : "비활성화", false)
+                        .addField("멤버 로그", configData.enableMemberLog ? configData.memberLogChannelId : "비활성화", false)
+                        .addField("공지 채널 설정", configData.enableNotice ? configData.noticeChannelId : "없음", false)
+                        .addField("필터링 / 제재 로그", configData.enableFilterLog ? configData.filterChannelId : "없음", false)
+                        .addField("봇 채널", configData.enableBotChannel ? configData.botChannelId : "없음", false)
+                        .addField("멤버 로그 채널", configData.enableMemberLog ? configData.memberLogChannelId : "없음", false)
+                        .addField("커스텀 필터", configData.enableCustomFilter ? "활성화" : "비활성화", false);
+                case "guildcolor", "-g" -> {
                     if (args.size() >= 2) {
                         if (args.get(1).equals("활성화")) {
                             SQL.configSetup(guildId, SQL.color_guild, "0");
@@ -103,9 +99,8 @@ public class configCommand implements ICommand {
                                     "현재 입력한 옵션값: " + args.get(1)).queue();
                         }
                     }
-                    break;
-                case "filter":
-                case "-f":
+                }
+                case "filter", "-f" -> {
                     if (args.size() >= 2) {
                         if (args.get(1).equals("활성화")) {
                             SQL.configSetup(guildId, SQL.filter, "0");
@@ -116,9 +111,8 @@ public class configCommand implements ICommand {
                                     "현재 입력한 옵션값: " + args.get(1)).queue();
                         }
                     }
-                    break;
-                case "linkfilter":
-                case "-lf":
+                }
+                case "linkfilter", "-lf" -> {
                     if (args.size() >= 2) {
                         if (args.get(1).equals("활성화")) {
                             SQL.configSetup(guildId, SQL.link_filter, "0");
@@ -129,9 +123,8 @@ public class configCommand implements ICommand {
                                     "현재 입력한 옵션값: " + args.get(1)).queue();
                         }
                     }
-                    break;
-                case "killfilter":
-                case "-kf":
+                }
+                case "killfilter", "-kf" -> {
                     if (args.size() >= 2) {
                         if (args.get(1).equals("활성화")) {
                             SQL.configSetup(guildId, SQL.kill_filter, "0");
@@ -142,9 +135,8 @@ public class configCommand implements ICommand {
                                     "현재 입력한 옵션값: " + args.get(1)).queue();
                         }
                     }
-                    break;
-                case "lewdneko":
-                case "-ln":
+                }
+                case "lewdneko", "-ln" -> {
                     if (args.size() >= 2) {
                         if (args.get(1).equals("활성화")) {
                             SQL.configSetup(guildId, SQL.lewdneko, "0");
@@ -155,9 +147,8 @@ public class configCommand implements ICommand {
                                     "현재 입력한 옵션값: " + args.get(1)).queue();
                         }
                     }
-                    break;
-                case "guildcolorrole":
-                case "-gr":
+                }
+                case "guildcolorrole", "-gr" -> {
                     if (args.size() >= 2) {
                         if (args.get(1).equals("비활성화")) {
                             SQL.configSetup(guildId, SQL.color_role, "1");
@@ -187,18 +178,13 @@ public class configCommand implements ICommand {
                                 .addField("삭제", "색 명령어 사용이 가능한 역할을 제거합니다.", false)
                                 .addField("현재 등록된 색 명령어 사용 가능한 역할", stringBuilder.toString(), false);
                     }
-                    break;
-                case "chatlog":
-                case "-cl":
+                }
+                case "chatlog", "-cl" -> {
                     if (args.size() >= 2) {
                         switch (args.get(1)) {
-                            case "활성화":
-                                SQL.configSetup(guildId, SQL.textLogging, "0");
-                                break;
-                            case "비활성화":
-                                SQL.configSetup(guildId, SQL.textLogging, "1");
-                                break;
-                            case "채널":
+                            case "활성화" -> SQL.configSetup(guildId, SQL.textLogging, "0");
+                            case "비활성화" -> SQL.configSetup(guildId, SQL.textLogging, "1");
+                            case "채널" -> {
                                 String channelId;
                                 try {
                                     channelId = args.get(2);
@@ -208,25 +194,18 @@ public class configCommand implements ICommand {
                                     return;
                                 }
                                 SQL.configSetup(guildId, "", channelId, SQL.textLogging);
-                                break;
-                            default:
-                                event.getChannel().sendMessage("활성화/비활성화/채널 옵션을 입력해주세요 \n" +
-                                        "현재 입력한 옵션값: " + args.get(1)).queue();
-                                break;
+                            }
+                            default -> event.getChannel().sendMessage("활성화/비활성화/채널 옵션을 입력해주세요 \n" +
+                                    "현재 입력한 옵션값: " + args.get(1)).queue();
                         }
                     }
-                    break;
-                case "channellog":
-                case "-chl":
+                }
+                case "channellog", "-chl" -> {
                     if (args.size() >= 2) {
                         switch (args.get(1)) {
-                            case "활성화":
-                                SQL.configSetup(guildId, SQL.channelLogging, "0");
-                                break;
-                            case "비활성화":
-                                SQL.configSetup(guildId, SQL.channelLogging, "1");
-                                break;
-                            case "채널":
+                            case "활성화" -> SQL.configSetup(guildId, SQL.channelLogging, "0");
+                            case "비활성화" -> SQL.configSetup(guildId, SQL.channelLogging, "1");
+                            case "채널" -> {
                                 String channelId;
                                 try {
                                     channelId = args.get(2);
@@ -236,25 +215,18 @@ public class configCommand implements ICommand {
                                     return;
                                 }
                                 SQL.configSetup(guildId, "", channelId, SQL.channelLogging);
-                                break;
-                            default:
-                                event.getChannel().sendMessage("활성화/비활성화/채널 옵션을 입력해주세요 \n" +
-                                        "현재 입력한 옵션값: " + args.get(1)).queue();
-                                break;
+                            }
+                            default -> event.getChannel().sendMessage("활성화/비활성화/채널 옵션을 입력해주세요 \n" +
+                                    "현재 입력한 옵션값: " + args.get(1)).queue();
                         }
                     }
-                    break;
-                case "memberlog":
-                case "-ml":
+                }
+                case "memberlog", "-ml" -> {
                     if (args.size() >= 2) {
                         switch (args.get(1)) {
-                            case "활성화":
-                                SQL.configSetup(guildId, SQL.memberLogging, "0");
-                                break;
-                            case "비활성화":
-                                SQL.configSetup(guildId, SQL.memberLogging, "1");
-                                break;
-                            case "채널":
+                            case "활성화" -> SQL.configSetup(guildId, SQL.memberLogging, "0");
+                            case "비활성화" -> SQL.configSetup(guildId, SQL.memberLogging, "1");
+                            case "채널" -> {
                                 String channelId;
                                 try {
                                     channelId = args.get(2);
@@ -264,16 +236,13 @@ public class configCommand implements ICommand {
                                     return;
                                 }
                                 SQL.configSetup(guildId, "", channelId, SQL.memberLogging);
-                                break;
-                            default:
-                                event.getChannel().sendMessage("활성화/비활성화/채널 옵션을 입력해주세요 \n" +
-                                        "현재 입력한 옵션값: " + args.get(1)).queue();
-                                break;
+                            }
+                            default -> event.getChannel().sendMessage("활성화/비활성화/채널 옵션을 입력해주세요 \n" +
+                                    "현재 입력한 옵션값: " + args.get(1)).queue();
                         }
                     }
-                    break;
-                case "notice":
-                case "-n":
+                }
+                case "notice", "-n" -> {
                     if (args.size() >= 2) {
                         if (args.get(1).equals("활성화")) {
                             SQL.configSetup(guildId, "0", args.get(2), SQL.notice);
@@ -296,9 +265,8 @@ public class configCommand implements ICommand {
                                 .addField("현재 등록된 채널 ID", channelId, false)
                                 .setFooter("공지사항 채널은 한번 등록하면 삭제할 수 없습니다. 비활성화만 가능합니다.");
                     }
-                    break;
-                case "filterlog":
-                case "-fl":
+                }
+                case "filterlog", "-fl" -> {
                     if (args.size() >= 2) {
                         if (args.get(1).equals("활성화")) {
                             SQL.configSetup(guildId, "0", args.get(2), SQL.filterlog);
@@ -321,9 +289,8 @@ public class configCommand implements ICommand {
                                 .addField("현재 등록된 채널 ID", channelId, false)
                                 .setFooter("필터링 로그 채널은 한번 등록하면 삭제할 수 없습니다. 비활성화만 가능합니다.");
                     }
-                    break;
-                case "botchannel":
-                case "-bc":
+                }
+                case "botchannel", "-bc" -> {
                     if (args.size() >= 2) {
                         if (args.get(1).equals("활성화")) {
                             SQL.configSetup(guildId, "0", args.get(2), SQL.botchannel);
@@ -346,48 +313,43 @@ public class configCommand implements ICommand {
                                 .addField("현재 등록된 채널 ID", channelId, false)
                                 .setFooter("봇 채널은 한번 등록하면 삭제할 수 없습니다. 비활성화만 가능합니다.");
                     }
-                    break;
-                case "customfilter":
-                case "-cf":
+                }
+                case "customfilter", "-cf" -> {
                     if (args.size() >= 2) {
                         switch (args.get(1)) {
-                            case "활성화":
-                                SQL.configSetup(guildId, "0", "", SQL.customFilter);
-                                break;
-                            case "비활성화":
-                                SQL.configSetup(guildId, "1", "", SQL.customFilter);
-                                break;
-                            case "추가":
-                                String[] a = SQL.configDownLoad_array(guildId, SQL.customFilter);
-                                List<String> list = Arrays.asList(a);
-                                list = new ArrayList<>(list);
-                                list.remove("none");
+                            case "활성화" -> SQL.configSetup(guildId, "0", "", SQL.customFilter);
+                            case "비활성화" -> SQL.configSetup(guildId, "1", "", SQL.customFilter);
+                            case "추가" -> {
+                                String[] a1 = SQL.configDownLoad_array(guildId, SQL.customFilter);
+                                List<String> list1 = Arrays.asList(a1);
+                                list1 = new ArrayList<>(list1);
+                                list1.remove("none");
                                 for (int i = 2; i < args.size(); i++) {
                                     String da = args.get(i).replace(",", "");
-                                    System.out.println(list.add(da));
+                                    System.out.println(list1.add(da));
                                 }
-                                if (list.isEmpty()) {
+                                if (list1.isEmpty()) {
                                     event.getChannel().sendMessage("추가할 단어가 없었습니다.").queue();
                                     return;
                                 }
-                                list.remove("none");
-                                SQL.configSetup(guildId, list);
-                                break;
-                            case "제거":
-                                a = SQL.configDownLoad_array(guildId, SQL.customFilter);
-                                list = Arrays.asList(a);
-                                list = new ArrayList<>(list);
+                                list1.remove("none");
+                                SQL.configSetup(guildId, list1);
+                            }
+                            case "제거" -> {
+                                String[] a2 = SQL.configDownLoad_array(guildId, SQL.customFilter);
+                                List<String> list2 = Arrays.asList(a2);
+                                list2 = new ArrayList<>(list2);
                                 for (int i = 2; i < args.size(); i++) {
-                                    list.remove(args.get(i).replace(",", ""));
+                                    list2.remove(args.get(i).replace(",", ""));
                                 }
-                                if (list.isEmpty()) {
+                                if (list2.isEmpty()) {
                                     event.getChannel().sendMessage("제거할 단어가 없었습니다.").queue();
                                     return;
                                 }
-                                list.remove("none");
-                                SQL.configSetup(guildId, list);
-                                break;
-                            case "조회":
+                                list2.remove("none");
+                                SQL.configSetup(guildId, list2);
+                            }
+                            case "조회" -> {
                                 String[] data = SQL.configDownLoad_array(guildId, SQL.customFilter);
                                 StringBuilder stringBuilder = new StringBuilder();
                                 for (String c : data) {
@@ -396,18 +358,16 @@ public class configCommand implements ICommand {
                                 builder = EmbedUtils.getDefaultEmbed()
                                         .setTitle("커스텀 필터링 단어 목록")
                                         .setDescription(stringBuilder.substring(0, stringBuilder.toString().length() - 2));
-                                break;
-                            default:
-                                builder = EmbedUtils.getDefaultEmbed()
-                                        .setTitle("커스텀 필터링 안내")
-                                        .setDescription("사용법: " + App.getPREFIX() + getInvoke() + " customfilter 활성화/비활성화\n" +
-                                                App.getPREFIX() + getInvoke() + " customfilter 추가/삭제 단어")
-                                        .addField("활성화", "커스텀 필터링을 활성화 합니다.", false)
-                                        .addField("비활성화", "커스텀 필터링을 비활성화 합니다", false)
-                                        .addField("조회", "커스텀 필터링 단어 목록을 조회합니다.", false)
-                                        .addField("추가 <단어1 단어2 단어3...>", "커스텀 필터링 단어 목록을 추가합니다", false)
-                                        .addField("삭제 <단어1 단어2 단어3...>", "커스텀 필터링 단어 목록을 삭제합니다", false);
-                                break;
+                            }
+                            default -> builder = EmbedUtils.getDefaultEmbed()
+                                    .setTitle("커스텀 필터링 안내")
+                                    .setDescription("사용법: " + App.getPREFIX() + getInvoke() + " customfilter 활성화/비활성화\n" +
+                                            App.getPREFIX() + getInvoke() + " customfilter 추가/삭제 단어")
+                                    .addField("활성화", "커스텀 필터링을 활성화 합니다.", false)
+                                    .addField("비활성화", "커스텀 필터링을 비활성화 합니다", false)
+                                    .addField("조회", "커스텀 필터링 단어 목록을 조회합니다.", false)
+                                    .addField("추가 <단어1 단어2 단어3...>", "커스텀 필터링 단어 목록을 추가합니다", false)
+                                    .addField("삭제 <단어1 단어2 단어3...>", "커스텀 필터링 단어 목록을 삭제합니다", false);
                         }
                     } else {
                         builder = EmbedUtils.getDefaultEmbed()
@@ -420,7 +380,7 @@ public class configCommand implements ICommand {
                                 .addField("삭제 <단어1 단어2 단어3...>", "커스텀 필터링 단어 목록을 삭제합니다", false);
 
                     }
-                    break;
+                }
             }
         }
         if(builder != null) {

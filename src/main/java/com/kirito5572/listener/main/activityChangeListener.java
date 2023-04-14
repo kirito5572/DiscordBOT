@@ -30,21 +30,14 @@ public class activityChangeListener extends ListenerAdapter {
                     memberSize += guild.getMembers().size();
                 }
                 switch (i) {
-                    case 0:
-                        Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("도움말:" + App.getPREFIX() + "명령어"));
-                        break;
-                    case 1:
-                        Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing(guilds.size() + "개의 서버, " + memberSize + " 명의 유저"));
-                        break;
-                    case 2:
-                        Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing(getVersion()));
-                        break;
-                    case 3:
-                        Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("버그/개선 사항은 &제작자"));
-                        break;
-                    case 4:
-                        Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("LiODi5572#5572 제작"));
-                        break;
+                    case 0 ->
+                            Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("도움말:" + App.getPREFIX() + "명령어"));
+                    case 1 ->
+                            Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing(guilds.size() + "개의 서버, " + memberSize + " 명의 유저"));
+                    case 2 -> Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing(getVersion()));
+                    case 3 -> Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("버그/개선 사항은 &제작자"));
+                    case 4 ->
+                            Objects.requireNonNull(jda.getPresence()).setActivity(Activity.playing("LiODi5572#5572 제작"));
                 }
                 i++;
                 if (i > 4) {

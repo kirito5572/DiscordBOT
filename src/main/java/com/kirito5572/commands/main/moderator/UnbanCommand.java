@@ -18,9 +18,9 @@ public class UnbanCommand implements ICommand {
     @Override
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
 
-        TextChannel channel = event.getTextChannel();
+        TextChannel channel = event.textChannel();
 
-        if (!Objects.requireNonNull(event.getMember()).hasPermission(Permission.BAN_MEMBERS)) {
+        if (!Objects.requireNonNull(event.member()).hasPermission(Permission.BAN_MEMBERS)) {
             channel.sendMessage("이 명령어를 사용할 권한이 없습니다.").queue();
             return;
         }
@@ -41,7 +41,7 @@ public class UnbanCommand implements ICommand {
         event.getGuild().retrieveBanList().queue((bans) -> {
 
             List<User> goodUsers = bans.stream().filter((ban) -> isCorrectUser(ban, argsJoined))
-                    .map(Guild.Ban::getUser).collect(Collectors.toList());
+                    .map(Guild.Ban::getUser).toList();
 
             if (goodUsers.isEmpty()) {
                 channel.sendMessage("해당 유저는 밴 되지 않았습니다.").queue();

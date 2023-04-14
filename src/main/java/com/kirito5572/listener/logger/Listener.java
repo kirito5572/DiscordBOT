@@ -33,18 +33,17 @@ public class Listener extends ListenerAdapter {
 
         int signalCh;
         int signalCh1;
-        try {
-            File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\OWNER_ID.txt");
-            File file1 = new File("C:\\DiscordServerBotSecrets\\rito-bot\\OWNER_ID1.txt");
-            FileReader fileReader = new FileReader(file);
-            FileReader fileReader1 = new FileReader(file1);
+        File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\OWNER_ID.txt");
+        File file1 = new File("C:\\DiscordServerBotSecrets\\rito-bot\\OWNER_ID1.txt");
 
+        try (FileReader fileReader = new FileReader(file)){
             while((signalCh = fileReader.read()) != -1) {
                 IDReader.append((char)signalCh);
             }
-
-            while((signalCh1 = fileReader1.read()) != -1) {
-                IDReader1.append((char)signalCh1);
+            try (FileReader fileReader1 = new FileReader(file1)) {
+                while((signalCh1 =fileReader1.read())!=-1) {
+                    IDReader1.append((char) signalCh1);
+                }
             }
         } catch (Exception var11) {
             StackTraceElement[] eStackTrace = var11.getStackTrace();

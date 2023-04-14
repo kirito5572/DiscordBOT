@@ -15,21 +15,25 @@ public class WordGameCommand implements ICommand {
     @Override
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
         List<Member> members = new ArrayList<>();
-        members.add(event.getMember());
+        members.add(event.member());
         String startingWord = args.get(args.size() - 1);
         args = args.subList(0, args.size() - 2);
         for(String a : args) {
             List<Member> member = FinderUtil.findMembers(a, event.getGuild());
             members.add(member.get(0));
         }
-        String ID = event.getChannel().sendMessage("끝말 잇기 게임 시작중.....").complete().getId();
-        //독립 쓰레드 실행
-        event.getChannel().editMessageById(ID, "끝말 잇기 게임 초기화중.....").complete();
-        //기본 데이터값 입력
-        TextChannel textChannel = event.getTextChannel();
-        event.getChannel().sendMessage("끝말 잇기 게임을 시작합니다.\n" +
-                "시작 단어: " + startingWord +
-                "\n 참여 인원: " + members.size()).queue();
+        event.getChannel().sendMessage("끝말 잇기 게임 시작중.....").queue(message -> {
+            event.getChannel().editMessageById(message.getId(), "끝말 잇기 게임 초기화중.....").queue(
+                    message1 -> {
+                        //기본 데이터값 입력
+                        TextChannel textChannel = event.textChannel();
+                        textChannel.sendMessage("끝말 잇기 게임을 시작합니다.\n" +
+                                "시작 단어: " + startingWord +
+                                "\n 참여 인원: " + members.size()).queue();
+                    }
+            );
+        });
+
     }
 
     @NotNull

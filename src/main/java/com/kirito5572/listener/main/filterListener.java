@@ -258,8 +258,8 @@ public class filterListener extends ListenerAdapter {
                     try {
                         try {
                             if (Objects.requireNonNull(member).getRoles().contains(guild.getRolesByName("공개 처형", true).get(0))) {
-                                message.delete().complete();
-                                channel.sendMessage("공개처형자 " + author.getAsMention() + ", 링크를 보내지 마세요.").complete().delete().queueAfter(3,TimeUnit.SECONDS);
+                                message.delete().queue();
+                                channel.sendMessage("공개처형자 " + author.getAsMention() + ", 링크를 보내지 마세요.").queue(message1 -> message1.delete().queueAfter(3,TimeUnit.SECONDS));
                                 logger.warn("공개 처형자 링크 필터링이 되었습니다. \n" +
                                         "서버: " + guild.getName() + "\n" +
                                         "이유: " + s + "\n" +
@@ -374,8 +374,8 @@ public class filterListener extends ListenerAdapter {
                                 flag = false;
                             }
                         }
-                        message.delete().complete();
-                        id = channel.sendMessage(messageTemp + "\n " + author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").complete().getId();
+                        message.delete().queue();
+                        channel.sendMessage(messageTemp + "\n " + author.getAsMention() + " 금지어가 포함되어 있어 자동으로 필터링 되어, 필터링 된 문장을 출력합니다.").queue();
                         EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                                 .setTitle("금지어 사용")
                                 .setColor(Color.RED)
@@ -409,37 +409,25 @@ public class filterListener extends ListenerAdapter {
             } catch (Exception e) {
                 return;
             }
-            int time;
-            switch (guild.getId()) {
-                case "453817631603032065":
-                    time = 10;
-                    break;
-                case "600010501266866186":
-                    time = 3;
-                    break;
-                case "661656224181518368":
-                case "607390893804093442":
-                    time = 5;
-                    break;
-                case "617222347425972234":
-                    time = 2;
-                    break;
-                default:
-                    time = 7;
-                    break;
-            }
+            int time = switch (guild.getId()) {
+                case "453817631603032065" -> 10;
+                case "600010501266866186" -> 3;
+                case "661656224181518368", "607390893804093442" -> 5;
+                case "617222347425972234" -> 2;
+                default -> 7;
+            };
             try {
                 if (Objects.requireNonNull(messages.getMember()).getRoles().contains(role)) {
                     if (publicFlag) {
                         channel.deleteMessageById(id).queueAfter(time, TimeUnit.SECONDS);
                         EmbedBuilder embedBuilder = EmbedUtils.getDefaultEmbed()
                                 .addField("공개 처형", "당신의 필터링된 메세지도 " + time + "초후 자동으로 삭제됩니다.", true);
-                        channel.sendMessageEmbeds(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
+                        channel.sendMessageEmbeds(embedBuilder.build()).queue(message1 -> message1.delete().queueAfter(time, TimeUnit.SECONDS));
                     } else {
                         messages.delete().queueAfter(time, TimeUnit.SECONDS);
                         EmbedBuilder embedBuilder = EmbedUtils.getDefaultEmbed()
                                 .addField("공개 처형", "당신의 메세지는 " + time + "초후 자동으로 삭제됩니다.", true);
-                        channel.sendMessageEmbeds(embedBuilder.build()).complete().delete().queueAfter(time, TimeUnit.SECONDS);
+                        channel.sendMessageEmbeds(embedBuilder.build()).queue(message1 -> message1.delete().queueAfter(time, TimeUnit.SECONDS));
                     }
                 }
             } catch (Exception ignored) {

@@ -50,7 +50,7 @@ public class linkConfirm {
                     text = text.substring(1);
                 }
 
-                URL url = new URL("http://" + text);
+                URL url = new URL("https://" + text);
                 link = text;
                 HttpURLConnection connection = (HttpURLConnection)url.openConnection();
                 if (connection.getResponseCode() == 200 || connection.getResponseCode() == 202 || connection.getResponseCode() == 301 || connection.getResponseCode() == 302 || connection.getResponseCode() == 204) {

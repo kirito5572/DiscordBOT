@@ -20,8 +20,8 @@ public class UserInfoCommand implements ICommand {
         Member member;
         Guild guildA = null;
         if(args.isEmpty()) {
-            user = Objects.requireNonNull(event.getMember()).getUser();
-            member = event.getMember();
+            user = Objects.requireNonNull(event.member()).getUser();
+            member = event.member();
             guildA = event.getGuild();
         } else {
             String joined = String.join(" ", args);

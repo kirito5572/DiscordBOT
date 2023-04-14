@@ -16,7 +16,7 @@ import static com.kirito5572.listener.main.MemberCountListener.count;
 public class MemberCount implements ICommand {
     @Override
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
-        if(!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_CHANNEL)) {
+        if(!Objects.requireNonNull(event.member()).hasPermission(Permission.MANAGE_CHANNEL)) {
             event.getChannel().sendMessage("이 명령어를 사용할 권한이 없습니다.").queue();
 
             return;
@@ -31,7 +31,7 @@ public class MemberCount implements ICommand {
         String categoryName = "\uD83D\uDCCB서버 상태\uD83D\uDCCB";
         Category category;
         switch (joined) {
-            case "시작":
+            case "시작" -> {
                 try {
                     category = guild.getCategoriesByName(categoryName, true).get(0);
 
@@ -43,14 +43,12 @@ public class MemberCount implements ICommand {
                 } catch (Exception ignored) {
 
                 }
-
                 guild.createCategory(categoryName)
                         .setPosition(0)
                         .complete();
                 category = guild.getCategoriesByName(categoryName, true).get(0);
                 String memberCountName = "총 멤버 수";
-                category.createVoiceChannel(memberCountName + " : " + guild.getMembers().size()).complete();
-
+                category.createVoiceChannel(memberCountName + " : " + guild.getMembers().size()).queue();
                 int numOfBot = 0;
                 int numOfUser = 0;
                 for (int i = 0; i < guild.getMembers().size(); i++) {
@@ -60,38 +58,34 @@ public class MemberCount implements ICommand {
                         numOfUser++;
                     }
                 }
-
                 String botCountName = "봇 수";
-                category.createVoiceChannel(botCountName + " : " + numOfBot).complete();
+                category.createVoiceChannel(botCountName + " : " + numOfBot).queue();
                 String userCountName = "유저 수";
-                category.createVoiceChannel(userCountName + " : " + numOfUser).complete();
+                category.createVoiceChannel(userCountName + " : " + numOfUser).queue();
                 String channelCountName = "채널 수";
-                category.createVoiceChannel(channelCountName + " : " + (guild.getChannels().size() - guild.getCategories().size())).complete();
+                category.createVoiceChannel(channelCountName + " : " + (guild.getChannels().size() - guild.getCategories().size())).queue();
                 String roleCountName = "역할 갯수";
-                category.createVoiceChannel(roleCountName + " : " + guild.getRoles().size()).complete();
-
+                category.createVoiceChannel(roleCountName + " : " + guild.getRoles().size()).queue();
                 event.getChannel().sendMessage("멤버 카운팅이 시작되었습니다.").queue();
-                break;
-            case "종료":
+            }
+            case "종료" -> {
                 try {
                     category = guild.getCategoriesByName(categoryName, true).get(0);
                     for (int i = 0; i < category.getChannels().size(); i++) {
-                        category.getChannels().get(i).delete().complete();
+                        category.getChannels().get(i).delete().queue();
                     }
-                    category.delete().complete();
+                    category.delete().queue();
                     event.getChannel().sendMessage("멤버 카운팅이 종료되었습니다..").queue();
                 } catch (Exception e) {
                     event.getChannel().sendMessage("멤버 카운팅을 하고 있지 않습니다.").queue();
                 }
-                break;
-            case "새로고침":
+            }
+            case "새로고침" -> {
                 count(guild);
                 event.getChannel().sendMessage("새로고침이 완료되었습니다.").queue();
-                break;
-            default:
-                event.getChannel().sendMessage("그런 인수는 없습니다.\n" +
-                        App.getPREFIX() + getInvoke() + " [시작 / 종료 / 새로고침]").queue();
-                break;
+            }
+            default -> event.getChannel().sendMessage("그런 인수는 없습니다.\n" +
+                    App.getPREFIX() + getInvoke() + " [시작 / 종료 / 새로고침]").queue();
         }
     }
 

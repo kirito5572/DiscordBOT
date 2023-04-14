@@ -15,36 +15,33 @@ public class OwnerChattingToServer implements ICommand {
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
         if(event.getAuthor().getId().equals(Listener.getID1())) {
             switch (args.get(0)) {
-                case "-channel": {
+                case "-channel" -> {
                     List<TextChannel> channels = Objects.requireNonNull(event.getJDA().getGuildById(args.get(1))).getTextChannels();
                     StringBuilder builder = new StringBuilder();
                     for (TextChannel channel : channels) {
                         builder.append(channel.getName()).append("(").append(channel.getId()).append(")").append("\n");
                     }
                     event.getChannel().sendMessage(builder.toString()).queue();
-                    break;
                 }
-                case "-send": {
+                case "-send" -> {
                     StringBuilder builder = new StringBuilder();
                     for (int i = 3; i < args.size(); i++) {
                         builder.append(args.get(i)).append(" ");
                     }
-                    Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById(args.get(1))).getTextChannelById(args.get(2))).sendMessage(builder.toString()).complete();
+                    Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById(args.get(1))).getTextChannelById(args.get(2))).sendMessage(builder.toString()).queue();
                     event.getChannel().sendMessage("전송 완료").queue();
-                    break;
                 }
-                case "-guilds": {
+                case "-guilds" -> {
                     List<Guild> guilds = event.getJDA().getGuilds();
                     StringBuilder builder = new StringBuilder();
                     for (Guild guild : guilds) {
                         builder.append(guild.getName()).append("(").append(guild.getId()).append(")").append("\n");
                     }
                     event.getChannel().sendMessage(builder.toString()).queue();
-                    break;
                 }
             }
         }
-        event.getMessage().delete().queue();
+        event.message().delete().queue();
     }
 
     @NotNull

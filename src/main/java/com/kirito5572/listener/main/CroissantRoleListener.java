@@ -41,7 +41,7 @@ public class CroissantRoleListener extends ListenerAdapter {
 
                         assert role != null;
 
-                        guild.addRoleToMember(member, role).complete();
+                        guild.addRoleToMember(member, role).queue();
                     }
                 } catch (Exception var6) {
                     var6.printStackTrace();
@@ -65,7 +65,7 @@ public class CroissantRoleListener extends ListenerAdapter {
 
                         assert role != null;
 
-                        guild.removeRoleFromMember(member, role).complete();
+                        guild.removeRoleFromMember(member, role).queue();
                     }
                 } catch (Exception var6) {
                     var6.printStackTrace();
@@ -77,11 +77,9 @@ public class CroissantRoleListener extends ListenerAdapter {
 
     public void onReady(@NotNull ReadyEvent event) {
         for(int i = 0; i < files.length; ++i) {
-            try {
-                StringBuilder Chatting_temp = new StringBuilder();
-                File file = files[i];
-                FileReader fileReader = new FileReader(file);
-
+            StringBuilder Chatting_temp = new StringBuilder();
+            File file = files[i];
+            try (FileReader fileReader = new FileReader(file)){
                 int signalCh;
                 while((signalCh = fileReader.read()) != -1) {
                     Chatting_temp.append((char)signalCh);

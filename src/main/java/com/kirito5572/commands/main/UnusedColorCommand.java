@@ -16,14 +16,14 @@ import java.util.Objects;
 public class UnusedColorCommand implements ICommand {
     @Override
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
-        TextChannel channel = event.getTextChannel();
-        if(Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES)) {
+        TextChannel channel = event.textChannel();
+        if(Objects.requireNonNull(event.member()).hasPermission(Permission.MANAGE_ROLES)) {
             List<Member> members = event.getGuild().getMembers();
-            channel.sendMessage(event.getMember().getAsMention() + ", 안 쓰는 색 역할 삭제를 시작합니다.").queue();
+            channel.sendMessage(event.member().getAsMention() + ", 안 쓰는 색 역할 삭제를 시작합니다.").queue();
 
             List<Role> foundRole = FinderUtil.findRoles("#", event.getGuild());
             if(foundRole.isEmpty()) {
-                channel.sendMessage(event.getMember().getAsMention() + ", 삭제 할 역할이 없습니다.").queue();
+                channel.sendMessage(event.member().getAsMention() + ", 삭제 할 역할이 없습니다.").queue();
                 return;
             }
             for (Role value : foundRole) {
@@ -34,12 +34,12 @@ public class UnusedColorCommand implements ICommand {
                     }
                 }
                 if (role_delete) {
-                    channel.sendMessage(value.getAsMention() + " 역할이 삭제되었습니다.").complete();
-                    value.delete().complete();
+                    channel.sendMessage(value.getAsMention() + " 역할이 삭제되었습니다.").queue();
+                    value.delete().queue();
                     System.out.println(value.getAsMention());
                 }
             }
-            channel.sendMessage(event.getMember().getAsMention() + " 색 역할 삭제가 완료되었습니다.").queue();
+            channel.sendMessage(event.member().getAsMention() + " 색 역할 삭제가 완료되었습니다.").queue();
         } else {
             channel.sendMessage("권한이 없습니다.").queue();
         }

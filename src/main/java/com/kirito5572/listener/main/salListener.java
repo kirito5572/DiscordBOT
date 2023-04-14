@@ -16,12 +16,10 @@ public class salListener extends ListenerAdapter {
         Message message = event.getMessage();
         if(!author.isBot()) {
             if (message.getContentRaw().contains("살쨩")) {
-                String id = event.getChannel().sendMessage("살쨩 아냐!").complete().getId();
-                event.getChannel().deleteMessageById(id).queueAfter(3, TimeUnit.SECONDS);
+                event.getChannel().sendMessage("살쨩 아냐!").queue(message1 -> event.getChannel().deleteMessageById(message1.getId()).queueAfter(3, TimeUnit.SECONDS));
             }
             if (message.getContentRaw().contains("살짱")) {
-                String id = event.getChannel().sendMessage("살짱 아냐!").complete().getId();
-                event.getChannel().deleteMessageById(id).queueAfter(3, TimeUnit.SECONDS);
+                event.getChannel().sendMessage("살짱 아냐!").queue(message1 -> event.getChannel().deleteMessageById(message1.getId()).queueAfter(3, TimeUnit.SECONDS));
             }
         }
     }

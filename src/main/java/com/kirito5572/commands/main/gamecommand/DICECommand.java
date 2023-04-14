@@ -14,7 +14,7 @@ public class DICECommand implements ICommand {
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
         int sides = 6;
         int dices = 1;
-        TextChannel channel = event.getTextChannel();
+        TextChannel channel = event.textChannel();
 
         if (!args.isEmpty()) {
             sides = Integer.parseInt(args.get(0));

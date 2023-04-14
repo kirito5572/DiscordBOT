@@ -51,7 +51,7 @@ public class ONIGIRIListener extends ListenerAdapter {
                             return;
                         }
                         try {
-                            event.getChannel().sendFile(file).complete();
+                            event.getChannel().sendFile(file).queue();
                         } catch (Exception e) {
 
                             StackTraceElement[] eStackTrace = e.getStackTrace();

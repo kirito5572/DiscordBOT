@@ -13,28 +13,7 @@ import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 
-public class EventPackage {
-    final TextChannel textChannel;
-    final Member member;
-    final Message message;
-
-    public EventPackage(TextChannel textChannel, Member member, Message message) {
-        this.textChannel = textChannel;
-        this.member = member;
-        this.message = message;
-    }
-
-    public TextChannel getTextChannel() {
-        return this.textChannel;
-    }
-
-    public Member getMember() {
-        return this.member;
-    }
-
-    public Message getMessage() {
-        return this.message;
-    }
+public record EventPackage(TextChannel textChannel, Member member, Message message) {
 
     public JDA getJDA() {
         return this.textChannel.getJDA();

@@ -31,9 +31,8 @@ public class getWeather {
         try {
 
             StringBuilder TOKEN = new StringBuilder();
-            try {
-                File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\weather_key.txt");
-                FileReader fileReader = new FileReader(file);
+            File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\weather_key.txt");
+            try(FileReader fileReader = new FileReader(file)) {
                 int signalCh;
                 while((signalCh = fileReader.read()) != -1) {
                     TOKEN.append((char) signalCh);
@@ -106,8 +105,7 @@ public class getWeather {
             }
              */
             bf.close();
-            JsonParser parser = new JsonParser();
-            JsonObject element = parser.parse(result).getAsJsonObject();
+            JsonObject element = JsonParser.parseString(result).getAsJsonObject();
             JsonArray parse_weather = element.get("weather").getAsJsonArray();
             JsonObject parse_main = element.get("main").getAsJsonObject();
             JsonObject parse_wind = element.get("wind").getAsJsonObject();

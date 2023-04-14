@@ -14,13 +14,16 @@ import java.util.Objects;
 public class getGuildsInformationCommand implements ICommand {
     @Override
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
-        if (Objects.requireNonNull(event.getMember()).getId().equals(Listener.getID1())) {
-            event.getMessage().delete().complete();
+        if (Objects.requireNonNull(event.member()).getId().equals(Listener.getID1())) {
+            event.message().delete().queue();
             StringBuilder stringBuilder = new StringBuilder();
 
             for (Guild guild : event.getJDA().getGuilds()) {
                 try {
-                    stringBuilder.append(guild.getName()).append("(").append(guild.retrieveInvites().complete().get(0)).append(")").append("\n");
+                    guild.retrieveInvites().queue(invites ->
+                        stringBuilder.append(guild.getName()).append("(").append(invites.get(0)).append(")").append("\n")
+                    );
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     stringBuilder.append("\n");

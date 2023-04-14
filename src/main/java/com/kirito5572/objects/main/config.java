@@ -51,7 +51,7 @@ public class config {
         Map<String, List<String>> stringListMap = new HashMap<>();
         for(Map.Entry<String, String> entry : SQL.configDownLoad(SQL.customFilter, true).entrySet()) {
             List<String> arrayList = new ArrayList<>();
-            SQL.Data a = new Gson().fromJson(new JsonParser().parse(entry.getValue()), SQL.Data.class);
+            SQL.Data a = new Gson().fromJson(JsonParser.parseString(entry.getValue()), SQL.Data.class);
             for(JsonElement jsonElement : a.data) {
                 arrayList.add(jsonElement.getAsString());
             }

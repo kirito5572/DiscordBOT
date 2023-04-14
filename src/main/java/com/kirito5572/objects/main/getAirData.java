@@ -45,9 +45,9 @@ public class getAirData {
         String tmY = "error";
         try {
             StringBuilder TOKEN = new StringBuilder();
-            try {
-                File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airKoreaLocationAPIKEY.txt");
-                FileReader fileReader = new FileReader(file);
+            File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airKoreaLocationAPIKEY.txt");
+            try (FileReader fileReader = new FileReader(file)){
+
                 int signalCh;
                 while ((signalCh = fileReader.read()) != -1) {
                     TOKEN.append((char) signalCh);
@@ -61,7 +61,7 @@ public class getAirData {
                 }
                 logger.warn(a.toString());
             }
-            String airKorea_url = "http://apis.data.go.kr/B552584/MsrstnInfoInqireSvc/getTMStdrCrdnt?";
+            String airKorea_url = "https://apis.data.go.kr/B552584/MsrstnInfoInqireSvc/getTMStdrCrdnt?";
             String numOfRows = "10";
             String pageNo = "1";
             String airKorea_serviceKey = TOKEN.toString();
@@ -130,9 +130,8 @@ public class getAirData {
         String stationName = "";
         try {
             StringBuilder TOKEN = new StringBuilder();
-            try {
-                File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airKoreaLocationAPIKEY.txt");
-                FileReader fileReader = new FileReader(file);
+            File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airKoreaLocationAPIKEY.txt");
+            try (FileReader fileReader = new FileReader(file)){
                 int signalCh;
                 while ((signalCh = fileReader.read()) != -1) {
                     TOKEN.append((char) signalCh);
@@ -146,7 +145,7 @@ public class getAirData {
                 }
                 logger.warn(a.toString());
             }
-            String airKorea_url = "http://apis.data.go.kr/B552584/MsrstnInfoInqireSvc/getNearbyMsrstnList?";
+            String airKorea_url = "https://apis.data.go.kr/B552584/MsrstnInfoInqireSvc/getNearbyMsrstnList?";
             String airKorea_serviceKey = TOKEN.toString();
 
             DocumentBuilderFactory airKorea_DB_Factory = DocumentBuilderFactory.newInstance();
@@ -185,9 +184,8 @@ public class getAirData {
         try{
 
             StringBuilder TOKEN = new StringBuilder();
-            try {
-                File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airKoreaAPIKEY.txt");
-                FileReader fileReader = new FileReader(file);
+            File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airKoreaAPIKEY.txt");
+            try (FileReader fileReader = new FileReader(file)){
                 int signalCh;
                 while((signalCh = fileReader.read()) != -1) {
                     TOKEN.append((char) signalCh);

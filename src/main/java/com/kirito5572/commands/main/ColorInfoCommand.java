@@ -12,7 +12,7 @@ import java.util.List;
 public class ColorInfoCommand implements ICommand {
     @Override
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
-        TextChannel channel = event.getTextChannel();
+        TextChannel channel = event.textChannel();
         EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                 .setTitle("색 목록");
         String[][] color = ColorCommand.getColor();

@@ -20,7 +20,7 @@ public class AirLocalInformationCommand implements ICommand {
 
     @Override
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
-        TextChannel channel = event.getTextChannel();
+        TextChannel channel = event.textChannel();
         Member selfMember = event.getGuild().getSelfMember();
         if (!selfMember.hasPermission(Permission.MESSAGE_WRITE)) {
             channel.sendMessage("메세지를 보낼권한이 없습니다.").queue();

@@ -31,10 +31,10 @@ public class MuteCommand implements ICommand {
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd kk:mm");
         String time_st;
-        TextChannel channel = event.getTextChannel();
-        if(!(Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES) ||
-                event.getMember().hasPermission(Permission.ADMINISTRATOR))) {
-            channel.sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
+        TextChannel channel = event.textChannel();
+        if(!(Objects.requireNonNull(event.member()).hasPermission(Permission.MANAGE_ROLES) ||
+                event.member().hasPermission(Permission.ADMINISTRATOR))) {
+            channel.sendMessage(event.member().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
             return;
         }
         if(args.isEmpty()) {
@@ -82,8 +82,7 @@ public class MuteCommand implements ICommand {
             return;
         }
         Role role;
-        try {
-            PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("SELECT * FROM ritobot_config.mute_role_data WHERE guildId=?");
+        try (PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("SELECT * FROM ritobot_config.mute_role_data WHERE guildId=?")){
             preparedStatement.setString(1, event.getGuild().getId());
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) {
@@ -98,8 +97,7 @@ public class MuteCommand implements ICommand {
                     .setPermissions(0L)
                     .setMentionable(false)
                     .setHoisted(true).complete();
-            try {
-                PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("INSERT INTO ritobot_config.mute_role_data VALUES (?, ?)");
+            try (PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("INSERT INTO ritobot_config.mute_role_data VALUES (?, ?)")){
                 preparedStatement.setString(1, event.getGuild().getId());
                 preparedStatement.setString(2, role.getId());
             } catch (Exception e1) {
@@ -177,7 +175,7 @@ public class MuteCommand implements ICommand {
                     .setColor(Color.RED);
             Thread.sleep(1);
         } catch (Exception e) {
-            channel.sendMessage("메세지를 보내기 전에 문제가 발생했습니다.").complete();
+            channel.sendMessage("메세지를 보내기 전에 문제가 발생했습니다.").queue();
 
 
             StackTraceElement[] eStackTrace = e.getStackTrace();
@@ -192,8 +190,7 @@ public class MuteCommand implements ICommand {
         if(role != null) {
             time = time.substring(0, time.length() - 4);
             time += "0000";
-            try {
-                PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("INSERT INTO ritobotDB.mute_Data_List VALUES (?, ?, ?, ?)");
+            try (PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("INSERT INTO ritobotDB.mute_Data_List VALUES (?, ?, ?, ?)")) {
                 preparedStatement.setString(1, event.getGuild().getId());
                 preparedStatement.setString(2, member.getId());
                 preparedStatement.setString(3, sdf.format(new Date()));
@@ -206,7 +203,7 @@ public class MuteCommand implements ICommand {
             }
 
             event.getGuild().addRoleToMember(member, role).queue();
-            Objects.requireNonNull(event.getGuild().getTextChannelById(SQL.configDownLoad(event.getGuild().getId(), SQL.filterlog))).sendMessageEmbeds(builder.build()).complete();
+            Objects.requireNonNull(event.getGuild().getTextChannelById(SQL.configDownLoad(event.getGuild().getId(), SQL.filterlog))).sendMessageEmbeds(builder.build()).queue();
             builder = EmbedUtils.getDefaultEmbed()
                     .setTitle("채팅 금지 제재")
                     .addField("멘션명", member.getAsMention(), false);

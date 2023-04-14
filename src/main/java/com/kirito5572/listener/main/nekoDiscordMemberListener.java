@@ -67,39 +67,39 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
                         e.printStackTrace();
                     }
                     if(emote != null) {
-                        Objects.requireNonNull(guild.getTextChannelById("616452604506931230")).removeReactionById(event.getMessageId(), emote, member.getUser()).complete();
+                        Objects.requireNonNull(guild.getTextChannelById("616452604506931230")).removeReactionById(event.getMessageId(), emote, member.getUser()).queue();
                     } else {
-                        Objects.requireNonNull(guild.getTextChannelById("616452604506931230")).removeReactionById(event.getMessageId(), event.getReactionEmote().getEmoji(), member.getUser()).complete();
+                        Objects.requireNonNull(guild.getTextChannelById("616452604506931230")).removeReactionById(event.getMessageId(), event.getReactionEmote().getEmoji(), member.getUser()).queue();
                     }
-                    member.getUser().openPrivateChannel().complete().sendMessage("휴식자 역할을 부여 받기전 관리직 역할을 부여 받아야 합니다.\n" +
-                            "!join 으로 역할을 부여 받으시기 바랍니다.").complete();
+                    member.getUser().openPrivateChannel().queue(privateChannel -> privateChannel.sendMessage("휴식자 역할을 부여 받기전 관리직 역할을 부여 받아야 합니다.\n" +
+                            "!join 으로 역할을 부여 받으시기 바랍니다.").queue());
                 } else {
                     assert role != null;
-                    guild.addRoleToMember(member, role).complete();
+                    guild.addRoleToMember(member, role).queue();
                 }
             }
         } else if (guild.getId().equals("617222347425972234")) {
             Role role = null;
             Member member = null;
             switch (event.getMessageId()) {
-                case "661969267729629194":
+                case "661969267729629194" -> {
                     role = guild.getRoleById("658290356692975616");
                     member = event.getMember();
-                    assert member != null;
-                    assert role != null;
-                    guild.addRoleToMember(member, role).complete();
-                    break;
-
-                case "668590253786791943":
+                    if(member != null && role != null) {
+                        guild.addRoleToMember(member, role).queue();
+                    }
+                }
+                case "668590253786791943" -> {
                     role = guild.getRoleById("666828960503693338");
                     member = event.getMember();
-                    assert member != null;
-                    assert role != null;
-                    guild.addRoleToMember(member, role).complete();
-                    break;
+                    if(member != null && role != null) {
+                        guild.addRoleToMember(member, role).queue();
+                    }
+                }
             }
             if(member != null) {
-                member.getUser().openPrivateChannel().complete().sendMessage(role.getName() + " 역할 부여!").queue();
+                Role finalRole = role;
+                member.getUser().openPrivateChannel().queue(privateChannel -> privateChannel.sendMessage(finalRole.getName() + " 역할 부여!").queue());
             }
         }
     }
@@ -111,30 +111,30 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
             if (event.getMessageId().equals(Chatting1)) {
                 assert member != null;
                 assert role != null;
-                guild.removeRoleFromMember(member, role).complete();
+                guild.removeRoleFromMember(member, role).queue();
             }
         } else if(guild.getId().equals("617222347425972234")) {
             Role role = null;
             Member member = null;
             switch (event.getMessageId()) {
-                case "661969267729629194":
+                case "661969267729629194" -> {
                     role = guild.getRoleById("658290356692975616");
                     member = event.getMember();
-                    assert member != null;
-                    assert role != null;
-                    guild.removeRoleFromMember(member, role).complete();
-                    break;
-
-                case "668590253786791943":
+                    if(member != null && role != null) {
+                        guild.removeRoleFromMember(member, role).queue();
+                    }
+                }
+                case "668590253786791943" -> {
                     role = guild.getRoleById("666828960503693338");
                     member = event.getMember();
-                    assert member != null;
-                    assert role != null;
-                    guild.removeRoleFromMember(member, role).complete();
-                    break;
+                    if(member != null && role != null) {
+                        guild.removeRoleFromMember(member, role).queue();
+                    }
+                }
             }
             if(member != null) {
-                member.getUser().openPrivateChannel().complete().sendMessage(role.getName() + " 역할 제거!").queue();
+                Role finalRole = role;
+                member.getUser().openPrivateChannel().queue(privateChannel -> privateChannel.sendMessage(finalRole.getName() + " 역할 제거!").queue());
             }
         }
     }
@@ -142,9 +142,8 @@ public class nekoDiscordMemberListener extends ListenerAdapter {
     @Override
     public void onReady(@NotNull ReadyEvent event) {
         StringBuilder Chatting_temp = new StringBuilder();
-        try {
-            File file = new File("C:\\디스코드봇 파일들\\네코디코 리스너\\Chating1.txt");
-            FileReader fileReader = new FileReader(file);
+        File file = new File("C:\\디스코드봇 파일들\\네코디코 리스너\\Chating1.txt");
+        try (FileReader fileReader = new FileReader(file)){
             int signalCh;
             while ((signalCh = fileReader.read()) != -1) {
                 Chatting_temp.append((char) signalCh);

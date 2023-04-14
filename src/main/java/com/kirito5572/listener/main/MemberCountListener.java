@@ -109,52 +109,52 @@ public class MemberCountListener extends ListenerAdapter {
         if (guild.getId().equals("609985979167670272")) {
             memberCountName = "\ud83c\udf3f총 멤버 수";
             if (!category.getChannels().get(0).getName().equals(memberCountName + " : " + guild.getMembers().size())) {
-                category.getChannels().get(0).getManager().setName(memberCountName + " : " + guild.getMembers().size()).complete();
+                category.getChannels().get(0).getManager().setName(memberCountName + " : " + guild.getMembers().size()).queue();
             }
 
             botCountName = "\ud83c\udf3f봇 수";
             if (!category.getChannels().get(1).getName().equals(botCountName + " : " + numOfBot)) {
-                category.getChannels().get(1).getManager().setName(botCountName + " : " + numOfBot).complete();
+                category.getChannels().get(1).getManager().setName(botCountName + " : " + numOfBot).queue();
             }
 
             userCountName = "\ud83c\udf3f유저 수";
             if (!category.getChannels().get(2).getName().equals(userCountName + " : " + numOfUser)) {
-                category.getChannels().get(2).getManager().setName(userCountName + " : " + numOfUser).complete();
+                category.getChannels().get(2).getManager().setName(userCountName + " : " + numOfUser).queue();
             }
 
             channelCountName = "\ud83c\udf3f채널 수";
             if (!category.getChannels().get(3).getName().equals(channelCountName + " : " + (guild.getChannels().size() - guild.getCategories().size()))) {
-                category.getChannels().get(3).getManager().setName(channelCountName + " : " + (guild.getChannels().size() - guild.getCategories().size())).complete();
+                category.getChannels().get(3).getManager().setName(channelCountName + " : " + (guild.getChannels().size() - guild.getCategories().size())).queue();
             }
 
             roleCountName = "\ud83c\udf3f역할 갯수";
             if (!category.getChannels().get(4).getName().equals(roleCountName + " : " + guild.getRoles().size())) {
-                category.getChannels().get(4).getManager().setName(roleCountName + " : " + guild.getRoles().size()).complete();
+                category.getChannels().get(4).getManager().setName(roleCountName + " : " + guild.getRoles().size()).queue();
             }
         } else {
             memberCountName = "총 멤버 수";
             if (!category.getChannels().get(0).getName().equals(memberCountName + " : " + guild.getMembers().size())) {
-                category.getChannels().get(0).getManager().setName(memberCountName + " : " + guild.getMembers().size()).complete();
+                category.getChannels().get(0).getManager().setName(memberCountName + " : " + guild.getMembers().size()).queue();
             }
 
             botCountName = "봇 수";
             if (!category.getChannels().get(1).getName().equals(botCountName + " : " + numOfBot)) {
-                category.getChannels().get(1).getManager().setName(botCountName + " : " + numOfBot).complete();
+                category.getChannels().get(1).getManager().setName(botCountName + " : " + numOfBot).queue();
             }
 
             userCountName = "유저 수";
             if (!category.getChannels().get(2).getName().equals(userCountName + " : " + numOfUser)) {
-                category.getChannels().get(2).getManager().setName(userCountName + " : " + numOfUser).complete();
+                category.getChannels().get(2).getManager().setName(userCountName + " : " + numOfUser).queue();
             }
 
             channelCountName = "채널 수";
             if (!category.getChannels().get(3).getName().equals(channelCountName + " : " + (guild.getChannels().size() - guild.getCategories().size()))) {
-                category.getChannels().get(3).getManager().setName(channelCountName + " : " + (guild.getChannels().size() - guild.getCategories().size())).complete();
+                category.getChannels().get(3).getManager().setName(channelCountName + " : " + (guild.getChannels().size() - guild.getCategories().size())).queue();
             }
 
             roleCountName = "역할 갯수";
             if (!category.getChannels().get(4).getName().equals(roleCountName + " : " + guild.getRoles().size())) {
-                category.getChannels().get(4).getManager().setName(roleCountName + " : " + guild.getRoles().size()).complete();
+                category.getChannels().get(4).getManager().setName(roleCountName + " : " + guild.getRoles().size()).queue();
             }
         }
 

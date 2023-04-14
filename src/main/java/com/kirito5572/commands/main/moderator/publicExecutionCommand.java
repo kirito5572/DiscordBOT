@@ -26,19 +26,19 @@ public class publicExecutionCommand implements ICommand {
     private final Logger logger = LoggerFactory.getLogger(publicExecutionCommand.class);
     @Override
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
-        TextChannel channel = event.getTextChannel();
+        TextChannel channel = event.textChannel();
 
         String joined = String.join(" ", args);
-        if(!Objects.requireNonNull(event.getMember()).getUser().getId().equals(Listener.getID1()) || !event.getMember().getUser().getId().equals(Listener.getID2())) {
-            if (!event.getMember().hasPermission(Permission.MANAGE_ROLES)) {
+        if(!Objects.requireNonNull(event.member()).getUser().getId().equals(Listener.getID1()) || !event.member().getUser().getId().equals(Listener.getID2())) {
+            if (!event.member().hasPermission(Permission.MANAGE_ROLES)) {
                 if(event.getGuild().getId().equals("600010501266866186")) {
-                    if (!event.getMember().getRoles().contains(event.getGuild().getRoleById("600012069559074822"))) {
-                        channel.sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
+                    if (!event.member().getRoles().contains(event.getGuild().getRoleById("600012069559074822"))) {
+                        channel.sendMessage(event.member().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
 
                         return;
                     }
                 } else {
-                    channel.sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
+                    channel.sendMessage(event.member().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
 
                     return;
                 }
@@ -94,24 +94,24 @@ public class publicExecutionCommand implements ICommand {
         assert member != null;
         EmbedBuilder builder;
         if(member.getRoles().contains(role)) {
-            event.getGuild().removeRoleFromMember(member, role).complete();
+            event.getGuild().removeRoleFromMember(member, role).queue();
 
             event.getChannel().sendMessage(member.getEffectiveName() + "을/를 공개 처형 대상자에서 해제 했습니다.").queue();
             builder = EmbedUtils.getDefaultEmbed()
                     .setColor(Color.GREEN)
                     .setTitle("공개 처형자 해제")
                     .addField("대상자", member.getAsMention(), true)
-                    .addField("지정 담당자", event.getMember().getAsMention(), true);
+                    .addField("지정 담당자", event.member().getAsMention(), true);
 
         } else {
-            event.getGuild().addRoleToMember(member, role).complete();
+            event.getGuild().addRoleToMember(member, role).queue();
 
             event.getChannel().sendMessage(member.getEffectiveName() + "을/를 공개 처형 대상자로 지정 했습니다.").queue();
             builder = EmbedUtils.getDefaultEmbed()
                     .setColor(Color.RED)
                     .setTitle("공개 처형자 지정")
                     .addField("대상자", member.getAsMention(), true)
-                    .addField("지정 담당자", event.getMember().getAsMention(), true);
+                    .addField("지정 담당자", event.member().getAsMention(), true);
         }
         String channelId = SQL.configDownLoad(event.getGuild().getId(), SQL.filterlog);
         if(!(channelId == null || channelId.equals("null"))) {
@@ -119,7 +119,7 @@ public class publicExecutionCommand implements ICommand {
         } else {
             logger.error("공개처형 전송중 에러가 발생했습니다!");
         }
-        event.getMessage().delete().queue();
+        event.message().delete().queue();
     }
 
     @NotNull

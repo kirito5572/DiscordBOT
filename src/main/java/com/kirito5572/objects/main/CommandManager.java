@@ -46,7 +46,7 @@ import com.kirito5572.commands.main.moderator.configCommand;
 import com.kirito5572.commands.main.moderator.giveRoleCommand;
 import com.kirito5572.commands.main.moderator.pollCommand;
 import com.kirito5572.commands.main.moderator.publicExecutionCommand;
-import com.kirito5572.commands.main.onigiriservercustom.ONIGIRICommand;
+import com.kirito5572.commands.main.ONIGIRIServerCustom.ONIGIRICommand;
 import com.kirito5572.commands.main.owneronlycommand.BotOwnerNoticeCommand;
 import com.kirito5572.commands.main.owneronlycommand.evalCommand;
 import com.kirito5572.commands.main.owneronlycommand.getGuildsInformationCommand;
@@ -185,7 +185,7 @@ public class CommandManager {
         EventPackage eventPackage = new EventPackage(event.getChannel(), event.getMember(), event.getMessage());
         if (this.commands.containsKey(invoke)) {
             List<String> args = Arrays.asList(split).subList(1, split.length);
-            channel.sendTyping().complete();
+            channel.sendTyping().queue();
             this.commands.get(invoke).handle(args, eventPackage);
         }
 
@@ -550,7 +550,7 @@ public class CommandManager {
                 }
             };
             EventPackage eventPackage = new EventPackage(event.getTextChannel(), event.getMember(), message);
-            event.reply("").complete().deleteOriginal().queueAfter(1L, TimeUnit.SECONDS);
+            event.reply("").queue(interactionHook -> interactionHook.deleteOriginal().queueAfter(3L, TimeUnit.SECONDS));
             this.commands.get(invoke).handle(args, eventPackage);
         }
 

@@ -22,8 +22,7 @@ public class SteamServerStatusListener extends ListenerAdapter {
             @Override
             public void run() {
                 WebUtils.ins.scrapeWebPage("https://crowbar.steamstat.us/Barney").async((document -> {
-                    JsonParser parser = new JsonParser();
-                    JsonElement element = parser.parse(document.body().toString().substring(6, document.body().toString().length() - 7));
+                    JsonElement element = JsonParser.parseString(document.body().toString().substring(6, document.body().toString().length() - 7));
                     long time = element.getAsJsonObject().get("time").getAsLong();
                     Date date = new Date(time * 1000);
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd 'at' HH:mm:ss z");

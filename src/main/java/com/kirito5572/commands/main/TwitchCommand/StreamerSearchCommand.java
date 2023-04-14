@@ -1,4 +1,4 @@
-package com.kirito5572.commands.main.twitchcommand;
+package com.kirito5572.commands.main.TwitchCommand;
 
 import com.kirito5572.App;
 import com.kirito5572.objects.main.EventPackage;

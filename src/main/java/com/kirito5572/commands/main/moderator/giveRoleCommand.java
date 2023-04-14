@@ -30,7 +30,7 @@ public class giveRoleCommand implements ICommand {
         permission_Int = "";
         pos = "";
         hoisted = false;
-        if(Objects.requireNonNull(event.getMember()).hasPermission(Permission.ADMINISTRATOR)) {
+        if(Objects.requireNonNull(event.member()).hasPermission(Permission.ADMINISTRATOR)) {
             String roleName;
             String username;
 
@@ -89,7 +89,7 @@ public class giveRoleCommand implements ICommand {
             if(event.getGuild().getRolesByName(roleName, false).size() > 0) {
                 roleA = event.getGuild().getRolesByName(roleName, false).get(0);
                 try {
-                    event.getGuild().addRoleToMember(member, roleA).complete();
+                    event.getGuild().addRoleToMember(member, roleA).queue();
                 } catch (HierarchyException e) {
                     e.printStackTrace();
                     event.getChannel().sendMessage("봇의 역할보다 상위에 있는 역할은 지급할 수 없습니다.").queue();
@@ -124,9 +124,9 @@ public class giveRoleCommand implements ICommand {
             }
 
             if(!pos.equals("")) {
-                event.getGuild().modifyRolePositions().selectPosition(roleA).moveUp(Integer.parseInt(pos)).complete();
+                event.getGuild().modifyRolePositions().selectPosition(roleA).moveUp(Integer.parseInt(pos)).queue();
             }
-            event.getGuild().addRoleToMember(member, roleA).complete();
+            event.getGuild().addRoleToMember(member, roleA).queue();
 
             event.getChannel().sendMessage("[" + roleName + "] 역할이 [" + user.getName() + "]에게 부여되었습니다..").queue();
         } else {

@@ -82,10 +82,8 @@ public class App {
 
         StackTraceElement[] eStackTrace;
         int var23;
-        try {
-            File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\TOKEN.txt");
-            FileReader fileReader = new FileReader(file);
-
+        File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\TOKEN.txt");
+        try (FileReader fileReader = new FileReader(file)){
             int signalCh;
             while((signalCh = fileReader.read()) != -1) {
                 TOKENReader.append((char)signalCh);

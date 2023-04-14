@@ -15,14 +15,14 @@ import java.util.Objects;
 public class pollCommand implements ICommand {
     @Override
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
-        if(!(Objects.requireNonNull(event.getMember()).hasPermission(Permission.ADMINISTRATOR) || event.getMember().hasPermission(Permission.MESSAGE_MANAGE))) {
+        if(!(Objects.requireNonNull(event.member()).hasPermission(Permission.ADMINISTRATOR) || event.member().hasPermission(Permission.MESSAGE_MANAGE))) {
             if(!event.getAuthor().getId().equals("278086240195182592")) {
-                event.getChannel().sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
+                event.getChannel().sendMessage(event.member().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
 
                 return;
             }
         }
-        String pollText = event.getMessage().getContentRaw();
+        String pollText = event.message().getContentRaw();
         String temp = App.getPREFIX() + getInvoke();
         pollText = pollText.substring(temp.length());
 
@@ -34,16 +34,18 @@ public class pollCommand implements ICommand {
                 .addField("3\u20E3", "기권", true);
         Message message;
         if(event.getGuild().getId().equals("617222347425972234")) {
-            message =  event.getChannel().sendMessage(builder.build() + "@everyone").complete();
+            event.getChannel().sendMessage(builder.build() + "@everyone").queue(message1 -> messageBuilder(event, message1));
         } else {
-            message = event.getChannel().sendMessageEmbeds(builder.build()).complete();
+            event.getChannel().sendMessageEmbeds(builder.build()).queue(message1 -> messageBuilder(event, message1));
         }
+    }
 
-        event.getMessage().delete().complete();
+    void messageBuilder(EventPackage event, Message message) {
+        event.message().delete().queue();
 
-        message.addReaction("1\u20E3").complete();
-        message.addReaction("2\u20E3").complete();
-        message.addReaction("3\u20E3").complete();
+        message.addReaction("1\u20E3").queue();
+        message.addReaction("2\u20E3").queue();
+        message.addReaction("3\u20E3").queue();
     }
 
     @NotNull

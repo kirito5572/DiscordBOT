@@ -13,8 +13,8 @@ public class KickCommand implements ICommand {
     @Override
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
 
-        TextChannel channel = event.getTextChannel();
-        List<Member> mentionedMembers = event.getMessage().getMentionedMembers();
+        TextChannel channel = event.textChannel();
+        List<Member> mentionedMembers = event.message().getMentionedMembers();
 
 
         if (args.isEmpty() || mentionedMembers.isEmpty()) {

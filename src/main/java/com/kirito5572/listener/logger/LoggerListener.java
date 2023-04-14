@@ -31,7 +31,6 @@ import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Timer;
@@ -529,26 +528,27 @@ public class LoggerListener extends ListenerAdapter {
                 }
 
                 switch (event.getChannelType()) {
-                    case CATEGORY:
+                    case CATEGORY -> {
                         if (event.getPermissionOverride().isRoleOverride()) {
                             builder.setTitle("카테고리 권한 오버라이딩 생성").setColor(Color.GREEN).addField("카테고리명", event.getCategory().getName(), false).addField("변경된 권한(" + Objects.requireNonNull(event.getPermissionOverride().getRole()).getAsMention() + ")", stringBuilder.toString(), false).addField("변경 시간", time2, false);
                         } else if (event.getPermissionOverride().isMemberOverride()) {
                             builder.setTitle("카테고리 권한 오버라이딩 생성").setColor(Color.GREEN).addField("카테고리명", event.getCategory().getName(), false).addField("변경된 권한(" + Objects.requireNonNull(event.getPermissionOverride().getMember()).getAsMention() + ")", stringBuilder.toString(), false).addField("변경 시간", time2, false);
                         }
-                        break;
-                    case TEXT:
+                    }
+                    case TEXT -> {
                         if (event.getPermissionOverride().isRoleOverride()) {
                             builder.setTitle("텍스트 채널 권한 오버라이딩 생성").setColor(Color.GREEN).addField("채널명", event.getCategory().getName(), false).addField("변경된 권한(" + Objects.requireNonNull(event.getPermissionOverride().getRole()).getAsMention() + ")", stringBuilder.toString(), false).addField("변경 시간", time2, false);
                         } else if (event.getPermissionOverride().isMemberOverride()) {
                             builder.setTitle("텍스트 채널 권한 오버라이딩 생성").setColor(Color.GREEN).addField("채널명", event.getCategory().getName(), false).addField("변경된 권한(" + Objects.requireNonNull(event.getPermissionOverride().getMember()).getAsMention() + ")", stringBuilder.toString(), false).addField("변경 시간", time2, false);
                         }
-                        break;
-                    case VOICE:
+                    }
+                    case VOICE -> {
                         if (event.getPermissionOverride().isRoleOverride()) {
                             builder.setTitle("보이스 채널 권한 오버라이딩 생성").setColor(Color.GREEN).addField("채널명", event.getCategory().getName(), false).addField("변경된 권한(" + Objects.requireNonNull(event.getPermissionOverride().getRole()).getAsMention() + ")", stringBuilder.toString(), false).addField("변경 시간", time2, false);
                         } else if (event.getPermissionOverride().isMemberOverride()) {
                             builder.setTitle("보이스 채널 권한 오버라이딩 생성").setColor(Color.GREEN).addField("채널명", event.getCategory().getName(), false).addField("변경된 권한(" + Objects.requireNonNull(event.getPermissionOverride().getMember()).getAsMention() + ")", stringBuilder.toString(), false).addField("변경 시간", time2, false);
                         }
+                    }
                 }
 
                 this.channelLoggingSend(builder, guild);
@@ -573,26 +573,27 @@ public class LoggerListener extends ListenerAdapter {
                 String time2 = format2.format(time);
                 EmbedBuilder builder = EmbedUtils.getDefaultEmbed();
                 switch (event.getChannelType()) {
-                    case CATEGORY:
+                    case CATEGORY -> {
                         if (event.getPermissionOverride().isRoleOverride()) {
                             builder.setTitle("카테고리 권한 오버라이딩 삭제").setColor(Color.GREEN).addField("카테고리명", event.getCategory().getName(), false).addField("변경 시간", time2, false);
                         } else if (event.getPermissionOverride().isMemberOverride()) {
                             builder.setTitle("카테고리 권한 오버라이딩 삭제").setColor(Color.GREEN).addField("카테고리명", event.getCategory().getName(), false).addField("변경 시간", time2, false);
                         }
-                        break;
-                    case TEXT:
+                    }
+                    case TEXT -> {
                         if (event.getPermissionOverride().isRoleOverride()) {
                             builder.setTitle("텍스트 채널 권한 오버라이딩 삭제").setColor(Color.GREEN).addField("채널명", event.getCategory().getName(), false).addField("변경 시간", time2, false);
                         } else if (event.getPermissionOverride().isMemberOverride()) {
                             builder.setTitle("텍스트 채널 권한 오버라이딩 삭제").setColor(Color.GREEN).addField("채널명", event.getCategory().getName(), false).addField("변경 시간", time2, false);
                         }
-                        break;
-                    case VOICE:
+                    }
+                    case VOICE -> {
                         if (event.getPermissionOverride().isRoleOverride()) {
                             builder.setTitle("보이스 채널 권한 오버라이딩 삭제").setColor(Color.GREEN).addField("채널명", event.getCategory().getName(), false).addField("변경 시간", time2, false);
                         } else if (event.getPermissionOverride().isMemberOverride()) {
                             builder.setTitle("보이스 채널 권한 오버라이딩 삭제").setColor(Color.GREEN).addField("채널명", event.getCategory().getName(), false).addField("변경 시간", time2, false);
                         }
+                    }
                 }
 
                 this.channelLoggingSend(builder, guild);

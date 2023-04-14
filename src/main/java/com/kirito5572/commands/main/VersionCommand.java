@@ -57,7 +57,7 @@ public class VersionCommand implements ICommand {
                 .addField("게이트웨이 핑", event.getJDA().getGatewayPing() + "ms", true)
                 .addField("램 사용량", ((Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024 / 1024) + "MB", true)
                 .addField("CPU 쓰레드", String.valueOf(Runtime.getRuntime().availableProcessors()), true)
-                .addField("CPU 사용량", "프로그램: " + String.format("%.2f", osBean.getProcessCpuLoad() * 100.0D) + "% / 전체: " + String.format("%.2f", osBean.getSystemCpuLoad() * 100.0D) + "%", true)
+                .addField("CPU 사용량", "프로그램: " + String.format("%.2f", osBean.getProcessCpuLoad() * 100.0D) + "% / 전체: " + String.format("%.2f", osBean.getCpuLoad() * 100.0D) + "%", true)
                 .addField("CPU 정보 ", cpuInfo.getName() + "@" + cpuInfo.getVendorFreq() / 1000000L + "MHz", true)
                 .addField("OS 정보", operatingSystem.getManufacturer() + " " + operatingSystem.getVersionInfo().getVersion() + " Build" + operatingSystem.getVersionInfo().getBuildNumber(), true)
                 .addField("OS 업타임",day + "일 " + hour + "시간 " + min + "분 " + sec + "초", true);

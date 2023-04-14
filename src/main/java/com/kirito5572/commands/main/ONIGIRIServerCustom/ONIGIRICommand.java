@@ -1,4 +1,4 @@
-package com.kirito5572.commands.main.onigiriservercustom;
+package com.kirito5572.commands.main.ONIGIRIServerCustom;
 
 import com.kirito5572.objects.main.EventPackage;
 import com.kirito5572.objects.main.ICommand;
@@ -18,7 +18,7 @@ public class ONIGIRICommand implements ICommand {
             for (String s : list) {
                 embedBuilder.addField(s, "", false);
             }
-            event.getChannel().sendMessageEmbeds(embedBuilder.build()).complete();
+            event.getChannel().sendMessageEmbeds(embedBuilder.build()).queue();
         } else {
             event.getChannel().sendMessage("이 명령어는 이 서버에서 사용할 수 없습니다.").queue();
         }

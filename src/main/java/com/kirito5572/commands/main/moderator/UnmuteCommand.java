@@ -27,10 +27,10 @@ public class UnmuteCommand implements ICommand {
     private final Logger logger = LoggerFactory.getLogger(UnmuteCommand.class);
     @Override
     public void handle(List<String> args, @Nonnull EventPackage event) {
-        TextChannel channel = event.getTextChannel();
-        if(!(Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_ROLES) ||
-                event.getMember().hasPermission(Permission.ADMINISTRATOR))) {
-            channel.sendMessage(event.getMember().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
+        TextChannel channel = event.textChannel();
+        if(!(Objects.requireNonNull(event.member()).hasPermission(Permission.MANAGE_ROLES) ||
+                event.member().hasPermission(Permission.ADMINISTRATOR))) {
+            channel.sendMessage(event.member().getAsMention() + ", 당신은 이 명령어를 사용할 권한이 없습니다.").queue();
             return;
         }
         if(args.isEmpty()) {
@@ -61,8 +61,7 @@ public class UnmuteCommand implements ICommand {
         Member member = event.getGuild().getMember(user);
 
         Role role;
-        try {
-            PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("SELECT * FROM ritobot_config.mute_role_data WHERE guildId=?");
+        try (PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("SELECT * FROM ritobot_config.mute_role_data WHERE guildId=?")){
             preparedStatement.setString(1, event.getGuild().getId());
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) {
@@ -88,7 +87,7 @@ public class UnmuteCommand implements ICommand {
                     .setColor(Color.RED);
             Thread.sleep(1);
         } catch (Exception e) {
-            channel.sendMessage("메세지를 보내기 전에 문제가 발생했습니다.").complete();
+            channel.sendMessage("메세지를 보내기 전에 문제가 발생했습니다.").queue();
 
 
             StackTraceElement[] eStackTrace = e.getStackTrace();
@@ -101,8 +100,7 @@ public class UnmuteCommand implements ICommand {
             return;
         }
         if(role != null) {
-            try {
-                PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("DELETE FROM ritobotDB.mute_Data_List WHERE guildId = ? AND userId = ?");
+            try (PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("DELETE FROM ritobotDB.mute_Data_List WHERE guildId = ? AND userId = ?")){
                 preparedStatement.setString(1, event.getGuild().getId());
                 preparedStatement.setString(2, member.getId());
                 preparedStatement.execute();
@@ -113,7 +111,7 @@ public class UnmuteCommand implements ICommand {
             }
 
             event.getGuild().removeRoleFromMember(member, role).queue();
-            Objects.requireNonNull(event.getGuild().getTextChannelById(SQL.configDownLoad(event.getGuild().getId(), SQL.filterlog))).sendMessageEmbeds(builder.build()).complete();
+            Objects.requireNonNull(event.getGuild().getTextChannelById(SQL.configDownLoad(event.getGuild().getId(), SQL.filterlog))).sendMessageEmbeds(builder.build()).queue();
             builder = EmbedUtils.getDefaultEmbed()
                     .setTitle("채팅 금지 제재 해제")
                     .addField("멘션명", member.getAsMention(), false);

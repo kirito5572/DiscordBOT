@@ -49,7 +49,7 @@ public class lewdnekoCommand implements ICommand {
                     }
                 }
                 if (sendFlag) {
-                    event.getAuthor().openPrivateChannel().complete().sendMessageEmbeds(embed.build()).queue();
+                    event.getAuthor().openPrivateChannel().queue(privateChannel -> privateChannel.sendMessageEmbeds(embed.build()).queue());
                 } else {
                     InputStream inputStream = this.getClass().getResourceAsStream("/" + "haha1.jpg");
                     File file;

@@ -10,13 +10,15 @@ import java.util.List;
 public class PingCommand implements ICommand {
     @Override
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
-        long a = event.getJDA().getRestPing().complete();
-        long b = event.getJDA().getGatewayPing();
-        event.getChannel().sendMessage("퐁!").queue((message) ->
-                message.editMessageFormat("main_core\n" +
-                        "게이트웨이 핑: %sms\n" +
-                        "Rest 핑: %sms", b, a).queue()
-        );
+        event.getJDA().getRestPing().queue(aLong -> {
+            long b = event.getJDA().getGatewayPing();
+            event.getChannel().sendMessage("퐁!").queue((message) ->
+                    message.editMessageFormat("""
+                        main_core
+                        게이트웨이 핑: %sms
+                        Rest 핑: %sms""", b, aLong).queue()
+            );
+        });
     }
 
     @NotNull

@@ -12,7 +12,7 @@ public class TESTCommand implements ICommand {
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
         System.out.println(Arrays.toString(event.getGuild().getMembers().toArray()));
         System.out.println(event.getGuild().getMembers().size());
-        System.out.println(event.getMember());
+        System.out.println(event.member());
     }
 
 

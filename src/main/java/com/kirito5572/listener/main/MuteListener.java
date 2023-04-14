@@ -33,8 +33,7 @@ public class MuteListener extends ListenerAdapter {
                 time = String.valueOf(date.getTime());
                 time = time.substring(0, time.length() - 4);
                 time += "0000";
-                try {
-                    PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("SELECT * FROM ritobotDB.mute_Data_List WHERE endTime > ? ");
+                try (PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("SELECT * FROM ritobotDB.mute_Data_List WHERE endTime > ? ")) {
                     preparedStatement.setString(1, time);
                     ResultSet resultSet = preparedStatement.executeQuery();
                     if(resultSet.next()) {
@@ -43,10 +42,11 @@ public class MuteListener extends ListenerAdapter {
                     } else {
                         return;
                     }
-                    preparedStatement = SQL.getConnection().prepareStatement("DELETE FROM ritobotDB.mute_Data_List WHERE guildId = ? AND userId = ?");
-                    preparedStatement.setString(1, guildId);
-                    preparedStatement.setString(2, discord_ID);
-                    preparedStatement.execute();
+                    try (PreparedStatement preparedStatement1 = SQL.getConnection().prepareStatement("DELETE FROM ritobotDB.mute_Data_List WHERE guildId = ? AND userId = ?")) {
+                        preparedStatement1.setString(1, guildId);
+                        preparedStatement1.setString(2, discord_ID);
+                        preparedStatement1.execute();
+                    }
                 } catch (SQLException e) {
                     e.printStackTrace();
                     SQL.reConnection();
@@ -77,8 +77,7 @@ public class MuteListener extends ListenerAdapter {
                     return;
                 }
                 Role role;
-                try {
-                    PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("SELECT * FROM ritobot_config.mute_role_data WHERE guildId=?");
+                try (PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("SELECT * FROM ritobot_config.mute_role_data WHERE guildId=?")) {
                     preparedStatement.setString(1, guild.getId());
                     ResultSet resultSet = preparedStatement.executeQuery();
                     if(resultSet.next()) {
@@ -94,7 +93,7 @@ public class MuteListener extends ListenerAdapter {
                     return;
                 }
                 assert member != null;
-                guild.removeRoleFromMember(member, role).complete();
+                guild.removeRoleFromMember(member, role).queue();
                 EmbedBuilder builder = EmbedUtils.getDefaultEmbed()
                         .setTitle("채팅 금지 제재 해제")
                         .addField("유저명", user.getName(), false)
@@ -103,7 +102,7 @@ public class MuteListener extends ListenerAdapter {
                 Objects.requireNonNull(Objects.requireNonNull(event.getJDA().getGuildById(guildId))
                         .getTextChannelById(SQL.configDownLoad(Objects.requireNonNull(event.getJDA().getGuildById(guildId)).getId(),
                                 SQL.filterlog)))
-                        .sendMessageEmbeds(builder.build()).complete();
+                        .sendMessageEmbeds(builder.build()).queue();
             }
         };
         Timer jobScheduler = new Timer();

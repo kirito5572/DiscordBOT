@@ -21,7 +21,7 @@ public class AirInformationCommand implements ICommand {
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
         Logger logger = LoggerFactory.getLogger(AirInformationCommand.class);
         String[] rank = new String[8];
-        TextChannel channel = event.getTextChannel();
+        TextChannel channel = event.textChannel();
         Member selfMember = event.getGuild().getSelfMember();
         if(!selfMember.hasPermission(Permission.MESSAGE_WRITE)) {
             channel.sendMessage("메세지를 보낼권한이 없습니다.").queue();
@@ -55,22 +55,10 @@ public class AirInformationCommand implements ICommand {
         }
         for(int i = 0; i < 7; i++) {
             switch (data[i + 8]) {
-                case "1": {
-                    data[i + 8] = "좋음";
-                    break;
-                }
-                case "2": {
-                    data[i + 8] = "보통";
-                    break;
-                }
-                case "3": {
-                    data[i + 8] = "나쁨";
-                    break;
-                }
-                case "4": {
-                    data[i + 8] = "매우 나쁨";
-                    break;
-                }
+                case "1" -> data[i + 8] = "좋음";
+                case "2" -> data[i + 8] = "보통";
+                case "3" -> data[i + 8] = "나쁨";
+                case "4" -> data[i + 8] = "매우 나쁨";
             }
             try {
                 Thread.sleep(10);

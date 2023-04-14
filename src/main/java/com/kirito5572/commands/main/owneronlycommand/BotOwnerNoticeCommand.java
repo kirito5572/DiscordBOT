@@ -15,14 +15,14 @@ public class BotOwnerNoticeCommand implements ICommand {
     private final Logger logger = LoggerFactory.getLogger(BotOwnerNoticeCommand.class);
     @Override
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
-        if(!Objects.requireNonNull(event.getMember()).getUser().getId().equals(getID1())) {
+        if(!Objects.requireNonNull(event.member()).getUser().getId().equals(getID1())) {
             return;
         }
         StringBuilder temp = new StringBuilder();
         for (String arg : args) {
             temp.append(arg).append(" ");
         }
-        event.getMessage().delete().complete();
+        event.message().delete().queue();
         String message = temp.toString();
         if(message.contains("!here")) {
             message = message.replaceFirst("!here", "@here");

@@ -48,7 +48,7 @@ public class CatCommand implements ICommand {
 
             return;
         }
-        TextChannel channel = event.getTextChannel();
+        TextChannel channel = event.textChannel();
         Message message;
         String messageId;
         if(event.getGuild().getId().equals("600010501266866186")) {

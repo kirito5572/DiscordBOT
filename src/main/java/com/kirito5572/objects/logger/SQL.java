@@ -39,10 +39,8 @@ public class SQL {
         StringBuilder SQLPassword = new StringBuilder();
 
         int var7;
-        try {
-            File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\SQLPassword.txt");
-            FileReader fileReader = new FileReader(file);
-
+        File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\SQLPassword.txt");
+        try (FileReader fileReader = new FileReader(file)){
             int signalCh;
             while((signalCh = fileReader.read()) != -1) {
                 SQLPassword.append((char)signalCh);
@@ -61,11 +59,8 @@ public class SQL {
         }
 
         StringBuilder endPoint = new StringBuilder();
-
-        try {
-            File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\endPoint.txt");
-            FileReader fileReader = new FileReader(file);
-
+        file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\endPoint.txt");
+        try (FileReader fileReader = new FileReader(file)){
             int signalCh;
             while((signalCh = fileReader.read()) != -1) {
                 endPoint.append((char)signalCh);
@@ -84,7 +79,7 @@ public class SQL {
         }
 
         driverName = "com.mysql.cj.jdbc.Driver";
-        url = "jdbc:mysql://" + endPoint.toString() + "/ritobotDB?serverTimezone=UTC";
+        url = "jdbc:mysql://" + endPoint + "/ritobotDB?serverTimezone=UTC";
         user = "ritobot";
         password = SQLPassword.toString();
 
@@ -101,8 +96,8 @@ public class SQL {
     public String configDownLoad_channel(String guildId, int option) {
         String return_data = "error";
         String queryString;
-        switch(option) {
-            case 9:
+        switch (option) {
+            case 9 -> {
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     queryString = "SELECT * FROM ritobot_config.log_channel WHERE guildId=" + guildId;
@@ -118,8 +113,8 @@ public class SQL {
                     reConnection();
                     return_data = "error";
                 }
-                break;
-            case 10:
+            }
+            case 10 -> {
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     queryString = "SELECT * FROM ritobot_config.bot_channel WHERE guildId=" + guildId;
@@ -135,8 +130,8 @@ public class SQL {
                     reConnection();
                     return_data = "error";
                 }
-                break;
-            case 11:
+            }
+            case 11 -> {
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     queryString = "SELECT * FROM ritobot_config.log_channel WHERE guildId=" + guildId;
@@ -152,8 +147,8 @@ public class SQL {
                     reConnection();
                     return_data = "error";
                 }
-                break;
-            case 12:
+            }
+            case 12 -> {
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     queryString = "SELECT * FROM ritobot_config.log_channel WHERE guildId=" + guildId;
@@ -169,6 +164,7 @@ public class SQL {
                     reConnection();
                     return_data = "error";
                 }
+            }
         }
 
         return return_data;

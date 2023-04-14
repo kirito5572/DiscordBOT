@@ -15,89 +15,82 @@ import java.util.concurrent.TimeUnit;
 public class RockPaperScissorsCommand implements ICommand {
     @Override
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
-        event.getMessage().delete().queue();
+        event.message().delete().queue();
         String message;
         String myMessage;
         boolean botWin = false;
         boolean userWin = false;
         switch (args.get(0)) {
-            case "가위":
-                message = "가위";
-                break;
-            case "바위":
-                message = "바위";
-                break;
-            case "보":
-                message = "보";
-                break;
-            default:
-                event.getChannel().sendMessage("가위/바위/보중 하나를 입력하세요").complete().delete().queueAfter(7, TimeUnit.SECONDS);
+            case "가위" -> message = "가위";
+            case "바위" -> message = "바위";
+            case "보" -> message = "보";
+            default -> {
+                event.getChannel().sendMessage("가위/바위/보중 하나를 입력하세요").queue(message1 -> message1.delete().queueAfter(7, TimeUnit.SECONDS));
                 return;
+            }
         }
         Random random = new Random();
         switch (random.nextInt(3)) {
-            case 0:
-                myMessage = "가위";
-                break;
-            case 1:
-                myMessage = "바위";
-                break;
-            case 2:
-                myMessage = "보";
-                break;
-            default: event.getChannel().sendMessage("에러가 발생했습니다.").complete().delete().queueAfter(7, TimeUnit.SECONDS);
+            case 0 -> myMessage = "가위";
+            case 1 -> myMessage = "바위";
+            case 2 -> myMessage = "보";
+            default -> {
+                event.getChannel().sendMessage("에러가 발생했습니다.").queue(message1 -> message1.delete().queueAfter(7, TimeUnit.SECONDS));
                 return;
+            }
         }
         switch (message) {
-            case "가위":
+            case "가위" -> {
                 switch (myMessage) {
-                    case "가위":
+                    case "가위" -> {
                         botWin = false;
                         userWin = false;
-                        break;
-                    case "바위":
+                    }
+                    case "바위" -> {
                         botWin = true;
                         userWin = false;
-                        break;
-                    case "보":
+                    }
+                    case "보" -> {
                         botWin = false;
                         userWin = true;
-                        break;
+                    }
                 }
-                break;
-            case "바위":
+            }
+            case "바위" -> {
                 switch (myMessage) {
-                    case "가위":
+                    case "가위" -> {
                         botWin = false;
                         userWin = true;
-                        break;
-                    case "바위":
+                    }
+                    case "바위" -> {
                         botWin = false;
                         userWin = false;
-                        break;
-                    case "보":
+                    }
+                    case "보" -> {
                         botWin = true;
                         userWin = false;
-                        break;
+                    }
                 }
-                break;
-            case "보":
+            }
+            case "보" -> {
                 switch (myMessage) {
-                    case "가위":
+                    case "가위" -> {
                         botWin = true;
                         userWin = false;
-                        break;
-                    case "바위":
+                    }
+                    case "바위" -> {
                         botWin = false;
                         userWin = true;
-                        break;
-                    case "보":
+                    }
+                    case "보" -> {
                         botWin = false;
                         userWin = false;
-                        break;
+                    }
                 }
-                break;
-            default: return;
+            }
+            default -> {
+                return;
+            }
         }
         EmbedBuilder builder = EmbedUtils.getDefaultEmbed();
         if(botWin) {

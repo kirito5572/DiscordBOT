@@ -32,9 +32,9 @@ public class SQL {
 
     public SQL() {
         StringBuilder SQLPassword = new StringBuilder();
-        try {
-            File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\SQLPassword.txt");
-            FileReader fileReader = new FileReader(file);
+        File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\SQLPassword.txt");
+
+        try (FileReader fileReader = new FileReader(file)){
             int signalCh;
             while((signalCh = fileReader.read()) != -1) {
                 SQLPassword.append((char) signalCh);
@@ -49,9 +49,8 @@ public class SQL {
             logger.warn(a.toString());
         }
         StringBuilder endPoint = new StringBuilder();
-        try {
-            File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\endPoint.txt");
-            FileReader fileReader = new FileReader(file);
+        file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\endPoint.txt");
+        try (FileReader fileReader = new FileReader(file)){
             int signalCh;
             while((signalCh = fileReader.read()) != -1) {
                 endPoint.append((char) signalCh);
@@ -66,7 +65,7 @@ public class SQL {
             logger.warn(a.toString());
         }
         String driverName = "com.mysql.cj.jdbc.Driver";
-        url = "jdbc:mysql://" + endPoint.toString() + "/ritobotDB?serverTimezone=UTC";
+        url = "jdbc:mysql://" + endPoint + "/ritobotDB?serverTimezone=UTC";
         user = "ritobot";
         password = SQLPassword.toString();
         try {
@@ -201,7 +200,7 @@ public class SQL {
                     ResultSet resultSet = preparedStatement.executeQuery();
                     configData.customFilterList = new ArrayList<>();
                     if(resultSet.next()) {
-                        Data a = new Gson().fromJson(new JsonParser().parse(resultSet.getString("data")), Data.class);
+                        Data a = new Gson().fromJson(JsonParser.parseString(resultSet.getString("data")), Data.class);
                         for(JsonElement jsonElement : a.data) {
                             configData.customFilterList.add(jsonElement.getAsString());
                         }
@@ -245,48 +244,48 @@ public class SQL {
                 return;
             }
             switch (which) {
-                case textLogging:
+                case textLogging -> {
                     queryString = "UPDATE ritobot_config.log_channel SET messageLog = " + channelId + " WHERE guildId =" + guildId;
                     System.out.println(queryString);
                     statement = connection.createStatement();
                     statement.executeUpdate(queryString);
-                    break;
-                case channelLogging:
+                }
+                case channelLogging -> {
                     queryString = "UPDATE ritobot_config.log_channel SET channelLog = " + channelId + " WHERE guildId =" + guildId;
                     System.out.println(queryString);
                     statement = connection.createStatement();
                     statement.executeUpdate(queryString);
-                    break;
-                case memberLogging:
+                }
+                case memberLogging -> {
                     queryString = "UPDATE ritobot_config.log_channel SET memberLog = " + channelId + " WHERE guildId =" + guildId;
                     System.out.println(queryString);
                     statement = connection.createStatement();
                     statement.executeUpdate(queryString);
-                    break;
-                case notice:
+                }
+                case notice -> {
                     queryString = "UPDATE ritobot_config.notice SET disable=" + disable + ", channelId = " + channelId + " WHERE guildId =" + guildId;
                     System.out.println(queryString);
                     statement = connection.createStatement();
                     statement.executeUpdate(queryString);
-                    break;
-                case filterlog:
+                }
+                case filterlog -> {
                     queryString = "UPDATE ritobot_config.filter_output_channel SET disable=" + disable + ", channelId = " + channelId + " WHERE guildId =" + guildId;
                     System.out.println(queryString);
                     statement = connection.createStatement();
                     statement.executeUpdate(queryString);
-                    break;
-                case botchannel:
+                }
+                case botchannel -> {
                     queryString = "UPDATE ritobot_config.bot_channel SET disable=" + disable + ", channelId = " + channelId + " WHERE guildId =" + guildId;
                     System.out.println(queryString);
                     statement = connection.createStatement();
                     statement.executeUpdate(queryString);
-                    break;
-                case customFilter:
+                }
+                case customFilter -> {
                     queryString = "UPDATE ritobot_config.custom_Filter SET disable=" + disable + " WHERE guildId =" + guildId;
                     System.out.println(queryString);
                     statement = connection.createStatement();
                     statement.executeUpdate(queryString);
-                    break;
+                }
             }
             resultSet6.close();
         } catch (Exception e) {
@@ -323,44 +322,33 @@ public class SQL {
                 return;
             }
             switch (option) {
-                case color_guild:
-                    queryString = String.format("UPDATE ritobot_config.color_command_guild SET disable=%s WHERE guildId =%s", disable, guildId);
-                    break;
-                case filter:
-                    queryString = String.format("UPDATE ritobot_config.filter_guild SET disable=%s WHERE guildId =%s", disable, guildId);
-                    break;
-                case kill_filter:
-                    queryString = String.format("UPDATE ritobot_config.kill_filter_guild SET disable=%s WHERE guildId =%s", disable, guildId);
-                    break;
-                case lewdneko:
-                    queryString = String.format("UPDATE ritobot_config.lewdneko_command SET disable=%s WHERE guildId =%s", disable, guildId);
-                    break;
-                case link_filter:
-                    queryString = String.format("UPDATE ritobot_config.link_filter_guild SET disable=%s WHERE guildId =%s", disable, guildId);
-                    break;
-                case color_role:
+                case color_guild ->
+                        queryString = String.format("UPDATE ritobot_config.color_command_guild SET disable=%s WHERE guildId =%s", disable, guildId);
+                case filter ->
+                        queryString = String.format("UPDATE ritobot_config.filter_guild SET disable=%s WHERE guildId =%s", disable, guildId);
+                case kill_filter ->
+                        queryString = String.format("UPDATE ritobot_config.kill_filter_guild SET disable=%s WHERE guildId =%s", disable, guildId);
+                case lewdneko ->
+                        queryString = String.format("UPDATE ritobot_config.lewdneko_command SET disable=%s WHERE guildId =%s", disable, guildId);
+                case link_filter ->
+                        queryString = String.format("UPDATE ritobot_config.link_filter_guild SET disable=%s WHERE guildId =%s", disable, guildId);
+                case color_role -> {
                     if (disable.equals("1")) {
                         queryString = String.format("DELETE FROM ritobot_config.color_command_role WHERE guildId =%s", guildId);
                     }
-                    break;
-                case textLogging:
-                    queryString = String.format("UPDATE ritobot_config.logging_enable SET text_logging=%s WHERE guildId =%s", disable.equals("1") ? "0" : "1", guildId);
-                    break;
-                case channelLogging:
-                    queryString = String.format("UPDATE ritobot_config.logging_enable SET channel_logging=%s WHERE guildId =%s", disable.equals("1") ? "0" : "1", guildId);
-                    break;
-                case memberLogging:
-                    queryString = String.format("UPDATE ritobot_config.logging_enable SET member_logging=%s WHERE guildId =%s", disable.equals("1") ? "0" : "1", guildId);
-                    break;
-                case notice:
-                    queryString = String.format("UPDATE ritobot_config.notice SET disable=%s WHERE guildId =%s", disable, guildId);
-                    break;
-                case filterlog:
-                    queryString = String.format("UPDATE ritobot_config.filter_output_channel SET disable=%s WHERE guildId =%s", disable, guildId);
-                    break;
-                case botchannel:
-                    queryString = String.format("UPDATE ritobot_config.bot_channel SET disable=%s WHERE guildId =%s", disable, guildId);
-                    break;
+                }
+                case textLogging ->
+                        queryString = String.format("UPDATE ritobot_config.logging_enable SET text_logging=%s WHERE guildId =%s", disable.equals("1") ? "0" : "1", guildId);
+                case channelLogging ->
+                        queryString = String.format("UPDATE ritobot_config.logging_enable SET channel_logging=%s WHERE guildId =%s", disable.equals("1") ? "0" : "1", guildId);
+                case memberLogging ->
+                        queryString = String.format("UPDATE ritobot_config.logging_enable SET member_logging=%s WHERE guildId =%s", disable.equals("1") ? "0" : "1", guildId);
+                case notice ->
+                        queryString = String.format("UPDATE ritobot_config.notice SET disable=%s WHERE guildId =%s", disable, guildId);
+                case filterlog ->
+                        queryString = String.format("UPDATE ritobot_config.filter_output_channel SET disable=%s WHERE guildId =%s", disable, guildId);
+                case botchannel ->
+                        queryString = String.format("UPDATE ritobot_config.bot_channel SET disable=%s WHERE guildId =%s", disable, guildId);
             }
             System.out.println(queryString);
             statement = connection.createStatement();
@@ -372,8 +360,8 @@ public class SQL {
     }
     public static String configDownLoad(String guildId, int option) {
         String return_data = null;
-        switch(option) {
-            case notice:
+        switch (option) {
+            case notice -> {
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     String queryString;
@@ -391,8 +379,8 @@ public class SQL {
                     e.printStackTrace();
                     return_data = "error";
                 }
-                break;
-            case filterlog:
+            }
+            case filterlog -> {
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     String queryString;
@@ -401,7 +389,7 @@ public class SQL {
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     if (resultSet6.next()) {
-                        if(resultSet6.getString("disable").equals("0")) {
+                        if (resultSet6.getString("disable").equals("0")) {
                             return_data = resultSet6.getString("channelId");
                         }
                     }
@@ -410,8 +398,8 @@ public class SQL {
                     e.printStackTrace();
                     return_data = "error";
                 }
-                break;
-            case botchannel:
+            }
+            case botchannel -> {
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     String queryString;
@@ -420,7 +408,7 @@ public class SQL {
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     if (resultSet6.next()) {
-                        if(resultSet6.getString("disable").equals("0")) {
+                        if (resultSet6.getString("disable").equals("0")) {
                             return_data = resultSet6.getString("channelId");
                         }
                     }
@@ -429,7 +417,7 @@ public class SQL {
                     e.printStackTrace();
                     return_data = "error";
                 }
-                break;
+            }
         }
         return return_data;
     }
@@ -437,7 +425,7 @@ public class SQL {
     public static String[] configDownLoad_array(String guildId, int option) {
         String[] return_data = new String[0];
         switch (option) {
-            case color_role:
+            case color_role -> {
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     String queryString;
@@ -462,16 +450,16 @@ public class SQL {
                     e.printStackTrace();
                     return_data = new String[]{"error"};
                 }
-                break;
-            case customFilter:
+            }
+            case customFilter -> {
                 try {
                     PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ritobot_config.custom_Filter WHERE guildId = ?");
                     preparedStatement.setString(1, guildId);
                     ResultSet resultSet = preparedStatement.executeQuery();
                     List<String> arrayList = new ArrayList<>();
-                    if(resultSet.next()) {
-                        Data a = new Gson().fromJson(new JsonParser().parse(resultSet.getString("data")), Data.class);
-                        for(JsonElement jsonElement : a.data) {
+                    if (resultSet.next()) {
+                        Data a = new Gson().fromJson(JsonParser.parseString(resultSet.getString("data")), Data.class);
+                        for (JsonElement jsonElement : a.data) {
                             arrayList.add(jsonElement.getAsString());
                         }
                     }
@@ -480,7 +468,7 @@ public class SQL {
                     e.printStackTrace();
                     return_data = new String[]{"error"};
                 }
-                break;
+            }
         }
         return return_data;
     }
@@ -510,7 +498,7 @@ public class SQL {
     public static Map<String, String> configDownLoad(int option, boolean temp) {
         Map<String, String> return_data = new HashMap<>();
         switch (option) {
-            case botchannel:
+            case botchannel -> {
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     String queryString;
@@ -532,8 +520,8 @@ public class SQL {
                     e.printStackTrace();
                     return_data.put("error", "error");
                 }
-                break;
-            case customFilter:
+            }
+            case customFilter -> {
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     String queryString;
@@ -558,7 +546,7 @@ public class SQL {
                     e.printStackTrace();
                     return_data.put("error", "error");
                 }
-                break;
+            }
         }
         return return_data;
     }
@@ -571,13 +559,13 @@ public class SQL {
             String queryString;
             int i = 0;
             switch (option) {
-                case color_guild:
+                case color_guild -> {
                     queryString = "SELECT * FROM ritobot_config.color_command_guild WHERE disable = 0";
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     while (resultSet6.next()) {
                         if (i == 0) {
-                            return_data = new String[] {
+                            return_data = new String[]{
                                     resultSet6.getString("guildId")};
                             i++;
                         } else {
@@ -586,15 +574,15 @@ public class SQL {
                             return_data = newArray;
                         }
                     }
-                    break;
-                case filter:
+                }
+                case filter -> {
                     queryString = "SELECT * FROM ritobot_config.filter_guild WHERE disable = 1";
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     return_data = new String[resultSet6.getFetchSize()];
                     while (resultSet6.next()) {
                         if (i == 0) {
-                            return_data = new String[] {
+                            return_data = new String[]{
                                     resultSet6.getString("guildId")};
                             i++;
                         } else {
@@ -603,15 +591,15 @@ public class SQL {
                             return_data = newArray;
                         }
                     }
-                    break;
-                case link_filter:
+                }
+                case link_filter -> {
                     queryString = "SELECT * FROM ritobot_config.link_filter_guild WHERE disable = 1";
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     return_data = new String[resultSet6.getFetchSize()];
                     while (resultSet6.next()) {
                         if (i == 0) {
-                            return_data = new String[] {
+                            return_data = new String[]{
                                     resultSet6.getString("guildId")};
                             i++;
                         } else {
@@ -620,15 +608,15 @@ public class SQL {
                             return_data = newArray;
                         }
                     }
-                    break;
-                case kill_filter:
+                }
+                case kill_filter -> {
                     queryString = "SELECT * FROM ritobot_config.kill_filter_guild WHERE disable = 1";
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     return_data = new String[resultSet6.getFetchSize()];
                     while (resultSet6.next()) {
                         if (i == 0) {
-                            return_data = new String[] {
+                            return_data = new String[]{
                                     resultSet6.getString("guildId")};
                             i++;
                         } else {
@@ -637,15 +625,15 @@ public class SQL {
                             return_data = newArray;
                         }
                     }
-                    break;
-                case customFilter:
+                }
+                case customFilter -> {
                     queryString = "SELECT * FROM ritobot_config.custom_Filter WHERE disable = 1";
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     return_data = new String[resultSet6.getFetchSize()];
                     while (resultSet6.next()) {
                         if (i == 0) {
-                            return_data = new String[] {
+                            return_data = new String[]{
                                     resultSet6.getString("guildId")};
                             i++;
                         } else {
@@ -654,15 +642,15 @@ public class SQL {
                             return_data = newArray;
                         }
                     }
-                    break;
-                case lewdneko:
+                }
+                case lewdneko -> {
                     queryString = "SELECT * FROM ritobot_config.lewdneko_command WHERE disable = 1";
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     return_data = new String[resultSet6.getFetchSize()];
                     while (resultSet6.next()) {
                         if (i == 0) {
-                            return_data = new String[] {
+                            return_data = new String[]{
                                     resultSet6.getString("guildId")};
                             i++;
                         } else {
@@ -671,15 +659,15 @@ public class SQL {
                             return_data = newArray;
                         }
                     }
-                    break;
-                case color_role:
+                }
+                case color_role -> {
                     queryString = "SELECT * FROM ritobot_config.color_command_role;";
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     return_data = new String[resultSet6.getFetchSize()];
                     while (resultSet6.next()) {
                         if (i == 0) {
-                            return_data = new String[] {
+                            return_data = new String[]{
                                     resultSet6.getString("roleId")};
                             i++;
                         } else {
@@ -688,15 +676,15 @@ public class SQL {
                             return_data = newArray;
                         }
                     }
-                    break;
-                case textLogging:
+                }
+                case textLogging -> {
                     queryString = "SELECT * FROM ritobot_config.logging_enable WHERE text_logging = 1;";
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     return_data = new String[resultSet6.getFetchSize()];
                     while (resultSet6.next()) {
                         if (i == 0) {
-                            return_data = new String[] {
+                            return_data = new String[]{
                                     resultSet6.getString("guildId")};
                             i++;
                         } else {
@@ -705,15 +693,15 @@ public class SQL {
                             return_data = newArray;
                         }
                     }
-                    break;
-                case channelLogging:
+                }
+                case channelLogging -> {
                     queryString = "SELECT * FROM ritobot_config.logging_enable WHERE channel_logging = 1;";
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     return_data = new String[resultSet6.getFetchSize()];
                     while (resultSet6.next()) {
                         if (i == 0) {
-                            return_data = new String[] {
+                            return_data = new String[]{
                                     resultSet6.getString("guildId")};
                             i++;
                         } else {
@@ -722,15 +710,15 @@ public class SQL {
                             return_data = newArray;
                         }
                     }
-                    break;
-                case memberLogging:
+                }
+                case memberLogging -> {
                     queryString = "SELECT * FROM ritobot_config.logging_enable WHERE member_logging = 1;";
                     statement = connection.createStatement();
                     resultSet6 = statement.executeQuery(queryString);
                     return_data = new String[resultSet6.getFetchSize()];
                     while (resultSet6.next()) {
                         if (i == 0) {
-                            return_data = new String[] {
+                            return_data = new String[]{
                                     resultSet6.getString("guildId")};
                             i++;
                         } else {
@@ -739,7 +727,7 @@ public class SQL {
                             return_data = newArray;
                         }
                     }
-                    break;
+                }
             }
             resultSet6.close();
         } catch (Exception e) {

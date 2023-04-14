@@ -16,7 +16,7 @@ public class botIpAddressCommand implements ICommand {
     @Override
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
         String ip;
-        if(!Objects.requireNonNull(event.getMember()).getUser().getId().equals(Listener.getID1())) {
+        if(!Objects.requireNonNull(event.member()).getUser().getId().equals(Listener.getID1())) {
             return;
 
         }

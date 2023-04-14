@@ -14,10 +14,10 @@ public class BanCommand implements ICommand {
     @Override
     public void handle(@NotNull List<String> args, @NotNull EventPackage event) {
 
-        TextChannel channel = event.getTextChannel();
-        Member member = event.getMember();
+        TextChannel channel = event.textChannel();
+        Member member = event.member();
         Member selfMember = event.getGuild().getSelfMember();
-        List<Member> mentionedMembers = event.getMessage().getMentionedMembers();
+        List<Member> mentionedMembers = event.message().getMentionedMembers();
 
         if (mentionedMembers.isEmpty() || args.size() < 2) {
             channel.sendMessage("<유저명이 없습니다>").queue();

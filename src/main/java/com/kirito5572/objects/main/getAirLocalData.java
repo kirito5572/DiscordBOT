@@ -40,10 +40,8 @@ public class getAirLocalData {
             StringBuilder TOKEN = new StringBuilder();
 
             int i;
-            try {
-                File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airkoreaAPIKEY.txt");
-                FileReader fileReader = new FileReader(file);
-
+            File file = new File("C:\\DiscordServerBotSecrets\\rito-bot\\airkoreaAPIKEY.txt");
+            try (FileReader fileReader = new FileReader(file)){
                 while((i = fileReader.read()) != -1) {
                     TOKEN.append((char)i);
                 }

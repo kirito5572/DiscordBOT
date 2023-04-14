@@ -24,7 +24,7 @@ public class WeatherCommand implements ICommand {
         String[][] listChangeKOR = airKoreaList.getLocalListChangeKOR();
         String[] listSelectKOR = airKoreaList.getLocalListSelectKOR();
         String[] list = getWeather.getWeather_list();
-        TextChannel channel = event.getTextChannel();
+        TextChannel channel = event.textChannel();
         String joined = String.join("",args);
         for (String s : listKOR) {
             if (joined.equals(s)) {
