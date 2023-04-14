@@ -83,6 +83,7 @@ import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.MessageReaction.ReactionEmote;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.exceptions.ContextException;
 import net.dv8tion.jda.api.interactions.components.ActionRow;
 import net.dv8tion.jda.api.interactions.components.ComponentLayout;
 import net.dv8tion.jda.api.requests.RestAction;
@@ -550,7 +551,7 @@ public class CommandManager {
                 }
             };
             EventPackage eventPackage = new EventPackage(event.getTextChannel(), event.getMember(), message);
-            event.reply("").queue(interactionHook -> interactionHook.deleteOriginal().queueAfter(3L, TimeUnit.SECONDS));
+            event.reply("").queue(interactionHook -> interactionHook.deleteOriginal().queueAfter(10L, TimeUnit.SECONDS));
             this.commands.get(invoke).handle(args, eventPackage);
         }
 
